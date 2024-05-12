@@ -29,7 +29,7 @@ public class Player extends Entity{
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
-                solidArea = new Rectangle(16,16,40,40);
+                solidArea = new Rectangle(16,16,34,34);
             // GET PLAYER'S IMAGES:
                 getBasePlayerImage();
         }
@@ -206,7 +206,7 @@ public class Player extends Entity{
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY , gamePanel.tileSize +32, gamePanel.tileSize +32, null );
+            graphics2D.drawImage( image , screenX , screenY , gamePanel.tileSize + 16, gamePanel.tileSize + 16, null );
         }
     }
 }
