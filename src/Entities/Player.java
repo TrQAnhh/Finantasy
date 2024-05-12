@@ -25,9 +25,11 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 1968;
                 worldY = 2064;
-                speed = 2;
+                speed = 10;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
+            // INSTANTIATE RECTANGLE CLASS;
+                solidArea = new Rectangle(16,16,40,40);
             // GET PLAYER'S IMAGES:
                 getBasePlayerImage();
         }
@@ -81,28 +83,41 @@ public class Player extends Entity{
         }
     }
     public void update(){
+    // RECEIVE INPUTS FROM KEYBOARDS AND THEN UPDATE worldX - worldY positions:
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed ) {
-            // UPDATE worldX - worldY POSITIONS:
                 if(keyHandler.upPressed){
                     direction = "up";
-                    worldY = worldY - speed;
-
                 } else if (keyHandler.downPressed){
                     direction = "down";
-                    worldY = worldY + speed;
-
                 } else if (keyHandler.leftPressed) {
                     direction = "left";
-                    worldX = worldX - speed;
-
                 } else if (keyHandler.rightPressed){
                     direction = "right";
-                    worldX = worldX + speed;
-
                 }
 
-            spriteCounter++;
+    // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
+        collisionOn = false;
+        gamePanel.collision.checkTile(this);
 
+        if ( collisionOn == false ) {
+            switch (direction){
+                case "up":
+                    worldY = worldY - speed;
+                    break;
+                case "down":
+                    worldY = worldY + speed;
+                    break;
+                case "left":
+                    worldX = worldX - speed;
+                    break;
+                case "right":
+                    worldX = worldX + speed;
+                    break;
+            }
+        }
+
+    // ANIMATIONS FOR MOVEMENT:
+            spriteCounter++;
             if ( spriteCounter > 8 ){
                 if ( spriteNum == 1 ){
                     spriteNum = 2;
@@ -191,7 +206,7 @@ public class Player extends Entity{
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY , gamePanel.tileSize + 16  , gamePanel.tileSize + 16, null );
+            graphics2D.drawImage( image , screenX , screenY , gamePanel.tileSize +32, gamePanel.tileSize +32, null );
         }
     }
 }

@@ -10,8 +10,8 @@ import java.util.Objects;
 
 public class TileManager {
     GamePanel gamePanel;
-    Tile[] tile;
-    int mapTileNum[][]; // A 2D array that carry the index number of tiles
+    public Tile[] tile;
+    public int mapTileNum[][]; // A 2D array that carry the index number of tiles
 
     // CONSTRUCTORS:
         public TileManager (GamePanel gamePanel){
@@ -30,7 +30,12 @@ public class TileManager {
         public void getTileImage() {
             try (
                     // WATER TILE:
-                        InputStream water = new FileInputStream("res/Tile/Water/water.png");
+                        InputStream water_1 = new FileInputStream("res/Tile/Water/water_1.png");
+                        InputStream water_2 = new FileInputStream("res/Tile/Water/water_2.png");
+                        InputStream water_3 = new FileInputStream("res/Tile/Water/water_3.png");
+                        InputStream water_4 = new FileInputStream("res/Tile/Water/water_4.png");
+                        InputStream water_big_rock = new FileInputStream("res/Tile/Water/water_big_rock.png");
+                        InputStream water_small_rock = new FileInputStream("res/Tile/Water/water_small_rock.png");
                     // GREEN GROUND TILES:
                         InputStream grass = new FileInputStream("res/Tile/Grass/grass.png");
                     // BOAT TILES:
@@ -77,30 +82,61 @@ public class TileManager {
             ) {
                 // WATER TILE:
                     tile[0] = new Tile();
-                    tile[0].tile_image = ImageIO.read(water);
+                    tile[0].tile_image = ImageIO.read(water_1);
+                    tile[0].collision = true;
+
+                    tile[1] = new Tile();
+                    tile[1].tile_image = ImageIO.read(water_2);
+                    tile[1].collision = true;
+
+                    tile[2] = new Tile();
+                    tile[2].tile_image = ImageIO.read(water_3);
+                    tile[2].collision = true;
+
+
+                    tile[3] = new Tile();
+                    tile[3].tile_image = ImageIO.read(water_4);
+                    tile[3].collision = true;
+
+
+                    tile[4] = new Tile();
+                    tile[4].tile_image = ImageIO.read(water_big_rock);
+                    tile[4].collision = true;
+
+
+                    tile[5] = new Tile();
+                    tile[5].tile_image = ImageIO.read(water_small_rock);
+                    tile[5].collision = true;
 
                 // GREEN GROUND TILES:
-                    tile[1] = new Tile();
-                    tile[1].tile_image = ImageIO.read(grass);
+                    tile[6] = new Tile();
+                    tile[6].tile_image = ImageIO.read(grass);
+                    tile[6].collision = false;
 
                 // BOAT TILES:
                     tile[14] = new Tile();
                     tile[14].tile_image = ImageIO.read(boat_1_1);
+                    tile[14].collision = true;
 
                     tile[15] = new Tile();
                     tile[15].tile_image = ImageIO.read(boat_1_2);
+                    tile[15].collision = true;
 
                     tile[16] = new Tile();
                     tile[16].tile_image = ImageIO.read(boat_2_1);
+                    tile[16].collision = true;
 
                     tile[17] = new Tile();
                     tile[17].tile_image = ImageIO.read(boat_2_2);
+                    tile[17].collision = true;
 
                     tile[18] = new Tile();
                     tile[18].tile_image = ImageIO.read(boat_3_1);
+                    tile[18].collision = true;
 
                     tile[19] = new Tile();
                     tile[19].tile_image = ImageIO.read(boat_3_2);
+                    tile[19].collision = true;
 
                 // CASTLE TILES:
                     tile[20] = new Tile();
