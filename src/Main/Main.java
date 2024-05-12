@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Main {
+public class    Main {
     public static <image> void main(String[] args) {
 
     // GENERATING WINDOW JFRAME:

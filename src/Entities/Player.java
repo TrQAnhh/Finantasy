@@ -12,8 +12,8 @@ public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
         public final int screenY;
-    GamePanel gamePanel;
-    KeyHandler keyHandler;
+        GamePanel gamePanel;
+        KeyHandler keyHandler;
 
     // CONSTRUCTORS:
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
@@ -23,8 +23,8 @@ public class Player extends Entity{
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
                 screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
-                worldX = 400;
-                worldY = 400;
+                worldX = 1968;
+                worldY = 2064;
                 speed = 2;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
