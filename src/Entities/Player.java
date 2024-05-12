@@ -25,7 +25,7 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 1968;
                 worldY = 2064;
-                speed = 10;
+                speed = 3;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
