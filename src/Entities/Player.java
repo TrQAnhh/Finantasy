@@ -23,13 +23,15 @@ public class Player extends Entity{
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
                 screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
-                worldX = 1968;
-                worldY = 2064;
-                speed = 3;
+//                worldX = 2288;
+//                worldY = 2336;
+                  worldX = 1;
+                  worldY = 1;
+                speed = 13;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
-                solidArea = new Rectangle(16,16,34,34);
+                solidArea = new Rectangle(20,42,35,20);
             // GET PLAYER'S IMAGES:
                 getBasePlayerImage();
         }
@@ -206,7 +208,7 @@ public class Player extends Entity{
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY , gamePanel.tileSize + 16, gamePanel.tileSize + 16, null );
+            graphics2D.drawImage( image , screenX , screenY , gamePanel.tileSize + 32, gamePanel.tileSize + 32, null );
         }
     }
 }

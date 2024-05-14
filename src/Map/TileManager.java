@@ -17,7 +17,7 @@ public class TileManager {
         public TileManager (GamePanel gamePanel){
 
             this.gamePanel = gamePanel;
-            tile = new Tile[100]; // 100 kinds of tile: a water tile, a grass tile, a wall tile...
+            tile = new Tile[200]; // 150 kinds of tile: a water tile, a grass tile, a wall tile...
             mapTileNum = new int[gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
 
             // GET TILES IMAGES:
@@ -28,202 +28,251 @@ public class TileManager {
 
     // METHODS:
         public void getTileImage() {
-            try (
-                    // WATER TILE:
-                        InputStream water_1 = new FileInputStream("res/Tile/Water/water_1.png");
-                        InputStream water_2 = new FileInputStream("res/Tile/Water/water_2.png");
-                        InputStream water_3 = new FileInputStream("res/Tile/Water/water_3.png");
-                        InputStream water_4 = new FileInputStream("res/Tile/Water/water_4.png");
-                        InputStream water_big_rock = new FileInputStream("res/Tile/Water/water_big_rock.png");
-                        InputStream water_small_rock = new FileInputStream("res/Tile/Water/water_small_rock.png");
-                    // GREEN GROUND TILES:
-                        InputStream grass = new FileInputStream("res/Tile/Grass/grass.png");
-                    // BOAT TILES:
-                        InputStream boat_1_1 = new FileInputStream("res/Tile/Boat/boat_1_1.png");
-                        InputStream boat_1_2 = new FileInputStream("res/Tile/Boat/boat_1_2.png");
-                        InputStream boat_2_1 = new FileInputStream("res/Tile/Boat/boat_2_1.png");
-                        InputStream boat_2_2 = new FileInputStream("res/Tile/Boat/boat_2_2.png");
-                        InputStream boat_3_1 = new FileInputStream("res/Tile/Boat/boat_3_1.png");
-                        InputStream boat_3_2 = new FileInputStream("res/Tile/Boat/boat_3_2.png");
-                    // HOUSE TILES:
-                        InputStream castle_1 = new FileInputStream("res/Tile/Castle/castle_1.png");
-                        InputStream castle_2 = new FileInputStream("res/Tile/Castle/castle_2.png");
-                        InputStream castle_3 = new FileInputStream("res/Tile/Castle/castle_3.png");
-                        InputStream castle_4 = new FileInputStream("res/Tile/Castle/castle_4.png");
-                        InputStream castle_5 = new FileInputStream("res/Tile/Castle/castle_5.png");
-                        InputStream castle_6 = new FileInputStream("res/Tile/Castle/castle_6.png");
-                        InputStream castle_7 = new FileInputStream("res/Tile/Castle/castle_7.png");
-                        InputStream castle_8 = new FileInputStream("res/Tile/Castle/castle_8.png");
-                        InputStream castle_9 = new FileInputStream("res/Tile/Castle/castle_9.png");
-                        InputStream castle_10 = new FileInputStream("res/Tile/Castle/castle_10.png");
-                        InputStream castle_11 = new FileInputStream("res/Tile/Castle/castle_11.png");
-                        InputStream castle_12 = new FileInputStream("res/Tile/Castle/castle_12.png");
-                        InputStream castle_13 = new FileInputStream("res/Tile/Castle/castle_13.png");
-                        InputStream castle_14 = new FileInputStream("res/Tile/Castle/castle_14.png");
-                        InputStream castle_15 = new FileInputStream("res/Tile/Castle/castle_15.png");
-                    // TOWERS:
-                        InputStream tower_1 = new FileInputStream("res/Tile/Tower/tower_1.png");
-                        InputStream tower_2 = new FileInputStream("res/Tile/Tower/tower_2.png");
-                        InputStream tower_3 = new FileInputStream("res/Tile/Tower/tower_3.png");
-                        InputStream tower_4 = new FileInputStream("res/Tile/Tower/tower_4.png");
-                        InputStream tower_5 = new FileInputStream("res/Tile/Tower/tower_5.png");
-                        InputStream tower_6 = new FileInputStream("res/Tile/Tower/tower_6.png");
-                        InputStream tower_7 = new FileInputStream("res/Tile/Tower/tower_7.png");
-                        InputStream tower_8 = new FileInputStream("res/Tile/Tower/tower_8.png");
-                        InputStream tower_9 = new FileInputStream("res/Tile/Tower/tower_9.png");
-                        InputStream tower_10 = new FileInputStream("res/Tile/Tower/tower_10.png");
-                        InputStream tower_11 = new FileInputStream("res/Tile/Tower/tower_11.png");
-                        InputStream tower_12 = new FileInputStream("res/Tile/Tower/tower_12.png");
+            // WATER TILES:
+                    setup(0,"Water/water_1",true);
+                    setup(1,"Water/water_2",true);
+                    setup(2,"Water/water_3",true);
+                    setup(3,"Water/water_4",true);
+                    setup(4,"Water/water_big_rock",true);
+                    setup(5,"Water/water_small_rock",true);
 
+                // LAKE TILES:
+                    setup(6,"Water/lake_1",true);
+                    setup(7,"Water/lake_2",true);
+                    setup(8,"Water/lake_3",true);
+                    setup(9,"Water/lake_4",true);
+                    setup(10,"Water/lake_5",true);
+                    setup(11,"Water/lake_6",true);
+                    setup(12,"Water/lake_7",true);
+                    setup(13,"Water/lake_8",true);
+                    setup(14,"Water/lake_9",true);
+                    setup(15,"Water/lake_10",true);
+                    setup(16,"Water/lake_11",true);
+                    setup(17,"Water/lake_12",true);
 
+            // TERRAIN TILES:
+                    setup(18,"Terrain/grass",false);
+                    setup(19,"Terrain/flower_1",false);
+                    setup(20,"Terrain/flower_2",false);
+                    setup(21,"Terrain/flower_3",false);
+                    setup(22,"Terrain/flower_4",false);
+                    setup(23,"Terrain/normal_rock",true);
+                    setup(24,"Terrain/small_rock",true);
 
+                    setup(25,"Terrain/big_rock_1",true);
+                    setup(26,"Terrain/big_rock_2",true);
+                    setup(27,"Terrain/big_rock_3",true);
+                    setup(28,"Terrain/big_rock_4",true);
 
+                    setup(29,"Terrain/boxwood_1",true);
+                    setup(30,"Terrain/boxwood_2",true);
+                    setup(31,"Terrain/boxwood_3",true);
+                    setup(32,"Terrain/boxwood_4",true);
 
-            ) {
-                // WATER TILE:
-                    tile[0] = new Tile();
-                    tile[0].tile_image = ImageIO.read(water_1);
-                    tile[0].collision = true;
+                    setup(33,"Terrain/stump_1",true);
+                    setup(34,"Terrain/stump_2",true);
+                    setup(35,"Terrain/stump_3",true);
+                    setup(36,"Terrain/stump_4",true);
 
-                    tile[1] = new Tile();
-                    tile[1].tile_image = ImageIO.read(water_2);
-                    tile[1].collision = true;
+                    setup(37,"Terrain/trunk_1_1",true);
+                    setup(38,"Terrain/trunk_1_2",true);
+                    setup(39,"Terrain/trunk_1_3",true);
+                    setup(40,"Terrain/trunk_1_4",true);
+                    setup(41,"Terrain/trunk_1_5",true);
+                    setup(42,"Terrain/trunk_1_6",true);
 
-                    tile[2] = new Tile();
-                    tile[2].tile_image = ImageIO.read(water_3);
-                    tile[2].collision = true;
+                    setup(43,"Terrain/trunk_2_1",true);
+                    setup(44,"Terrain/trunk_2_2",true);
+                    setup(45,"Terrain/trunk_2_3",true);
+                    setup(46,"Terrain/trunk_2_4",true);
+                    setup(47,"Terrain/trunk_2_5",true);
+                    setup(48,"Terrain/trunk_2_6",true);
 
+            // TRAIL TILES:
+                    setup(49,"Trail/trail_1",false);
+                    setup(50,"Trail/trail_2",false);
+                    setup(51,"Trail/trail_3",false);
+                    setup(52,"Trail/trail_4",false);
+                    setup(53,"Trail/trail_5",false);
+                    setup(54,"Trail/trail_6",false);
+                    setup(55,"Trail/trail_7",false);
+                    setup(56,"Trail/trail_8",false);
+                    setup(57,"Trail/trail_9",false);
+                    setup(58,"Trail/trail_10",false);
+                    setup(59,"Trail/trail_11",false);
+                    setup(60,"Trail/trail_12",false);
+                    setup(61,"Trail/trail_13",false);
+                    setup(62,"Trail/trail_14",false);
+                    setup(63,"Trail/trail_15",false);
+                    setup(64,"Trail/trail_16",false);
 
-                    tile[3] = new Tile();
-                    tile[3].tile_image = ImageIO.read(water_4);
-                    tile[3].collision = true;
+                    setup(65,"Trail/trail_lower_right_corner",false);
+                    setup(66,"Trail/trail_lower_left_corner",false);
+                    setup(67,"Trail/trail_upper_right_corner",false);
+                    setup(68,"Trail/trail_upper_left_corner",false);
 
+             // TREE TILES:
+                    setup(69,"Tree/tree_1",true);
+                    setup(70,"Tree/tree_2",true);
+                    setup(71,"Tree/tree_3",true);
+                    setup(72,"Tree/tree_4",true);
+                    setup(73,"Tree/tree_5",true);
+                    setup(74,"Tree/tree_6",true);
+                    setup(75,"Tree/tree_7",true);
+                    setup(76,"Tree/tree_8",true);
+                    setup(77,"Tree/tree_9",true);
+                    setup(78,"Tree/tree_10",true);
+                    setup(79,"Tree/tree_11",true);
+                    setup(80,"Tree/tree_12",true);
+                    setup(81,"Tree/tree_13",true);
+                    setup(82,"Tree/tree_14",true);
+                    setup(83,"Tree/tree_15",true);
+                    setup(84,"Tree/tree_16",true);
+                    setup(85,"Tree/tree_17",true);
+                    setup(86,"Tree/tree_18",true);
+                    setup(87,"Tree/tree_19",true);
+                    setup(88,"Tree/tree_20",true);
+                    setup(89,"Tree/tree_21",true);
 
-                    tile[4] = new Tile();
-                    tile[4].tile_image = ImageIO.read(water_big_rock);
-                    tile[4].collision = true;
+              // MOUNTAIN TILES:
+                    setup(90,"Mountain/mountain_1",true);
+                    setup(91,"Mountain/mountain_2",true);
+                    setup(92,"Mountain/mountain_3",true);
+                    setup(93,"Mountain/mountain_4",true);
+                    setup(94,"Mountain/mountain_5",true);
+                    setup(95,"Mountain/mountain_6",true);
+                    setup(96,"Mountain/mountain_7",true);
+                    setup(97,"Mountain/mountain_8",true);
+                    setup(98,"Mountain/mountain_9",true);
+                    setup(99,"Mountain/mountain_10",true);
+                    setup(100,"Mountain/mountain_11",true);
+                    setup(101,"Mountain/mountain_12",true);
+                    setup(102,"Mountain/mountain_13",true);
+                    setup(103,"Mountain/mountain_14",true);
+                    setup(104,"Mountain/mountain_15",true);
+                    setup(105,"Mountain/mountain_16",true);
+                    setup(106,"Mountain/mountain_17",true);
+                    setup(107,"Mountain/mountain_18",true);
+                    setup(108,"Mountain/mountain_19",true);
+                    setup(109,"Mountain/mountain_20",true);
+                    setup(110,"Mountain/mountain_21",true);
+                    setup(111,"Mountain/mountain_22",true);
+                    setup(112,"Mountain/mountain_23",true);
+                    setup(113,"Mountain/mountain_24",true);
+                    setup(114,"Mountain/mountain_25",true);
+                    setup(115,"Mountain/mountain_26",true);
+                    setup(116,"Mountain/mountain_27",true);
+                    setup(117,"Mountain/mountain_28",true);
+                    setup(118,"Mountain/mountain_29",true);
+                    setup(119,"Mountain/mountain_30",true);
+                    setup(120,"Mountain/mountain_31",true);
+                    setup(121,"Mountain/mountain_32",true);
 
+                // WATERFALLS TILES:
+                    setup(122,"Mountain/waterfall_1",true);
+                    setup(123,"Mountain/waterfall_2",true);
+                    setup(124,"Mountain/waterfall_3",true);
+                    setup(125,"Mountain/waterfall_4",true);
 
-                    tile[5] = new Tile();
-                    tile[5].tile_image = ImageIO.read(water_small_rock);
-                    tile[5].collision = true;
+                // CAVES TILES:
+                    setup(126,"Mountain/cave_1",true);
+                    setup(127,"Mountain/cave_2",true);
+                    setup(128,"Mountain/cave_3",true);
+                    setup(129,"Mountain/cave_4",true);
+                    setup(130,"Mountain/cave_5",true);
+                    setup(131,"Mountain/cave_6",true);
 
-                // GREEN GROUND TILES:
-                    tile[6] = new Tile();
-                    tile[6].tile_image = ImageIO.read(grass);
-                    tile[6].collision = false;
+            // BOAT TILES:
+                    setup(132,"Boat/boat_1_1",true);
+                    setup(133,"Boat/boat_1_2",true);
+                    setup(134,"Boat/boat_2_1",true);
+                    setup(135,"Boat/boat_2_2",true);
+                    setup(136,"Boat/boat_3_1",true);
+                    setup(137,"Boat/boat_3_2",true);
 
-                // BOAT TILES:
-                    tile[14] = new Tile();
-                    tile[14].tile_image = ImageIO.read(boat_1_1);
-                    tile[14].collision = true;
+            // CONSTRUCTION TILES:
+                    setup(138,"Construction/construction_1",true);
+                    setup(139,"Construction/construction_2",true);
+                    setup(140,"Construction/construction_3",true);
+                    setup(141,"Construction/construction_4",true);
 
-                    tile[15] = new Tile();
-                    tile[15].tile_image = ImageIO.read(boat_1_2);
-                    tile[15].collision = true;
+                 // TOWERS TILES:
+                    setup(142,"Construction/Tower_1",true);
+                    setup(143,"Construction/Tower_2",true);
+                    setup(144,"Construction/Tower_3",true);
+                    setup(145,"Construction/Tower_4",true);
+                    setup(146,"Construction/Tower_5",true);
+                    setup(147,"Construction/Tower_6",true);
+                    setup(148,"Construction/Tower_7",true);
+                    setup(149,"Construction/Tower_8",true);
+                    setup(150,"Construction/Tower_9",true);
+                    setup(151,"Construction/Tower_10",true);
+                    setup(152,"Construction/Tower_11",true);
+                    setup(153,"Construction/Tower_12",true);
 
-                    tile[16] = new Tile();
-                    tile[16].tile_image = ImageIO.read(boat_2_1);
-                    tile[16].collision = true;
+            // SMITHY TILES:
+                    setup(154,"Smithy/smithy_1",true);
+                    setup(155,"Smithy/smithy_2",true);
+                    setup(156,"Smithy/smithy_3",true);
+                    setup(157,"Smithy/smithy_4",true);
+                    setup(158,"Smithy/smithy_5",true);
+                    setup(159,"Smithy/smithy_6",true);
+                    setup(160,"Smithy/smithy_7",true);
+                    setup(161,"Smithy/smithy_8",true);
+                    setup(162,"Smithy/smithy_9",true);
+                    setup(163,"Smithy/smithy_10",true);
+                    setup(164,"Smithy/smithy_11",true);
+                    setup(165,"Smithy/smithy_12",true);
+                    setup(166,"Smithy/smithy_13",true);
+                    setup(167,"Smithy/smithy_14",true);
+                    setup(168,"Smithy/smithy_15",true);
+                    setup(169,"Smithy/smithy_16",true);
 
-                    tile[17] = new Tile();
-                    tile[17].tile_image = ImageIO.read(boat_2_2);
-                    tile[17].collision = true;
+             // HOUSE TILES:
+                    setup(170,"House/house_1",true);
+                    setup(171,"House/house_2",true);
+                    setup(172,"House/house_3",true);
+                    setup(173,"House/house_4",true);
+                    setup(174,"House/house_5",true);
+                    setup(175,"House/house_6",true);
+                    setup(176,"House/house_7",true);
+                    setup(177,"House/house_8",true);
+                    setup(178,"House/house_9",true);
+                    setup(179,"House/house_10",true);
+                    setup(180,"House/house_11",true);
+                    setup(181,"House/house_12",true);
 
-                    tile[18] = new Tile();
-                    tile[18].tile_image = ImageIO.read(boat_3_1);
-                    tile[18].collision = true;
+             // CASTLE TILES:
+                    setup(182,"Castle/castle_1",true);
+                    setup(183,"Castle/castle_2",true);
+                    setup(184,"Castle/castle_3",true);
+                    setup(185,"Castle/castle_4",true);
+                    setup(186,"Castle/castle_5",true);
+                    setup(187,"Castle/castle_6",true);
+                    setup(188,"Castle/castle_7",true);
+                    setup(189,"Castle/castle_8",true);
+                    setup(190,"Castle/castle_9",true);
+                    setup(191,"Castle/castle_10",true);
+                    setup(192,"Castle/castle_11",true);
+                    setup(193,"Castle/castle_12",true);
+                    setup(194,"Castle/castle_13",true);
+                    setup(195,"Castle/castle_14",true);
+                    setup(196,"Castle/castle_15",true);
+        }
 
-                    tile[19] = new Tile();
-                    tile[19].tile_image = ImageIO.read(boat_3_2);
-                    tile[19].collision = true;
+        public void setup(int index, String imagePath, boolean collision) {
 
-                // CASTLE TILES:
-                    tile[20] = new Tile();
-                    tile[20].tile_image = ImageIO.read(castle_1);
+                String filePath = "res/Tile/" + imagePath + ".png";
+                File imageFile = new File(filePath);
 
-                    tile[21] = new Tile();
-                    tile[21].tile_image = ImageIO.read(castle_2);
+                try (FileInputStream image = new FileInputStream(imageFile)) {
+                        tile[index] = new Tile();
+                        tile[index].tile_image = ImageIO.read(image);
+                        tile[index].collision = collision;
+                } catch(IOException e) {
+                        e.printStackTrace();
+                }
 
-                    tile[22] = new Tile();
-                    tile[22].tile_image = ImageIO.read(castle_3);
-
-                    tile[23] = new Tile();
-                    tile[23].tile_image = ImageIO.read(castle_4);
-
-                    tile[24] = new Tile();
-                    tile[24].tile_image = ImageIO.read(castle_5);
-
-                    tile[25] = new Tile();
-                    tile[25].tile_image = ImageIO.read(castle_6);
-
-                    tile[26] = new Tile();
-                    tile[26].tile_image = ImageIO.read(castle_7);
-
-                    tile[27] = new Tile();
-                    tile[27].tile_image = ImageIO.read(castle_8);
-
-                    tile[28] = new Tile();
-                    tile[28].tile_image = ImageIO.read(castle_9);
-
-                    tile[29] = new Tile();
-                    tile[29].tile_image = ImageIO.read(castle_10);
-
-                    tile[30] = new Tile();
-                    tile[30].tile_image = ImageIO.read(castle_11);
-
-                    tile[31] = new Tile();
-                    tile[31].tile_image = ImageIO.read(castle_12);
-
-                    tile[32] = new Tile();
-                    tile[32].tile_image = ImageIO.read(castle_13);
-
-                    tile[33] = new Tile();
-                    tile[33].tile_image = ImageIO.read(castle_14);
-
-                    tile[34] = new Tile();
-                    tile[34].tile_image = ImageIO.read(castle_15);
-
-                // TOWER:
-                    tile[35] = new Tile();
-                    tile[35].tile_image = ImageIO.read(tower_1);
-
-                    tile[36] = new Tile();
-                    tile[36].tile_image = ImageIO.read(tower_2);
-
-                    tile[37] = new Tile();
-                    tile[37].tile_image = ImageIO.read(tower_3);
-
-                    tile[38] = new Tile();
-                    tile[38].tile_image = ImageIO.read(tower_4);
-
-                    tile[39] = new Tile();
-                    tile[39].tile_image = ImageIO.read(tower_5);
-
-                    tile[40] = new Tile();
-                    tile[40].tile_image = ImageIO.read(tower_6);
-
-                    tile[41] = new Tile();
-                    tile[41].tile_image = ImageIO.read(tower_7);
-
-                    tile[42] = new Tile();
-                    tile[42].tile_image = ImageIO.read(tower_8);
-
-                    tile[43] = new Tile();
-                    tile[43].tile_image = ImageIO.read(tower_9);
-
-                    tile[44] = new Tile();
-                    tile[44].tile_image = ImageIO.read(tower_10);
-
-                    tile[45] = new Tile();
-                    tile[45].tile_image = ImageIO.read(tower_11);
-
-                    tile[46] = new Tile();
-                    tile[46].tile_image = ImageIO.read(tower_12);
-
-            } catch (IOException e){
-                e.printStackTrace();
-            }
         }
       public void loadMap(String filePath) {
         try {
