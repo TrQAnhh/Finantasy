@@ -23,7 +23,7 @@ public class TileManager {
             // GET TILES IMAGES:
                 getTileImage();
             // LOAD MAP METHODS:
-                loadMap("res/MapData/mapdata_2.txt");
+                loadMap("res/MapData/mapdata.txt");
         }
 
     // METHODS:
@@ -283,8 +283,8 @@ public class TileManager {
             String line;
 
             while ((line = bufferedReader.readLine()) != null && row < gamePanel.maxWorldRow) {
-
-                String[] numbers = line.split(" ");
+                String delims = ",";
+                String[] numbers = line.split(delims);
                 int column = 0;
 
                 for (String number : numbers) { // Getting data from column

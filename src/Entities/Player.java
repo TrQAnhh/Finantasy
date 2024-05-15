@@ -25,8 +25,8 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
 //                worldX = 2288;
 //                worldY = 2336;
-                  worldX = 1;
-                  worldY = 1;
+                  worldX = 500;
+                  worldY = 500;
                 speed = 13;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
