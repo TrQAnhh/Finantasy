@@ -23,10 +23,8 @@ public class Player extends Entity{
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
                 screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
-//                worldX = 2288;
-//                worldY = 2336;
-                  worldX = 500;
-                  worldY = 500;
+                worldX = 2288;
+                worldY = 2336;
                 speed = 13;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
