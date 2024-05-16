@@ -187,10 +187,10 @@ public class TileManager {
 
             // BOAT TILES:
                     setup(133,"Boat/boat_1_1",true);
-                    setup(134,"Boat/boat_1_2",true);
-                    setup(135,"Boat/boat_2_1",true);
-                    setup(136,"Boat/boat_2_2",true);
-                    setup(137,"Boat/boat_3_1",true);
+                    setup(136,"Boat/boat_1_2",true);
+                    setup(134,"Boat/boat_2_1",true);
+                    setup(137,"Boat/boat_2_2",true);
+                    setup(135,"Boat/boat_3_1",true);
                     setup(138,"Boat/boat_3_2",true);
 
             // CONSTRUCTION TILES:
