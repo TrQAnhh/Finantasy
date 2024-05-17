@@ -12,12 +12,13 @@ public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
         public final int screenY;
-        GamePanel gamePanel;
         KeyHandler keyHandler;
 
     // CONSTRUCTORS:
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
-            this.gamePanel = gamePanel;
+            
+            super(gamePanel);
+
             this.keyHandler = keyHandler;
             // PLAYER'S SCREEN POSITION:
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
