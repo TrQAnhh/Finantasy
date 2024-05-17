@@ -15,7 +15,7 @@ import Main.UtilityTool;
 
 public class Entity {
 
-    GamePanel gp;
+    GamePanel gamePanel;
     public BufferedImage up1, up2, up3, up4, up5, up6, down1, down2, down3, down4, down5, down6, left1, left2, left3, left4, left5, left6, right1, right2, right3, right4, right5, right6;
     public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
     public BufferedImage image, image2, image3;
@@ -65,8 +65,8 @@ public class Entity {
     public String description = "";
 
 
-    public Entity(GamePanel gp){
-        this.gp = gp;
+    public Entity(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
 
     }
     public void setAction(){
@@ -78,7 +78,7 @@ public class Entity {
  //   gp.ui.currentDialogue = dialogue[dialogueIndex];
     dialogueIndex++;
 
-    switch (gp.player.direction) {
+    switch (gamePanel.player.direction) {
         case "up":
             direction = "down";
             break;
@@ -96,7 +96,7 @@ public class Entity {
         setAction();
         
         collisionOn = false;
-        gp.collision.checkTile(this);
+        gamePanel.collision.checkTile(this);
       //  gp.collision.checkObject(this, false);
      //   gp.collision.checkEntity(this, gp.npc);
      //   gp.collision.checkEntity(this, gp.monster);
@@ -129,13 +129,13 @@ public class Entity {
     public void draw(Graphics2D g2){
 
         BufferedImage image = null;
-        int screenX = worldX - gp.player.worldX + gp.player.screenX;
-        int screenY = worldY - gp.player.worldY + gp.player.screenY;
+        int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+        int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 
-            if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && 
-               worldX - gp.tileSize < gp.player.worldX + gp.player.screenX && 
-               worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
-               worldY - gp.tileSize < gp.player.worldY + gp.player.screenY)
+            if(worldX + gamePanel.tileSize > gamePanel.player.worldX - gamePanel.player.screenX && 
+               worldX - gamePanel.tileSize < gamePanel.player.worldX + gamePanel.player.screenX && 
+               worldY + gamePanel.tileSize > gamePanel.player.worldY - gamePanel.player.screenY && 
+               worldY - gamePanel.tileSize < gamePanel.player.worldY + gamePanel.player.screenY)
             {
                 switch (direction) {
                     case "up":
@@ -170,11 +170,11 @@ public class Entity {
                 // Monster HP bar
                 if(type == 2 && hpBarOn == true)
                 {
-                    double oneScale = (double)gp.tileSize/maxLife;
+                    double oneScale = (double)gamePanel.tileSize/maxLife;
                     double hpBarValue = oneScale*life;
 
                     g2.setColor(new Color(35,35,35));
-                    g2.fillRect(screenX-1, screenY - 16, gp.tileSize+2, 12);
+                    g2.fillRect(screenX-1, screenY - 16, gamePanel.tileSize+2, 12);
 
                     g2.setColor(new Color(255,0,30));
                     g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
@@ -189,7 +189,7 @@ public class Entity {
                 if(dying == true){
                     dyingAnimation(g2);
                 }
-                g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
 
                 changeAlpha(g2, 1F);
             }
