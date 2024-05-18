@@ -1,5 +1,4 @@
 package Main;
+public class UI{
 
-public class UI {
-    
 }
