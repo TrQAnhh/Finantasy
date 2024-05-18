@@ -1,10 +1,19 @@
 package Main;
 
+import javax.swing.JPanel;
+import javax.swing.plaf.DimensionUIResource;
+
+import Entities.Entity;
 import Entities.Player;
 import Map.TileManager;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable{
     // SCREEN SETTINGS:
@@ -27,22 +36,57 @@ public class GamePanel extends JPanel implements Runnable{
         public final int worldHeight = tileSize * maxWorldRow;
 
    // INSTANTIATE OBJECTS:
-            KeyHandler keyHandler = new KeyHandler();
+            public KeyHandler keyHandler = new KeyHandler(this);
             Thread gameThread;
+        // Sound CLASS
+            Sound music = new Sound();
+            Sound se = new Sound();
         // Player CLASS
             public Player player = new Player(this,keyHandler);
         // TileManager CLASS
             TileManager tileManager = new TileManager(this);
         // Collision CLASS
             public Collision collision = new Collision(this);
+        // NPC CLASS
+            public AssetSetter aSetter = new AssetSetter(this);
+            public Entity npc[] = new Entity[10];
+        // Monster CLASS
+            public Entity monster[] = new Entity[20];
+        // Object CLASS
+            public Entity object[] = new Entity[10];
+        // UNIT INTERFACE
+            public UI ui = new UI(this);
+        // List of Entity
+            ArrayList<Entity> entityList = new ArrayList<>();
+        // EventHandler
+            public EventHandler eHandler = new EventHandler(this);
 
+        // Game State
+            public int gameState;
+            public final int titleState = 0;
+            public final int playState = 1;
+            public final int pauseState = 2;
+            public final int dialogueState = 3;
+            public final int battleState = 4;
+            public final int characterState = 5;
+        
    // CONSTRUCTOR:
         public GamePanel(){
-                this.setPreferredSize(new Dimension(screenWidth,screenHeight));
+                this.setPreferredSize(new DimensionUIResource(screenWidth,screenHeight));
                 this.setBackground(Color.WHITE);
                 this.setDoubleBuffered(true);
                 this.addKeyListener(keyHandler);
                 this.setFocusable(true);
+        }
+        // Add Object, Entity
+        public void setupGame(){
+
+            aSetter.setObject();
+            aSetter.setNPC();
+            aSetter.setMonster();
+          //  playMusic(0);
+          //  stopMusic();
+          gameState = titleState;
         }
 
    // METHODS:
@@ -85,23 +129,123 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         public void update(){
-
-            // PLAYER'S POSITIONS UPDATE:
+            if (gameState == playState){
                 player.update();
-
+                for(int i=0;i<npc.length;i++)
+                if(npc[i] != null){
+                    npc[i].update();    
+                }
+                
+            for(int i=0; i<monster.length; i++){
+                if(monster[i] != null){
+                    if(monster[i].alive == true && monster[i].dying == false){
+                    monster[i].update();
+                    }
+                    if(monster[i].alive == false){
+                        monster[i] = null;
+                        }
+                }
+            }
+            }
+            if (gameState == pauseState){
+                
+            }
         }
 
-        public void paintComponent(Graphics graphics){
+        public void paintComponent(Graphics g){
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D)g;
 
-            super.paintComponent(graphics);
+    // debug
+    long drawStart = 0;
+    if(keyHandler.showDebugText == true){
+        drawStart = System.nanoTime();
+    }
 
-            Graphics2D graphics2D = (Graphics2D) graphics;
+    // Title Screen
+    if(gameState == titleState){
+        ui.draw(g2);
+    }
+    // Battle
+    else if(gameState == battleState){
+        ui.draw(g2);
+    }
+    // Others
+    else{
+        // tile
+    tileManager.draw(g2);
 
-            // DRAW TILES:
-                tileManager.draw(graphics2D);
-            // DRAW PLAYERS:
-                player.paintComponent(graphics2D);
-
-            graphics2D.dispose();
+    // Add entity to the list
+    entityList.add(player);
+    for(int i=0; i<npc.length;i++){
+        if(npc[i] != null){
+            entityList.add(npc[i]);
         }
+    }
+
+    for(int i=0; i<object.length; i++){
+        if(object[i] != null){
+            entityList.add(object[i]);
+        }
+    }
+    
+    for(int i=0; i<monster.length; i++){
+        if(monster[i] != null){
+            entityList.add(monster[i]);
+        }
+    }
+    // Sort
+    Collections.sort(entityList, new Comparator<Entity>() {
+
+        @Override
+        public int compare(Entity e1, Entity e2) {
+            int result = Integer.compare(e1.worldY, e2.worldY);
+            return result;
+        }
+        
+    });
+
+    // Draw entities
+    for(int i=0; i<entityList.size(); i++){
+        entityList.get(i).draw(g2);
+    }
+    // Empty entity list
+    entityList.clear();
+    // ui
+    ui.draw(g2);
+    }
+    
+    // Debug
+    if(keyHandler.showDebugText == true){
+        
+    long drawEnd = System.nanoTime();
+    long passed = drawEnd - drawStart;
+
+    g2.setFont(new Font("Arial", Font.PLAIN, 20));
+    g2.setColor(Color.white);
+    int x = 10;
+    int y = 400;
+    int lineHeight = 20;
+
+    g2.drawString("WorldX "+player.worldX, x, y);   y += lineHeight;
+    g2.drawString("WorldY "+player.worldY, x, y);   y += lineHeight;
+    g2.drawString("Col "+(player.worldX + player.solidArea.x)/tileSize, x, y);   y += lineHeight;
+    g2.drawString("Row "+(player.worldY + player.solidArea.y)/tileSize, x, y);   y += lineHeight;
+    g2.drawString("Draw Time: "+passed, x, y);
+    }
+
+    g2.dispose();
+    }
+        public void playMusic(int i){
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+        public void stopMusic(){
+        music.stop();
+    }
+        public void playSE(int i){
+        se.setFile(i);
+        se.play();
+    }
 }
