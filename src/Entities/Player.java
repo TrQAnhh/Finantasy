@@ -7,17 +7,20 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
         public final int screenY;
-        GamePanel gamePanel;
+        public ArrayList<Entity> inventory = new ArrayList<>();
+        public final int inventorySize = 20;
         KeyHandler keyHandler;
 
     // CONSTRUCTORS:
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
-            this.gamePanel = gamePanel;
+            
+            super(gamePanel);
             this.keyHandler = keyHandler;
             // PLAYER'S SCREEN POSITION:
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
@@ -95,10 +98,25 @@ public class Player extends Entity{
                     direction = "right";
                 }
 
-    // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
+        // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
         collisionOn = false;
         gamePanel.collision.checkTile(this);
 
+        // check object collision
+        int objIndex = gamePanel.collision.checkObject(this,true);
+        pickUpObject(objIndex);
+
+        // check npc collision
+        int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
+        interactNPC(npcIndex);
+
+        // Check monster collision
+        int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
+        
+        // Check event
+        gamePanel.eHandler.checkEvent();
+
+        // if collision is false, player can move
         if ( collisionOn == false ) {
             switch (direction){
                 case "up":
@@ -132,8 +150,23 @@ public class Player extends Entity{
             }
         }
     }
+    public void pickUpObject(int i){
 
-    public void paintComponent(Graphics2D graphics2D) {
+        if(i != 999){
+            
+        }
+    }
+    public void interactNPC(int i){
+        if(i != 999){
+
+            if(gamePanel.keyHandler.enterPressed == true){
+                gamePanel.gameState = gamePanel.dialogueState;
+                gamePanel.npc[i].speak();
+                }       
+        }
+    }
+
+    public void draw(Graphics2D graphics2D) {
         BufferedImage image = down1;
         switch (direction) {
             case "up":

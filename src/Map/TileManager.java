@@ -1,12 +1,12 @@
 package Map;
 
-import Main.GamePanel;
+import java.awt.Graphics2D;
+import java.io.*;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.Objects;
+
+import Main.GamePanel;
+import Main.UtilityTool;
 
 public class TileManager {
     GamePanel gamePanel;
@@ -265,12 +265,15 @@ public class TileManager {
 
         public void setup(int index, String imagePath, boolean collision) {
 
+                UtilityTool uTool = new UtilityTool();
+
                 String filePath = "res/Tile/" + imagePath + ".png";
                 File imageFile = new File(filePath);
 
                 try (FileInputStream image = new FileInputStream(imageFile)) {
                         tile[index] = new Tile();
                         tile[index].tile_image = ImageIO.read(image);
+                        tile[index].tile_image = uTool.scaleImage(tile[index].tile_image, gamePanel.tileSize,gamePanel.tileSize);
                         tile[index].collision = collision;
                 } catch(IOException e) {
                         e.printStackTrace();
