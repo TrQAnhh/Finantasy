@@ -99,11 +99,11 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_ESCAPE)
         {
-            gamePanel.gameState = gamePanel.pauseState;
-        }
-        if(code == KeyEvent.VK_TAB) 
-        {   
             gamePanel.gameState = gamePanel.optionsState;
+        }
+        if(code == KeyEvent.VK_P) 
+        {   
+            gamePanel.gameState = gamePanel.pauseState;
         }
         if(code == KeyEvent.VK_C)
         {
@@ -191,7 +191,7 @@ public class KeyHandler implements KeyListener {
         }
     }
     public void optionsState(int code) {
-        if(code == KeyEvent.VK_TAB) {
+        if(code == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
         }
         if(code == KeyEvent.VK_ENTER) {

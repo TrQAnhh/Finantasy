@@ -26,7 +26,7 @@ public class Player extends Entity{
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
                 screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
-                worldX = 700;
+                worldX = 800;
                 worldY = 2336;
                 speed = 3;
             // PLAYER'S MOVEMENT ANIMATIONS:

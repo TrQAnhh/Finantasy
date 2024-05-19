@@ -10,12 +10,16 @@ import Map.TileManager;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class GamePanel extends JPanel implements Runnable{
@@ -38,8 +42,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldWidth = tileSize * maxWorldColumn;
     public final int worldHeight = tileSize * maxWorldRow;
 // FOR FULL SCREEN
-    public final int screenHeight2 = screenHeight;
-    public final int screenWidth2 = screenWidth;
+    public int screenHeight2 = screenHeight;
+    public int screenWidth2 = screenWidth;
     BufferedImage tempScreen;
     Graphics2D g2;
     public boolean fullScreenOn = false;
@@ -96,13 +100,14 @@ public class GamePanel extends JPanel implements Runnable{
             aSetter.setNPC();
             aSetter.setMonster();
             gameState = titleState;
-            eManager.setup();
+            //eManager.setup();
 
-            tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+            //tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+            //g2 = (Graphics2D)tempScreen.getGraphics();
 
-            if(fullScreenOn == true) {
-                setFullScreen();
-            }
+            //if(fullScreenOn == true) {
+            //    setFullScreen();
+            //}
         }
         public void setFullScreen() {
 
@@ -112,8 +117,8 @@ public class GamePanel extends JPanel implements Runnable{
             gd.setFullScreenWindow(Main.window);
 
             //GET FULL SCREEN WIDTH AND HEIGHT
-            //screenWidth2 = Main.window.getWidth();
-            //screenHeight2 = Main.window.getHeight();
+            screenWidth2 = Main.window.getWidth();
+            screenHeight2 = Main.window.getHeight();
 
         }
         public void startGameThread(){
@@ -156,8 +161,27 @@ public class GamePanel extends JPanel implements Runnable{
 
         public void update(){
 
-            // PLAYER'S POSITIONS UPDATE:
+            if (gameState == playState){
                 player.update();
+                for(int i=0;i<npc.length;i++)
+                if(npc[i] != null){
+                    npc[i].update();    
+                }
+                
+            for(int i=0; i<monster.length; i++){
+                if(monster[i] != null){
+                    if(monster[i].alive == true && monster[i].dying == false){
+                    monster[i].update();
+                    }
+                    if(monster[i].alive == false){
+                        monster[i] = null;
+                        }
+                }
+            }
+            }
+            if (gameState == pauseState){
+                
+            }
 
         }
 
@@ -166,16 +190,89 @@ public class GamePanel extends JPanel implements Runnable{
             super.paintComponent(graphics);
 
             Graphics2D graphics2D = (Graphics2D) graphics;
-
-            // DRAW TILES:
+            long drawStart = 0;
+            if(keyHandler.showDebugText == true) {
+                drawStart = System.nanoTime();
+            }
+            if(gameState == titleState) {
+                ui.draw(graphics2D);
+            }   
+            else if(gameState == battleState) {
+                ui.draw(graphics2D);
+            }
+            else {
+                // DRAW TILES:
                 tileManager.draw(graphics2D);
             // DRAW PLAYERS:
                 player.draw(graphics2D);
+            // ADD ENTITY TO THE LIST  
+                entityList.add(player);
+                for(int i = 0; i < npc.length; ++i) {
+                    if(npc[i] != null) {
+                        entityList.add(npc[i]);
+                    }
+                }
+                for(int i = 0; i < object.length; ++i) {
+                    if(object[i] != null) {
+                        entityList.add(object[i]);
+                    }
+                }
+                for(int i = 0; i < monster.length; ++i) {
+                    if(monster[i] != null) {
+                        entityList.add(monster[i]);
+                    }
+                }
+                // SORT
+                Collections.sort(entityList, new Comparator<Entity>() {
+                    
+                    @Override
+                    public int compare(Entity e1, Entity e2) {
+                        int result = Integer.compare(e1.worldY, e2.worldY);
+                        return result;
+                    }
+                });
 
-            graphics2D.dispose();
-        }
+                 // Draw entities
+    for(int i=0; i<entityList.size(); i++){
+        entityList.get(i).draw(graphics2D);
+    }
+    // Empty entity list
+    entityList.clear();
+    // ui
+    ui.draw(graphics2D);
+    }
+    
+    // Debug
+    if(keyHandler.showDebugText == true){
+        
+    long drawEnd = System.nanoTime();
+    long passed = drawEnd - drawStart;
 
-        public void drawToTempScreen() {
-            
-        }
+    g2.setFont(new Font("Arial", Font.PLAIN, 20));
+    g2.setColor(Color.white);
+    int x = 10;
+    int y = 400;
+    int lineHeight = 20;
+
+    g2.drawString("WorldX "+player.worldX, x, y);   y += lineHeight;
+    g2.drawString("WorldY "+player.worldY, x, y);   y += lineHeight;
+    g2.drawString("Col "+(player.worldX + player.solidArea.x)/tileSize, x, y);   y += lineHeight;
+    g2.drawString("Row "+(player.worldY + player.solidArea.y)/tileSize, x, y);   y += lineHeight;
+    g2.drawString("Draw Time: "+passed, x, y);
+    }
+
+    graphics2D.dispose();
+    }
+        public void playMusic(int i){
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+        public void stopMusic(){
+        music.stop();
+    }
+        public void playSE(int i){
+        se.setFile(i);
+        se.play();
+    }
 }

@@ -25,8 +25,8 @@ public class AssetSetter{
     public void setNPC(){
 
         gamePanel.npc[0] = new NPC_OldMan(gamePanel);
-        gamePanel.npc[0].worldX = gamePanel.tileSize*21;
-        gamePanel.npc[0].worldY = gamePanel.tileSize*21;
+        gamePanel.npc[0].worldX = 1000;
+        gamePanel.npc[0].worldY = 2336;
 
         gamePanel.npc[1] = new NPC_Logan(gamePanel);
         gamePanel.npc[1].worldX = gamePanel.tileSize*19;
@@ -35,8 +35,8 @@ public class AssetSetter{
     public void setMonster(){
 
         gamePanel.monster[0] = new MON_Slime(gamePanel);
-        gamePanel.monster[0].worldX = gamePanel.tileSize*20;
-        gamePanel.monster[0].worldY = gamePanel.tileSize*12;
+        gamePanel.monster[0].worldX = 700;
+        gamePanel.monster[0].worldY = 2336;
 
         gamePanel.monster[1] = new MON_Slime(gamePanel);
         gamePanel.monster[1].worldX = gamePanel.tileSize*25;

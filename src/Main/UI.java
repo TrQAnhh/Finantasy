@@ -166,7 +166,7 @@ public class UI {
            } catch (IOException e) {
                e.printStackTrace();
            }   */
-           g2.setColor(new Color(70,120,80));
+           g2.setColor(new Color(0,0,0));
            g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
            // Title Name
            g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
@@ -191,7 +191,7 @@ public class UI {
    
            text = "NEW GAME";
            x = getXforCenteredText(text);
-           y += gamePanel.tileSize*4;
+           y += gamePanel.tileSize * 3;
            g2.drawString(text, x, y);
            if(commandNum == 0){
                g2.drawString(">", x-gamePanel.tileSize, y);
@@ -199,7 +199,7 @@ public class UI {
    
            text = "LOAD GAME";
            x = getXforCenteredText(text);
-           y += gamePanel.tileSize;
+           y += gamePanel.tileSize * 1.5;
            g2.drawString(text, x, y);
            if(commandNum == 1){
                g2.drawString(">", x-gamePanel.tileSize, y);
@@ -207,7 +207,7 @@ public class UI {
    
            text = "OPTION";
            x = getXforCenteredText(text);
-           y += gamePanel.tileSize;
+           y += gamePanel.tileSize * 1.5;
            g2.drawString(text, x, y);
            if(commandNum == 2){
                g2.drawString(">", x-gamePanel.tileSize, y);
@@ -215,13 +215,13 @@ public class UI {
    
            text = "QUIT";
            x = getXforCenteredText(text);
-           y += gamePanel.tileSize;
+           y += gamePanel.tileSize * 1.5;
            g2.drawString(text, x, y);
            if(commandNum == 3){
                g2.drawString(">", x-gamePanel.tileSize, y);
            }
        }
-       public void drawPauseScreen(){
+    public void drawPauseScreen(){
 
         String text = "PAUSED";
         int x = getXforCenteredText(text);
@@ -253,7 +253,7 @@ public class UI {
         final int frameWidth = gamePanel.tileSize*5;
         final int frameHeight = gamePanel.tileSize*10;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
-
+        //TEXT
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(32F));
 
@@ -505,7 +505,6 @@ public class UI {
         int slotX = slotXstart;
         int slotY = slotYstart;
         int slotSize = gamePanel.tileSize + 3;
-
         // Cursor
         int cursorX = slotXstart + (slotSize * slotCol);
         int cursorY = slotYstart + (slotSize * slotRow);
@@ -786,6 +785,14 @@ public class UI {
         return itemIndex;
     }
     public void drawSubWindow(int x, int y, int width, int height) {
+
+        Color c = new Color(0, 0, 210);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        c = new Color(255, 255, 255);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
     public int getXforCenteredText(String text){
         int length =(int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
