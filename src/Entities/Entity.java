@@ -97,7 +97,6 @@ public class Entity {
         
         collisionOn = false;
         gamePanel.collision.checkTile(this);
-    //    gamePanel.collision.checkObject(this, false);
         gamePanel.collision.checkObject(this, false);
         gamePanel.collision.checkEntity(this, gamePanel.npc);
         gamePanel.collision.checkEntity(this, gamePanel.monster);
