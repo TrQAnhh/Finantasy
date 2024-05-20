@@ -7,11 +7,14 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
         public final int screenY;
+        public ArrayList<Entity> inventory = new ArrayList<>();
+        public final int inventorySize = 20;
         KeyHandler keyHandler;
 
     // CONSTRUCTORS:
@@ -35,6 +38,12 @@ public class Player extends Entity{
                 getBasePlayerImage();
         }
 
+        public void setItem(){
+            inventory.add(currentWeapon1);
+            inventory.add(currentArmor);
+            inventory.add(new OBJ_Key(gamePanel));
+            inventory.add(new OBJ_HealPot(gamePanel));
+        }
     // METHODS:
     public void getBasePlayerImage(){
         try (
@@ -133,7 +142,56 @@ public class Player extends Entity{
             }
         }
     }
+    public void interactNPC(int i){
+        if(i != 999){
 
+            if(gamePanel.keyHandler.enterPressed == true){
+                gamePanel.gameState = gamePanel.dialogueState;
+                gamePanel.npc[i].speak();
+                }       
+        }
+    }
+    public void contactMonster(int i){
+        if(i != 999){
+            int damage = gamePanel.monster[i].attack - defense;
+            if(damage < 0){
+                damage = 0;
+            }
+            life -= damage;
+        }
+    }
+    public void damageMonster(int i){
+
+            int damage = attack - gamePanel.monster[i].defense;
+            if(damage < 0){
+                damage = 0;
+            }
+            gamePanel.ui.listofMonster.get(i).life -= damage;
+            gamePanel.ui.addMessage(damage + "damage!");
+            if(gamePanel.ui.listofMonster.get(i).life <= 0){
+                gamePanel.monster[i].dying = true;
+                gamePanel.ui.listofMonster.remove(i);
+                gamePanel.ui.addMessage("Kill the " + gamePanel.ui.listofMonster.get(i).name + "!");
+                exp += gamePanel.ui.listofMonster.get(i).exp;
+                checkLevelUp();
+            }
+    }
+    public void checkLevelUp(){
+
+        if(exp >= nextLevelExp){
+
+            level++;
+            nextLevelExp = nextLevelExp*2;
+            maxLife += 2;
+            strength++;
+            dexterity++;
+            attack += 3;
+            defense += 2;
+
+            gamePanel.gameState = gamePanel.dialogueState;
+            gamePanel.ui.currentDialogue = "You are level" + level + "now!\n";
+        }
+    }
     public void paintComponent(Graphics2D graphics2D) {
         BufferedImage image = down1;
         switch (direction) {

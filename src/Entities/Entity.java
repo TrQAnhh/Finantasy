@@ -60,6 +60,7 @@ public class Entity {
     public Entity currentArmor;
 
     // Item attribute
+    public int itemType = 0; // 0 for attack items, 1 for defense items, 2 for  usable items
     public int attackValue;
     public int defenseValue;
     public String description = "";

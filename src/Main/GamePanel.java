@@ -1,10 +1,13 @@
 package Main;
 
+import Entities.Entity;
 import Entities.Player;
 import Map.TileManager;
+import Main.EventHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable{
     // SCREEN SETTINGS:
@@ -26,15 +29,41 @@ public class GamePanel extends JPanel implements Runnable{
         public final int worldWidth = tileSize * maxWorldColumn;
         public final int worldHeight = tileSize * maxWorldRow;
 
-   // INSTANTIATE OBJECTS:
-            KeyHandler keyHandler = new KeyHandler();
-            Thread gameThread;
-        // Player CLASS
-            public Player player = new Player(this,keyHandler);
-        // TileManager CLASS
-            TileManager tileManager = new TileManager(this);
-        // Collision CLASS
-            public Collision collision = new Collision(this);
+   // INSTANTIATE OBJECTS: 
+        public KeyHandler keyHandler = new KeyHandler(this); 
+        Thread gameThread; 
+    // Sound CLASS 
+        Sound music = new Sound(); 
+        Sound se = new Sound(); 
+    // Player CLASS 
+        public Player player = new Player(this,keyHandler); 
+    // TileManager CLASS 
+        TileManager tileManager = new TileManager(this); 
+    // Collision CLASS 
+        public Collision collision = new Collision(this); 
+    // NPC CLASS 
+        public AssetSetter aSetter = new AssetSetter(this); 
+        public Entity npc[] = new Entity[10]; 
+    // Monster CLASS 
+        public Entity monster[] = new Entity[20]; 
+    // Object CLASS 
+        public Entity object[] = new Entity[10]; 
+    // UNIT INTERFACE 
+        public UI ui = new UI(this); 
+    // List of Entity 
+        ArrayList<Entity> entityList = new ArrayList<>(); 
+    // EventHandler 
+        public EventHandler eHandler = new EventHandler(this);
+
+    // GAME STATE :
+        public int gameState; 
+        public final int titleState = 0; 
+        public final int playState = 1; 
+        public final int pauseState = 2; 
+        public final int dialogueState = 3; 
+        public final int battleState = 4; 
+        public final int characterState = 5; 
+        public final int optionsState = 6;
 
    // CONSTRUCTOR:
         public GamePanel(){
