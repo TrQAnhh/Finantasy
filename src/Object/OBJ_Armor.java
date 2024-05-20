@@ -9,6 +9,7 @@ public class OBJ_Armor extends Entity {
         super(gamePanel);
         
         name = "Iron Armor";
+        itemType = 2;
         down1 = setup("/Object/axe", gamePanel.tileSize, gamePanel.tileSize);
         defenseValue = 1;
         description = "[" + name + "]\nAn old axe.";

@@ -60,6 +60,7 @@ public class Entity {
     public Entity currentArmor;
 
     // Item attribute
+    public int itemType;
     public int attackValue;
     public int defenseValue;
     public String description = "";
