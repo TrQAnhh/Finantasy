@@ -2,6 +2,8 @@ package Entities;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Object.OBJ_HealPot;
+import Object.OBJ_Key;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
