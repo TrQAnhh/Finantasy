@@ -17,7 +17,6 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -96,11 +95,11 @@ public class GamePanel extends JPanel implements Runnable{
         }
    // METHODS:
         public void setupGame() {
-            aSetter.setObject();;
+            aSetter.setObject();
             aSetter.setNPC();
             aSetter.setMonster();
             gameState = titleState;
-            //eManager.setup();
+            eManager.setup();
 
             //tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
             //g2 = (Graphics2D)tempScreen.getGraphics();

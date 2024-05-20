@@ -92,6 +92,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_S)
         {
             downPressed = true;
+            System.out.println("1");
         }
         if(code == KeyEvent.VK_D)
         {
@@ -114,7 +115,7 @@ public class KeyHandler implements KeyListener {
                 enterPressed = true;
         }
         //Debug
-        
+
         if(code == KeyEvent.VK_T) {
             if(showDebugText == false) {
                 showDebugText = true;
@@ -251,16 +252,20 @@ public class KeyHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_W){
+        if (code == KeyEvent.VK_W)
+        {
             upPressed = false;
         }
-        if (code == KeyEvent.VK_S){
+        if (code == KeyEvent.VK_S)
+        {
             downPressed = false;
         }
-        if (code == KeyEvent.VK_D){
+        if (code == KeyEvent.VK_D)
+        {
             rightPressed = false;
         }
-        if (code == KeyEvent.VK_A){
+        if (code == KeyEvent.VK_A)
+        {
             leftPressed = false;
         }
         throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");

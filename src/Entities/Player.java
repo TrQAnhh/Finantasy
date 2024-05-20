@@ -87,17 +87,20 @@ public class Player extends Entity{
     }
     public void update(){
     // RECEIVE INPUTS FROM KEYBOARDS AND THEN UPDATE worldX - worldY positions:
-        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed ) {
+        if (keyHandler.upPressed || keyHandler.downPressed == true || keyHandler.leftPressed || keyHandler.rightPressed ) {
                 if(keyHandler.upPressed){
                     direction = "up";
-                } else if (keyHandler.downPressed){
+                } 
+                if (keyHandler.downPressed){
                     direction = "down";
-                } else if (keyHandler.leftPressed) {
+                } 
+                if (keyHandler.leftPressed) {
                     direction = "left";
-                } else if (keyHandler.rightPressed){
+                } 
+                if (keyHandler.rightPressed){
                     direction = "right";
                 }
-
+        System.out.println(direction);
         // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
         collisionOn = false;
         gamePanel.collision.checkTile(this);
@@ -133,7 +136,6 @@ public class Player extends Entity{
                     break;
             }
         }
-
     // ANIMATIONS FOR MOVEMENT:
             spriteCounter++;
             if ( spriteCounter > 8 ){
