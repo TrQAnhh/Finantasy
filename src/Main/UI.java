@@ -75,6 +75,7 @@ public class UI {
         g2.setFont(maruMonica);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.WHITE);
+
         if(gamePanel.gameState == gamePanel.titleState){
             drawTitleScreen();
         }
@@ -238,7 +239,7 @@ public class UI {
         drawSubWindow(x, y, width, height);
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,32F));
-        x+= gamePanel.tileSize;
+        x += gamePanel.tileSize;
         y += gamePanel.tileSize;
 
         for(String line : currentDialogue.split("\n")){
@@ -569,7 +570,6 @@ public class UI {
             case 3: options_endGameConfirmation(frameX, frameY);
                 break;
         }
-
         gamePanel.keyHandler.enterPressed = false;
     }
     public void options_top(int frameX, int frameY) {
@@ -577,7 +577,7 @@ public class UI {
         int textY;
 
         //TTILE
-        String text = "OPTIONS";
+        String text = "Options";
         textX = getXforCenteredText(text);
         textY = frameY + gamePanel.tileSize;
         g2.drawString(text, textX, textY);
@@ -585,9 +585,9 @@ public class UI {
         //FULL SCREEN ON/ OFF
         textX = frameX +  gamePanel.tileSize;
         textY += gamePanel.tileSize * 2;
-        g2.drawString("FULL SCREEN", textX, textY);
+        g2.drawString("Full screen", textX, textY);
         if(commandNum == 0) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
             if(gamePanel.keyHandler.enterPressed == true) {
                 if(gamePanel.fullScreenOn == false) {
                     gamePanel.fullScreenOn = true;
@@ -601,23 +601,23 @@ public class UI {
 
         //MUSIC 
         textY += gamePanel.tileSize;
-        g2.drawString("MUSIC", textX, textY);
+        g2.drawString("Music", textX, textY);
         if(commandNum == 1) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
         }
 
         //SE
         textY += gamePanel.tileSize;
-        g2.drawString("SE", textX, textY);
+        g2.drawString("Se", textX, textY);
         if(commandNum == 2) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
         }
 
         //CONTROL
         textY += gamePanel.tileSize;
-        g2.drawString("CONTROL", textX, textY);
+        g2.drawString("Control", textX, textY);
         if(commandNum == 3) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
             if(gamePanel.keyHandler.enterPressed == true) {
                 subState = 2;
                 commandNum = 0;
@@ -626,9 +626,9 @@ public class UI {
 
         //END GAME
         textY += gamePanel.tileSize;
-        g2.drawString("END GAME", textX, textY);
+        g2.drawString("End game", textX, textY);
         if(commandNum == 4) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
             if(gamePanel.keyHandler.enterPressed ==  true) {
                 subState = 3;
                 commandNum = 0;
@@ -637,9 +637,9 @@ public class UI {
 
         //BACK TO GAMEPLAY
         textY += gamePanel.tileSize * 2;
-        g2.drawString("BACK TO GAMEPLAY", textX, textY);
+        g2.drawString("Back", textX, textY);
         if(commandNum == 5) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
             if(gamePanel.keyHandler.enterPressed == true) {
                 gamePanel.gameState = gamePanel.playState;
                 commandNum = 0;
@@ -647,7 +647,7 @@ public class UI {
         }
 
         //FULL SCREEN CHECK BOX
-        textX = frameX + gamePanel.tileSize * 4;
+        textX = (int)(frameX + gamePanel.tileSize * 4.5);
         textY = frameY + gamePanel.tileSize * 2 + 24;
         g2.setStroke(new BasicStroke(3));
         g2.drawRect(textX, textY, 24, 24);
@@ -684,9 +684,9 @@ public class UI {
 
         // BACK
         textY = frameY + gamePanel.tileSize * 9;
-        g2.drawString("BACK", textX, textY);
+        g2.drawString("Back", textX, textY);
         if(commandNum == 0) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
             if(gamePanel.keyHandler.enterPressed == true) {
                 subState = 0;
             }
@@ -786,11 +786,12 @@ public class UI {
     }
     public void drawSubWindow(int x, int y, int width, int height) {
 
-        Color c = new Color(0, 0, 210);
+        Color c = new Color(0, 0, 0, 210);
         g2.setColor(c);
         g2.fillRoundRect(x, y, width, height, 35, 35);
 
-        c = new Color(255, 255, 255);
+        c = Color.WHITE;
+        g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
