@@ -489,7 +489,6 @@ public class UI {
                         y += 35;
                     }
                 }
-
         }
             
     }
