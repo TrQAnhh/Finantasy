@@ -32,6 +32,7 @@ public class NPC_Logan extends Entity {
 
         actionLockCounter++;
 
+        
         if(actionLockCounter == 120) {
             Random rand = new Random();
         actionLockCounter = 0;

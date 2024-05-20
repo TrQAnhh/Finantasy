@@ -31,7 +31,7 @@ public class UI {
     public int titleScreenState = 0;
     public int slotCol = 0;
     public int slotRow = 0;
-    int subState = 0;
+    public int subState = 0;
 
     BufferedImage heart_full, heart_half, heart_blank;
     public boolean messageOn = false;
@@ -608,6 +608,7 @@ public class UI {
             case 3: options_endGameConfirmation(frameX, frameY);
                 break;
         }
+
         gamePanel.keyHandler.enterPressed = false;
     }
     public void options_top(int frameX, int frameY) {
@@ -629,12 +630,14 @@ public class UI {
             if(gamePanel.keyHandler.enterPressed == true) {
                 if(gamePanel.fullScreenOn == false) {
                     gamePanel.fullScreenOn = true;
+                    g2.fillRect(textX, textY, 24, 24);
                 }
                 if (gamePanel.fullScreenOn == true) {
                     gamePanel.fullScreenOn = false;
                 }
                 subState = 1;
             }
+
         }
 
         //MUSIC 
@@ -695,25 +698,25 @@ public class UI {
 
         //MUSIC VOLUME
         textY += gamePanel.tileSize;
-        g2.drawRect(textX, textX, 120, 24); // 120/5 = 24
+        g2.drawRect(textX, textY, 120, 24); // 120/5 = 24
         int volumeWidth = 24 * gamePanel.music.volumeScale;
         g2.fillRect(textX, textY, volumeWidth, 24);
 
 
         //SE VOLUME
         textY += gamePanel.tileSize;
-        g2.drawRect(textX, textX, 120, 24);
+        g2.drawRect(textX, textY, 120, 24);
         volumeWidth = 24 * gamePanel.se.volumeScale;
         g2.fillRect(textX, textY, volumeWidth, 24);
 
-        gamePanel.config.saveConfif();
+       gamePanel.config.saveConfif();
     }
 
     public void option_fullScreenNotification(int frameX, int frameY) {
         int textX = frameX + gamePanel.tileSize;
         int textY = frameY + gamePanel.tileSize * 3;
 
-        currentDialogue = "The change will take effect after restarting the game.\n Do you want to contuniuos the process !";
+        currentDialogue = "The change will take \n effect after restarting \n the game. Do you \n want to contuniuos \n the process !";
 
         for(String line: currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
@@ -740,32 +743,32 @@ public class UI {
         textY = frameY + gamePanel.tileSize;
         g2.drawString(text, textX, textY);
 
-        textX = frameX + gamePanel.tileSize;
+        textX = frameX + gamePanel.tileSize - 25;
         textY += gamePanel.tileSize;
-        g2.drawString("MOVE", textX, textY);
+        g2.drawString("Move", textX, textY);
         textY += gamePanel.tileSize;
-        g2.drawString("CONFIRM/ ATTACK", textX, textY);
+        g2.drawString("Confirm/ Attack", textX, textY);
         textY += gamePanel.tileSize;
-        g2.drawString("SHOOT/ CAST", textX, textY);
+        g2.drawString("Shoot/ Cast", textX, textY);
         textY += gamePanel.tileSize;
-        g2.drawString("CHARACTER SCREEN", textX, textY);
+        g2.drawString("Character screen", textX, textY);
         textY += gamePanel.tileSize;
-        g2.drawString("PAUSE", textX, textY);
+        g2.drawString("Pause", textX, textY);
         textY += gamePanel.tileSize;
-        g2.drawString("OPTIONS", textX, textY);
+        g2.drawString("Options", textX, textY);
         textY += gamePanel.tileSize;
 
-        textX = frameX + gamePanel.tileSize * 6;
+        textX = (int) (frameX + gamePanel.tileSize * 5.5);
         textY = frameY + gamePanel.tileSize * 2;
         g2.drawString("WASD", textX, textY);
         textY += gamePanel.tileSize;
         g2.drawString("ENTER", textX, textY);
         textY += gamePanel.tileSize;
-        g2.drawString("F", textX, textY);
+        g2.drawString("F", textX + 30, textY);
         textY += gamePanel.tileSize;
-        g2.drawString("C", textX, textY);
+        g2.drawString("C", textX + 30, textY);
         textY += gamePanel.tileSize;
-        g2.drawString("P", textX, textY);
+        g2.drawString("P", textX + 30, textY);
         textY += gamePanel.tileSize;
         g2.drawString("ESC", textX, textY);
         textY += gamePanel.tileSize;
@@ -773,9 +776,9 @@ public class UI {
         // BACK 
         textX = frameX + gamePanel.tileSize;
         textY = frameY + gamePanel.tileSize * 9;
-        g2.drawString("BACK", textX, textY);
+        g2.drawString("Back", textX, textY);
         if(commandNum == 0) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
             if(gamePanel.keyHandler.enterPressed == true) {
                 subState = 0;
                 commandNum = 3;
@@ -787,31 +790,31 @@ public class UI {
         int textX = frameX + gamePanel.tileSize;
         int textY = frameY + gamePanel.tileSize * 3;
 
-        currentDialogue = "Quit the game and \nreturn to the titlr screen ?";
+        currentDialogue = "Quit the game and \nreturn to \n the title screen ?";
         for(String line: currentDialogue.split("\n")){
             g2.drawString(line, textX, textY);
             textY += 40;
         }
 
         //YES
-        String text = "YES";
+        String text = "Yes";
         textX = getXforCenteredText(text);
         textY += gamePanel.tileSize * 3;
         g2.drawString(text, textX, textY);
         if(commandNum == 0) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
             if(gamePanel.keyHandler.enterPressed == true) {
                 subState = 0;
-                gamePanel.gameState = gamePanel.tileSize;
+                gamePanel.gameState = gamePanel.titleState;
             }
         }
         //NO
-        text = "NO";
+        text = "No";
         textX = getXforCenteredText(text);
         textY += gamePanel.tileSize;
         g2.drawString(text, textX, textY);
         if(commandNum == 1) {
-            g2.drawString("->", textX - 25, textY);
+            g2.drawString(">", textX - 25, textY);
             if(gamePanel.keyHandler.enterPressed == true) {
                 subState = 0;
                 commandNum = 4;

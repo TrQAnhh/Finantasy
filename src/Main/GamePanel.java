@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int screenWidth2 = screenWidth;
     BufferedImage tempScreen;
     Graphics2D g2;
-    public boolean fullScreenOn = false;
+    public boolean fullScreenOn = true;
 // INSTANTIATE OBJECTS:
         public KeyHandler keyHandler = new KeyHandler(this);
         Thread gameThread;
@@ -159,24 +159,24 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         public void update(){
-
             if (gameState == playState){
-                player.update();
-                for(int i=0;i<npc.length;i++)
-                if(npc[i] != null){
-                    npc[i].update();    
-                }
-                
-            for(int i=0; i<monster.length; i++){
-                if(monster[i] != null){
-                    if(monster[i].alive == true && monster[i].dying == false){
-                    monster[i].update();
+                    player.update();
+                    for(int i=0;i<npc.length;i++)
+                    if(npc[i] != null){
+                        npc[i].update();    
                     }
-                    if(monster[i].alive == false){
-                        monster[i] = null;
+                    
+                for(int i=0; i<monster.length; i++){
+                    if(monster[i] != null){
+                        if(monster[i].alive == true && monster[i].dying == false){
+                        monster[i].update();
                         }
+                        if(monster[i].alive == false){
+                            monster[i] = null;
+                        }
+                    }
                 }
-            }
+                eManager.update();
             }
             if (gameState == pauseState){
                 
@@ -184,7 +184,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         }
 
-        public void paintComponent(Graphics graphics){
+    public void paintComponent(Graphics graphics){
 
             super.paintComponent(graphics);
 
@@ -237,7 +237,11 @@ public class GamePanel extends JPanel implements Runnable{
     }
     // Empty entity list
     entityList.clear();
-    // ui
+
+    // Enviroment
+    eManager.draw(graphics2D);
+
+    // UI
     ui.draw(graphics2D);
     }
     
@@ -274,4 +278,5 @@ public class GamePanel extends JPanel implements Runnable{
         se.setFile(i);
         se.play();
     }
+    
 }

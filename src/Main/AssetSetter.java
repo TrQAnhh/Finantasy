@@ -24,11 +24,11 @@ public class AssetSetter{
     }
     public void setNPC(){
 
-        gamePanel.npc[0] = new NPC_OldMan(gamePanel);
+        gamePanel.npc[0] = new NPC_Logan(gamePanel);
         gamePanel.npc[0].worldX = 1000;
         gamePanel.npc[0].worldY = 2336;
 
-        gamePanel.npc[1] = new NPC_Logan(gamePanel);
+        gamePanel.npc[1] = new NPC_OldMan(gamePanel);
         gamePanel.npc[1].worldX = gamePanel.tileSize*19;
         gamePanel.npc[1].worldY = gamePanel.tileSize*31;
     }

@@ -92,7 +92,6 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_S)
         {
             downPressed = true;
-            System.out.println("1");
         }
         if(code == KeyEvent.VK_D)
         {
@@ -224,24 +223,24 @@ public class KeyHandler implements KeyListener {
             if(gamePanel.ui.subState == 0) {
                 if(gamePanel.ui.commandNum == 1 && gamePanel.music.volumeScale > 0) {
                     gamePanel.music.volumeScale --;
-                    gamePanel.music.checkVolume();
+                    //gamePanel.music.checkVolume(); // remove "//" when add sound effect and song
                     //gamePanel.playSE(9);
                 }
                 if(gamePanel.ui.commandNum == 2 && gamePanel.se.volumeScale > 0) {
-                    gamePanel.music.volumeScale --;
+                    gamePanel.se.volumeScale --;
                     //gamePanel.playSE(9);
                 }
             }
         }
         if(code == KeyEvent.VK_D) {
             if(gamePanel.ui.subState == 0) {
-                if(gamePanel.ui.commandNum == 1 && gamePanel.se.volumeScale < 5) {
+                if(gamePanel.ui.commandNum == 1 && gamePanel.music.volumeScale < 5) {
                     gamePanel.music.volumeScale ++;
-                    gamePanel.music.checkVolume();
+                    //gamePanel.music.checkVolume(); // remove "//" when add sound effect and song 
                     //gamePanel.playSE(9);
                 }
-                if(gamePanel.ui.commandNum == 2 && gamePanel.music.volumeScale < 5) {
-                    gamePanel.music.volumeScale ++;
+                if(gamePanel.ui.commandNum == 2 && gamePanel.se.volumeScale < 5) {
+                    gamePanel.se.volumeScale ++;
                     //gamePanel.playSE(9);
                 }
             }
