@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable{
         public final int worldHeight = tileSize * maxWorldRow;
 
    // INSTANTIATE OBJECTS:
-            KeyHandler keyHandler = new KeyHandler();
+            KeyHandler keyHandler = new KeyHandler(this);
             Thread gameThread;
         // Player CLASS
             public Player player = new Player(this,keyHandler);
