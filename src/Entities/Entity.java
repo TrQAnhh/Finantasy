@@ -43,7 +43,6 @@ public class Entity {
     int hpBarCounter = 0;
 
     // Character Attributes
-    public int type;
     public int speed;
     public int maxLife;
     public int life;
@@ -65,6 +64,17 @@ public class Entity {
     public int defenseValue;
     public String description = "";
 
+    // Type 
+    public int type;
+    public final int type_player = 0;
+    public final int type_npc = 1;
+    public final int type_monster = 2;
+    public final int type_sword = 3;
+    public final int type_axe = 4;
+    public final int type_shield = 5;
+    public final int type_consumable = 6;
+    public final int type_consumable_player = 7;
+    public final int type_consumable_enemy = 8;
 
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -222,7 +232,7 @@ public class Entity {
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(new File("E:/Code/java/Hello/res"+imagePath+".png"));
+            image = ImageIO.read(new File("/res"+imagePath+".png"));
             image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();

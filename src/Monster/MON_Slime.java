@@ -12,6 +12,7 @@ public class MON_Slime extends Entity {
 
         this.gamePanel = gamePanel;
 
+        type = type_monster;
         name = "Slime";
         direction = "down";
         maxLife = 4;

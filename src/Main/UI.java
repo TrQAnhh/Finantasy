@@ -22,7 +22,7 @@ import Entities.Entity;
 import Entities.Player;
 import Object.OBJ_Heart;
 import Object.OBJ_Key;
-import Object.OBJ_Weapon;
+import Object.OBJ_Sword;
 
 public class UI {
     

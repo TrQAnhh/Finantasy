@@ -3,12 +3,12 @@ package Object;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class OBJ_Armor extends Entity {
+public class OBJ_Axe extends Entity {
 
-    public OBJ_Armor(GamePanel gamePanel) {
+    public OBJ_Axe(GamePanel gamePanel) {
         super(gamePanel);
-        
-        name = "Iron Armor";
+        type = type_axe;
+        name = "Axe";
         itemType = 2;
         down1 = setup("/object/axe", gamePanel.tileSize, gamePanel.tileSize);
         defenseValue = 1;
