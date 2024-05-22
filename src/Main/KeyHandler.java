@@ -168,14 +168,10 @@ public class KeyHandler implements KeyListener {
             if(code == KeyEvent.VK_ENTER){
                 if(gamePanel.ui.interactType < 2){
                     gamePanel.ui.interactType++;
-                    gamePanel.ui.previousInteract = gamePanel.ui.interactNum;
                 }
                 else if(gamePanel.ui.interactType == 2){
                     gamePanel.ui.interactType = 0;
-                    if(gamePanel.ui.previousInteract == 0){
-                        gamePanel.player.damageMonster(gamePanel.ui.interactNum);
-                    }
-                //    gamePanel.ui.playerTurn = false;
+                    gamePanel.player.battleAction(gamePanel.ui.selectAction, gamePanel.ui.choosingEquipAction, gamePanel.ui.choosingEnemyAction);
                 }
                 gamePanel.ui.interactNum = 0;
             }

@@ -4,6 +4,8 @@ import Main.GamePanel;
 import Main.KeyHandler;
 import Object.OBJ_HealPot;
 import Object.OBJ_Key;
+import Object.OBJ_Shield_Wood;
+import Object.OBJ_Sword;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -39,12 +41,37 @@ public class Player extends Entity{
             // GET PLAYER'S IMAGES:
                 getBasePlayerImage();
         }
-
+        public void setDefaultValues(){
+            worldX = gamePanel.tileSize * 22; 
+            worldY = gamePanel.tileSize * 14;
+            speed = 3;
+            direction = "down";
+    
+            // Player status
+            level = 1;
+            strength = 1;
+            dexterity = 1;
+            exp = 0;
+            nextLevelExp = 4;
+            coin = 0;
+            currentWeapon = new OBJ_Sword(gamePanel);
+            currentArmor = new OBJ_Shield_Wood(gamePanel);
+            maxLife = 999;
+            attack = strength;
+            defense = dexterity;
+            life = maxLife;
+        }
         public void setItem(){
-            inventory.add(currentWeapon1);
+            inventory.add(currentWeapon);
             inventory.add(currentArmor);
             inventory.add(new OBJ_Key(gamePanel));
             inventory.add(new OBJ_HealPot(gamePanel));
+        }
+        public int getAttack(){
+            return attack = strength + currentWeapon.attackValue;
+        }
+        public int getDefense(){
+            return defense = dexterity + currentArmor.defenseValue;
         }
     // METHODS:
     public void getBasePlayerImage(){
@@ -177,6 +204,25 @@ public class Player extends Entity{
                 exp += gamePanel.ui.listofMonster.get(i).exp;
                 checkLevelUp();
             }
+    }
+    public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
+        if(selectAction == 0){
+            currentWeapon = inventory.get(choosingEquipAction);
+            attack = getAttack();
+            damageMonster(choosingEnemyAction);
+            gamePanel.ui.playerTurn = false;
+        }
+        else if(selectAction == 1){
+            currentArmor = inventory.get(choosingEquipAction);
+            defense = getDefense() + getDefense()*30/100;       // Increase your defense 30%
+            gamePanel.ui.playerTurn = false;
+        }
+        else if(selectAction == 2){
+            
+            Entity selectedItem = inventory.get(choosingEquipAction);
+            selectedItem.use(this);
+            inventory.remove(choosingEquipAction);
+        }
     }
     public void checkLevelUp(){
 

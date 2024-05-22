@@ -42,10 +42,12 @@ public class UI {
     public ArrayList<Entity> listofMonster;
     public int indexBattle = 0;
     boolean checker = false;
-    boolean playerTurn = true;
+    public boolean playerTurn = true;
     public int interactNum = 0;  // 0 for stuff 1, stuff 2, stuff 3
     public int interactType = 0; // 0 for selection, 1 for choosing equipment, 2 for choosing enemy
-    public int previousInteract = interactNum;
+    public int selectAction = 0;
+    public int choosingEquipAction = 0;
+    public int choosingEnemyAction = 0;
     public int numberOfInteractNum = interactNum;
 
     public UI(GamePanel gamePanel){
@@ -331,7 +333,7 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        g2.drawImage(gamePanel.player.currentWeapon1.down1, tailX - gamePanel.tileSize, textY - 14, null);
+        g2.drawImage(gamePanel.player.currentWeapon.down1, tailX - gamePanel.tileSize, textY - 14, null);
         textY += gamePanel.tileSize;
         g2.drawImage(gamePanel.player.currentArmor.down1, tailX - gamePanel.tileSize, textY - 14, null);
 
@@ -384,8 +386,8 @@ public class UI {
 
         // Draw Monster Board
         frameX = gamePanel.tileSize;
-        frameY = gamePanel.tileSize*7;
-        frameWidth = gamePanel.tileSize*6;
+        frameY = gamePanel.tileSize*9;
+        frameWidth = gamePanel.tileSize*7;
         frameHeight = gamePanel.tileSize*4;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
         nameX = frameX + 20;
@@ -400,16 +402,21 @@ public class UI {
 
         // Draw Player Interact
         if(playerTurn == true){
-            if(interactType == 0){
-                frameX = gamePanel.tileSize*4;
-            frameY = gamePanel.tileSize*7;
+            
+            frameX = gamePanel.tileSize*5;
+            frameY = gamePanel.tileSize*9;
             frameWidth = gamePanel.tileSize*3;
             frameHeight = gamePanel.tileSize*4;
             drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-            String text = "";
+            String text;
             int x;
             int y;
+
+            if(interactType == 0){
+            gamePanel.player.attack = gamePanel.player.strength;
+            gamePanel.player.defense = gamePanel.player.dexterity;
+
             numberOfInteractNum = 2;
 
             text = "Attack";
@@ -433,17 +440,13 @@ public class UI {
             if(interactNum == 2){
             g2.drawString(">", x - 20, y);
         }
+            selectAction = interactNum;
             }
         else if (interactType == 1){
-            frameX = gamePanel.tileSize*4;
-            frameY = gamePanel.tileSize*7;
-            frameWidth = gamePanel.tileSize*3;
-            frameHeight = gamePanel.tileSize*4;
-            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-            String text = "";
-            int x = frameX + gamePanel.tileSize - 10;
-            int y = frameY + 35;
+            text = "";
+            x = frameX + gamePanel.tileSize - 10;
+            y = frameY + 35;
             numberOfInteractNum = numberOfInteract() - 1;
 
             for(int i=0; i<numberOfInteract(); i++){
@@ -453,50 +456,68 @@ public class UI {
                 y += 35;
             }
 
+            int j = 0;      // To select the equipment suit to the interactNum
             y = frameY + 35;
             for(int i = 0; i<gamePanel.player.inventory.size(); i++){
-                if(previousInteract+1 == (gamePanel.player.inventory.get(i).itemType)){
-                    text = gamePanel.player.inventory.get(i).name;
-                    g2.drawString(text, x, y);
-                    y += 35;
+                if((selectAction == 0 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_sword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_axe))
+                  || (selectAction == 1 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_shield))
+                  || (selectAction == 2 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_player || gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_enemy))){
+                        if(j == interactNum) choosingEquipAction = i;
+                        text = gamePanel.player.inventory.get(i).name;
+                        g2.drawString(text, x, y);
+                        y += 35;
+                        j++;
+                        
                 }
             }
         }
         else if (interactType == 2){
-            frameX = gamePanel.tileSize*4;
-            frameY = gamePanel.tileSize*7;
-            frameWidth = gamePanel.tileSize*3;
-            frameHeight = gamePanel.tileSize*4;
-            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
-
-            String text = "";
-            int x = frameX + gamePanel.tileSize - 10;;
-            int y = frameY + 35;
-            numberOfInteractNum = numberOfInteract() - 1;
-
-            for(int i=0; i<numberOfInteract(); i++){
-                if(interactNum == i){
-                    g2.drawString(">", x - 20, y);
-                }
-                y += 35;
-            }
-
+            
+            text = "";
+            x = frameX + gamePanel.tileSize - 10;;
             y = frameY + 35;
+            numberOfInteractNum = numberOfInteract() - 1;    
+
+            if(selectAction == 2 && gamePanel.player.inventory.get(choosingEquipAction).type == gamePanel.player.type_consumable_player){
+                text = "Player";
+                g2.drawString(text, x, y);
+                interactNum = 0;
+                g2.drawString(">", x - 20, y);
+                choosingEnemyAction = 0;
+            }
+            else{
                 for(int i=0; i<listofMonster.size();i++){
                     if(listofMonster.get(i) != null){
                         text = listofMonster.get(i).name;
                         g2.drawString(text, x, y);
+                        if(interactNum == i){
+                            g2.drawString(">", x - 20, y);
+                            choosingEnemyAction = interactNum;
+                        }
                         y += 35;
                     }
                 }
+            }
         }
             
     }
+        if(playerTurn == false){
+
+            for(int i=0; i<listofMonster.size();i++){
+                if(listofMonster.get(i) != null){
+                    listofMonster.get(i).damage();
+                }
+            }
+            selectAction = 0;
+            choosingEquipAction = 0;
+            choosingEnemyAction = 0;
+            playerTurn = true;
+        }
         // Draw Player Board
         String value = "";
-        frameX = gamePanel.tileSize*7;
-        frameY = gamePanel.tileSize*7;
-        frameWidth = gamePanel.tileSize*8;
+        frameX = gamePanel.tileSize*8;
+        frameY = gamePanel.tileSize*9;
+        frameWidth = gamePanel.tileSize*9;
         frameHeight = gamePanel.tileSize*4;
         nameX = frameX + 20;
         nameY = frameY + 35;
@@ -527,15 +548,22 @@ public class UI {
         if(interactType == 1){
             
         for(int i = 0; i<gamePanel.player.inventory.size(); i++){
-            if(previousInteract+1 == (gamePanel.player.inventory.get(i).itemType)){
+            if((selectAction == 0 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_sword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_axe))
+                  || (selectAction == 1 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_shield))
+                  || (selectAction == 2 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_player || gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_enemy))){
                 t++;
             }
         }
         }
         else if (interactType == 2){
-            for(int i = 0; i<listofMonster.size(); i++){
+            if(selectAction == 2 && gamePanel.player.inventory.get(choosingEquipAction).type == gamePanel.player.type_consumable_player){
+                t = 1;
+            }
+            else{
+                for(int i = 0; i<listofMonster.size(); i++){
                     t++;
                 }
+            }
         }
         return t;
     }

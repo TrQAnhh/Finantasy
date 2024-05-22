@@ -42,4 +42,17 @@ public class MON_Slime extends Entity {
     public void setAction(){
 
     }
+    public void damage(){
+        
+        int damage = attack - gamePanel.player.defense;
+            if(damage < 0){
+                damage = 0;
+            }
+            gamePanel.player.life -= damage;
+            gamePanel.ui.addMessage(damage + "damage!");
+            if(gamePanel.player.life <= 0){
+                gamePanel.player.dying = true;
+                gamePanel.ui.addMessage("You lose!");
+            }
+    }
 }

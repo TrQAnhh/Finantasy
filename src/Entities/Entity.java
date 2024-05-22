@@ -55,11 +55,10 @@ public class Entity {
     public int exp;
     public int nextLevelExp;
     public int coin;
-    public Entity currentWeapon1;
+    public Entity currentWeapon;
     public Entity currentArmor;
 
     // Item attribute
-    public int itemType = 0; // 0 for attack items, 1 for defense items, 2 for  usable items
     public int attackValue;
     public int defenseValue;
     public String description = "";
@@ -80,9 +79,8 @@ public class Entity {
         this.gamePanel = gamePanel;
 
     }
-    public void setAction(){
-
-    }
+    public void setAction(){}
+    public void damage(){}          //For monster
     public void speak(){if(dialogue[dialogueIndex] == null){
         dialogueIndex = 0;
     }
@@ -102,7 +100,9 @@ public class Entity {
         case "right":
             direction = "left";
             break;
-    }}
+    }
+}
+    public void use(Entity entity){}
     public void update(){
         setAction();
         
