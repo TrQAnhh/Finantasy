@@ -74,6 +74,11 @@ public class GamePanel extends JPanel implements Runnable{
                 this.setFocusable(true);
         }
 
+    // Setup game
+        public void setupGame(){
+            gameState = playState;
+        }
+
    // METHODS:
         public void startGameThread(){
             gameThread = new Thread(this);
