@@ -1,5 +1,6 @@
 package Main;
 
+import Entities.Entity;
 import Entities.Player;
 import Map.TileManager;
 import Objects.OBJ_Chest;
@@ -36,16 +37,20 @@ public class GamePanel extends JPanel implements Runnable{
    // INSTANTIATE OBJECTS:
             KeyHandler keyHandler = new KeyHandler(this);
             Thread gameThread;
-        // Player CLASS
-            public Player player = new Player(this,keyHandler);
         // TileManager CLASS
             TileManager tileManager = new TileManager(this);
         // Collision CLASS
             public Collision collision = new Collision(this);
         // AssetSetter CLASS:
             public AssetSetter aSetter = new AssetSetter(this);
-        // Objects CLASS:
-            public SuperObject object[] = new SuperObject[10];
+        // ENTITIES AND OBJECTS:
+            // Player CLASS
+                public Player player = new Player(this,keyHandler);
+            // Objects ARRAY:
+                public SuperObject object[] = new SuperObject[10];
+            // NPC ARRAY:
+                public Entity npc[] = new Entity[10];
+
         // Sound CLASS:
             Sound music = new Sound();
             Sound se = new Sound();
@@ -64,7 +69,10 @@ public class GamePanel extends JPanel implements Runnable{
 
    // METHODS:
         public void setupGame(){
+        // SET OBJECTS METHOD:
             aSetter.setObject();
+        // SET NPC METHODS:
+            aSetter.setNPC();
             playMusic(0);
         // DEFAULT GAME STATE:
             gameState = playState;
@@ -112,6 +120,12 @@ public class GamePanel extends JPanel implements Runnable{
             if ( gameState == playState ) {
                 // PLAYER'S POSITIONS UPDATE:
                 player.update();
+                // NPC POSITIONS UPDATE:
+                for ( int i = 0 ; i < npc.length ; i++ ) {
+                    if (npc[i] != null){
+                        npc[i].update();
+                    }
+                }
             }
             if ( gameState == pauseState ) {
                 // UPDATE LATER
@@ -131,6 +145,12 @@ public class GamePanel extends JPanel implements Runnable{
                 for ( int i = 0 ; i < object.length ; i++ ) {
                     if ( object[i] != null ) {
                         object[i].draw(graphics2D,this);
+                    }
+                }
+            // DRAW NPC:
+                for ( int i = 0 ; i < npc.length ; i++ ) {
+                    if ( npc[i] != null ) {
+                        npc[i].draw(graphics2D);
                     }
                 }
 

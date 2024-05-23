@@ -19,6 +19,9 @@ public class Player extends Entity{
 
     // CONSTRUCTORS:
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
+
+            super(gamePanel);
+
             this.gamePanel = gamePanel;
             this.keyHandler = keyHandler;
             // PLAYER'S SCREEN POSITION:
@@ -27,7 +30,7 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 700;
                 worldY = 2336;
-                speed = 13;
+                speed = 3;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
@@ -41,25 +44,25 @@ public class Player extends Entity{
     // METHODS:
     public void getBasePlayerImage(){
         try (
-                InputStream moving_down01 = new FileInputStream(new File("res/Player_warrior/down_1.png"));
-                InputStream moving_down02 = new FileInputStream(new File("res/Player_warrior/down_2.png"));
-                InputStream moving_down03 = new FileInputStream(new File("res/Player_warrior/down_3.png"));
-                InputStream moving_down04 = new FileInputStream(new File("res/Player_warrior/down_4.png"));
+                InputStream moving_down01 = new FileInputStream(new File("res/Entities/Player_warrior/down_1.png"));
+                InputStream moving_down02 = new FileInputStream(new File("res/Entities/Player_warrior/down_2.png"));
+                InputStream moving_down03 = new FileInputStream(new File("res/Entities/Player_warrior/down_3.png"));
+                InputStream moving_down04 = new FileInputStream(new File("res/Entities/Player_warrior/down_4.png"));
 
-                InputStream moving_left01 = new FileInputStream(new File("res/Player_warrior/left_1.png"));
-                InputStream moving_left02 = new FileInputStream(new File("res/Player_warrior/left_2.png"));
-                InputStream moving_left03 = new FileInputStream(new File("res/Player_warrior/left_3.png"));
-                InputStream moving_left04 = new FileInputStream(new File("res/Player_warrior/left_4.png"));
+                InputStream moving_left01 = new FileInputStream(new File("res/Entities/Player_warrior/left_1.png"));
+                InputStream moving_left02 = new FileInputStream(new File("res/Entities/Player_warrior/left_2.png"));
+                InputStream moving_left03 = new FileInputStream(new File("res/Entities/Player_warrior/left_3.png"));
+                InputStream moving_left04 = new FileInputStream(new File("res/Entities/Player_warrior/left_4.png"));
 
-                InputStream moving_right01 = new FileInputStream(new File("res/Player_warrior/right_1.png"));
-                InputStream moving_right02 = new FileInputStream(new File("res/Player_warrior/right_2.png"));
-                InputStream moving_right03 = new FileInputStream(new File("res/Player_warrior/right_3.png"));
-                InputStream moving_right04 = new FileInputStream(new File("res/Player_warrior/right_4.png"));
+                InputStream moving_right01 = new FileInputStream(new File("res/Entities/Player_warrior/right_1.png"));
+                InputStream moving_right02 = new FileInputStream(new File("res/Entities/Player_warrior/right_2.png"));
+                InputStream moving_right03 = new FileInputStream(new File("res/Entities/Player_warrior/right_3.png"));
+                InputStream moving_right04 = new FileInputStream(new File("res/Entities/Player_warrior/right_4.png"));
 
-                InputStream moving_up01 = new FileInputStream(new File("res/Player_warrior/up_1.png"));
-                InputStream moving_up02 = new FileInputStream(new File("res/Player_warrior/up_2.png"));
-                InputStream moving_up03 = new FileInputStream(new File("res/Player_warrior/up_3.png"));
-                InputStream moving_up04 = new FileInputStream(new File("res/Player_warrior/up_4.png"));
+                InputStream moving_up01 = new FileInputStream(new File("res/Entities/Player_warrior/up_1.png"));
+                InputStream moving_up02 = new FileInputStream(new File("res/Entities/Player_warrior/up_2.png"));
+                InputStream moving_up03 = new FileInputStream(new File("res/Entities/Player_warrior/up_3.png"));
+                InputStream moving_up04 = new FileInputStream(new File("res/Entities/Player_warrior/up_4.png"));
             ) {
 
             down1 = ImageIO.read(moving_down01);
@@ -168,7 +171,7 @@ public class Player extends Entity{
                 } else if ( spriteNum == 2 ){
                     spriteNum = 3;
                 } else if (spriteNum == 3 ){
-                    spriteNum = 4;
+                    spriteNum = 1;
                 } else if ( spriteNum == 4 ){
                     spriteNum = 1;
                 }
