@@ -42,7 +42,10 @@ public class GamePanel extends JPanel implements Runnable{
         // Objects CLASS:
             public SuperObject object[] = new SuperObject[10];
         // Sound CLASS:
-            Sound sound = new Sound();
+            Sound music = new Sound();
+            Sound se = new Sound();
+        // UI CLASS:
+            public UI ui = new UI(this);
 
 
    // CONSTRUCTOR:
@@ -124,24 +127,27 @@ public class GamePanel extends JPanel implements Runnable{
             // DRAW PLAYERS:
                 player.paintComponent(graphics2D);
 
-                graphics2D.dispose();
+            // UI
+                ui.draw(graphics2D);
+
+            graphics2D.dispose();
         }
 
     // GAME THEME SONG:
         public void playMusic(int i){
 
-            sound.setFile(i);
-            sound.play();
-            sound.loop();
+            music.setFile(i);
+            music.play();
+            music.loop();
         }
 
-        public void stopMusic(int i){
+        public void stopMusic(){
 
-            sound.stop();
+            music.stop();
         }
     // SOUND EFFECTS:
         public void playSE(int i){
-            sound.setFile(i);
-            sound.play();
+            se.setFile(i);
+            se.play();
         }
 }

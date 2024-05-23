@@ -27,7 +27,7 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 700;
                 worldY = 2336;
-                speed = 3;
+                speed = 13;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
@@ -150,6 +150,8 @@ public class Player extends Entity{
                 case "Chest":
                     hashChest++;
                     gamePanel.object[i] = null;
+                    gamePanel.stopMusic();
+                    gamePanel.ui.gameFinished = true;
                     break;
             }
 
