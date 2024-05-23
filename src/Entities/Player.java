@@ -12,6 +12,8 @@ public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
         public final int screenY;
+        // HOW MANY CHEST THAT PLAYER HAVE COLLIDED:
+            int hashChest = 0;
         GamePanel gamePanel;
         KeyHandler keyHandler;
 
@@ -30,6 +32,8 @@ public class Player extends Entity{
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
                 solidArea = new Rectangle(20,42,35,20);
+                solidAreaDefaultX = solidArea.x;
+                solidAreaDefaultY = solidArea.y;
             // GET PLAYER'S IMAGES:
                 getBasePlayerImage();
         }
@@ -95,9 +99,13 @@ public class Player extends Entity{
                     direction = "right";
                 }
 
-    // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
-        collisionOn = false;
-        gamePanel.collision.checkTile(this);
+    // AFTER worldX - worldY HAVE BEEN UPDATED. THEN:
+        // CHECK TILE COLLISION:
+            collisionOn = false;
+            gamePanel.collision.checkTile(this);
+        // CHECK OBJECT COLLISIONS
+            int objIndex = gamePanel.collision.checkObject(this,true);
+            pickUpObject(objIndex);
 
         if ( collisionOn == false ) {
             switch (direction){
@@ -133,6 +141,20 @@ public class Player extends Entity{
         }
     }
 
+    public void pickUpObject(int i){
+        if (i != 999) {
+
+            String objectName = gamePanel.object[i].name;
+
+            switch (objectName) {
+                case "Chest":
+                    hashChest++;
+                    gamePanel.object[i] = null;
+                    break;
+            }
+
+        }
+    }
     public void paintComponent(Graphics2D graphics2D) {
         BufferedImage image = down1;
         switch (direction) {

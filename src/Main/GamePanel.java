@@ -2,6 +2,8 @@ package Main;
 
 import Entities.Player;
 import Map.TileManager;
+import Objects.OBJ_Chest;
+import Objects.SuperObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,8 +25,8 @@ public class GamePanel extends JPanel implements Runnable{
     // WORLD SETTINGS:
         public final int maxWorldColumn = 64; // can be adjusted
         public final int maxWorldRow = 64; // can be adjusted
-        public final int worldWidth = tileSize * maxWorldColumn;
-        public final int worldHeight = tileSize * maxWorldRow;
+//        public final int worldWidth = tileSize * maxWorldColumn;
+//        public final int worldHeight = tileSize * maxWorldRow;
 
    // INSTANTIATE OBJECTS:
             KeyHandler keyHandler = new KeyHandler();
@@ -35,6 +37,13 @@ public class GamePanel extends JPanel implements Runnable{
             TileManager tileManager = new TileManager(this);
         // Collision CLASS
             public Collision collision = new Collision(this);
+        // AssetSetter CLASS:
+            public AssetSetter aSetter = new AssetSetter(this);
+        // Objects CLASS:
+            public SuperObject object[] = new SuperObject[10];
+        // Sound CLASS:
+            Sound sound = new Sound();
+
 
    // CONSTRUCTOR:
         public GamePanel(){
@@ -46,6 +55,11 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
    // METHODS:
+        public void setupGame(){
+            aSetter.setObject();
+            playMusic(0);
+        }
+
         public void startGameThread(){
             gameThread = new Thread(this);
             gameThread.start();
@@ -99,9 +113,35 @@ public class GamePanel extends JPanel implements Runnable{
 
             // DRAW TILES:
                 tileManager.draw(graphics2D);
+
+            // DRAW OBJECTS:
+                for ( int i = 0 ; i < object.length ; i++ ) {
+                    if ( object[i] != null ) {
+                        object[i].draw(graphics2D,this);
+                    }
+                }
+
             // DRAW PLAYERS:
                 player.paintComponent(graphics2D);
 
-            graphics2D.dispose();
+                graphics2D.dispose();
+        }
+
+    // GAME THEME SONG:
+        public void playMusic(int i){
+
+            sound.setFile(i);
+            sound.play();
+            sound.loop();
+        }
+
+        public void stopMusic(int i){
+
+            sound.stop();
+        }
+    // SOUND EFFECTS:
+        public void playSE(int i){
+            sound.setFile(i);
+            sound.play();
         }
 }
