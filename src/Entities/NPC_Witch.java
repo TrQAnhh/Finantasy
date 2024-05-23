@@ -44,10 +44,12 @@ public class NPC_Witch extends Entity{
         solidArea = new Rectangle(11,42,30,40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-
+    // CHECK IF NPC HAS COLLISION WITH TILES:
         gamePanel.collisionChecker.checkTile(this);
 
         gamePanel.collisionChecker.checkObject(this,false);
+
+    // CHECK IF NPC HAS COLLISION WITH THE PLAYER:
         gamePanel.collisionChecker.checkPlayer(this);
 
         if (collisionOn == false) {
