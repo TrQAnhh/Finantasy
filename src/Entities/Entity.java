@@ -17,7 +17,9 @@ public class Entity {
         public BufferedImage up1 , up2 , up3 , up4 ,
                              down1 , down2 , down3 , down4 ,
                              right1 , right2 , right3 , right4 ,
-                             left1 , left2 , left3 , left4 ;
+                             left1 , left2 , left3 , left4 ,
+                        // IDLE:
+                             idle1,idle2,idle3,idle4,idle5,idle6;
 
         public String direction;
 
@@ -54,7 +56,7 @@ public class Entity {
         return image;
     }
 
-    public void draw(Graphics2D graphics2D){
+    public void draw(Graphics2D graphics2D,GamePanel gamePanel){
         BufferedImage image = null;
 
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
@@ -105,18 +107,41 @@ public class Entity {
                     image = right3;
                 }
                 break;
+            case "idle":
+                if (spriteNum == 1) {
+                    image = idle1;
+                }
+                if (spriteNum == 2) {
+                    image = idle2;
+                }
+                if (spriteNum == 3) {
+                    image = idle3;
+                }
+                if (spriteNum == 4) {
+                    image = idle4;
+                }
+                if (spriteNum == 5) {
+                    image = idle5;
+                }
+                if (spriteNum == 6) {
+                    image = idle6;
+                }
+                break;
+
         }
         if (image != null ) {
             graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize , gamePanel.tileSize, null );
         }
     }
 
-    public void update() {
+    public void update(GamePanel gamePanel) {
 
         setAction();
 
         collisionOn = false;
-        gamePanel.collision.checkTile(this);
+        gamePanel.collisionChecker.checkTile(this);
+        gamePanel.collisionChecker.checkObject(this,false);
+        gamePanel.collisionChecker.checkPlayer(this);
 
         if (collisionOn == false) {
             switch (direction) {

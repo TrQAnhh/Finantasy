@@ -3,7 +3,6 @@ package Main;
 import Entities.Entity;
 import Entities.Player;
 import Map.TileManager;
-import Objects.OBJ_Chest;
 import Objects.SuperObject;
 
 import javax.swing.*;
@@ -40,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
         // TileManager CLASS
             TileManager tileManager = new TileManager(this);
         // Collision CLASS
-            public Collision collision = new Collision(this);
+            public CollisionChecker collisionChecker = new CollisionChecker(this);
         // AssetSetter CLASS:
             public AssetSetter aSetter = new AssetSetter(this);
         // ENTITIES AND OBJECTS:
@@ -123,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable{
                 // NPC POSITIONS UPDATE:
                 for ( int i = 0 ; i < npc.length ; i++ ) {
                     if (npc[i] != null){
-                        npc[i].update();
+                        npc[i].update(this);
                     }
                 }
             }
@@ -150,7 +149,7 @@ public class GamePanel extends JPanel implements Runnable{
             // DRAW NPC:
                 for ( int i = 0 ; i < npc.length ; i++ ) {
                     if ( npc[i] != null ) {
-                        npc[i].draw(graphics2D);
+                        npc[i].draw(graphics2D, this);
                     }
                 }
 

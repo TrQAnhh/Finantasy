@@ -2,8 +2,6 @@ package Entities;
 
 import Main.GamePanel;
 import Main.KeyHandler;
-import Main.UtilityTool;
-import Map.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -141,27 +139,31 @@ public class Player extends Entity{
     // AFTER worldX - worldY HAVE BEEN UPDATED. THEN:
         // CHECK TILE COLLISION:
             collisionOn = false;
-            gamePanel.collision.checkTile(this);
-        // CHECK OBJECT COLLISIONS
-            int objIndex = gamePanel.collision.checkObject(this,true);
+            gamePanel.collisionChecker.checkTile(this);
+        // CHECK OBJECT COLLISIONS:
+            int objIndex = gamePanel.collisionChecker.checkObject(this,true);
             pickUpObject(objIndex);
+        // CHECK NPC COLLISIONS:
+            int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc );
+            interactNPC(npcIndex);
+        // IF COLISION IS FALSE, PLAYER CAN MOVE:
 
-        if ( collisionOn == false ) {
-            switch (direction){
-                case "up":
-                    worldY = worldY - speed;
-                    break;
-                case "down":
-                    worldY = worldY + speed;
-                    break;
-                case "left":
-                    worldX = worldX - speed;
-                    break;
-                case "right":
-                    worldX = worldX + speed;
-                    break;
+            if ( collisionOn == false ) {
+                switch (direction){
+                    case "up":
+                        worldY = worldY - speed;
+                        break;
+                    case "down":
+                        worldY = worldY + speed;
+                        break;
+                    case "left":
+                        worldX = worldX - speed;
+                        break;
+                    case "right":
+                        worldX = worldX + speed;
+                        break;
+                }
             }
-        }
 
     // ANIMATIONS FOR MOVEMENT:
             spriteCounter++;
@@ -171,7 +173,7 @@ public class Player extends Entity{
                 } else if ( spriteNum == 2 ){
                     spriteNum = 3;
                 } else if (spriteNum == 3 ){
-                    spriteNum = 1;
+                    spriteNum = 4;
                 } else if ( spriteNum == 4 ){
                     spriteNum = 1;
                 }
@@ -179,12 +181,19 @@ public class Player extends Entity{
             }
         }
     }
+    // INTERACTION WITH OBJECTS METHOD:
+        public void pickUpObject(int i){
+            if (i != 999) {
 
-    public void pickUpObject(int i){
-        if (i != 999) {
-
+            }
         }
-    }
+    // INTERACTION WITH NPC:
+        public void interactNPC(int i){
+            if ( i != 999 ) {
+                System.out.println("Hitting");
+            }
+        }
+
     public void paintComponent(Graphics2D graphics2D) {
         BufferedImage image = down1;
         switch (direction) {
