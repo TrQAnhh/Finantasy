@@ -28,8 +28,13 @@ public class GamePanel extends JPanel implements Runnable{
 //        public final int worldWidth = tileSize * maxWorldColumn;
 //        public final int worldHeight = tileSize * maxWorldRow;
 
+   // GAME STATE VARIABLES:
+        public int gameState;
+        public final int playState = 1;
+        public final int pauseState = 2;
+
    // INSTANTIATE OBJECTS:
-            KeyHandler keyHandler = new KeyHandler();
+            KeyHandler keyHandler = new KeyHandler(this);
             Thread gameThread;
         // Player CLASS
             public Player player = new Player(this,keyHandler);
@@ -61,6 +66,8 @@ public class GamePanel extends JPanel implements Runnable{
         public void setupGame(){
             aSetter.setObject();
             playMusic(0);
+        // DEFAULT GAME STATE:
+            gameState = playState;
         }
 
         public void startGameThread(){
@@ -102,10 +109,13 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         public void update(){
-
-            // PLAYER'S POSITIONS UPDATE:
+            if ( gameState == playState ) {
+                // PLAYER'S POSITIONS UPDATE:
                 player.update();
-
+            }
+            if ( gameState == pauseState ) {
+                // UPDATE LATER
+            }
         }
 
         public void paintComponent(Graphics graphics){

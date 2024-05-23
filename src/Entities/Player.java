@@ -2,6 +2,8 @@ package Entities;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Main.UtilityTool;
+import Map.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,8 +14,6 @@ public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
         public final int screenY;
-        // HOW MANY CHEST THAT PLAYER HAVE COLLIDED:
-            int hashChest = 0;
         GamePanel gamePanel;
         KeyHandler keyHandler;
 
@@ -85,7 +85,43 @@ public class Player extends Entity{
         }catch (IOException e){
             e.printStackTrace();
         }
+
+//        down1 = setupPlayerWarrior("down_1");
+//        down2 = setupPlayerWarrior("down_2");
+//        down3 = setupPlayerWarrior("down_3");
+//        down4 = setupPlayerWarrior("down_4");
+//
+//        left1 = setupPlayerWarrior("left_1");
+//        left2 = setupPlayerWarrior("left_2");
+//        left3 = setupPlayerWarrior("left_3");
+//        left4 = setupPlayerWarrior("left_4");
+//
+//        right1 = setupPlayerWarrior("right_1");
+//        right2 = setupPlayerWarrior("right_2");
+//        right3 = setupPlayerWarrior("right_3");
+//        right4 = setupPlayerWarrior("right_4");
+//
+//        up1 = setupPlayerWarrior("up_1");
+//        up2 = setupPlayerWarrior("up_2");
+//        up3 = setupPlayerWarrior("up_3");
+//        up4 = setupPlayerWarrior("up_4");
     }
+//    public BufferedImage setupPlayerWarrior(String imagePath) {
+//
+//        UtilityTool uTool = new UtilityTool();
+//        BufferedImage image = null;
+//
+//        String filePath = "res/Player_warrior/" + imagePath + ".png";
+//        File imageFile = new File(filePath);
+//
+//        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+//            image = ImageIO.read(readImage);
+//            image = uTool.scaleImage(image,gamePanel.tileSize + 32, gamePanel.tileSize + 32);
+//        } catch(IOException e) {
+//            e.printStackTrace();
+//        }
+//        return image;
+//    }
     public void update(){
     // RECEIVE INPUTS FROM KEYBOARDS AND THEN UPDATE worldX - worldY positions:
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed ) {
@@ -143,17 +179,6 @@ public class Player extends Entity{
 
     public void pickUpObject(int i){
         if (i != 999) {
-
-            String objectName = gamePanel.object[i].name;
-
-            switch (objectName) {
-                case "Chest":
-                    hashChest++;
-                    gamePanel.object[i] = null;
-                    gamePanel.stopMusic();
-                    gamePanel.ui.gameFinished = true;
-                    break;
-            }
 
         }
     }
@@ -230,7 +255,7 @@ public class Player extends Entity{
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY , gamePanel.tileSize + 32, gamePanel.tileSize + 32, null );
+            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 32 , gamePanel.tileSize + 32, null );
         }
     }
 }

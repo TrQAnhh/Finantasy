@@ -1,6 +1,7 @@
 package Map;
 
 import Main.GamePanel;
+import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -265,12 +266,15 @@ public class TileManager {
 
         public void setup(int index, String imagePath, boolean collision) {
 
+                UtilityTool uTool = new UtilityTool();
+
                 String filePath = "res/Tile/" + imagePath + ".png";
                 File imageFile = new File(filePath);
 
                 try (FileInputStream image = new FileInputStream(imageFile)) {
                         tile[index] = new Tile();
                         tile[index].tile_image = ImageIO.read(image);
+                        tile[index].tile_image = uTool.scaleImage(tile[index].tile_image, gamePanel.tileSize, gamePanel.tileSize);
                         tile[index].collision = collision;
                 } catch(IOException e) {
                         e.printStackTrace();
@@ -320,7 +324,7 @@ public class TileManager {
                 int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
                 int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 
-                graphics2D.drawImage(tile[tileNum].tile_image,screenX,screenY,gamePanel.tileSize, gamePanel.tileSize,null);
+                graphics2D.drawImage(tile[tileNum].tile_image,screenX,screenY,null);
 
                 worldColumn++;
 

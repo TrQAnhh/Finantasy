@@ -1,6 +1,7 @@
 package Objects;
 
 import Main.GamePanel;
+import Main.UtilityTool;
 import Map.Tile;
 
 import javax.imageio.ImageIO;
@@ -18,6 +19,8 @@ public class SuperObject {
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
+
+    UtilityTool uTool = new UtilityTool();
 
     //DISPLAY OBJECTS:
         public void draw(Graphics2D graphics2D, GamePanel gamePanel){
