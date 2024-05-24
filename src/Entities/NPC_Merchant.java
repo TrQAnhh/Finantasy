@@ -8,11 +8,13 @@ import java.util.Random;
 
 public class NPC_Merchant extends Entity{
     GamePanel gamePanel;
+
     public NPC_Merchant(GamePanel gamePanel) {
         super(gamePanel);
-        direction = "left";
-        speed = 1;
+        direction = "down";
+        speed = 0;
         getImage();
+        setDialogue();
     }
 
     public void getImage(){
@@ -32,6 +34,13 @@ public class NPC_Merchant extends Entity{
         up2 = setup("NPC_Merchant/up_2");
         up3 = setup("NPC_Merchant/up_3");
 
+
+    }
+    public void setDialogue(){
+        dialogues[0] = "Welcome to Finantasy Kingdom!";
+    }
+    public void speak(GamePanel gamePanel){
+        super.speak(gamePanel);
     }
 
     @Override
@@ -52,54 +61,57 @@ public class NPC_Merchant extends Entity{
         // CHECK IF NPC HAS COLLISION WITH THE PLAYER:
         gamePanel.collisionChecker.checkPlayer(this);
 
-        if (collisionOn == false) {
-            switch (direction) {
-                case "up":
-                    worldY = worldY - speed;
-                    break;
-                case "down":
-                    worldY = worldY + speed;
-                    break;
-                case "left":
-                    worldX = worldX - speed;
-                    break;
-                case "right":
-                    worldX = worldX + speed;
-                    break;
-            }
-        }
+//        if (collisionOn == false) {
+//            switch (direction) {
+//                case "up":
+//                    worldY = worldY - speed;
+//                    break;
+//                case "down":
+//                    worldY = worldY + speed;
+//                    break;
+//                case "left":
+//                    worldX = worldX - speed;
+//                    break;
+//                case "right":
+//                    worldX = worldX + speed;
+//                    break;
+//            }
+//        }
 
         // ANIMATIONS FOR MOVEMENT:
-        spriteCounter++;
-        if (spriteCounter > 8) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 3;
-            } else if (spriteNum == 3) {
-                spriteNum = 1;
-            }
-            spriteCounter = 0;
-        }
+//        spriteCounter++;
+//        if (spriteCounter > 8) {
+//            if (spriteNum == 1) {
+//                spriteNum = 2;
+//            } else if (spriteNum == 2) {
+//                spriteNum = 3;
+//            } else if (spriteNum == 3) {
+//                spriteNum = 1;
+//            }
+//            spriteCounter = 0;
+//        }
 
     }
 
     @Override
     public void setAction() {
         actionLockCounter++;
-        int i = 1;
-        if (actionLockCounter == 160) {
-            if (direction.equals("left")) {
-                direction = "right";
-            } else {
+        if (actionLockCounter == 150){
+            Random random = new Random();
+            int i = random.nextInt(100) + 1;
+
+            if ( i <= 25 ) {
+                direction = "down";
+            }
+            if ( i > 25 && i <= 50 ) {
+                direction = "down";
+            }
+            if ( i > 50 && i <= 75 ) {
                 direction = "left";
             }
-//            if ( i > 25 && i <= 50 ) {
-//                direction = "down";
-//            }
-//            if ( i > 50 && i <= 75 ) {
-//                direction = "left";
-//            }
+            if ( i > 75 && i <= 100 ) {
+                direction = "right";
+            }
             actionLockCounter = 0;
         }
     }
@@ -114,52 +126,67 @@ public class NPC_Merchant extends Entity{
 
         switch (direction) {
             case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
-                if (spriteNum == 3) {
-                    image = up3;
-                }
+                image = up2;
+//                if (spriteNum == 1) {
+//                    image = up1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = up2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = up3;
+//                }
                 break;
             case "down":
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
-                if (spriteNum == 3) {
-                    image = down3;
-                }
+                image = down2;
+//                if (spriteNum == 1) {
+//                    image = down1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = down2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = down3;
+//                }
                 break;
             case "left":
-                if (spriteNum == 1) {
-                    image = left1;
-                }
-                if (spriteNum == 2) {
-                    image = left2;
-                }
-                if (spriteNum == 3) {
-                    image = left3;
-                }
+                image = left2;
+//                if (spriteNum == 1) {
+//                    image = left1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = left2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = left3;
+//                }
                 break;
             case "right":
-                if (spriteNum == 1) {
-                    image = right1;
-                }
-                if (spriteNum == 2) {
-                    image = right2;
-                }
-                if (spriteNum == 3) {
-                    image = right3;
-                }
+                image = right2;
+//                if (spriteNum == 1) {
+//                    image = right1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = right2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = right3;
+//                }
                 break;
+//            case "idle":
+//                if (spriteNum == 1) {
+//                    image = down1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = down2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = down3;
+//                }
+//                break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 14, gamePanel.tileSize + 14, null );
+            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 16, gamePanel.tileSize + 16, null );
         }
     }
 }

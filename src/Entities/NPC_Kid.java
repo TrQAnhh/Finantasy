@@ -14,6 +14,7 @@ public class NPC_Kid extends Entity{
             direction = "left";
             speed = 1;
             getImage();
+            setDialogue();
         }
 
     public void getImage(){
@@ -41,7 +42,7 @@ public class NPC_Kid extends Entity{
 
         collisionOn = false;
 
-        solidArea = new Rectangle(11,42,30,40);
+        solidArea = new Rectangle(12,12,40,40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         // CHECK IF NPC HAS COLLISION WITH TILES:
@@ -55,10 +56,10 @@ public class NPC_Kid extends Entity{
         if (collisionOn == false) {
             switch (direction) {
                 case "up":
-                    worldY = worldY - speed;
+//                    worldY = worldY - speed;
                     break;
                 case "down":
-                    worldY = worldY + speed;
+//                    worldY = worldY + speed;
                     break;
                 case "left":
                     worldX = worldX - speed;
@@ -82,16 +83,22 @@ public class NPC_Kid extends Entity{
             spriteCounter = 0;
         }
     }
+    public void setDialogue(){
+        dialogues[0] = "Welcome to Finantasy Kingdom!";
+    }
+    public void speak(GamePanel gamePanel){
+        super.speak(gamePanel);
+    }
     @Override
     public void setAction() {
         actionLockCounter++;
 
-        if (actionLockCounter == 120){
+        if (actionLockCounter == 70){
 
             Random random = new Random();
-            int i = random.nextInt(50) + 1;
+            int i = random.nextInt(100) + 1;
 
-            if ( i <= 25 ) {
+            if ( i <= 50 ) {
                 direction = "left";
             }
             //            if ( i > 25 && i <= 50 ) {
@@ -100,7 +107,7 @@ public class NPC_Kid extends Entity{
             //            if ( i > 50 && i <= 75 ) {
             //                direction = "left";
             //            }
-            if ( i > 25 && i <= 50 ) {
+            if ( i > 50 && i <= 100 ) {
                 direction = "right";
             }
 
@@ -108,7 +115,8 @@ public class NPC_Kid extends Entity{
         }
     }
     @Override
-    public void draw(Graphics2D graphics2D, GamePanel gamePanel) {
+    public void draw(Graphics2D graphics2D,GamePanel gamePanel) {
+
         BufferedImage image = null;
 
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
@@ -116,26 +124,28 @@ public class NPC_Kid extends Entity{
 
         switch (direction) {
             case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
-                if (spriteNum == 3) {
-                    image = up3;
-                }
+//                if (spriteNum == 1) {
+//                    image = up1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = up2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = up3;
+//                }
+                image = up2;
                 break;
             case "down":
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
-                if (spriteNum == 3) {
-                    image = down3;
-                }
+//                if (spriteNum == 1) {
+//                    image = down1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = down2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = down3;
+//                }
+                image = down2;
                 break;
             case "left":
                 if (spriteNum == 1) {
@@ -159,20 +169,9 @@ public class NPC_Kid extends Entity{
                     image = right3;
                 }
                 break;
-            case "idle":
-                if (spriteNum == 1) {
-                    image = idle2;
-                }
-                if (spriteNum == 2) {
-                    image = idle3;
-                }
-                if (spriteNum == 3) {
-                    image = idle1;
-                }
-                break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 20 , gamePanel.tileSize + 20 , null );
+            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 16, gamePanel.tileSize + 16, null );
         }
     }
 }

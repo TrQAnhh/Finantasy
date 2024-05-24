@@ -29,7 +29,7 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 16 * gamePanel.tileSize;
                 worldY = 48 * gamePanel.tileSize;
-                speed = 13;
+                speed = 3;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
@@ -197,8 +197,12 @@ public class Player extends Entity{
     // INTERACTION WITH NPC:
         public void interactNPC(int i){
             if ( i != 999 ) {
-                System.out.println("Hitting");
+                if (gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.gameState = gamePanel.dialogueState;
+                    gamePanel.npc[i].speak(gamePanel);
+                }
             }
+            gamePanel.keyHandler.enterPressed = false;
         }
 
     public void paintComponent(Graphics2D graphics2D) {

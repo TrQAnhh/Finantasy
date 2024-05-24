@@ -12,7 +12,9 @@ public class NPC_Soldier extends Entity{
         super(gamePanel);
         direction = "left";
         speed = 1;
+
         getImage();
+        setDialogue();
     }
 
     public void getImage(){
@@ -41,7 +43,7 @@ public class NPC_Soldier extends Entity{
 
         collisionOn = false;
 
-        solidArea = new Rectangle(11,42,30,40);
+        solidArea = new Rectangle(12,12,40,40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         // CHECK IF NPC HAS COLLISION WITH TILES:
@@ -55,10 +57,10 @@ public class NPC_Soldier extends Entity{
         if (collisionOn == false) {
             switch (direction) {
                 case "up":
-                    worldY = worldY - speed;
+//                    worldY = worldY - speed;
                     break;
                 case "down":
-                    worldY = worldY + speed;
+//                    worldY = worldY + speed;
                     break;
                 case "left":
                     worldX = worldX - speed;
@@ -68,6 +70,7 @@ public class NPC_Soldier extends Entity{
                     break;
             }
         }
+
 
         // ANIMATIONS FOR MOVEMENT:
         spriteCounter++;
@@ -84,12 +87,19 @@ public class NPC_Soldier extends Entity{
 
     }
 
+    public void setDialogue(){
+        dialogues[0] = "Welcome to Finantasy Kingdom!";
+
+    }
+    public void speak(GamePanel gamePanel){
+        super.speak(gamePanel);
+    }
+
     @Override
     public void setAction() {
         actionLockCounter++;
 
-        if (actionLockCounter == 120){
-
+        if (actionLockCounter == 70){
             Random random = new Random();
             int i = random.nextInt(100) + 1;
 
@@ -120,26 +130,28 @@ public class NPC_Soldier extends Entity{
 
         switch (direction) {
             case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
-                if (spriteNum == 3) {
-                    image = up3;
-                }
+//                if (spriteNum == 1) {
+//                    image = up1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = up2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = up3;
+//                }
+                image = up2;
                 break;
             case "down":
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
-                if (spriteNum == 3) {
-                    image = down3;
-                }
+//                if (spriteNum == 1) {
+//                    image = down1;
+//                }
+//                if (spriteNum == 2) {
+//                    image = down2;
+//                }
+//                if (spriteNum == 3) {
+//                    image = down3;
+//                }
+                image = down2;
                 break;
             case "left":
                 if (spriteNum == 1) {

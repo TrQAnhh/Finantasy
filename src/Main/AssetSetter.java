@@ -27,7 +27,7 @@ public class AssetSetter {
         gamePanel.npc[2].worldY = gamePanel.tileSize * 47; // 47 rows * 48
 
         gamePanel.npc[3] = new NPC_Male(gamePanel);
-        gamePanel.npc[3].worldX = gamePanel.tileSize * 33; // 33 columns * 48
+        gamePanel.npc[3].worldX = gamePanel.tileSize * 36; // 36 columns * 48
         gamePanel.npc[3].worldY = gamePanel.tileSize * 47; // 47 rows * 48
 
         gamePanel.npc[4] = new NPC_Kid(gamePanel);
@@ -35,12 +35,21 @@ public class AssetSetter {
         gamePanel.npc[4].worldY = gamePanel.tileSize * 50; // 50 rows * 48
 
         gamePanel.npc[5] = new NPC_Merchant(gamePanel);
-        gamePanel.npc[5].worldX = gamePanel.tileSize * 32; // 30 columns * 48
-        gamePanel.npc[5].worldY = gamePanel.tileSize * 48; // 48 rows * 48
+        gamePanel.npc[5].worldX = gamePanel.tileSize * 29; // 29 columns * 48
+        gamePanel.npc[5].worldY = gamePanel.tileSize * 47; // 47 rows * 48
 
         gamePanel.npc[6] = new NPC_Merchant(gamePanel);
         gamePanel.npc[6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
-        gamePanel.npc[6].worldY = gamePanel.tileSize * 31; // 31 rows * 48
+        gamePanel.npc[6].worldY = gamePanel.tileSize * 30; // 30 rows * 48
+
+        gamePanel.npc[7] = new NPC_Soldier(gamePanel);
+        gamePanel.npc[7].worldX = gamePanel.tileSize * 36; // 36 columns * 48
+        gamePanel.npc[7].worldY = gamePanel.tileSize * 34; // 34 rows * 48
+
+        gamePanel.npc[8] = new NPC_Soldier(gamePanel);
+        gamePanel.npc[8].worldX = gamePanel.tileSize * 32; // 32 columns * 48
+        gamePanel.npc[8].worldY = gamePanel.tileSize * 19; // 19 rows * 48
+
     }
 
 
