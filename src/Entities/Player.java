@@ -2,6 +2,7 @@ package Entities;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -26,9 +27,9 @@ public class Player extends Entity{
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
                 screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
-                worldX = 700;
-                worldY = 2336;
-                speed = 3;
+                worldX = 16 * gamePanel.tileSize;
+                worldY = 48 * gamePanel.tileSize;
+                speed = 13;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
@@ -41,88 +42,96 @@ public class Player extends Entity{
 
     // METHODS:
     public void getBasePlayerImage(){
-        try (
-                InputStream moving_down01 = new FileInputStream(new File("res/Entities/Player_warrior/down_1.png"));
-                InputStream moving_down02 = new FileInputStream(new File("res/Entities/Player_warrior/down_2.png"));
-                InputStream moving_down03 = new FileInputStream(new File("res/Entities/Player_warrior/down_3.png"));
-                InputStream moving_down04 = new FileInputStream(new File("res/Entities/Player_warrior/down_4.png"));
-
-                InputStream moving_left01 = new FileInputStream(new File("res/Entities/Player_warrior/left_1.png"));
-                InputStream moving_left02 = new FileInputStream(new File("res/Entities/Player_warrior/left_2.png"));
-                InputStream moving_left03 = new FileInputStream(new File("res/Entities/Player_warrior/left_3.png"));
-                InputStream moving_left04 = new FileInputStream(new File("res/Entities/Player_warrior/left_4.png"));
-
-                InputStream moving_right01 = new FileInputStream(new File("res/Entities/Player_warrior/right_1.png"));
-                InputStream moving_right02 = new FileInputStream(new File("res/Entities/Player_warrior/right_2.png"));
-                InputStream moving_right03 = new FileInputStream(new File("res/Entities/Player_warrior/right_3.png"));
-                InputStream moving_right04 = new FileInputStream(new File("res/Entities/Player_warrior/right_4.png"));
-
-                InputStream moving_up01 = new FileInputStream(new File("res/Entities/Player_warrior/up_1.png"));
-                InputStream moving_up02 = new FileInputStream(new File("res/Entities/Player_warrior/up_2.png"));
-                InputStream moving_up03 = new FileInputStream(new File("res/Entities/Player_warrior/up_3.png"));
-                InputStream moving_up04 = new FileInputStream(new File("res/Entities/Player_warrior/up_4.png"));
-            ) {
-
-            down1 = ImageIO.read(moving_down01);
-            down2 = ImageIO.read(moving_down02);
-            down3 = ImageIO.read(moving_down03);
-            down4 = ImageIO.read(moving_down04);
-
-            left1 = ImageIO.read(moving_left01);
-            left2 = ImageIO.read(moving_left02);
-            left3 = ImageIO.read(moving_left03);
-            left4 = ImageIO.read(moving_left04);
-
-            right1 = ImageIO.read(moving_right01);
-            right2 = ImageIO.read(moving_right02);
-            right3 = ImageIO.read(moving_right03);
-            right4 = ImageIO.read(moving_right04);
-
-            up1 = ImageIO.read(moving_up01);
-            up2 = ImageIO.read(moving_up02);
-            up3 = ImageIO.read(moving_up03);
-            up4 = ImageIO.read(moving_up04);
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-//        down1 = setupPlayerWarrior("down_1");
-//        down2 = setupPlayerWarrior("down_2");
-//        down3 = setupPlayerWarrior("down_3");
-//        down4 = setupPlayerWarrior("down_4");
+//        try (
+//                InputStream moving_down01 = new FileInputStream(new File("res/Entities/Player_warrior/down_1.png"));
+//                InputStream moving_down02 = new FileInputStream(new File("res/Entities/Player_warrior/down_2.png"));
+//                InputStream moving_down03 = new FileInputStream(new File("res/Entities/Player_warrior/down_3.png"));
 //
-//        left1 = setupPlayerWarrior("left_1");
-//        left2 = setupPlayerWarrior("left_2");
-//        left3 = setupPlayerWarrior("left_3");
-//        left4 = setupPlayerWarrior("left_4");
+//                InputStream moving_left01 = new FileInputStream(new File("res/Entities/Player_warrior/left_1.png"));
+//                InputStream moving_left02 = new FileInputStream(new File("res/Entities/Player_warrior/left_2.png"));
+//                InputStream moving_left03 = new FileInputStream(new File("res/Entities/Player_warrior/left_3.png"));
 //
-//        right1 = setupPlayerWarrior("right_1");
-//        right2 = setupPlayerWarrior("right_2");
-//        right3 = setupPlayerWarrior("right_3");
-//        right4 = setupPlayerWarrior("right_4");
+//                InputStream moving_right01 = new FileInputStream(new File("res/Entities/Player_warrior/right_1.png"));
+//                InputStream moving_right02 = new FileInputStream(new File("res/Entities/Player_warrior/right_2.png"));
+//                InputStream moving_right03 = new FileInputStream(new File("res/Entities/Player_warrior/right_3.png"));
 //
-//        up1 = setupPlayerWarrior("up_1");
-//        up2 = setupPlayerWarrior("up_2");
-//        up3 = setupPlayerWarrior("up_3");
-//        up4 = setupPlayerWarrior("up_4");
-    }
-//    public BufferedImage setupPlayerWarrior(String imagePath) {
+//                InputStream moving_up01 = new FileInputStream(new File("res/Entities/Player_warrior/up_1.png"));
+//                InputStream moving_up02 = new FileInputStream(new File("res/Entities/Player_warrior/up_2.png"));
+//                InputStream moving_up03 = new FileInputStream(new File("res/Entities/Player_warrior/up_3.png"));
+//            ) {
 //
-//        UtilityTool uTool = new UtilityTool();
-//        BufferedImage image = null;
+//            down1 = ImageIO.read(moving_down01);
+//            down2 = ImageIO.read(moving_down02);
+//            down3 = ImageIO.read(moving_down03);
 //
-//        String filePath = "res/Player_warrior/" + imagePath + ".png";
-//        File imageFile = new File(filePath);
+//            left1 = ImageIO.read(moving_left01);
+//            left2 = ImageIO.read(moving_left02);
+//            left3 = ImageIO.read(moving_left03);
 //
-//        try (FileInputStream readImage = new FileInputStream(imageFile)) {
-//            image = ImageIO.read(readImage);
-//            image = uTool.scaleImage(image,gamePanel.tileSize + 32, gamePanel.tileSize + 32);
-//        } catch(IOException e) {
+//            right1 = ImageIO.read(moving_right01);
+//            right2 = ImageIO.read(moving_right02);
+//            right3 = ImageIO.read(moving_right03);
+//
+//            up1 = ImageIO.read(moving_up01);
+//            up2 = ImageIO.read(moving_up02);
+//            up3 = ImageIO.read(moving_up03);
+//
+//        }catch (IOException e){
 //            e.printStackTrace();
 //        }
-//        return image;
-//    }
+
+        // PLAYER DEFAULT IMAGES:
+            down1 = setupPlayerDefault("down_1");
+            down2 = setupPlayerDefault("down_2");
+            down3 = setupPlayerDefault("down_3");
+
+            left1 = setupPlayerDefault("left_1");
+            left2 = setupPlayerDefault("left_2");
+            left3 = setupPlayerDefault("left_3");
+
+            right1 = setupPlayerDefault("right_1");
+            right2 = setupPlayerDefault("right_2");
+            right3 = setupPlayerDefault("right_3");
+
+            up1 = setupPlayerDefault("up_1");
+            up2 = setupPlayerDefault("up_2");
+            up3 = setupPlayerDefault("up_3");
+
+    }
+
+    public BufferedImage setupPlayerDefault(String imagePath) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/Player_Default/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,gamePanel.tileSize + 16, gamePanel.tileSize + 16);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+    public BufferedImage setupPlayerWarrior(String imagePath) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/Player_Warrior/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,gamePanel.tileSize + 16, gamePanel.tileSize + 16);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
     public void update(){
     // RECEIVE INPUTS FROM KEYBOARDS AND THEN UPDATE worldX - worldY positions:
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed ) {
@@ -173,8 +182,6 @@ public class Player extends Entity{
                 } else if ( spriteNum == 2 ){
                     spriteNum = 3;
                 } else if (spriteNum == 3 ){
-                    spriteNum = 4;
-                } else if ( spriteNum == 4 ){
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
@@ -207,11 +214,8 @@ public class Player extends Entity{
                 if (spriteNum == 3) {
                     image = up3;
                 }
-                if (spriteNum == 4) {
-                    image = up4;
-                }
                 if (!keyHandler.upPressed) {
-                    image = up1;
+                    image = up2;
                 }
                 break;
             case "down":
@@ -224,11 +228,8 @@ public class Player extends Entity{
                 if (spriteNum == 3) {
                     image = down3;
                 }
-                if (spriteNum == 4) {
-                    image = down4;
-                }
                 if (!keyHandler.downPressed) {
-                    image = down1;
+                    image = down2;
                 }
                     break;
             case "left":
@@ -241,11 +242,8 @@ public class Player extends Entity{
                 if (spriteNum == 3) {
                     image = left3;
                 }
-                if (spriteNum == 4) {
-                    image = left4;
-                }
                 if (!keyHandler.leftPressed) {
-                    image = left1;
+                    image = left2;
                 }
                 break;
             case "right":
@@ -258,16 +256,13 @@ public class Player extends Entity{
                 if (spriteNum == 3) {
                     image = right3;
                 }
-                if (spriteNum == 4) {
-                    image = right4;
-                }
                 if (!keyHandler.rightPressed) {
-                    image = right1;
+                    image = right2;
                 }
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 40 , gamePanel.tileSize + 40, null );
+            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
         }
     }
 }

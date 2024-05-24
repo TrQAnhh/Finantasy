@@ -165,7 +165,7 @@ public class NPC_Oldman extends Entity {
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 16, gamePanel.tileSize + 16, null );
+            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 14, gamePanel.tileSize + 14, null );
         }
     }
 }

@@ -4,20 +4,33 @@ import Main.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class NPC_King extends Entity {
     BufferedImage idle1,idle2,idle3,idle4,idle5,idle6,idle7,idle8,idle9;
     public NPC_King(GamePanel gamePanel) {
         super(gamePanel);
-        direction = "idle";
+        direction = "left";
         speed = 1;
         getImage();
     }
 
     public void getImage(){
-        idle1 = setup("NPC_King/Idle1");
-        idle2 = setup("NPC_King/Idle2");
-        idle3 = setup("NPC_King/Idle3");
+        down1 = setup("NPC_King/down_1");
+        down2 = setup("NPC_King/down_2");
+        down3 = setup("NPC_King/down_3");
+
+        left1 = setup("NPC_King/left_1");
+        left2 = setup("NPC_King/left_2");
+        left3 = setup("NPC_King/left_3");
+
+        right1 = setup("NPC_King/right_1");
+        right2 = setup("NPC_King/right_2");
+        right3 = setup("NPC_King/right_3");
+
+        up1 = setup("NPC_King/up_1");
+        up2 = setup("NPC_King/up_2");
+        up3 = setup("NPC_King/up_3");
     }
 
 
@@ -38,6 +51,22 @@ public class NPC_King extends Entity {
         // CHECK IF NPC HAS COLLISION WITH THE PLAYER:
         gamePanel.collisionChecker.checkPlayer(this);
 
+        if (collisionOn == false) {
+            switch (direction) {
+                case "up":
+                    worldY = worldY - speed;
+                    break;
+                case "down":
+                    worldY = worldY + speed;
+                    break;
+                case "left":
+                    worldX = worldX - speed;
+                    break;
+                case "right":
+                    worldX = worldX + speed;
+                    break;
+            }
+        }
 
         // ANIMATIONS FOR MOVEMENT:
             spriteCounter++;
@@ -51,9 +80,32 @@ public class NPC_King extends Entity {
                 }
                 spriteCounter = 0;
             }
-
     }
+        @Override
+        public void setAction() {
+            actionLockCounter++;
 
+            if (actionLockCounter == 120){
+
+                Random random = new Random();
+                int i = random.nextInt(50) + 1;
+
+                if ( i <= 25 ) {
+                    direction = "left";
+                }
+    //            if ( i > 25 && i <= 50 ) {
+    //                direction = "down";
+    //            }
+    //            if ( i > 50 && i <= 75 ) {
+    //                direction = "left";
+    //            }
+                if ( i > 25 && i <= 50 ) {
+                    direction = "right";
+                }
+
+                actionLockCounter = 0;
+            }
+        }
     @Override
     public void draw(Graphics2D graphics2D, GamePanel gamePanel) {
         BufferedImage image = null;

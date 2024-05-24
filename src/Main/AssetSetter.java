@@ -1,10 +1,8 @@
 package Main;
 
-// import Entities.NPC_NoMovementSample;
 
-import Entities.NPC_Oldman;
-import Entities.NPC_Soldier;
-import Entities.NPC_King;
+
+import Entities.*;
 
 public class AssetSetter {
     GamePanel gamePanel;
@@ -28,6 +26,21 @@ public class AssetSetter {
         gamePanel.npc[2].worldX = gamePanel.tileSize * 42; // 42 columns * 48
         gamePanel.npc[2].worldY = gamePanel.tileSize * 47; // 47 rows * 48
 
+        gamePanel.npc[3] = new NPC_Male(gamePanel);
+        gamePanel.npc[3].worldX = gamePanel.tileSize * 33; // 33 columns * 48
+        gamePanel.npc[3].worldY = gamePanel.tileSize * 47; // 47 rows * 48
+
+        gamePanel.npc[4] = new NPC_Kid(gamePanel);
+        gamePanel.npc[4].worldX = gamePanel.tileSize * 38; // 38 columns * 48
+        gamePanel.npc[4].worldY = gamePanel.tileSize * 50; // 50 rows * 48
+
+        gamePanel.npc[5] = new NPC_Merchant(gamePanel);
+        gamePanel.npc[5].worldX = gamePanel.tileSize * 32; // 30 columns * 48
+        gamePanel.npc[5].worldY = gamePanel.tileSize * 48; // 48 rows * 48
+
+        gamePanel.npc[6] = new NPC_Merchant(gamePanel);
+        gamePanel.npc[6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
+        gamePanel.npc[6].worldY = gamePanel.tileSize * 31; // 31 rows * 48
     }
 
 
