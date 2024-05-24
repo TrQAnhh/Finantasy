@@ -108,10 +108,10 @@ public class NPC_King extends Entity {
                 break;
             case "idle":
                 if (spriteNum == 1) {
-                    image = idle1;
+                    image = idle2;
                 }
                 if (spriteNum == 2) {
-                    image = idle2;
+                    image = idle3;
                 }
                 if (spriteNum == 3) {
                     image = idle1;
