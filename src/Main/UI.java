@@ -20,9 +20,20 @@ public class UI {
 
     Font alagard, romulus;
 
+    // TITLE SCREEN IMAGES:
+        BufferedImage titleScreen,
+                    playButton1, playButton2,
+                    settingButton1, settingButton2,
+                    exitButton1, exitButton2, dialouge;
+
+        // ANIMATION FOR BUTTON:
+            public int commandNum = 0;
+
     public String currentDialogue = " ";
     public UI(GamePanel gamePanel){
-        this.gamePanel = gamePanel;
+            this.gamePanel = gamePanel;
+        // GET UI IMAGES:
+                    getUIImage();
         // FONT CHỮ TRONG GAME:
             try {
                 InputStream is = getClass().getResourceAsStream("/Font/alagard.ttf");
@@ -65,22 +76,72 @@ public class UI {
         this.graphics2D = graphics2D;
 
         // CHECK CURRENT GAME STATE:
-        if (gamePanel.gameState == gamePanel.playState) {
-            // DO PLAYSTATE STUFF LATER
-        }
-        if (gamePanel.gameState == gamePanel.pauseState) {
-            drawPauseScreen();
-        }
-        if ( gamePanel.gameState == gamePanel.dialogueState ) {
-            drawDialogueScreen();
-        }
+            // TITLE SCREEN STATE:
+                if ( gamePanel.gameState == gamePanel.titleState ) {
+                    drawTitleScreen();
+                }
+
+            // PLAY STATE:
+                if (gamePanel.gameState == gamePanel.playState) {
+                    // DO PLAYSTATE STUFF LATER
+                }
+            // PAUSE STATE:
+                if (gamePanel.gameState == gamePanel.pauseState) {
+                    drawPauseScreen();
+                }
+            // DIALOGUE STATE:
+                if ( gamePanel.gameState == gamePanel.dialogueState ) {
+                    drawDialogueScreen();
+                }
 
 
     }
+    public void drawTitleScreen(){
 
+        int x = 0;
+        int y = 0;
+        // DRAW MENU TITLE SCREEN:
+            graphics2D.drawImage( titleScreen , x , y , null );
+        // DRAW BUTTON:
+            x += gamePanel.tileSize * 10;
+            y += gamePanel.tileSize * 5;
+            // PLAY BUTTON:
+                if ( commandNum == 0 ) {
+                    graphics2D.drawImage( playButton1 , x , y , null );
+                } else {
+                    graphics2D.drawImage( playButton2 , x , y , null );
+                }
+
+            // SETTING BUTTON:
+                y += 82;
+                if ( commandNum == 1 ) {
+                    graphics2D.drawImage( settingButton1 , x , y , null );
+                } else {
+                    graphics2D.drawImage( settingButton2 , x , y , null );
+                }
+            // EXIT BUTTON:
+                y += 82;
+                if ( commandNum == 2 ) {
+                    graphics2D.drawImage( exitButton1 , x , y , null );
+                } else {
+                    graphics2D.drawImage( exitButton2 , x , y , null );
+                }
+    }
+    public void getUIImage(){
+        // TITLE SCREEN:
+            titleScreen = setup("TitleScreen", gamePanel.tileSize * 18,gamePanel.tileSize * 14);
+            exitButton1 = setup("Exitbutton_1",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+            exitButton2 = setup("Exitbutton_2",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+            playButton1 = setup("Playbutton_1",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+            playButton2 = setup("Playbutton_2",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+            settingButton1 = setup("Settingbutton_1",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+            settingButton2 = setup("Settingbutton_2",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+        // DIALOGUE:
+            dialouge = setup("dialogue_1",gamePanel.screenWidth - (gamePanel.tileSize * 2),gamePanel.tileSize * 7);
+
+    }
     public void drawPauseScreen(){
-        String text = "PAUSE HAHAHAHAHAHAHA";
-
+        String text = "PAUSE";
         graphics2D.drawString(text,432,336);
     }
 
@@ -91,7 +152,7 @@ public class UI {
             int width = gamePanel.screenWidth - (gamePanel.tileSize * 2);
             int height = gamePanel.tileSize * 7;
 
-            drawSubWindow(x,y,width,height);
+            drawSubWindow(x,y);
         // DISPLAY TEXT SETTING:
             x += gamePanel.tileSize * 3;
             y += gamePanel.tileSize * 2;
@@ -105,15 +166,13 @@ public class UI {
             }
     }
 
-    public void drawSubWindow(int x, int y, int width, int height){
+    public void drawSubWindow(int x, int y){
 
-        BufferedImage dialouge;
-        dialouge = setup("dialogue_1");
-        graphics2D.drawImage(dialouge,x,y,width,height,null);
+        graphics2D.drawImage(dialouge,x,y,null);
 
     }
 
-    public BufferedImage setup(String imagePath) {
+    public BufferedImage setup(String imagePath,int width, int height) {
 
         BufferedImage image = null;
         UtilityTool uTool = new UtilityTool();
@@ -123,6 +182,7 @@ public class UI {
 
         try (FileInputStream readFile = new FileInputStream(imageFile)) {
             image = ImageIO.read(readFile);
+            image = uTool.scaleImage(image, width , height);
         } catch(IOException e) {
             e.printStackTrace();
         }

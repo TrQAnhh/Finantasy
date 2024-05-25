@@ -18,6 +18,33 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
+    // TITLE STATE:
+        if ( gamePanel.gameState == gamePanel.titleState ) {
+            if (code == KeyEvent.VK_W) {
+                gamePanel.ui.commandNum--;
+                if ( gamePanel.ui.commandNum < 0 ) {
+                    gamePanel.ui.commandNum = 2;
+                }
+            }
+            if (code == KeyEvent.VK_S) {
+                gamePanel.ui.commandNum++;
+                if ( gamePanel.ui.commandNum > 2 ) {
+                    gamePanel.ui.commandNum = 0;
+                }
+            }
+            if (code == KeyEvent.VK_ENTER) {
+                if ( gamePanel.ui.commandNum == 0 ) {
+                    gamePanel.gameState = gamePanel.playState;
+                    gamePanel.playMusic(0);
+                }
+                if ( gamePanel.ui. commandNum == 1 ) {
+                    // UPDATE SETTING LATER
+                }
+                if ( gamePanel.ui.commandNum == 2 ) {
+                    System.exit(0);
+                }
+            }
+        }
     // PLAY STATE:
         if ( gamePanel.gameState == gamePanel.playState ) {
             if (code == KeyEvent.VK_W) {

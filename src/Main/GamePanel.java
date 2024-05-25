@@ -30,6 +30,7 @@ public class GamePanel extends JPanel implements Runnable{
 
    // GAME STATE VARIABLES:
         public int gameState;
+        public final int titleState = 0;
         public final int playState = 1;
         public final int pauseState = 2;
 
@@ -70,13 +71,14 @@ public class GamePanel extends JPanel implements Runnable{
 
    // METHODS:
         public void setupGame(){
-        // SET OBJECTS METHOD:
-            aSetter.setObject();
-        // SET NPC METHODS:
-            aSetter.setNPC();
-            playMusic(0);
-        // DEFAULT GAME STATE:
-            gameState = playState;
+            // DEFAULT GAME STATE:
+                gameState = titleState;
+            // SET OBJECTS METHOD:
+                aSetter.setObject();
+            // SET NPC METHODS:
+                aSetter.setNPC();
+
+
         }
 
         public void startGameThread(){
@@ -93,9 +95,9 @@ public class GamePanel extends JPanel implements Runnable{
             while ( gameThread != null ) {
 
                 // 1. UPDATE: Update information such as character positions,...
-                update();
+                    update();
                 // 2. DRAW: redraw the screen with the updated information
-                repaint();
+                    repaint();
 
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime / 1000000;
@@ -120,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable{
         public void update(){
             if ( gameState == playState ) {
                 // PLAYER'S POSITIONS UPDATE:
-                player.update();
+                    player.update();
                 // NPC POSITIONS UPDATE:
                 for ( int i = 0 ; i < npc.length ; i++ ) {
                     if (npc[i] != null){
@@ -139,27 +141,33 @@ public class GamePanel extends JPanel implements Runnable{
 
             Graphics2D graphics2D = (Graphics2D) graphics;
 
-            // DRAW TILES:
-                tileManager.draw(graphics2D);
+            // TITLE SCREEN:
+                if ( gameState == titleState ) {
+                    ui.draw(graphics2D);
+                } // OTHERS
+                else {
+                    // DRAW TILES:
+                        tileManager.draw(graphics2D);
 
-            // DRAW OBJECTS:
-                for ( int i = 0 ; i < object.length ; i++ ) {
-                    if ( object[i] != null ) {
-                        object[i].draw(graphics2D,this);
+                    // DRAW OBJECTS:
+                    for ( int i = 0 ; i < object.length ; i++ ) {
+                        if ( object[i] != null ) {
+                            object[i].draw(graphics2D,this);
+                        }
                     }
-                }
-            // DRAW NPC:
-                for ( int i = 0 ; i < npc.length ; i++ ) {
-                    if ( npc[i] != null ) {
-                        npc[i].draw(graphics2D, this);
-                    }
-                }
+                    // DRAW NPC:
+                        for ( int i = 0 ; i < npc.length ; i++ ) {
+                            if ( npc[i] != null ) {
+                                npc[i].draw(graphics2D, this);
+                            }
+                        }
 
-            // DRAW PLAYERS:
-                player.paintComponent(graphics2D);
+                    // DRAW PLAYERS:
+                        player.paintComponent(graphics2D);
 
-            // UI
-                ui.draw(graphics2D);
+                    // UI
+                        ui.draw(graphics2D);
+                }
 
             graphics2D.dispose();
         }
@@ -173,7 +181,6 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         public void stopMusic(){
-
             music.stop();
         }
     // SOUND EFFECTS:
