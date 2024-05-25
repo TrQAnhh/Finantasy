@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
         public final int pauseState = 2;
 
         public final int dialogueState = 3;
+        public final int optionState = 5;
 
    // INSTANTIATE OBJECTS:
             public KeyHandler keyHandler = new KeyHandler(this);
@@ -77,6 +78,7 @@ public class GamePanel extends JPanel implements Runnable{
                 aSetter.setObject();
             // SET NPC METHODS:
                 aSetter.setNPC();
+                playMusic(1);
 
 
         }

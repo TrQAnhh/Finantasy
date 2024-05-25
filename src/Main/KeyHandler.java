@@ -35,6 +35,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 if ( gamePanel.ui.commandNum == 0 ) {
                     gamePanel.gameState = gamePanel.playState;
+                    gamePanel.stopMusic();
                     gamePanel.playMusic(0);
                 }
                 if ( gamePanel.ui. commandNum == 1 ) {
@@ -68,6 +69,7 @@ public class KeyHandler implements KeyListener {
         }
     // PAUSE STATE:
          else if ( gamePanel.gameState == gamePanel.pauseState ) {
+
             if (code == KeyEvent.VK_ESCAPE){
                 gamePanel.gameState = gamePanel.playState;
             }

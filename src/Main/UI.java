@@ -28,8 +28,9 @@ public class UI {
 
         // ANIMATION FOR BUTTON:
             public int commandNum = 0;
+        // ANIMATION FOR DIALOGUES:
+            public String currentDialogue = " ";
 
-    public String currentDialogue = " ";
     public UI(GamePanel gamePanel){
             this.gamePanel = gamePanel;
         // GET UI IMAGES:
@@ -146,13 +147,13 @@ public class UI {
     }
 
     public void drawDialogueScreen(){
-        // WINDOW SETTINGS:
+        // DRAW DIALOGUE SETTINGS:
             int x = gamePanel.tileSize;
             int y = gamePanel.tileSize * 7;
             int width = gamePanel.screenWidth - (gamePanel.tileSize * 2);
             int height = gamePanel.tileSize * 7;
-
             drawSubWindow(x,y);
+
         // DISPLAY TEXT SETTING:
             x += gamePanel.tileSize * 3;
             y += gamePanel.tileSize * 2;
@@ -167,7 +168,6 @@ public class UI {
     }
 
     public void drawSubWindow(int x, int y){
-
         graphics2D.drawImage(dialouge,x,y,null);
 
     }

@@ -26,16 +26,15 @@ public class Entity {
 
         public int actionLockCounter = 0;
 
+
     // DEFAULT SOLID AREA FOR ALL ENTITIES:
         public Rectangle solidArea = new Rectangle(0,0,48,48);
         public int solidAreaDefaultX, solidAreaDefaultY;
         public boolean collisionOn = false;
-
-        GamePanel gamePanel;
+    GamePanel gamePanel;
     // DIALOUGES TEXT:
-        String dialogues[] = new String[20];
-        int dialogueIndex = 0;
-
+        public String dialogues[] = new String[20];
+        public int dialogueIndex = 0;
     public Entity ( GamePanel gamePanel ) {
         this.gamePanel = gamePanel;
     }
