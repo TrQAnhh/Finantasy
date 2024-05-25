@@ -81,21 +81,37 @@ public class Player extends Entity{
 //        }
 
         // PLAYER DEFAULT IMAGES:
-            down1 = setupPlayerDefault("down_1");
-            down2 = setupPlayerDefault("down_2");
-            down3 = setupPlayerDefault("down_3");
+//            down1 = setupPlayerDefault("down_1");
+//            down2 = setupPlayerDefault("down_2");
+//            down3 = setupPlayerDefault("down_3");
+//
+//            left1 = setupPlayerDefault("left_1");
+//            left2 = setupPlayerDefault("left_2");
+//            left3 = setupPlayerDefault("left_3");
+//
+//            right1 = setupPlayerDefault("right_1");
+//            right2 = setupPlayerDefault("right_2");
+//            right3 = setupPlayerDefault("right_3");
+//
+//            up1 = setupPlayerDefault("up_1");
+//            up2 = setupPlayerDefault("up_2");
+//            up3 = setupPlayerDefault("up_3");
+        // PLAYER WARRIOR IMAGES:
+            down1 = setupPlayerWarrior("down_1");
+            down2 = setupPlayerWarrior("down_2");
+            down3 = setupPlayerWarrior("down_3");
 
-            left1 = setupPlayerDefault("left_1");
-            left2 = setupPlayerDefault("left_2");
-            left3 = setupPlayerDefault("left_3");
+            left1 = setupPlayerWarrior("left_1");
+            left2 = setupPlayerWarrior("left_2");
+            left3 = setupPlayerWarrior("left_3");
 
-            right1 = setupPlayerDefault("right_1");
-            right2 = setupPlayerDefault("right_2");
-            right3 = setupPlayerDefault("right_3");
+            right1 = setupPlayerWarrior("right_1");
+            right2 = setupPlayerWarrior("right_2");
+            right3 = setupPlayerWarrior("right_3");
 
-            up1 = setupPlayerDefault("up_1");
-            up2 = setupPlayerDefault("up_2");
-            up3 = setupPlayerDefault("up_3");
+            up1 = setupPlayerWarrior("up_1");
+            up2 = setupPlayerWarrior("up_2");
+            up3 = setupPlayerWarrior("up_3");
 
     }
 
