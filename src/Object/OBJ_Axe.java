@@ -14,5 +14,8 @@ public class OBJ_Axe extends Entity {
         defenseValue = 1;
         description = "[" + name + "]\nAn old axe.";
     }
-    
+    @Override
+    public void use(Entity entity){
+        entity.state = entity.stuntState;
+    }
 }

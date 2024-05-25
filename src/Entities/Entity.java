@@ -75,6 +75,12 @@ public class Entity {
     public final int type_consumable_player = 7;
     public final int type_consumable_enemy = 8;
 
+    // Battle state
+    public int state;
+    public final int normalState = 0;
+    public final int stuntState = 1;
+    public final int bleedState = 2;
+
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
