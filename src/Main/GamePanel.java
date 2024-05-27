@@ -38,6 +38,8 @@ public class GamePanel extends JPanel implements Runnable{
 // WORLD SETTINGS:
     public final int maxWorldColumn = 64; // can be adjusted
     public final int maxWorldRow = 64; // can be adjusted
+    public final int maxMap = 10;
+    public int currentMap = 0;
     public final int worldWidth = tileSize * maxWorldColumn;
     public final int worldHeight = tileSize * maxWorldRow;
 // FOR FULL SCREEN
@@ -55,16 +57,16 @@ public class GamePanel extends JPanel implements Runnable{
     // Player CLASS
         public Player player = new Player(this,keyHandler);
     // TileManager CLASS
-        TileManager tileManager = new TileManager(this);
+        public TileManager tileManager = new TileManager(this);
     // Collision CLASS
         public Collision collision = new Collision(this);
     // NPC CLASS
         public AssetSetter aSetter = new AssetSetter(this);
-        public Entity npc[] = new Entity[10];
+        public Entity npc[][] = new Entity[maxMap][10];
     // Monster CLASS
-        public Entity monster[] = new Entity[20];
+        public Entity monster[][] = new Entity[maxMap][20];
     // Object CLASS
-        public Entity object[] = new Entity[10];
+        public Entity object[][] = new Entity[maxMap][10];
     // UNIT INTERFACE
         public UI ui = new UI(this);
     // List of Entity
@@ -85,6 +87,13 @@ public class GamePanel extends JPanel implements Runnable{
         public final int battleState = 4;
         public final int characterState = 5;
         public final int optionsState = 6;
+        public final int transitionState = 7;
+
+    // AREA     
+        public int currentArea;
+        public int nextArea;
+        public final int outside = 50;
+        public final int dungeon = 52;    
    // CONSTRUCTOR:
         public GamePanel() {
                 this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -98,15 +107,15 @@ public class GamePanel extends JPanel implements Runnable{
             aSetter.setObject();
             aSetter.setNPC();
             aSetter.setMonster();
-            gameState = titleState;
             eManager.setup();
-
+            gameState = titleState;
             //tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
             //g2 = (Graphics2D)tempScreen.getGraphics();
 
             //if(fullScreenOn == true) {
             //    setFullScreen();
             //}
+            currentArea = outside;
         }
         public void setFullScreen() {
 
@@ -161,18 +170,18 @@ public class GamePanel extends JPanel implements Runnable{
         public void update(){
             if (gameState == playState){
                     player.update();
-                    for(int i=0;i<npc.length;i++)
-                    if(npc[i] != null){
-                        npc[i].update();    
+                    for(int i=0;i<npc[1].length;i++)
+                    if(npc[currentMap][i] != null){
+                        npc[currentMap][i].update();    
                     }
                     
-                for(int i=0; i<monster.length; i++){
-                    if(monster[i] != null){
-                        if(monster[i].alive == true && monster[i].dying == false){
-                        monster[i].update();
+                for(int i=0; i<monster[1].length; i++){
+                    if(monster[currentMap][i] != null){
+                        if(monster[currentMap][i].alive == true && monster[currentMap][i].dying == false){
+                        monster[currentMap][i].update();
                         }
-                        if(monster[i].alive == false){
-                            monster[i] = null;
+                        if(monster[currentMap][i].alive == false){
+                            monster[currentMap][i] = null;
                         }
                     }
                 }
@@ -206,19 +215,19 @@ public class GamePanel extends JPanel implements Runnable{
                 player.draw(graphics2D);
             // ADD ENTITY TO THE LIST  
                 entityList.add(player);
-                for(int i = 0; i < npc.length; ++i) {
-                    if(npc[i] != null) {
-                        entityList.add(npc[i]);
+                for(int i = 0; i < npc[1].length; ++i) {
+                    if(npc[currentMap][i] != null) {
+                        entityList.add(npc[currentMap][i]);
                     }
                 }
-                for(int i = 0; i < object.length; ++i) {
-                    if(object[i] != null) {
-                        entityList.add(object[i]);
+                for(int i = 0; i < object[1].length; ++i) {
+                    if(object[currentMap][i] != null) {
+                        entityList.add(object[currentMap][i]);
                     }
                 }
-                for(int i = 0; i < monster.length; ++i) {
-                    if(monster[i] != null) {
-                        entityList.add(monster[i]);
+                for(int i = 0; i < monster[1].length; ++i) {
+                    if(monster[currentMap][i] != null) {
+                        entityList.add(monster[currentMap][i]);
                     }
                 }
                 // SORT
@@ -278,5 +287,20 @@ public class GamePanel extends JPanel implements Runnable{
         se.setFile(i);
         se.play();
     }
-    
+        public void changeArea(){
+            if(nextArea != currentArea) {
+                /* 
+                stopMusic();
+                if(nextArea == outside) {
+                    playSE(0);
+                }
+                if(nextArea == dungeon) {
+                    playSE(1);
+                }
+                */
+            }
+            currentArea = nextArea;
+            aSetter.setMonster();
+            aSetter.setNPC();
+        }
 }

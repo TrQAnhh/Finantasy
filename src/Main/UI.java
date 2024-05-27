@@ -32,6 +32,7 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     public int subState = 0;
+    int counter = 0;
 
     BufferedImage heart_full, heart_half, heart_blank;
     public boolean messageOn = false;
@@ -102,6 +103,9 @@ public class UI {
         // OPTIONS STATE
         if(gamePanel.gameState == gamePanel.optionsState) {
             drawOptionsScreen();
+        }
+        if(gamePanel.gameState == gamePanel.transitionState) {
+            drawTransition();
         }
     }
     public void drawPlayerLife(){
@@ -842,8 +846,25 @@ public class UI {
         return x;
     }
     public int getXforAlignToRightText(String text, int tailX){
+
         int length =(int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = tailX - length;
         return x;
     }
+    public void drawTransition() {
+        counter++;
+        g2.setColor(new Color(0, 0, 0, counter * 5));
+        g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+        if(counter == 10) { // Transition is done
+            counter = 0;
+            gamePanel.gameState = gamePanel.playState;
+            gamePanel.currentMap = gamePanel.eHandler.tempMap;
+            gamePanel.player.worldX = gamePanel.tileSize * gamePanel.eHandler.tempCol;
+            gamePanel.player.worldY = gamePanel.tileSize * gamePanel.eHandler.tempRow;
+            gamePanel.eHandler.previousEventX = gamePanel.player.worldX;
+            gamePanel.eHandler.previousEventY = gamePanel.player.worldY;
+            gamePanel.changeArea();
+        }
+    }
 }
+

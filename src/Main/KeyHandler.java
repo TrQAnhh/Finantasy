@@ -111,7 +111,17 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_F)
         {
-                enterPressed = true;
+            enterPressed = true;
+        }
+        if(code == KeyEvent.VK_R) {
+            switch (gamePanel.currentMap) {
+                case 0:
+                    gamePanel.tileManager.loadMap("res/MapData/mapdata.txt", 0); 
+                    break;
+                case 1:
+                    gamePanel.tileManager.loadMap("res/MapData/mapdataDung.txt", 1);
+                    break;
+            }
         }
         //Debug
 

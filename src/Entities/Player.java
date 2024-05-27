@@ -27,7 +27,7 @@ public class Player extends Entity{
                 screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
                 worldX = 800;
-                worldY = 2336;
+                worldY = 800;
                 speed = 3;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
@@ -87,7 +87,7 @@ public class Player extends Entity{
     }
     public void update(){
     // RECEIVE INPUTS FROM KEYBOARDS AND THEN UPDATE worldX - worldY positions:
-        if (keyHandler.upPressed || keyHandler.downPressed == true || keyHandler.leftPressed || keyHandler.rightPressed ) {
+        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed ) {
                 if(keyHandler.upPressed){
                     direction = "up";
                 } 
@@ -103,8 +103,7 @@ public class Player extends Entity{
         System.out.println(direction);
         // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
         collisionOn = false;
-        gamePanel.collision.checkTile(this);
-
+        gamePanel.collision.checkTile(this);     
         // check object collision
         int objIndex = gamePanel.collision.checkObject(this,true);
         pickUpObject(objIndex);
@@ -163,7 +162,7 @@ public class Player extends Entity{
 
             if(gamePanel.keyHandler.enterPressed == true){
                 gamePanel.gameState = gamePanel.dialogueState;
-                gamePanel.npc[i].speak();
+                gamePanel.npc[gamePanel.currentMap][i].speak();
                 }       
         }
     }
