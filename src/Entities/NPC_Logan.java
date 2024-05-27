@@ -5,11 +5,12 @@ import java.util.Random;
 import Main.GamePanel;
 
 public class NPC_Logan extends Entity {
-
     public NPC_Logan(GamePanel gamePanel){
         super(gamePanel);
 
         direction = "down";
+        speed = 1;
+
         getImage();
         setDialogue();
     }
@@ -37,6 +38,7 @@ public class NPC_Logan extends Entity {
         actionLockCounter = 0;
         }
 }
+
     public void speak(){
         super.speak();
     }

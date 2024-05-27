@@ -58,6 +58,7 @@ public class Collision {
             break;
         }
     }
+    // Check the objectect collision
     public int checkObject(Entity entity, boolean player){
 
         int index = 999;
@@ -66,7 +67,7 @@ public class Collision {
                 //get entity's solid area position
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
                 entity.solidArea.y = entity.worldY + entity.solidArea.y;
-                //get the object's solid area position
+                //get the objectect's solid area position
                 gamePanel.object[i].solidArea.x = gamePanel.object[i].worldX + gamePanel.object[i].solidArea.x;
                 gamePanel.object[i].solidArea.y = gamePanel.object[i].worldY + gamePanel.object[i].solidArea.y;
 
@@ -142,6 +143,7 @@ public class Collision {
         }
         return index;
     }
+    // Check the collision of NPC/Monster to Player
     public void checkPlayer(Entity entity){
         //get entity's solid area position
         entity.solidArea.x = entity.worldX + entity.solidArea.x;

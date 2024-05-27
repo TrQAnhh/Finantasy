@@ -3,7 +3,7 @@ package Main;
 public class EventHandler {
 
     GamePanel gamePanel;
-    EventRect eventRect[] [];
+    eventRect eventRect[][];
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
@@ -11,13 +11,13 @@ public class EventHandler {
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
-        eventRect = new EventRect[gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
+        eventRect = new eventRect[gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
 
         int col = 0;
         int row = 0;
         while(col < gamePanel.maxWorldColumn && row < gamePanel.maxWorldRow){
             
-            eventRect[col][row] = new EventRect();
+            eventRect[col][row] = new eventRect();
             eventRect[col][row].x = 23;
             eventRect[col][row].y = 23;
             eventRect[col][row].width = gamePanel.tileSize;
@@ -54,7 +54,6 @@ public class EventHandler {
     public boolean hit(int col, int row, String reqDirection){
 
         boolean hit = false;
-
         gamePanel.player.solidArea.x = gamePanel.player.worldX + gamePanel.player.solidArea.x;
         gamePanel.player.solidArea.y = gamePanel.player.worldY + gamePanel.player.solidArea.y;
         eventRect[col][row].x = col*gamePanel.tileSize + eventRect[col][row].x;
@@ -67,9 +66,9 @@ public class EventHandler {
                 previousEventY = gamePanel.player.worldY;
             }
         }
-
         gamePanel.player.solidArea.x = gamePanel.player.solidAreaDefaultX;
         gamePanel.player.solidArea.y = gamePanel.player.solidAreaDefaultY;
+
         eventRect[col][row].x = eventRect[col][row].eventRectDefaultX;
         eventRect[col][row].y = eventRect[col][row].eventRectDefaultY;
         return hit;
@@ -80,6 +79,7 @@ public class EventHandler {
             gamePanel.ui.currentDialogue = "Your life has been recovered!";
             gamePanel.player.life = gamePanel.player.maxLife;
             gamePanel.aSetter.setMonster();
+
         }
 
     }

@@ -25,13 +25,12 @@ public class Player extends Entity{
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
             
             super(gamePanel);
-
             this.keyHandler = keyHandler;
             // PLAYER'S SCREEN POSITION:
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
                 screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
-                worldX = 700;
+                worldX = 800;
                 worldY = 2336;
                 speed = 3;
             // PLAYER'S MOVEMENT ANIMATIONS:
@@ -123,21 +122,39 @@ public class Player extends Entity{
     }
     public void update(){
     // RECEIVE INPUTS FROM KEYBOARDS AND THEN UPDATE worldX - worldY positions:
-        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed ) {
+        if (keyHandler.upPressed || keyHandler.downPressed == true || keyHandler.leftPressed || keyHandler.rightPressed ) {
                 if(keyHandler.upPressed){
                     direction = "up";
-                } else if (keyHandler.downPressed){
+                } 
+                if (keyHandler.downPressed){
                     direction = "down";
-                } else if (keyHandler.leftPressed) {
+                } 
+                if (keyHandler.leftPressed) {
                     direction = "left";
-                } else if (keyHandler.rightPressed){
+                } 
+                if (keyHandler.rightPressed){
                     direction = "right";
                 }
-
-    // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
+        System.out.println(direction);
+        // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
         collisionOn = false;
         gamePanel.collision.checkTile(this);
 
+        // check object collision
+        int objIndex = gamePanel.collision.checkObject(this,true);
+        pickUpObject(objIndex);
+
+        // check npc collision
+        int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
+        interactNPC(npcIndex);
+
+        // Check monster collision
+        int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
+        
+        // Check event
+        gamePanel.eHandler.checkEvent();
+
+        // if collision is false, player can move
         if ( collisionOn == false ) {
             switch (direction){
                 case "up":
@@ -154,7 +171,6 @@ public class Player extends Entity{
                     break;
             }
         }
-
     // ANIMATIONS FOR MOVEMENT:
             spriteCounter++;
             if ( spriteCounter > 8 ){
@@ -171,9 +187,14 @@ public class Player extends Entity{
             }
         }
     }
+    public void pickUpObject(int i){
+
+        if(i != 999){
+            
+        }
+    }
     public void interactNPC(int i){
         if(i != 999){
-
             if(gamePanel.keyHandler.enterPressed == true){
                 gamePanel.gameState = gamePanel.dialogueState;
                 gamePanel.npc[i].speak();
@@ -240,7 +261,7 @@ public class Player extends Entity{
             gamePanel.ui.currentDialogue = "You are level" + level + "now!\n";
         }
     }
-    public void paintComponent(Graphics2D graphics2D) {
+    public void draw(Graphics2D graphics2D) {
         BufferedImage image = down1;
         switch (direction) {
             case "up":

@@ -3,13 +3,13 @@ package Object;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class OBJ_Door extends Entity {
-    
+public class OBJ_Door extends Entity{
+
     public OBJ_Door(GamePanel gamePanel){
-        
+
         super(gamePanel);
         name = "Door";
-        down1 = setup("/object/door",gamePanel.tileSize, gamePanel.tileSize);
+        down1 = setup("/Object/door",gamePanel.tileSize, gamePanel.tileSize);
 
         collision = true;
 

@@ -85,12 +85,13 @@ public class Entity {
         this.gamePanel = gamePanel;
 
     }
+
     public void setAction(){}
     public void damage(){}          //For monster
     public void speak(){if(dialogue[dialogueIndex] == null){
         dialogueIndex = 0;
     }
- //   gp.ui.currentDialogue = dialogue[dialogueIndex];
+    gamePanel.ui.currentDialogue = dialogue[dialogueIndex];
     dialogueIndex++;
 
     switch (gamePanel.player.direction) {
@@ -108,16 +109,17 @@ public class Entity {
             break;
     }
 }
+
     public void use(Entity entity){}
     public void update(){
         setAction();
         
         collisionOn = false;
         gamePanel.collision.checkTile(this);
-      //  gp.collision.checkObject(this, false);
-     //   gp.collision.checkEntity(this, gp.npc);
-     //   gp.collision.checkEntity(this, gp.monster);
-     //   gp.collision.checkPlayer(this);
+        gamePanel.collision.checkObject(this, false);
+        gamePanel.collision.checkEntity(this, gamePanel.npc);
+        gamePanel.collision.checkEntity(this, gamePanel.monster);
+        gamePanel.collision.checkPlayer(this);
 
         if(collisionOn == false){
             switch (direction) {
@@ -238,7 +240,7 @@ public class Entity {
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(new File("/res"+imagePath+".png"));
+            image = ImageIO.read(new File("res"+imagePath+".png"));
             image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
