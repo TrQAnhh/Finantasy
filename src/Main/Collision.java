@@ -2,10 +2,10 @@ package Main;
 
 import Entities.Entity;
 
-public class CollisionChecker {
+public class Collision {
     GamePanel gamePanel;
 
-    public CollisionChecker(GamePanel gamePanel) {
+    public Collision(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 

@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
         // TileManager CLASS
             TileManager tileManager = new TileManager(this);
         // Collision CLASS
-            public CollisionChecker collisionChecker = new CollisionChecker(this);
+            public Collision collision = new Collision(this);
         // AssetSetter CLASS:
             public AssetSetter aSetter = new AssetSetter(this);
         // ENTITIES AND OBJECTS:

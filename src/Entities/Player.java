@@ -164,12 +164,12 @@ public class Player extends Entity{
     // AFTER worldX - worldY HAVE BEEN UPDATED. THEN:
         // CHECK TILE COLLISION:
             collisionOn = false;
-            gamePanel.collisionChecker.checkTile(this);
+            gamePanel.collision.checkTile(this);
         // CHECK OBJECT COLLISIONS:
-            int objIndex = gamePanel.collisionChecker.checkObject(this,true);
+            int objIndex = gamePanel.collision.checkObject(this,true);
             pickUpObject(objIndex);
         // CHECK NPC COLLISIONS:
-            int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc );
+            int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc );
             interactNPC(npcIndex);
         // IF COLISION IS FALSE, PLAYER CAN MOVE:
 

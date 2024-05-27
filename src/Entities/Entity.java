@@ -118,9 +118,9 @@ public class Entity {
         setAction();
 
         collisionOn = false;
-        gamePanel.collisionChecker.checkTile(this);
-        gamePanel.collisionChecker.checkObject(this,false);
-        gamePanel.collisionChecker.checkPlayer(this);
+        gamePanel.collision.checkTile(this);
+        gamePanel.collision.checkObject(this,false);
+        gamePanel.collision.checkPlayer(this);
 
         if (collisionOn == false) {
             switch (direction) {

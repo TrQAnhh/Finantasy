@@ -54,12 +54,12 @@ public class NPC_Merchant extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         // CHECK IF NPC HAS COLLISION WITH TILES:
-        gamePanel.collisionChecker.checkTile(this);
+        gamePanel.collision.checkTile(this);
 
-        gamePanel.collisionChecker.checkObject(this,false);
+        gamePanel.collision.checkObject(this,false);
 
         // CHECK IF NPC HAS COLLISION WITH THE PLAYER:
-        gamePanel.collisionChecker.checkPlayer(this);
+        gamePanel.collision.checkPlayer(this);
 
 //        if (collisionOn == false) {
 //            switch (direction) {
