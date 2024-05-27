@@ -1,7 +1,9 @@
 package Main;
 
-
-
+import Object.OBJ_Door;
+import Entities.NPC_Logan;
+import Entities.NPC_OldMan;
+import Monster.MON_Slime;
 import Entities.*;
 
 public class AssetSetter {
@@ -10,6 +12,14 @@ public class AssetSetter {
         this.gamePanel = gamePanel;
     }
     public void setObject(){
+        int mapNum = 0;
+        gamePanel.object[mapNum][0] = new OBJ_Door(gamePanel);
+        gamePanel.object[mapNum][0].worldX = gamePanel.tileSize*21;
+        gamePanel.object[mapNum][0].worldY = gamePanel.tileSize*21;
+
+        gamePanel.object[mapNum][1] = new OBJ_Door(gamePanel);
+        gamePanel.object[mapNum][1].worldX = gamePanel.tileSize*11;
+        gamePanel.object[mapNum][1].worldY = gamePanel.tileSize*21;
 
     }
     public void setNPC(){
@@ -49,7 +59,26 @@ public class AssetSetter {
         gamePanel.npc[8] = new NPC_Soldier(gamePanel);
         gamePanel.npc[8].worldX = gamePanel.tileSize * 32; // 32 columns * 48
         gamePanel.npc[8].worldY = gamePanel.tileSize * 19; // 19 rows * 48
+    }
+    public void setMonster(){
+        //Set monster for first map
+        int mapNum = 0;
+        gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
+        gamePanel.monster[mapNum][0].worldX = 700;
+        gamePanel.monster[mapNum][0].worldY = 2336;
 
+        gamePanel.monster[mapNum][1] = new MON_Slime(gamePanel);
+        gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
+        gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
+        //Set monster for second map
+        mapNum = 1;
+        gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
+        gamePanel.monster[mapNum][0].worldX = 700;
+        gamePanel.monster[mapNum][0].worldY = 2336;
+
+        gamePanel.monster[mapNum][1] = new MON_Slime(gamePanel);
+        gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
+        gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
     }
 
 
