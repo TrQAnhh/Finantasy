@@ -3,7 +3,7 @@ package Main;
 public class EventHandler {
 
     GamePanel gamePanel;
-    eventRect eventRect[][];
+    EventRect eventRect[][];
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
@@ -11,13 +11,13 @@ public class EventHandler {
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
-        eventRect = new eventRect[gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
+        eventRect = new EventRect[gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
 
         int col = 0;
         int row = 0;
         while(col < gamePanel.maxWorldColumn && row < gamePanel.maxWorldRow){
             
-            eventRect[col][row] = new eventRect();
+            eventRect[col][row] = new EventRect();
             eventRect[col][row].x = 23;
             eventRect[col][row].y = 23;
             eventRect[col][row].width = gamePanel.tileSize;
