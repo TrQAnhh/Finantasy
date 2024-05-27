@@ -221,7 +221,7 @@ public class Player extends Entity{
             gamePanel.keyHandler.enterPressed = false;
         }
 
-    public void paintComponent(Graphics2D graphics2D) {
+    public void paintComponent(Graphics2D g2) {
         BufferedImage image = down1;
         switch (direction) {
             case "up":
@@ -282,7 +282,7 @@ public class Player extends Entity{
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
+            g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
         }
     }
 }

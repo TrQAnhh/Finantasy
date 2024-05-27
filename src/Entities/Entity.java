@@ -56,7 +56,7 @@ public class Entity {
         return image;
     }
 
-    public void draw(Graphics2D graphics2D,GamePanel gamePanel){
+    public void draw(Graphics2D g2,GamePanel gamePanel){
         BufferedImage image = null;
 
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
@@ -109,7 +109,7 @@ public class Entity {
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize , gamePanel.tileSize, null );
+            g2.drawImage( image , screenX , screenY, gamePanel.tileSize , gamePanel.tileSize, null );
         }
     }
 

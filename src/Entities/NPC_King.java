@@ -121,7 +121,7 @@ public class NPC_King extends Entity {
             }
         }
     @Override
-    public void draw(Graphics2D graphics2D,GamePanel gamePanel) {
+    public void draw(Graphics2D g2,GamePanel gamePanel) {
 
         BufferedImage image = null;
 
@@ -177,7 +177,7 @@ public class NPC_King extends Entity {
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 16, gamePanel.tileSize + 16, null );
+            g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16, gamePanel.tileSize + 16, null );
         }
     }
 }

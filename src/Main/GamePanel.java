@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
             // Player CLASS
                 public Player player = new Player(this,keyHandler);
             // Objects ARRAY:
-                public SuperObject object[] = new SuperObject[10];
+                public SuperObject obj[] = new SuperObject[10];
             // NPC ARRAY:
                 public Entity npc[] = new Entity[10];
 
@@ -141,37 +141,37 @@ public class GamePanel extends JPanel implements Runnable{
 
             super.paintComponent(graphics);
 
-            Graphics2D graphics2D = (Graphics2D) graphics;
+            Graphics2D g2 = (Graphics2D) graphics;
 
             // TITLE SCREEN:
                 if ( gameState == titleState ) {
-                    ui.draw(graphics2D);
+                    ui.draw(g2);
                 } // OTHERS
                 else {
                     // DRAW TILES:
-                        tileManager.draw(graphics2D);
+                        tileManager.draw(g2);
 
                     // DRAW OBJECTS:
-                    for ( int i = 0 ; i < object.length ; i++ ) {
-                        if ( object[i] != null ) {
-                            object[i].draw(graphics2D,this);
+                    for ( int i = 0 ; i < obj.length ; i++ ) {
+                        if ( obj[i] != null ) {
+                            obj[i].draw(g2,this);
                         }
                     }
                     // DRAW NPC:
                         for ( int i = 0 ; i < npc.length ; i++ ) {
                             if ( npc[i] != null ) {
-                                npc[i].draw(graphics2D, this);
+                                npc[i].draw(g2, this);
                             }
                         }
 
                     // DRAW PLAYERS:
-                        player.paintComponent(graphics2D);
+                        player.paintComponent(g2);
 
                     // UI
-                        ui.draw(graphics2D);
+                        ui.draw(g2);
                 }
 
-            graphics2D.dispose();
+            g2.dispose();
         }
 
     // GAME THEME SONG:

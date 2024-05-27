@@ -310,7 +310,7 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-    public void draw(Graphics2D graphics2D){
+    public void draw(Graphics2D g2){
         // VARIABLES:
             int worldColumn = 0;
             int worldRow = 0;
@@ -324,7 +324,7 @@ public class TileManager {
                 int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
                 int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 
-                graphics2D.drawImage(tile[tileNum].tile_image,screenX,screenY,null);
+                g2.drawImage(tile[tileNum].tile_image,screenX,screenY,null);
 
                 worldColumn++;
 

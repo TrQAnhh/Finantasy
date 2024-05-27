@@ -14,7 +14,7 @@ public class UI {
     GamePanel gamePanel;
     public boolean gameFinished = false;
 
-    Graphics2D graphics2D;
+    Graphics2D g2;
 
     BufferedImage endScreenImage;
 
@@ -54,7 +54,7 @@ public class UI {
             }
     }
 
-    public void draw(Graphics2D graphics2D) {
+    public void draw(Graphics2D g2) {
 
 //        // DISPLAY END SCREEN:
 //            if (gameFinished == true){
@@ -66,7 +66,7 @@ public class UI {
 //                } catch(IOException e) {
 //                    e.printStackTrace();
 //                }
-//                graphics2D.drawImage( endScreenImage , 0 , 0 , 18 * gamePanel.tileSize, 14 * gamePanel.tileSize, null );
+//                g2.drawImage( endScreenImage , 0 , 0 , 18 * gamePanel.tileSize, 14 * gamePanel.tileSize, null );
 //
 //            // STOP THE THREAD:
 //                gamePanel.gameThread = null;
@@ -74,7 +74,7 @@ public class UI {
 //            } else {
 //            }
 
-        this.graphics2D = graphics2D;
+        this.g2 = g2;
 
         // CHECK CURRENT GAME STATE:
             // TITLE SCREEN STATE:
@@ -102,30 +102,30 @@ public class UI {
         int x = 0;
         int y = 0;
         // DRAW MENU TITLE SCREEN:
-            graphics2D.drawImage( titleScreen , x , y , null );
+            g2.drawImage( titleScreen , x , y , null );
         // DRAW BUTTON:
             x += gamePanel.tileSize * 10;
             y += gamePanel.tileSize * 5;
             // PLAY BUTTON:
                 if ( commandNum == 0 ) {
-                    graphics2D.drawImage( playButton1 , x , y , null );
+                    g2.drawImage( playButton1 , x , y , null );
                 } else {
-                    graphics2D.drawImage( playButton2 , x , y , null );
+                    g2.drawImage( playButton2 , x , y , null );
                 }
 
             // SETTING BUTTON:
                 y += 82;
                 if ( commandNum == 1 ) {
-                    graphics2D.drawImage( settingButton1 , x , y , null );
+                    g2.drawImage( settingButton1 , x , y , null );
                 } else {
-                    graphics2D.drawImage( settingButton2 , x , y , null );
+                    g2.drawImage( settingButton2 , x , y , null );
                 }
             // EXIT BUTTON:
                 y += 82;
                 if ( commandNum == 2 ) {
-                    graphics2D.drawImage( exitButton1 , x , y , null );
+                    g2.drawImage( exitButton1 , x , y , null );
                 } else {
-                    graphics2D.drawImage( exitButton2 , x , y , null );
+                    g2.drawImage( exitButton2 , x , y , null );
                 }
     }
     public void getUIImage(){
@@ -143,7 +143,7 @@ public class UI {
     }
     public void drawPauseScreen(){
         String text = "PAUSE";
-        graphics2D.drawString(text,432,336);
+        g2.drawString(text,432,336);
     }
 
     public void drawDialogueScreen(){
@@ -157,18 +157,18 @@ public class UI {
         // DISPLAY TEXT SETTING:
             x += gamePanel.tileSize * 3;
             y += gamePanel.tileSize * 2;
-            graphics2D.setFont(alagard);
-            graphics2D.setColor(Color.BLACK);
-            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN,25F));
+            g2.setFont(alagard);
+            g2.setColor(Color.BLACK);
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN,25F));
 
             for (String line: currentDialogue.split("\n")) {
-                graphics2D.drawString(line, x, y);
+                g2.drawString(line, x, y);
                 y += 40;
             }
     }
 
     public void drawSubWindow(int x, int y){
-        graphics2D.drawImage(dialouge,x,y,null);
+        g2.drawImage(dialouge,x,y,null);
 
     }
 
