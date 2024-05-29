@@ -46,12 +46,12 @@ public class NPC_Kid extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         // CHECK IF NPC HAS COLLISION WITH TILES:
-        gamePanel.collision.checkTile(this);
+            gamePanel.collision.checkTile(this);
 
-        gamePanel.collision.checkObject(this,false);
+            gamePanel.collision.checkObject(this,false);
 
         // CHECK IF NPC HAS COLLISION WITH THE PLAYER:
-        gamePanel.collision.checkPlayer(this);
+            gamePanel.collision.checkPlayer(this);
 
         if (collisionOn == false) {
             switch (direction) {
@@ -84,7 +84,7 @@ public class NPC_Kid extends Entity{
         }
     }
     public void setDialogue(){
-        dialogues[0] = "Welcome to Finantasy Kingdom!";
+        dialogue[0] = "Welcome to Finantasy Kingdom!";
     }
     public void speak(GamePanel gamePanel){
         super.speak(gamePanel);

@@ -23,13 +23,16 @@ import Main.UtilityTool;
 
 public class Entity {
     GamePanel gamePanel;
-    public BufferedImage up1, up2, up3, up4, up5, up6, down1, down2, down3, down4, down5, down6, left1, left2, left3, left4, left5, left6, right1, right2, right3, right4, right5, right6;
+    public BufferedImage up1, up2, up3,
+                         down1, down2, down3,
+                         left1, left2, left3,
+                         right1, right2, right3;
     public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
     public BufferedImage image, image2, image3;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collision = false;
-    String dialogues[] = new String[20];
+    String dialogue[] = new String[20];
 
     // State
     public int worldX, worldY;
@@ -72,6 +75,8 @@ public class Entity {
     public int defenseValue;
     public String description = "";
 
+
+
     public Entity ( GamePanel gamePanel ) {
         this.gamePanel = gamePanel;
     }
@@ -91,6 +96,73 @@ public class Entity {
             e.printStackTrace();
         }
         return image;
+    }
+    public void update(GamePanel gamePanel) {
+
+        setAction();
+
+        collisionOn = false;
+        gamePanel.collision.checkTile(this);
+        gamePanel.collision.checkObject(this,false);
+        gamePanel.collision.checkPlayer(this);
+
+        if (collisionOn == false) {
+            switch (direction) {
+                case "up":
+                    worldY = worldY - speed;
+                    break;
+                case "down":
+                    worldY = worldY + speed;
+                    break;
+                case "left":
+                    worldX = worldX - speed;
+                    break;
+                case "right":
+                    worldX = worldX + speed;
+                    break;
+            }
+        }
+
+        // ANIMATIONS FOR MOVEMENT:
+        spriteCounter++;
+        if (spriteCounter > 8) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 3;
+            } else if (spriteNum == 3) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
+
+    }
+    public void setAction(){
+
+    }
+    public void speak(GamePanel gamePanel){
+        if ( dialogue[dialogueIndex] == null ) {
+            dialogueIndex = 0;
+        }
+        gamePanel.ui.currentDialogue = dialogue
+                [dialogueIndex];
+        dialogueIndex++;
+
+        switch (gamePanel.player.direction) {
+            case "up":
+                direction = "down";
+                break;
+            case "down":
+                direction = "up";
+                break;
+            case "left":
+                direction = "right";
+                break;
+            case "right":
+                direction = "left";
+                break;
+        }
+
     }
 
     public void draw(Graphics2D g2,GamePanel gamePanel){
@@ -145,97 +217,30 @@ public class Entity {
                 }
                 break;
         }
-        if(type == 2 && hpBarOn == true)
-        {
-            double oneScale = (double)gamePanel.tileSize/maxLife;
-            double hpBarValue = oneScale*life;
+        // Monster HP bar
+            if (type == 2 && hpBarOn == true) {
+                double oneScale = (double) gamePanel.tileSize / maxLife;
+                double hpBarValue = oneScale * life;
 
-            g2.setColor(new Color(35,35,35));
-            g2.fillRect(screenX-1, screenY - 16, gamePanel.tileSize+2, 12);
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX - 1, screenY - 16, gamePanel.tileSize + 2, 12);
 
-            g2.setColor(new Color(255,0,30));
-            g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
 
-            hpBarCounter++;
-            if(hpBarCounter > 600){
-                hpBarCounter = 0;
-                hpBarOn = false;
-            }
-        }
-        if(dying == true){
-            dyingAnimation(g2);
-        }
-        if (image != null ) {
-            g2.drawImage( image , screenX , screenY, gamePanel.tileSize , gamePanel.tileSize, null );
-        }
-        changeAlpha(g2, 1F);
-    }
-
-    public void update(GamePanel gamePanel) {
-
-        setAction();
-
-        collisionOn = false;
-        gamePanel.collision.checkTile(this);
-        gamePanel.collision.checkObject(this,false);
-        gamePanel.collision.checkPlayer(this);
-
-        if (collisionOn == false) {
-            switch (direction) {
-                case "up":
-                    worldY = worldY - speed;
-                    break;
-                case "down":
-                    worldY = worldY + speed;
-                    break;
-                case "left":
-                    worldX = worldX - speed;
-                    break;
-                case "right":
-                    worldX = worldX + speed;
-                    break;
-            }
-        }
-
-        // ANIMATIONS FOR MOVEMENT:
-            spriteCounter++;
-                if (spriteCounter > 8) {
-                    if (spriteNum == 1) {
-                        spriteNum = 2;
-                    } else if (spriteNum == 2) {
-                        spriteNum = 3;
-                    } else if (spriteNum == 3) {
-                        spriteNum = 1;
-                    }
-                    spriteCounter = 0;
+                hpBarCounter++;
+                if (hpBarCounter > 600) {
+                    hpBarCounter = 0;
+                    hpBarOn = false;
                 }
+            }
 
-    }
-    public void setAction(){
+//        if (dying == true) {
+//            dyingAnimation(g2);
+//        }
+        g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
 
-    }
-    public void speak(GamePanel gamePanel){
-        if ( dialogues[dialogueIndex] == null ) {
-            dialogueIndex = 0;
-        }
-        gamePanel.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
-
-        switch (gamePanel.player.direction) {
-            case "up":
-                direction = "down";
-                break;
-            case "down":
-                direction = "up";
-                break;
-            case "left":
-                direction = "right";
-                break;
-            case "right":
-                direction = "left";
-                break;
-        }
-
+//        changeAlpha(g2, 1F);
     }
     public void dyingAnimation(Graphics2D g2){
 
@@ -259,16 +264,52 @@ public class Entity {
     public void changeAlpha(Graphics2D g2, float alphaValue){
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
-    public BufferedImage setup(String imagePath, int width, int height){
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
+//    public BufferedImage setup(String imagePath, int width, int height){
+//        UtilityTool uTool = new UtilityTool();
+//        BufferedImage image = null;
+//
+//        try {
+//            image = ImageIO.read(new File("res"+imagePath+".png"));
+//            image = uTool.scaleImage(image, width, height);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return image;
+//    }
 
-        try {
-            image = ImageIO.read(new File("res"+imagePath+".png"));
-            image = uTool.scaleImage(image, width, height);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void update(){
+        setAction();
+
+        collisionOn = false;
+
+        gamePanel.collision.checkTile(this);
+        gamePanel.collision.checkObject(this, false);
+        gamePanel.collision.checkEntity(this, gamePanel.npc);
+        gamePanel.collision.checkEntity(this, gamePanel.monster);
+        gamePanel.collision.checkPlayer(this);
+
+        if(collisionOn == false){
+            switch (direction) {
+                case "up": worldY -= speed;
+                    break;
+                case "down": worldY += speed;
+                    break;
+                case "left": worldX -= speed;
+                    break;
+                case "right": worldX += speed;
+                    break;
+            }
         }
-        return image;
+
+        if(direction.equals("stand"))
+        {   spriteCounter++;
+            if(spriteCounter > 12){
+                if(spriteNum==1)
+                    spriteNum = 2;
+                else if(spriteNum==2)
+                    spriteNum = 1;
+                spriteCounter = 0;
+            }
+        }
     }
 }

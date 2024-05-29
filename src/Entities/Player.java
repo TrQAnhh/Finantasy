@@ -22,6 +22,7 @@ public class Player extends Entity{
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
 
             super(gamePanel);
+
             this.gamePanel = gamePanel;
             this.keyHandler = keyHandler;
             // PLAYER'S SCREEN POSITION:
@@ -30,7 +31,7 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 16 * gamePanel.tileSize;
                 worldY = 48 * gamePanel.tileSize;
-                speed = 3;
+                speed = 13;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
@@ -176,18 +177,6 @@ public class Player extends Entity{
             int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc );
             interactNPC(npcIndex);
         // IF COLISION IS FALSE, PLAYER CAN MOVE:
-        System.out.println(direction);
-        // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
-        collisionOn = false;
-        gamePanel.collision.checkTile(this);
-        // check object collision
-        int objIndex = gamePanel.collision.checkObject(this,true);
-        pickUpObject(objIndex);
-
-        // check npc collision
-        int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
-        interactNPC(npcIndex);
-
             if ( collisionOn == false ) {
                 switch (direction){
                     case "up":
@@ -206,29 +195,12 @@ public class Player extends Entity{
             }
 
         // Check monster collision
-        int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
+            int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
 
         // Check event
-        gamePanel.eHandler.checkEvent();
+            gamePanel.eHandler.checkEvent();
 
-        // if collision is false, player can move
-        if ( collisionOn == false ) {
-            switch (direction){
-                case "up":
-                    worldY = worldY - speed;
-                    break;
-                case "down":
-                    worldY = worldY + speed;
-                    break;
-                case "left":
-                    worldX = worldX - speed;
-                    break;
-                case "right":
-                    worldX = worldX + speed;
-                    break;
-            }
-        }
-    // ANIMATIONS FOR MOVEMENT:
+        // ANIMATIONS FOR MOVEMENT:
             spriteCounter++;
             if ( spriteCounter > 8 ){
                 if ( spriteNum == 1 ){
@@ -236,8 +208,6 @@ public class Player extends Entity{
                 } else if ( spriteNum == 2 ){
                     spriteNum = 3;
                 } else if (spriteNum == 3 ){
-                    spriteNum = 4;
-                } else if ( spriteNum == 4 ){
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
@@ -253,30 +223,15 @@ public class Player extends Entity{
     // INTERACTION WITH NPC:
         public void interactNPC(int i){
             if ( i != 999 ) {
-                if (gamePanel.keyHandler.enterPressed == true){
+                if(gamePanel.keyHandler.enterPressed == true){
                     gamePanel.gameState = gamePanel.dialogueState;
-                    gamePanel.npc[i].speak(gamePanel);
+                    gamePanel.npc[gamePanel.currentMap][i].speak(gamePanel);
                 }
             }
             gamePanel.keyHandler.enterPressed = false;
         }
 
-    public void paintComponent(Graphics2D g2) {
-        if(i != 999){
-
-        }
-    }
-    public void interactNPC(int i){
-        if(i != 999){
-
-            if(gamePanel.keyHandler.enterPressed == true){
-                gamePanel.gameState = gamePanel.dialogueState;
-                gamePanel.npc[gamePanel.currentMap][i].speak();
-                }
-        }
-    }
-
-    public void draw(Graphics2D graphics2D) {
+    public void draw(Graphics2D g2) {
         BufferedImage image = down1;
         switch (direction) {
             case "up":
@@ -317,11 +272,8 @@ public class Player extends Entity{
                 if (spriteNum == 3) {
                     image = left3;
                 }
-                if (spriteNum == 4) {
-                    image = left4;
-                }
                 if (!keyHandler.leftPressed) {
-                    image = left1;
+                    image = left2;
                 }
                 break;
             case "right":

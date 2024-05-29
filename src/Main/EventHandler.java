@@ -13,14 +13,14 @@ public class EventHandler {
         this.gp = gp;
 
         eventRect = new eventRect[gp.maxMap][gp.maxWorldColumn][gp.maxWorldRow];
-        int map = 0;
-        int col = 0;
-        int row = 0;
+            int map = 0;
+            int col = 0;
+            int row = 0;
         while(map < gp.maxMap && col < gp.maxWorldColumn && row < gp.maxWorldRow){
-            
+
             eventRect[map][col][row] = new eventRect();
-            eventRect[map][col][row].x = 23;
-            eventRect[map][col][row].y = 23;
+            eventRect[map][col][row].x = 48;
+            eventRect[map][col][row].y = 48;
             eventRect[map][col][row].width = gp.tileSize;
             eventRect[map][col][row].height = gp.tileSize;
             eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
@@ -37,22 +37,33 @@ public class EventHandler {
                 }
             }
         }
-        
+
     }
 
     public void checkEvent() {
-     int xDistance = Math.abs(gp.player.worldX - previousEventX);
-     int yDistance = Math.abs(gp.player.worldY - previousEventY);
-     int distance = Math.max(xDistance, yDistance);
-     if(distance > gp.tileSize){
-        canTouchEvent = true;
-     }
-     if(canTouchEvent == true){
-        //gp.gameState = gp.battleState;
-        //gp.ui.indexBattle = 1;
-        if(hit(0, 33,23,"up") == true) {healingPool(gp.dialogueState);}            
-        if(hit(0, 13, 11, "any") == true) {teleport(1, 20, 46, gp.dungeon);}
-        if(hit(1, 20, 46, "any") == true) {teleport(0, 13, 11, gp.outside);}
+        int xDistance = Math.abs(gp.player.worldX - previousEventX);
+        int yDistance = Math.abs(gp.player.worldY - previousEventY);
+        int distance = Math.max(xDistance, yDistance);
+        if(distance > gp.tileSize){
+            canTouchEvent = true;
+        }
+        if(canTouchEvent == true){
+
+            //gp.gameState = gp.battleState;
+            //gp.ui.indexBattle = 1;
+
+            if(hit(0, 33,23,"up") == true) {
+                healingPool(gp.dialogueState);}
+
+            if(hit(1, 20, 46, "any") == true) {
+                teleport(0, 13, 11, gp.outside);}
+
+            if(hit(0, 14, 12, "any") == true) {
+                teleport(1, 16, 48, gp.dungeon);}
+
+            if(hit(1, 20, 46, "any") == true) {
+                teleport(0, 13, 11, gp.outside);}
+
         }
     }
     public boolean hit(int map, int col, int row, String reqDirection){
@@ -77,7 +88,7 @@ public class EventHandler {
             eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
             eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
         }
-        System.out.println(hit);
+//        System.out.println(hit);
         return hit;
     }
     public void healingPool(int gameState){
@@ -90,12 +101,13 @@ public class EventHandler {
 
     }
     public void teleport(int map, int col, int row, int area) {
-        gp.gameState = gp.transitionState;
-        gp.nextArea = area;
-        tempMap = map;
-        tempCol = col;
-        tempRow = row;
-        canTouchEvent = false;
+            gp.gameState = gp.transitionState;
+            gp.currentMap = map;
+            gp.nextArea = area;
+            tempMap = map;
+            tempCol = col;
+            tempRow = row;
+            canTouchEvent = false;
         //gp.playSE(13);
     }
 }

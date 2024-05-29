@@ -23,123 +23,152 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
 
-        // Title state
-        if(gamePanel.gameState == gamePanel.titleState){
-            titleState(code);
-        }
-        // Game state
-        else if(gamePanel.gameState == gamePanel.playState){
-            playState(code);
-        }
-        // Pause state
-        else if(gamePanel.gameState == gamePanel.pauseState){
-            pauseState(code);
-        }
-        // Dialogue state
-        else if(gamePanel.gameState == gamePanel.dialogueState){
-            dialogueState(code);
-        }
-        // Character state
-        else if(gamePanel.gameState == gamePanel.characterState){
-            characterState(code);
-        }
-        else if(gamePanel.gameState == gamePanel.battleState){
-            battleState(code);
-        }
+        // TITLE STATE:
+            if(gamePanel.gameState == gamePanel.titleState){
+                titleState(code);
+            }
+        // GAME STATE:
+            else if(gamePanel.gameState == gamePanel.playState){
+                playState(code);
+            }
+        // PAUSE STATE:
+            else if(gamePanel.gameState == gamePanel.pauseState){
+                pauseState(code);
+            }
+        // DIALOGUE STATE:
+            else if(gamePanel.gameState == gamePanel.dialogueState){
+                dialogueState(code);
+            }
+        // CHARACTER STATE:
+            else if(gamePanel.gameState == gamePanel.characterState){
+                characterState(code);
+            }
+            else if(gamePanel.gameState == gamePanel.battleState){
+                battleState(code);
+            }
         //OPTION STATE
-        else if(gamePanel.gameState == gamePanel.optionsState) {
-            optionsState(code);
-        }
+            else if(gamePanel.gameState == gamePanel.optionsState) {
+                optionsState(code);
+            }
     }
     public void titleState(int code){
         if(code == KeyEvent.VK_W)
         {
             gamePanel.ui.commandNum--;
             if(gamePanel.ui.commandNum < 0)
-            gamePanel.ui.commandNum = 3;
+            gamePanel.ui.commandNum = 2;
         }
         if(code == KeyEvent.VK_S)
         {
             gamePanel.ui.commandNum++;
-            if(gamePanel.ui.commandNum > 3)
+            if(gamePanel.ui.commandNum > 2)
             gamePanel.ui.commandNum = 0;
         }
         if (code == KeyEvent.VK_ENTER){
-            if(gamePanel.ui.commandNum == 0){
-                gamePanel.gameState = gamePanel.playState;
-                //gamePanel.playMusic(0);
-            }
-            if(gamePanel.ui.commandNum == 1){
+            // PRESS ENTER WITH PLAY BUTTON:
+                if(gamePanel.ui.commandNum == 0){
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(0);
+                    gamePanel.gameState = gamePanel.playState;
+                }
+            // PRESS ENTER WITH SETTING BUTTON:
+                if(gamePanel.ui.commandNum == 1){
 
-            }
-            if(gamePanel.ui.commandNum == 2){
-
-            }
-            if(gamePanel.ui.commandNum == 3){
-                System.exit(0);
-            }
+                }
+            // PRESS ENTER WITH EXIT BUTTON:
+                if(gamePanel.ui.commandNum == 2){
+                    System.exit(0);
+                }
         }
     }
+    
     public void playState(int code){
-        if(code == KeyEvent.VK_W)
-        {
-            upPressed = true;
-        }
-        if(code == KeyEvent.VK_A)
-        {
-            leftPressed = true;
-        }
-        if(code == KeyEvent.VK_S)
-        {
-            downPressed = true;
-        }
-        if(code == KeyEvent.VK_D)
-        {
-            rightPressed = true;
-        }
-        if(code == KeyEvent.VK_ESCAPE)
-        {
-            gamePanel.gameState = gamePanel.optionsState;
-        }
-        if(code == KeyEvent.VK_P)
-        {
-            gamePanel.gameState = gamePanel.pauseState;
-        }
-        if(code == KeyEvent.VK_C)
-        {
-            gamePanel.gameState = gamePanel.characterState;
-        }
-        if(code == KeyEvent.VK_F)
-        {
-            enterPressed = true;
-        }
-        if(code == KeyEvent.VK_R) {
-            switch (gamePanel.currentMap) {
-                case 0:
-                    gamePanel.tileManager.loadMap("res/MapData/mapdata.txt", 0);
-                    break;
-                case 1:
-                    gamePanel.tileManager.loadMap("res/MapData/mapdataDung.txt", 1);
-                    break;
+        // W-A-S-D MOVEMENT:
+            if(code == KeyEvent.VK_W)
+            {
+                upPressed = true;
             }
-        }
-        //Debug
+            if(code == KeyEvent.VK_A)
+            {
+                leftPressed = true;
+            }
+            if(code == KeyEvent.VK_S)
+            {
+                downPressed = true;
+            }
+            if(code == KeyEvent.VK_D)
+            {
+                rightPressed = true;
+            }
+        // CHANGE STATES:
+            if(code == KeyEvent.VK_ESCAPE)
+            {
+                gamePanel.gameState = gamePanel.optionsState;
+            }
+            if(code == KeyEvent.VK_P)
+            {
+                gamePanel.gameState = gamePanel.pauseState;
+            }
+            if(code == KeyEvent.VK_C)
+            {
+                gamePanel.gameState = gamePanel.characterState;
+            }
 
-        if(code == KeyEvent.VK_T) {
-            if(showDebugText == false) {
-                showDebugText = true;
+            if(code == KeyEvent.VK_F)
+            {
+                enterPressed = true;
             }
-            else if(showDebugText == true) {
-                showDebugText = false;
+
+            if(code == KeyEvent.VK_R) {
+                switch (gamePanel.currentMap) {
+                    case 0:
+                        gamePanel.tileManager.loadMap("res/MapData/mapdata.txt", 0);
+                        break;
+                    case 1:
+                        gamePanel.tileManager.loadMap("res/MapData/mapdataDung.txt", 1);
+                        break;
+                }
             }
+            
+        // DEBUG:
+            if(code == KeyEvent.VK_T) {
+                if(showDebugText == false) {
+                    showDebugText = true;
+                }
+                else if(showDebugText == true) {
+                    showDebugText = false;
+                }
+            }
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int code = e.getKeyCode();
+
+        if (code == KeyEvent.VK_W)
+        {
+            upPressed = false;
+        }
+        if (code == KeyEvent.VK_S)
+        {
+            downPressed = false;
+        }
+        if (code == KeyEvent.VK_D)
+        {
+            rightPressed = false;
+        }
+        if (code == KeyEvent.VK_A)
+        {
+            leftPressed = false;
         }
     }
+
     public void pauseState(int code) {
         if(code == KeyEvent.VK_ESCAPE)
         {
             gamePanel.gameState = gamePanel.playState;
         }
     }
+
     public void dialogueState(int code) {
         if(code == KeyEvent.VK_ENTER){
             gamePanel.gameState = gamePanel.playState;
@@ -256,27 +285,5 @@ public class KeyHandler implements KeyListener {
             }
 
         }
-    }
-    @Override
-    public void keyReleased(KeyEvent e) {
-        int code = e.getKeyCode();
-
-        if (code == KeyEvent.VK_W)
-        {
-            upPressed = false;
-        }
-        if (code == KeyEvent.VK_S)
-        {
-            downPressed = false;
-        }
-        if (code == KeyEvent.VK_D)
-        {
-            rightPressed = false;
-        }
-        if (code == KeyEvent.VK_A)
-        {
-            leftPressed = false;
-        }
-        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 }

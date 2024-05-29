@@ -85,7 +85,7 @@ public class NPC_Male extends Entity{
 
     }
     public void setDialogue(){
-        dialogues[0] = "Welcome to Finantasy Kingdom!";
+        dialogue[0] = "Welcome to Finantasy Kingdom!";
 
     }
     public void speak(GamePanel gamePanel){

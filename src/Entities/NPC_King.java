@@ -85,9 +85,9 @@ public class NPC_King extends Entity {
     }
 
     public void setDialogue(){
-        dialogues[0] = "Welcome to Finantasy Kingdom!";
-        dialogues[1] = "This is a place for everyone who \nwant to be a Hero";
-        dialogues[2] = ".Therefore, do not be hesitate! ";
+        dialogue[0] = "Welcome to Finantasy Kingdom!";
+        dialogue[1] = "This is a place for everyone who \nwant to be a Hero";
+        dialogue[2] = ".Therefore, do not be hesitate! ";
 
 
     }
