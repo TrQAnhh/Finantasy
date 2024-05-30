@@ -144,8 +144,7 @@ public class Entity {
         if ( dialogue[dialogueIndex] == null ) {
             dialogueIndex = 0;
         }
-        gamePanel.ui.currentDialogue = dialogue
-                [dialogueIndex];
+        gamePanel.ui.currentDialogue = dialogue[dialogueIndex];
         dialogueIndex++;
 
         switch (gamePanel.player.direction) {

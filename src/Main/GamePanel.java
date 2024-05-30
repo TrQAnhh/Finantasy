@@ -74,13 +74,15 @@ public class GamePanel extends JPanel implements Runnable{
         ArrayList<Entity> entityList = new ArrayList<>();
     // EventHandler
         public EventHandler eHandler = new EventHandler(this);
-    // Config
-        Config config = new Config(this);
-    // EnviromentManager
+//    // Config
+//        Config config = new Config(this);
+
+    // ENVIRONMENT MANAGER:
         EnviromentManager eManager = new EnviromentManager(this);
     // GAME STATE :
         // Option choice
         public int gameState;
+        public int tempGameState; // USED WHEN PLAYER HITS BUTTON "BACK"
         public final int titleState = 0;
         public final int playState = 1;
         public final int pauseState = 2;
@@ -216,8 +218,8 @@ public class GamePanel extends JPanel implements Runnable{
             else {
                 // DRAW TILES:
                     tileManager.draw(g2);
-//                // ADD PLAYERS TO THE LIST
-//                    entityList.add(player);
+                // ADD PLAYERS TO THE LIST
+                    entityList.add(player);
                 // ADD ENTITIES TO THE LIST
                     for(int i = 0; i < npc[1].length; ++i) {
                         if(npc[currentMap][i] != null) {
@@ -252,7 +254,6 @@ public class GamePanel extends JPanel implements Runnable{
                     // EMPTY ENTITY LIST
                         entityList.clear();
                     // DRAW PLAYERS:
-                        player.draw(g2);
                         entityList.clear();
                     // ENVIRONMENT
                         eManager.draw(g2);
