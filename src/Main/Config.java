@@ -14,13 +14,6 @@ public class Config {
     public void saveConfif() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("config.txt"));
-            // Full screen
-            if(gamePanel.fullScreenOn == true) {
-                bw.write("On");
-            }
-            if(gamePanel.fullScreenOn == false) {
-                bw.write("Off");
-            }
             bw.newLine();
 
             // Music volume
@@ -42,14 +35,6 @@ public class Config {
             BufferedReader br = new BufferedReader(new FileReader("Config.txt"));
 
             String s = br.readLine();
-
-            // Full Screen
-            if(s.equals("On")) {
-                gamePanel.fullScreenOn = true;
-            }
-            if(s.equals("Off")) {
-                gamePanel.fullScreenOn = false;
-            }
             //Music volume
             s = br.readLine();
             gamePanel.music.volumeScale = Integer.parseInt(s);
