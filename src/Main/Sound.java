@@ -6,6 +6,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import java.io.IOException;
+import java.net.URL;
 
 public class Sound {
     
@@ -17,17 +19,15 @@ public class Sound {
 
     public Sound(){
 
-      /*   soundURL[0] = getClass().getResource("/sound/Final-Fantasy-Main-Theme.wav");
->>>>>>> KhanhNgan1
-        soundURL[1] = getClass().getResource("/sound/coin.wav");
-        soundURL[2] = getClass().getResource("/sound/fanfare.wav");
-        soundURL[3] = getClass().getResource("/sound/powerup.wav");
-        soundURL[4] = getClass().getResource("/sound/unlock.wav");
-        soundURL[5] = getClass().getResource("/sound/battle.wav");  // Battle sound */
+        soundURL[0] = getClass().getResource("/Sound/VillageTheme.wav");
+        soundURL[1] = getClass().getResource("/Sound/MenuTheme.wav");
     }
 
     public void setFile(int i){
         try {
+            if (soundURL[i] == null) {
+                throw new IOException("Resource URL is null");
+            }            
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
@@ -37,14 +37,20 @@ public class Sound {
         }
     }
     public void play(){
-        clip.start();
+        if (clip != null) {
+            clip.start();
+        }
     }
     public void loop(){
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        if (clip != null) {
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
     }
     public void stop(){
-        clip.stop();
+        if (clip != null) {
+            clip.stop();
     }
+}
     public void checkVolume() {
         switch (volumeScale) {
             case 0: volume = -80f;
@@ -61,5 +67,6 @@ public class Sound {
                 break;
         }
         fc.setValue(volume);
+
     }
 }

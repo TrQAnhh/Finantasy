@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -787,7 +789,7 @@ public class UI {
         textX = getXforCenteredText(text);
         textY = frameY + gamePanel.tileSize;
         g2.drawString(text, textX, textY);
-
+/*
         //FULL SCREEN ON/ OFF
         textX = frameX +  gamePanel.tileSize;
         textY += gamePanel.tileSize * 2;
@@ -806,7 +808,7 @@ public class UI {
             }
 
         }
-
+*/
         //MUSIC 
         textY += gamePanel.tileSize;
         g2.drawString("Music", textX, textY);
@@ -853,7 +855,7 @@ public class UI {
                 commandNum = 0;
             }
         }
-
+/*
         //FULL SCREEN CHECK BOX
         textX = (int)(frameX + gamePanel.tileSize * 4.5);
         textY = frameY + gamePanel.tileSize * 2 + 24;
@@ -862,7 +864,7 @@ public class UI {
         if(gamePanel.fullScreenOn == true) {
             g2.fillRect(textX, textY, 24, 24);
         }
-
+*/
         //MUSIC VOLUME
         textY += gamePanel.tileSize;
         g2.drawRect(textX, textY, 120, 24); // 120/5 = 24
@@ -1013,4 +1015,5 @@ public class UI {
         int x = tailX - length;
         return x;
     }
+
 }

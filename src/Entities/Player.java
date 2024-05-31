@@ -6,6 +6,8 @@ import Object.OBJ_HealPot;
 import Object.OBJ_Key;
 import Object.OBJ_Shield_Wood;
 import Object.OBJ_Sword;
+import Main.UtilityTool;
+import Map.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -32,11 +34,13 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 800;
                 worldY = 2336;
-                speed = 3;
+                speed = 13;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
                 solidArea = new Rectangle(20,42,35,20);
+                solidAreaDefaultX = solidArea.x;
+                solidAreaDefaultY = solidArea.y;
             // GET PLAYER'S IMAGES:
                 getBasePlayerImage();
         }
@@ -120,7 +124,43 @@ public class Player extends Entity{
         }catch (IOException e){
             e.printStackTrace();
         }
+
+//        down1 = setupPlayerWarrior("down_1");
+//        down2 = setupPlayerWarrior("down_2");
+//        down3 = setupPlayerWarrior("down_3");
+//        down4 = setupPlayerWarrior("down_4");
+//
+//        left1 = setupPlayerWarrior("left_1");
+//        left2 = setupPlayerWarrior("left_2");
+//        left3 = setupPlayerWarrior("left_3");
+//        left4 = setupPlayerWarrior("left_4");
+//
+//        right1 = setupPlayerWarrior("right_1");
+//        right2 = setupPlayerWarrior("right_2");
+//        right3 = setupPlayerWarrior("right_3");
+//        right4 = setupPlayerWarrior("right_4");
+//
+//        up1 = setupPlayerWarrior("up_1");
+//        up2 = setupPlayerWarrior("up_2");
+//        up3 = setupPlayerWarrior("up_3");
+//        up4 = setupPlayerWarrior("up_4");
     }
+//    public BufferedImage setupPlayerWarrior(String imagePath) {
+//
+//        UtilityTool uTool = new UtilityTool();
+//        BufferedImage image = null;
+//
+//        String filePath = "res/Player_warrior/" + imagePath + ".png";
+//        File imageFile = new File(filePath);
+//
+//        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+//            image = ImageIO.read(readImage);
+//            image = uTool.scaleImage(image,gamePanel.tileSize + 32, gamePanel.tileSize + 32);
+//        } catch(IOException e) {
+//            e.printStackTrace();
+//        }
+//        return image;
+//    }
     public void update(){
     // RECEIVE INPUTS FROM KEYBOARDS AND THEN UPDATE worldX - worldY positions:
         if (keyHandler.upPressed || keyHandler.downPressed == true || keyHandler.leftPressed || keyHandler.rightPressed ) {
@@ -136,14 +176,13 @@ public class Player extends Entity{
                 if (keyHandler.rightPressed){
                     direction = "right";
                 }
-        System.out.println(direction);
-        // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
-        collisionOn = false;
-        gamePanel.collision.checkTile(this);
-
-        // check object collision
-        int objIndex = gamePanel.collision.checkObject(this,true);
-        pickUpObject(objIndex);
+        // AFTER worldX - worldY HAVE BEEN UPDATED. THEN:
+        // CHECK TILE COLLISION:
+            collisionOn = false;
+            gamePanel.collision.checkTile(this);
+        // CHECK OBJECT COLLISIONS
+            int objIndex = gamePanel.collision.checkObject(this,true);
+            pickUpObject(objIndex);
 
         // check npc collision
         int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
@@ -189,7 +228,6 @@ public class Player extends Entity{
         }
     }
     public void pickUpObject(int i){
-
         if(i != 999){
             
         }
@@ -269,7 +307,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             gamePanel.ui.currentDialogue = "You are level" + level + "now!\n";
         }
     }
-    public void draw(Graphics2D graphics2D) {
+    public void paintComponent(Graphics2D graphics2D) {
         BufferedImage image = down1;
         switch (direction) {
             case "up":
@@ -342,7 +380,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY , gamePanel.tileSize + 32, gamePanel.tileSize + 32, null );
+            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 32 , gamePanel.tileSize + 32, null );
         }
     }
 }

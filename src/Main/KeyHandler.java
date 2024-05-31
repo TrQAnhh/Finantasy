@@ -14,7 +14,6 @@ public class KeyHandler implements KeyListener {
     public KeyHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
-
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -269,6 +268,4 @@ public class KeyHandler implements KeyListener {
         }
         throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
-
-    
 }

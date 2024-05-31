@@ -19,9 +19,10 @@ public class Entity {
     public BufferedImage up1, up2, up3, up4, up5, up6, down1, down2, down3, down4, down5, down6, left1, left2, left3, left4, left5, left6, right1, right2, right3, right4, right5, right6;
     public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
     public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
+    public boolean collision = false;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
-    public boolean collision = false;
+    public boolean collisionOn = false;
     String dialogue[] = new String[20];
 
     // State
@@ -31,7 +32,6 @@ public class Entity {
     public int standNum = 1;
     public int effectNum = 1;
     int dialogueIndex = 0;
-    public boolean collisionOn = false;
     public boolean alive = true;
     public boolean dying = false;
     boolean hpBarOn = false;

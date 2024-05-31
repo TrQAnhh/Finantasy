@@ -2,11 +2,10 @@ package Map;
 
 import java.awt.Graphics2D;
 import java.io.*;
-
-import javax.imageio.ImageIO;
-
 import Main.GamePanel;
 import Main.UtilityTool;
+
+import javax.imageio.ImageIO;
 
 public class TileManager {
     GamePanel gamePanel;
@@ -273,7 +272,7 @@ public class TileManager {
                 try (FileInputStream image = new FileInputStream(imageFile)) {
                         tile[index] = new Tile();
                         tile[index].tile_image = ImageIO.read(image);
-                        tile[index].tile_image = uTool.scaleImage(tile[index].tile_image, gamePanel.tileSize,gamePanel.tileSize);
+                        tile[index].tile_image = uTool.scaleImage(tile[index].tile_image, gamePanel.tileSize, gamePanel.tileSize);
                         tile[index].collision = collision;
                 } catch(IOException e) {
                         e.printStackTrace();
@@ -323,7 +322,7 @@ public class TileManager {
                 int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
                 int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 
-                graphics2D.drawImage(tile[tileNum].tile_image,screenX,screenY,gamePanel.tileSize, gamePanel.tileSize,null);
+                graphics2D.drawImage(tile[tileNum].tile_image,screenX,screenY,null);
 
                 worldColumn++;
 

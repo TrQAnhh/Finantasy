@@ -13,34 +13,37 @@ public class AssetSetter{
         this.gamePanel = gamePanel;
     }
     public void setObject(){
-
-        gamePanel.object[0] = new OBJ_Door(gamePanel);
-        gamePanel.object[0].worldX = gamePanel.tileSize*21;
-        gamePanel.object[0].worldY = gamePanel.tileSize*21;
-
-        gamePanel.object[1] = new OBJ_Door(gamePanel);
-        gamePanel.object[1].worldX = gamePanel.tileSize*11;
-        gamePanel.object[1].worldY = gamePanel.tileSize*21;
-        
+        int i=0;
+        gamePanel.object[i] = new OBJ_Door(gamePanel);
+        gamePanel.object[i].worldX = gamePanel.tileSize*21;
+        gamePanel.object[i].worldY = gamePanel.tileSize*21;
+        i++;
+        gamePanel.object[i] = new OBJ_Door(gamePanel);
+        gamePanel.object[i].worldX = gamePanel.tileSize*11;
+        gamePanel.object[i].worldY = gamePanel.tileSize*21;
+        i++;
     }
     public void setNPC(){
-        gamePanel.npc[0] = new NPC_Logan(gamePanel);
-        gamePanel.npc[0].worldX = 1000;
-        gamePanel.npc[0].worldY = 2336;
-
-        gamePanel.npc[1] = new NPC_OldMan(gamePanel);
-        gamePanel.npc[1].worldX = gamePanel.tileSize*19;
-        gamePanel.npc[1].worldY = gamePanel.tileSize*31;
+        int i=0;
+        gamePanel.npc[i] = new NPC_Logan(gamePanel);
+        gamePanel.npc[i].worldX = 1000;
+        gamePanel.npc[i].worldY = 2336;
+        i++;
+        gamePanel.npc[i] = new NPC_OldMan(gamePanel);
+        gamePanel.npc[i].worldX = gamePanel.tileSize*19;
+        gamePanel.npc[i].worldY = gamePanel.tileSize*31;
+        i++;
     }
     public void setMonster(){
-
-        gamePanel.monster[0] = new MON_Slime(gamePanel);
-        gamePanel.monster[0].worldX = 700;
-        gamePanel.monster[0].worldY = 2336;
-
-        gamePanel.monster[1] = new MON_Slime(gamePanel);
-        gamePanel.monster[1].worldX = gamePanel.tileSize*25;
-        gamePanel.monster[1].worldY = gamePanel.tileSize*12;
+        int i=0;
+        gamePanel.monster[i] = new MON_Slime(gamePanel);
+        gamePanel.monster[i].worldX = 700;
+        gamePanel.monster[i].worldY = 2336;
+        i++;
+        gamePanel.monster[i] = new MON_Slime(gamePanel);
+        gamePanel.monster[i].worldX = gamePanel.tileSize*25;
+        gamePanel.monster[i].worldY = gamePanel.tileSize*12;
+        i++;
     }
     public void setEffect(){
         int i=0;
@@ -48,3 +51,4 @@ public class AssetSetter{
         i++;
     }
 }
+
