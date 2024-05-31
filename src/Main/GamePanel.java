@@ -59,7 +59,9 @@ public class GamePanel extends JPanel implements Runnable{
     // Monster CLASS 
         public Entity monster[] = new Entity[20]; 
     // Object CLASS 
-        public Entity object[] = new Entity[10]; 
+        public Entity object[] = new Entity[10];
+    // Effect CLASS
+    public Entity effect[] = new Entity[10];
     // UNIT INTERFACE 
         public UI ui = new UI(this); 
     // List of Entity 
@@ -94,6 +96,7 @@ public class GamePanel extends JPanel implements Runnable{
             aSetter.setObject();
             aSetter.setNPC();
             aSetter.setMonster();
+            aSetter.setEffect();
             gameState = titleState;
             eManager.setup();
 

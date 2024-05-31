@@ -59,6 +59,7 @@ public class Player extends Entity{
             attack = strength;
             defense = dexterity;
             life = maxLife;
+            state = normalState;
         }
         public void setItem(){
             inventory.add(currentWeapon);
@@ -211,40 +212,47 @@ public class Player extends Entity{
         }
     }
     public void damageMonster(int i){
-
-            int damage = attack - gamePanel.monster[i].defense;
-            if(damage < 0){
-                damage = 0;
-            }
-            gamePanel.ui.listofMonster.get(i).life -= damage;
-            gamePanel.ui.addMessage(damage + "damage!");
-            if(gamePanel.ui.listofMonster.get(i).life <= 0){
-                gamePanel.monster[i].dying = true;
-                gamePanel.ui.listofMonster.remove(i);
-                gamePanel.ui.addMessage("Kill the " + gamePanel.ui.listofMonster.get(i).name + "!");
-                exp += gamePanel.ui.listofMonster.get(i).exp;
-                checkLevelUp();
-            }
+        // Can you change the listofMonster to monster[]?
+        int damage = attack - gamePanel.monster[i].defense;
+        if(damage < 0){
+            damage = 0;
+        }
+        else{
+            gamePanel.ui.listofMonster.get(i).state = gamePanel.ui.listofMonster.get(i).getDamageState;
+        }
+        gamePanel.ui.listofMonster.get(i).life -= damage;
+        gamePanel.ui.addMessage(damage + " damage!");
+}
+public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
+    if(state == stuntState){
+        gamePanel.ui.addMessage("You Was Stunt");
     }
-    public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
+    else{
+        
         if(selectAction == 0){
             currentWeapon = inventory.get(choosingEquipAction);
             attack = getAttack();
             damageMonster(choosingEnemyAction);
-            gamePanel.ui.playerTurn = false;
         }
         else if(selectAction == 1){
             currentArmor = inventory.get(choosingEquipAction);
             defense = getDefense() + getDefense()*30/100;       // Increase your defense 30%
-            gamePanel.ui.playerTurn = false;
+            gamePanel.ui.orderTurn++;
         }
         else if(selectAction == 2){
-            
             Entity selectedItem = inventory.get(choosingEquipAction);
-            selectedItem.use(this);
+            if(selectedItem.type == selectedItem.type_consumable_player)
+            {
+                selectedItem.use(this);
+            }
+            else{
+                selectedItem.use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+            }
             inventory.remove(choosingEquipAction);
         }
+        
     }
+}
     public void checkLevelUp(){
 
         if(exp >= nextLevelExp){

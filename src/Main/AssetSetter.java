@@ -1,6 +1,7 @@
 package Main;
 
 import Object.OBJ_Door;
+import Effect.explosion;
 import Entities.NPC_Logan;
 import Entities.NPC_OldMan;
 import Monster.MON_Slime;
@@ -40,5 +41,10 @@ public class AssetSetter{
         gamePanel.monster[1] = new MON_Slime(gamePanel);
         gamePanel.monster[1].worldX = gamePanel.tileSize*25;
         gamePanel.monster[1].worldY = gamePanel.tileSize*12;
+    }
+    public void setEffect(){
+        int i=0;
+        gamePanel.effect[i] = new explosion(gamePanel);
+        i++;
     }
 }

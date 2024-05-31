@@ -159,8 +159,8 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-    public void battleState(int code) {
-        if(gamePanel.ui.playerTurn == true){
+    public void battleState(int code){
+        if(gamePanel.ui.orderTurn == 0){
             if(code == KeyEvent.VK_W){
                 gamePanel.ui.interactNum--;
                 if(gamePanel.ui.interactNum == -1){

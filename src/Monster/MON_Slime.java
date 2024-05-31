@@ -21,6 +21,9 @@ public class MON_Slime extends Entity {
         attack = 5;
         defense = 0;
         exp = 2;
+        mana = 0;
+        maxMana = 3;
+        state = normalState;
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -42,17 +45,28 @@ public class MON_Slime extends Entity {
     public void setAction(){
 
     }
-    public void damage(){
+    public void damage(Entity entity){
         
-        int damage = attack - gamePanel.player.defense;
-            if(damage < 0){
+        if(state == stuntState){
+            gamePanel.ui.addMessage(name + "Was Stunt");
+        }
+        else{
+            if(state == bleedState){
+                life--;
+            }
+            int damage = attack - entity.defense;
+            if(damage <= 0){
                 damage = 0;
             }
-            gamePanel.player.life -= damage;
-            gamePanel.ui.addMessage(damage + "damage!");
-            if(gamePanel.player.life <= 0){
-                gamePanel.player.dying = true;
+            else{
+                entity.state = entity.getDamageState;
+            }
+            entity.life -= damage;
+            gamePanel.ui.addMessage(damage + " damage!");
+            if(entity.life <= 0){
+                entity.dying = true;
                 gamePanel.ui.addMessage("You lose!");
             }
+        }
     }
 }

@@ -18,7 +18,7 @@ public class Entity {
     GamePanel gamePanel;
     public BufferedImage up1, up2, up3, up4, up5, up6, down1, down2, down3, down4, down5, down6, left1, left2, left3, left4, left5, left6, right1, right2, right3, right4, right5, right6;
     public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
-    public BufferedImage image, image2, image3;
+    public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collision = false;
@@ -29,6 +29,7 @@ public class Entity {
     public String direction = "down";
     public int spriteNum = 1;
     public int standNum = 1;
+    public int effectNum = 1;
     int dialogueIndex = 0;
     public boolean collisionOn = false;
     public boolean alive = true;
@@ -39,6 +40,7 @@ public class Entity {
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int standCounter = 0;
+    public int effectCounter = 0;
     int dyingCounter = 0;
     int hpBarCounter = 0;
 
@@ -57,6 +59,8 @@ public class Entity {
     public int coin;
     public Entity currentWeapon;
     public Entity currentArmor;
+    public int mana;
+    public int maxMana;
 
     // Item attribute
     public int attackValue;
@@ -78,8 +82,11 @@ public class Entity {
     // Battle state
     public int state;
     public final int normalState = 0;
-    public final int stuntState = 1;
-    public final int bleedState = 2;
+    public final int getDamageState = 1;
+    public final int stuntState = 2;
+    public final int bleedState = 3;
+    public final int healingState = 4;
+    public final int burningState = 5;
 
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -87,7 +94,7 @@ public class Entity {
     }
 
     public void setAction(){}
-    public void damage(){}          //For monster
+    public void damage(Entity entity){}          //For monster
     public void speak(){if(dialogue[dialogueIndex] == null){
         dialogueIndex = 0;
     }
