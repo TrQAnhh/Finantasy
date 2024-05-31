@@ -327,7 +327,7 @@ public class KeyHandler implements KeyListener {
                     }
                     if (gamePanel.ui.settingCommandNum == 1) {
                         if (gamePanel.se.volumeScale < 11) {
-                            gamePanel.se.volumeScale--;
+                            gamePanel.se.volumeScale++;
                             gamePanel.se.checkVolume();
                         }
                     }

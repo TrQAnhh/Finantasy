@@ -86,7 +86,6 @@ public class Lightning {
 
         // Set the gradian data on gracphics
         g2.setPaint(gPaint);
-
         // Draw the light circle
         g2.fill(lightArea);
 
@@ -99,7 +98,7 @@ public class Lightning {
         // Check the state of day
         if(dayState == day) {
             dayCounter ++;
-            if(dayCounter > 10) {
+            if(dayCounter > 1000) {
                 dayState = dusk;
                 dayCounter = 0;
             }
@@ -115,7 +114,7 @@ public class Lightning {
         }
         if(dayState == night) {
             dayCounter ++;
-            if(dayCounter > 10) {
+            if(dayCounter > 1000) {
                 dayState = dawn;
                 dayCounter = 0;
             }
