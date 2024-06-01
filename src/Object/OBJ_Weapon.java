@@ -8,7 +8,7 @@ public class OBJ_Weapon extends Entity {
         super(gamePanel);
         type = type_sword;
         name = "Normal Sword";
-        down1 = setup("/Object/sword_normal",gamePanel.tileSize,gamePanel.tileSize);
+        down1 = setup("/Object/sword_normal");
         attackValue = 1;
         description = "[" + name + "]\nAn old sword.";
     }

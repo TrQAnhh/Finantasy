@@ -11,7 +11,7 @@ public class Config {
     public Config(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }    
-    public void saveConfif() {
+    public void saveConfig() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("config.txt"));
             bw.newLine();

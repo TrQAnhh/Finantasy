@@ -1,10 +1,18 @@
 package Entities;
 
+import Main.GamePanel;
+import Main.UtilityTool;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,11 +22,13 @@ import Main.GamePanel;
 import Main.UtilityTool;
 
 public class Entity {
-
     GamePanel gamePanel;
-    public BufferedImage up1, up2, up3, up4, down1, down2, down3, down4, left1, left2, left3, left4, right1, right2, right3, right4;
+    public BufferedImage up1, up2, up3,
+                         down1, down2, down3,
+                         left1, left2, left3,
+                         right1, right2, right3;
+    public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
     public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
-    public boolean collision = false;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
@@ -28,6 +38,7 @@ public class Entity {
     public int worldX, worldY;
     public String direction = "down";
     public int spriteNum = 1;
+    public int standNum = 1;
     public int effectNum = 1;
     int dialogueIndex = 0;
     public boolean alive = true;
@@ -85,14 +96,73 @@ public class Entity {
     public final int healingState = 4;
     public final int burningState = 5;
 
-    public Entity(GamePanel gamePanel){
+
+    public Entity ( GamePanel gamePanel ) {
         this.gamePanel = gamePanel;
+    }
+
+    public BufferedImage setup(String imagePath) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,gamePanel.tileSize, gamePanel.tileSize + 16);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+    public void update(GamePanel gamePanel) {
+
+        setAction();
+
+        collisionOn = false;
+        gamePanel.collision.checkTile(this);
+        gamePanel.collision.checkObject(this,false);
+        gamePanel.collision.checkPlayer(this);
+
+        if (collisionOn == false) {
+            switch (direction) {
+                case "up":
+                    worldY = worldY - speed;
+                    break;
+                case "down":
+                    worldY = worldY + speed;
+                    break;
+                case "left":
+                    worldX = worldX - speed;
+                    break;
+                case "right":
+                    worldX = worldX + speed;
+                    break;
+            }
+        }
+
+        // ANIMATIONS FOR MOVEMENT:
+        spriteCounter++;
+        if (spriteCounter > 8) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 3;
+            } else if (spriteNum == 3) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
 
     }
 
     public void setAction(){}
     public void damage(Entity entity){}          //For monster
-    public void speak(){if(dialogue[dialogueIndex] == null){
+    public void speak(GamePanel gamePanel)
+    {
+        if(dialogue[dialogueIndex] == null){
         dialogueIndex = 0;
     }
     gamePanel.ui.currentDialogue = dialogue[dialogueIndex];
@@ -115,96 +185,82 @@ public class Entity {
 }
 
     public void use(Entity entity){}
-    public void update(){
-        setAction();
-        
-        collisionOn = false;
-        gamePanel.collision.checkTile(this);
-        gamePanel.collision.checkObject(this, false);
-        gamePanel.collision.checkEntity(this, gamePanel.npc);
-        gamePanel.collision.checkEntity(this, gamePanel.monster);
-        gamePanel.collision.checkPlayer(this);
-
-        if(collisionOn == false){
-            switch (direction) {
-                case "up": worldY -= speed;
-                    break;
-                case "down": worldY += speed;
-                    break;
-                case "left": worldX -= speed;
-                    break;
-                case "right": worldX += speed;
-                    break;
-            }
-        }
-    }
-    public void draw(Graphics2D g2){
-
+    public void draw(Graphics2D g2,GamePanel gamePanel){
         BufferedImage image = null;
+
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 
-            if(worldX + gamePanel.tileSize > gamePanel.player.worldX - gamePanel.player.screenX && 
-               worldX - gamePanel.tileSize < gamePanel.player.worldX + gamePanel.player.screenX && 
-               worldY + gamePanel.tileSize > gamePanel.player.worldY - gamePanel.player.screenY && 
-               worldY - gamePanel.tileSize < gamePanel.player.worldY + gamePanel.player.screenY)
-            {
-                switch (direction) {
-                    case "up":
-                        if(spriteNum == 1)
-                        image = up1;
-                        if(spriteNum == 2)
-                        image = up2;
-                        break;
-
-                    case "down":
-                        if(spriteNum == 1)
-                        image = down1;
-                        if(spriteNum == 2)
-                        image = down2;
-                        break;
-
-                    case "left":
-                        if(spriteNum == 1)
-                        image = left1;
-                        if(spriteNum == 2)
-                        image = left2;
-                        break;
-
-                    case "right":
-                        if(spriteNum == 1)
-                        image = right1;
-                        if(spriteNum == 2)
-                        image = right2;
-                        break;
-                  }
-
-                // Monster HP bar
-                if(type == 2 && hpBarOn == true)
-                {
-                    double oneScale = (double)gamePanel.tileSize/maxLife;
-                    double hpBarValue = oneScale*life;
-
-                    g2.setColor(new Color(35,35,35));
-                    g2.fillRect(screenX-1, screenY - 16, gamePanel.tileSize+2, 12);
-
-                    g2.setColor(new Color(255,0,30));
-                    g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
-
-                    hpBarCounter++;
-                    if(hpBarCounter > 600){
-                        hpBarCounter = 0;
-                        hpBarOn = false;
-                    }
+        switch (direction) {
+            case "up":
+                if (spriteNum == 1) {
+                    image = up1;
                 }
-
-                if(dying == true){
-                    dyingAnimation(g2);
+                if (spriteNum == 2) {
+                    image = up2;
                 }
-                g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+                if (spriteNum == 3) {
+                    image = up3;
+                }
+                break;
+            case "down":
+                if (spriteNum == 1) {
+                    image = down1;
+                }
+                if (spriteNum == 2) {
+                    image = down2;
+                }
+                if (spriteNum == 3) {
+                    image = down3;
+                }
+                break;
+            case "left":
+                if (spriteNum == 1) {
+                    image = left1;
+                }
+                if (spriteNum == 2) {
+                    image = left2;
+                }
+                if (spriteNum == 3) {
+                    image = left3;
+                }
+                break;
+            case "right":
+                if (spriteNum == 1) {
+                    image = right1;
+                }
+                if (spriteNum == 2) {
+                    image = right2;
+                }
+                if (spriteNum == 3) {
+                    image = right3;
+                }
+                break;
+        }
+        // Monster HP bar
+            if (type == 2 && hpBarOn == true) {
+                double oneScale = (double) gamePanel.tileSize / maxLife;
+                double hpBarValue = oneScale * life;
 
-                changeAlpha(g2, 1F);
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX - 1, screenY - 16, gamePanel.tileSize + 2, 12);
+
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
+
+                hpBarCounter++;
+                if (hpBarCounter > 600) {
+                    hpBarCounter = 0;
+                    hpBarOn = false;
+                }
             }
+
+//        if (dying == true) {
+//            dyingAnimation(g2);
+//        }
+        g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+
+//        changeAlpha(g2, 1F);
     }
     public void dyingAnimation(Graphics2D g2){
 
@@ -228,16 +284,52 @@ public class Entity {
     public void changeAlpha(Graphics2D g2, float alphaValue){
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
-    public BufferedImage setup(String imagePath, int width, int height){
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
+//    public BufferedImage setup(String imagePath, int width, int height){
+//        UtilityTool uTool = new UtilityTool();
+//        BufferedImage image = null;
+//
+//        try {
+//            image = ImageIO.read(new File("res"+imagePath+".png"));
+//            image = uTool.scaleImage(image, width, height);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return image;
+//    }
 
-        try {
-            image = ImageIO.read(new File("res"+imagePath+".png"));
-            image = uTool.scaleImage(image, width, height);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void update(){
+        setAction();
+
+        collisionOn = false;
+
+        gamePanel.collision.checkTile(this);
+        gamePanel.collision.checkObject(this, false);
+        gamePanel.collision.checkEntity(this, gamePanel.npc);
+        gamePanel.collision.checkEntity(this, gamePanel.monster);
+        gamePanel.collision.checkPlayer(this);
+
+        if(collisionOn == false){
+            switch (direction) {
+                case "up": worldY -= speed;
+                    break;
+                case "down": worldY += speed;
+                    break;
+                case "left": worldX -= speed;
+                    break;
+                case "right": worldX += speed;
+                    break;
+            }
         }
-        return image;
+
+        if(direction.equals("stand"))
+        {   spriteCounter++;
+            if(spriteCounter > 12){
+                if(spriteNum==1)
+                    spriteNum = 2;
+                else if(spriteNum==2)
+                    spriteNum = 1;
+                spriteCounter = 0;
+            }
+        }
     }
 }

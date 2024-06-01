@@ -86,7 +86,6 @@ public class Lightning {
 
         // Set the gradian data on gracphics
         g2.setPaint(gPaint);
-
         // Draw the light circle
         g2.fill(lightArea);
 
@@ -99,7 +98,7 @@ public class Lightning {
         // Check the state of day
         if(dayState == day) {
             dayCounter ++;
-            if(dayCounter > 10) {
+            if(dayCounter > 1000) {
                 dayState = dusk;
                 dayCounter = 0;
             }
@@ -115,7 +114,7 @@ public class Lightning {
         }
         if(dayState == night) {
             dayCounter ++;
-            if(dayCounter > 10) {
+            if(dayCounter > 1000) {
                 dayState = dawn;
                 dayCounter = 0;
             }
@@ -132,28 +131,14 @@ public class Lightning {
     }
     public void draw(Graphics2D g2) {
 
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
-        g2.drawImage(darknessFilter, 0, 0, null);
+        if(gamePanel.currentArea == gamePanel.outside) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
+        }   
+        if(gamePanel.currentArea == gamePanel.outside || gamePanel.currentArea == gamePanel.dungeon) {
+            g2.drawImage(darknessFilter, 0, 0, null);
+        }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
-        // DEBUG
-        String situation = "";
-        switch (dayState) {
-            case day:
-                situation = "Day";
-                break;
-            case dusk:
-                situation = "Day";
-                break;
-            case night:
-                situation = "Night";
-                break;
-            case dawn:
-                situation = "Night";
-                break;
+
         }
-        g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(50f));
-        g2.drawString(situation, 700, 660);;
     }
-}

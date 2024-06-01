@@ -7,7 +7,6 @@ import Object.OBJ_Key;
 import Object.OBJ_Shield_Wood;
 import Object.OBJ_Sword;
 import Main.UtilityTool;
-import Map.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -25,16 +24,18 @@ public class Player extends Entity{
 
     // CONSTRUCTORS:
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
-            
+
             super(gamePanel);
+
+            this.gamePanel = gamePanel;
             this.keyHandler = keyHandler;
             // PLAYER'S SCREEN POSITION:
                 screenX = ( gamePanel.screenWidth / 2 ) - 48;
                 screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
-                worldX = 800;
-                worldY = 2336;
-                speed = 13;
+                worldX = 16 * gamePanel.tileSize;
+                worldY = 48 * gamePanel.tileSize;
+                speed = 3;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
@@ -48,9 +49,9 @@ public class Player extends Entity{
             
         }
         public void setDefaultValues(){
-            worldX = gamePanel.tileSize * 22; 
-            worldY = gamePanel.tileSize * 14;
-            speed = 3;
+            worldX = gamePanel.tileSize * 15; 
+            worldY = gamePanel.tileSize * 18;
+            speed = 7;
             direction = "down";
     
             // Player status
@@ -82,103 +83,128 @@ public class Player extends Entity{
         }
     // METHODS:
     public void getBasePlayerImage(){
-        try (
-                InputStream moving_down01 = new FileInputStream(new File("res/Player_warrior/down_1.png"));
-                InputStream moving_down02 = new FileInputStream(new File("res/Player_warrior/down_2.png"));
-                InputStream moving_down03 = new FileInputStream(new File("res/Player_warrior/down_3.png"));
-                InputStream moving_down04 = new FileInputStream(new File("res/Player_warrior/down_4.png"));
-
-                InputStream moving_left01 = new FileInputStream(new File("res/Player_warrior/left_1.png"));
-                InputStream moving_left02 = new FileInputStream(new File("res/Player_warrior/left_2.png"));
-                InputStream moving_left03 = new FileInputStream(new File("res/Player_warrior/left_3.png"));
-                InputStream moving_left04 = new FileInputStream(new File("res/Player_warrior/left_4.png"));
-
-                InputStream moving_right01 = new FileInputStream(new File("res/Player_warrior/right_1.png"));
-                InputStream moving_right02 = new FileInputStream(new File("res/Player_warrior/right_2.png"));
-                InputStream moving_right03 = new FileInputStream(new File("res/Player_warrior/right_3.png"));
-                InputStream moving_right04 = new FileInputStream(new File("res/Player_warrior/right_4.png"));
-
-                InputStream moving_up01 = new FileInputStream(new File("res/Player_warrior/up_1.png"));
-                InputStream moving_up02 = new FileInputStream(new File("res/Player_warrior/up_2.png"));
-                InputStream moving_up03 = new FileInputStream(new File("res/Player_warrior/up_3.png"));
-                InputStream moving_up04 = new FileInputStream(new File("res/Player_warrior/up_4.png"));
-            ) {
-
-            down1 = ImageIO.read(moving_down01);
-            down2 = ImageIO.read(moving_down02);
-            down3 = ImageIO.read(moving_down03);
-            down4 = ImageIO.read(moving_down04);
-
-            left1 = ImageIO.read(moving_left01);
-            left2 = ImageIO.read(moving_left02);
-            left3 = ImageIO.read(moving_left03);
-            left4 = ImageIO.read(moving_left04);
-
-            right1 = ImageIO.read(moving_right01);
-            right2 = ImageIO.read(moving_right02);
-            right3 = ImageIO.read(moving_right03);
-            right4 = ImageIO.read(moving_right04);
-
-            up1 = ImageIO.read(moving_up01);
-            up2 = ImageIO.read(moving_up02);
-            up3 = ImageIO.read(moving_up03);
-            up4 = ImageIO.read(moving_up04);
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-//        down1 = setupPlayerWarrior("down_1");
-//        down2 = setupPlayerWarrior("down_2");
-//        down3 = setupPlayerWarrior("down_3");
-//        down4 = setupPlayerWarrior("down_4");
+//        try (
+//                InputStream moving_down01 = new FileInputStream(new File("res/Entities/Player_warrior/down_1.png"));
+//                InputStream moving_down02 = new FileInputStream(new File("res/Entities/Player_warrior/down_2.png"));
+//                InputStream moving_down03 = new FileInputStream(new File("res/Entities/Player_warrior/down_3.png"));
 //
-//        left1 = setupPlayerWarrior("left_1");
-//        left2 = setupPlayerWarrior("left_2");
-//        left3 = setupPlayerWarrior("left_3");
-//        left4 = setupPlayerWarrior("left_4");
+//                InputStream moving_left01 = new FileInputStream(new File("res/Entities/Player_warrior/left_1.png"));
+//                InputStream moving_left02 = new FileInputStream(new File("res/Entities/Player_warrior/left_2.png"));
+//                InputStream moving_left03 = new FileInputStream(new File("res/Entities/Player_warrior/left_3.png"));
 //
-//        right1 = setupPlayerWarrior("right_1");
-//        right2 = setupPlayerWarrior("right_2");
-//        right3 = setupPlayerWarrior("right_3");
-//        right4 = setupPlayerWarrior("right_4");
+//                InputStream moving_right01 = new FileInputStream(new File("res/Entities/Player_warrior/right_1.png"));
+//                InputStream moving_right02 = new FileInputStream(new File("res/Entities/Player_warrior/right_2.png"));
+//                InputStream moving_right03 = new FileInputStream(new File("res/Entities/Player_warrior/right_3.png"));
 //
-//        up1 = setupPlayerWarrior("up_1");
-//        up2 = setupPlayerWarrior("up_2");
-//        up3 = setupPlayerWarrior("up_3");
-//        up4 = setupPlayerWarrior("up_4");
-    }
-//    public BufferedImage setupPlayerWarrior(String imagePath) {
+//                InputStream moving_up01 = new FileInputStream(new File("res/Entities/Player_warrior/up_1.png"));
+//                InputStream moving_up02 = new FileInputStream(new File("res/Entities/Player_warrior/up_2.png"));
+//                InputStream moving_up03 = new FileInputStream(new File("res/Entities/Player_warrior/up_3.png"));
+//            ) {
 //
-//        UtilityTool uTool = new UtilityTool();
-//        BufferedImage image = null;
+//            down1 = ImageIO.read(moving_down01);
+//            down2 = ImageIO.read(moving_down02);
+//            down3 = ImageIO.read(moving_down03);
 //
-//        String filePath = "res/Player_warrior/" + imagePath + ".png";
-//        File imageFile = new File(filePath);
+//            left1 = ImageIO.read(moving_left01);
+//            left2 = ImageIO.read(moving_left02);
+//            left3 = ImageIO.read(moving_left03);
 //
-//        try (FileInputStream readImage = new FileInputStream(imageFile)) {
-//            image = ImageIO.read(readImage);
-//            image = uTool.scaleImage(image,gamePanel.tileSize + 32, gamePanel.tileSize + 32);
-//        } catch(IOException e) {
+//            right1 = ImageIO.read(moving_right01);
+//            right2 = ImageIO.read(moving_right02);
+//            right3 = ImageIO.read(moving_right03);
+//
+//            up1 = ImageIO.read(moving_up01);
+//            up2 = ImageIO.read(moving_up02);
+//            up3 = ImageIO.read(moving_up03);
+//
+//        }catch (IOException e){
 //            e.printStackTrace();
 //        }
-//        return image;
-//    }
+
+        // PLAYER DEFAULT IMAGES:
+//            down1 = setupPlayerDefault("down_1");
+//            down2 = setupPlayerDefault("down_2");
+//            down3 = setupPlayerDefault("down_3");
+//
+//            left1 = setupPlayerDefault("left_1");
+//            left2 = setupPlayerDefault("left_2");
+//            left3 = setupPlayerDefault("left_3");
+//
+//            right1 = setupPlayerDefault("right_1");
+//            right2 = setupPlayerDefault("right_2");
+//            right3 = setupPlayerDefault("right_3");
+//
+//            up1 = setupPlayerDefault("up_1");
+//            up2 = setupPlayerDefault("up_2");
+//            up3 = setupPlayerDefault("up_3");
+        // PLAYER WARRIOR IMAGES:
+            down1 = setupPlayerWarrior("down_1");
+            down2 = setupPlayerWarrior("down_2");
+            down3 = setupPlayerWarrior("down_3");
+
+            left1 = setupPlayerWarrior("left_1");
+            left2 = setupPlayerWarrior("left_2");
+            left3 = setupPlayerWarrior("left_3");
+
+            right1 = setupPlayerWarrior("right_1");
+            right2 = setupPlayerWarrior("right_2");
+            right3 = setupPlayerWarrior("right_3");
+
+            up1 = setupPlayerWarrior("up_1");
+            up2 = setupPlayerWarrior("up_2");
+            up3 = setupPlayerWarrior("up_3");
+
+    }
+
+    public BufferedImage setupPlayerDefault(String imagePath) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/Player_Default/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,gamePanel.tileSize + 16, gamePanel.tileSize + 16);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+    public BufferedImage setupPlayerWarrior(String imagePath) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/Player_Warrior/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,gamePanel.tileSize + 16, gamePanel.tileSize + 16);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
     public void update(){
     // RECEIVE INPUTS FROM KEYBOARDS AND THEN UPDATE worldX - worldY positions:
-        if (keyHandler.upPressed || keyHandler.downPressed == true || keyHandler.leftPressed || keyHandler.rightPressed ) {
+        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed ) {
                 if(keyHandler.upPressed){
                     direction = "up";
-                } 
+                }
                 if (keyHandler.downPressed){
                     direction = "down";
-                } 
+                }
                 if (keyHandler.leftPressed) {
                     direction = "left";
-                } 
+                }
                 if (keyHandler.rightPressed){
                     direction = "right";
                 }
+
         // AFTER worldX - worldY HAVE BEEN UPDATED. THEN:
         // CHECK TILE COLLISION:
             collisionOn = false;
@@ -187,34 +213,35 @@ public class Player extends Entity{
             int objIndex = gamePanel.collision.checkObject(this,true);
             pickUpObject(objIndex);
 
-        // check npc collision
-        int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
-        interactNPC(npcIndex);
+            // check npc collision
+                int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
+                interactNPC(npcIndex);
+            // Check monster collision
+                int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
 
-        // Check monster collision
-        int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
-        
-        // Check event
-        gamePanel.eHandler.checkEvent();
+            // Check event
+                gamePanel.eHandler.checkEvent();
 
-        // if collision is false, player can move
-        if ( collisionOn == false ) {
-            switch (direction){
-                case "up":
-                    worldY = worldY - speed;
-                    break;
-                case "down":
-                    worldY = worldY + speed;
-                    break;
-                case "left":
-                    worldX = worldX - speed;
-                    break;
-                case "right":
-                    worldX = worldX + speed;
-                    break;
+
+        // IF COLISION IS FALSE, PLAYER CAN MOVE:
+            if ( collisionOn == false ) {
+                switch (direction){
+                    case "up":
+                        worldY = worldY - speed;
+                        break;
+                    case "down":
+                        worldY = worldY + speed;
+                        break;
+                    case "left":
+                        worldX = worldX - speed;
+                        break;
+                    case "right":
+                        worldX = worldX + speed;
+                        break;
+                }
             }
-        }
-    // ANIMATIONS FOR MOVEMENT:
+
+        // ANIMATIONS FOR MOVEMENT:
             spriteCounter++;
             if ( spriteCounter > 8 ){
                 if ( spriteNum == 1 ){
@@ -222,39 +249,31 @@ public class Player extends Entity{
                 } else if ( spriteNum == 2 ){
                     spriteNum = 3;
                 } else if (spriteNum == 3 ){
-                    spriteNum = 4;
-                } else if ( spriteNum == 4 ){
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
             }
         }
     }
+    // INTERACTION WITH OBJECTS METHOD:
     public void pickUpObject(int i){
         if(i != 999){
             
         }
     }
+    // INTERACTION WITH NPC:
     public void interactNPC(int i){
-        if(i != 999){
+        if ( i != 999 ) {
             if(gamePanel.keyHandler.enterPressed == true){
                 gamePanel.gameState = gamePanel.dialogueState;
-                gamePanel.npc[i].speak();
-                }       
-        }
-    }
-    public void contactMonster(int i){
-        if(i != 999){
-            int damage = gamePanel.monster[i].attack - defense;
-            if(damage < 0){
-                damage = 0;
+                gamePanel.npc[gamePanel.currentMap][i].speak(gamePanel);
             }
-            life -= damage;
         }
+        gamePanel.keyHandler.enterPressed = false;
     }
     public void damageMonster(int i){
-        // Can you change the listofMonster to monster[]?
-        int damage = attack - gamePanel.monster[i].defense;
+
+        int damage = attack - gamePanel.ui.listofMonster.get(i).defense;
         if(damage < 0){
             damage = 0;
         }
@@ -310,7 +329,9 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             gamePanel.ui.currentDialogue = "You are level " + level + " now!\n";
         }
     }
-    public void paintComponent(Graphics2D graphics2D) {
+
+    @Override
+    public void draw(Graphics2D g2, GamePanel gamePanel) {
         BufferedImage image = down1;
         switch (direction) {
             case "up":
@@ -323,11 +344,8 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 if (spriteNum == 3) {
                     image = up3;
                 }
-                if (spriteNum == 4) {
-                    image = up4;
-                }
                 if (!keyHandler.upPressed) {
-                    image = up1;
+                    image = up2;
                 }
                 break;
             case "down":
@@ -340,11 +358,8 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 if (spriteNum == 3) {
                     image = down3;
                 }
-                if (spriteNum == 4) {
-                    image = down4;
-                }
                 if (!keyHandler.downPressed) {
-                    image = down1;
+                    image = down2;
                 }
                     break;
             case "left":
@@ -357,11 +372,8 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 if (spriteNum == 3) {
                     image = left3;
                 }
-                if (spriteNum == 4) {
-                    image = left4;
-                }
                 if (!keyHandler.leftPressed) {
-                    image = left1;
+                    image = left2;
                 }
                 break;
             case "right":
@@ -374,16 +386,13 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 if (spriteNum == 3) {
                     image = right3;
                 }
-                if (spriteNum == 4) {
-                    image = right4;
-                }
                 if (!keyHandler.rightPressed) {
-                    image = right1;
+                    image = right2;
                 }
                 break;
         }
         if (image != null ) {
-            graphics2D.drawImage( image , screenX , screenY, gamePanel.tileSize + 32 , gamePanel.tileSize + 32, null );
+            g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
         }
     }
 }

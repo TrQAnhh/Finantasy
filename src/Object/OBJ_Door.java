@@ -9,9 +9,9 @@ public class OBJ_Door extends Entity{
 
         super(gamePanel);
         name = "Door";
-        down1 = setup("/Object/door",gamePanel.tileSize, gamePanel.tileSize);
+        down1 = setup("/Object/door");
 
-        collision = true;
+        collisionOn = true;
 
         solidArea.x = 0;
         solidArea.y = 16;
