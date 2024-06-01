@@ -7,6 +7,7 @@ import Main.GamePanel;
 public class NPC_OldMan extends Entity {
 
     public NPC_OldMan(GamePanel gamePanel){
+
         super(gamePanel);
 
         direction = "down";
