@@ -173,10 +173,13 @@ public class GamePanel extends JPanel implements Runnable{
         public void update() {
             if (gameState == playState) {
                 player.update();
-                for (int i = 0; i < npc[1].length; i++)
-                    if (npc[currentMap][i] != null) {
-                        npc[currentMap][i].update(this);
-                    }
+
+                if ( currentMap == 0 ) {
+                    for (int i = 0; i < npc[1].length; i++)
+                        if (npc[0][i] != null) {
+                            npc[0][i].update(this);
+                        }
+                }
 
                 for (int i = 0; i < monster[1].length; i++) {
                     if (monster[currentMap][i] != null) {
@@ -221,11 +224,14 @@ public class GamePanel extends JPanel implements Runnable{
                 // ADD PLAYERS TO THE LIST
                     entityList.add(player);
                 // ADD ENTITIES TO THE LIST
-                    for(int i = 0; i < npc[1].length; ++i) {
-                        if(npc[currentMap][i] != null) {
-                            entityList.add(npc[currentMap][i]);
+                    if ( currentMap == 0 ) {
+                        for(int i = 0; i < npc[1].length; ++i) {
+                            if(npc[currentMap][i] != null) {
+                                entityList.add(npc[currentMap][i]);
+                            }
                         }
                     }
+
 
                     for(int i = 0; i < object[1].length; ++i) {
                         if(object[currentMap][i] != null) {

@@ -121,18 +121,6 @@ public class KeyHandler implements KeyListener {
                 {
                     enterPressed = true;
                 }
-
-                if(code == KeyEvent.VK_R) {
-                    switch (gamePanel.currentMap) {
-                        case 0:
-                            gamePanel.tileManager.loadMap("res/MapData/mapdata.txt", 0);
-                            break;
-                        case 1:
-                            gamePanel.tileManager.loadMap("res/MapData/mapdataDung.txt", 1);
-                            break;
-                    }
-                }
-            
         // DEBUG:
             if(code == KeyEvent.VK_T) {
                 if(showDebugText == false) {
@@ -140,6 +128,17 @@ public class KeyHandler implements KeyListener {
                 }
                 else if(showDebugText == true) {
                     showDebugText = false;
+                }
+            }
+            if(code == KeyEvent.VK_R) {
+                System.out.println(+gamePanel.currentMap);
+                switch (gamePanel.currentMap) {
+                    case 0:
+                        gamePanel.tileManager.loadMap("res/MapData/mapdata.txt", 0);
+                        break;
+                    case 1:
+                        gamePanel.tileManager.loadMap("res/MapData/mapdataDung.txt", 1);
+                        break;
                 }
             }
     }

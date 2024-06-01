@@ -31,7 +31,7 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 16 * gamePanel.tileSize;
                 worldY = 48 * gamePanel.tileSize;
-                speed = 3;
+                speed = 13;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
@@ -166,16 +166,24 @@ public class Player extends Entity{
                     direction = "right";
                 }
 
-    // AFTER worldX - worldY HAVE BEEN UPDATED. THEN:
-        // CHECK TILE COLLISION:
-            collisionOn = false;
-            gamePanel.collision.checkTile(this);
-        // CHECK OBJECT COLLISIONS:
-            int objIndex = gamePanel.collision.checkObject(this,true);
+            // AFTER worldX - worldY HAVE BEEN UPDATED. THEN, CHECK COLLISION:
+                collisionOn = false;
+                gamePanel.collision.checkTile(this);
+            // check object collision
+                int objIndex = gamePanel.collision.checkObject(this,true);
             pickUpObject(objIndex);
-        // CHECK NPC COLLISIONS:
-            int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc );
-            interactNPC(npcIndex);
+
+            // check npc collision
+                int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
+                interactNPC(npcIndex);
+
+            // Check monster collision
+                int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
+
+            // Check event
+                gamePanel.eHandler.checkEvent();
+
+
         // IF COLISION IS FALSE, PLAYER CAN MOVE:
             if ( collisionOn == false ) {
                 switch (direction){
@@ -193,12 +201,6 @@ public class Player extends Entity{
                         break;
                 }
             }
-
-        // Check monster collision
-            int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
-
-        // Check event
-            gamePanel.eHandler.checkEvent();
 
         // ANIMATIONS FOR MOVEMENT:
             spriteCounter++;

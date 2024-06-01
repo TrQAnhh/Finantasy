@@ -142,6 +142,10 @@ public class UI {
                 if ( gamePanel.gameState == gamePanel.dialogueState ) {
                     drawDialogueScreen();
                 }
+           // TRANSITION STATE:
+                if ( gamePanel.gameState == gamePanel.transitionState ) {
+                    drawTransition();
+                }
 
 
 
@@ -269,7 +273,7 @@ public class UI {
         int barX = 0;
         int barY = 0;
     // DRAW OPTION SCREEN:
-            g2.drawImage(pauseScreen,screenX,screenY,null);
+            g2.drawImage( pauseScreen ,screenX,screenY,null);
         // DRAW BUTTONS:
             buttonX += gamePanel.tileSize * 5 - 7;
             buttonY += gamePanel.tileSize * 4 - 24;
@@ -436,7 +440,7 @@ public class UI {
 
                 }
             // CONTROL BUTTON:
-//                buttonX += gamePanel.tileSize * 2 + 40;
+                buttonX += gamePanel.tileSize * 2 + 35;
                 buttonY += 70;
                 if ( settingCommandNum == 2){
                     g2.drawImage(controlButton1,buttonX,buttonY,null);
