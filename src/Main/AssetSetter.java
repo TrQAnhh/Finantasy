@@ -3,7 +3,7 @@ package Main;
 import Object.OBJ_Door;
 import Effect.explosion;
 import Entities.NPC_Logan;
-import Entities.NPC_OldMan;
+import Entities.NPC_Oldman;
 import Monster.MON_Slime;
 
 public class AssetSetter{
@@ -29,7 +29,7 @@ public class AssetSetter{
         gamePanel.npc[i].worldX = 1000;
         gamePanel.npc[i].worldY = 2336;
         i++;
-        gamePanel.npc[i] = new NPC_OldMan(gamePanel);
+        gamePanel.npc[i] = new NPC_Oldman(gamePanel);
         gamePanel.npc[i].worldX = gamePanel.tileSize*19;
         gamePanel.npc[i].worldY = gamePanel.tileSize*31;
         i++;
