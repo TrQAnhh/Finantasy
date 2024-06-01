@@ -43,6 +43,9 @@ public class Player extends Entity{
                 solidAreaDefaultY = solidArea.y;
             // GET PLAYER'S IMAGES:
                 getBasePlayerImage();
+            // Set Player default value
+                setDefaultValues();
+            
         }
         public void setDefaultValues(){
             worldX = gamePanel.tileSize * 22; 
@@ -304,7 +307,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             defense += 2;
 
             gamePanel.gameState = gamePanel.dialogueState;
-            gamePanel.ui.currentDialogue = "You are level" + level + "now!\n";
+            gamePanel.ui.currentDialogue = "You are level " + level + " now!\n";
         }
     }
     public void paintComponent(Graphics2D graphics2D) {
