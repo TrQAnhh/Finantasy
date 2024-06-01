@@ -14,7 +14,7 @@ public class OBJ_Bomb extends Entity {
         this.gamePanel = gamePanel;
         name = "Bomb";
         type = type_consumable_enemy;
-        down1 = setup("/Object/key",gamePanel.tileSize, gamePanel.tileSize);
+        down1 = setup("/Object/key");
         description = "[" + name + "]\nIt is used for healing.";
     }
     // Ability

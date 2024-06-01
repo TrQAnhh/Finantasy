@@ -53,7 +53,7 @@ public class EventHandler {
             //gamePanel.gameState = gamePanel.battleState;
             //gamePanel.ui.indexBattle = 1;
 
-            if( hit(0, 33,23,"up") == true ) {
+            if( hit(0, 14,33,"left") == true ) {    // ???????????????????????
                 healingamePanelool(gamePanel.dialogueState);}
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 16 (COLS), Y = 48 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {

@@ -15,19 +15,19 @@ public class explosion extends Entity{
         super(gamePanel);
         this.gamePanel = gamePanel;
 
-        image1 = setup("/Effect/explosion/explosion_1", gamePanel.tileSize, gamePanel.tileSize);
-        image2 = setup("/Effect/explosion/explosion_2", gamePanel.tileSize, gamePanel.tileSize);
-        image3 = setup("/Effect/explosion/explosion_3", gamePanel.tileSize, gamePanel.tileSize);
-        image4 = setup("/Effect/explosion/explosion_4",gamePanel.tileSize, gamePanel.tileSize);
-        image5 = setup("/Effect/explosion/explosion_5",gamePanel.tileSize, gamePanel.tileSize);
-        image6 = setup("/Effect/explosion/explosion_6",gamePanel.tileSize, gamePanel.tileSize);
-        image7 = setup("/Effect/explosion/explosion_7",gamePanel.tileSize, gamePanel.tileSize);
-        image8 = setup("/Effect/explosion/explosion_8",gamePanel.tileSize, gamePanel.tileSize);
-        image9 = setup("/Effect/explosion/explosion_9",gamePanel.tileSize, gamePanel.tileSize);
-        image10 = setup("/Effect/explosion/explosion_10",gamePanel.tileSize, gamePanel.tileSize);
-        image11 = setup("/Effect/explosion/explosion_11",gamePanel.tileSize, gamePanel.tileSize);
-        image12 = setup("/Effect/explosion/explosion_12",gamePanel.tileSize, gamePanel.tileSize);
-        image13 = setup("/Effect/explosion/explosion_13",gamePanel.tileSize, gamePanel.tileSize);
+        image1 = setup("/Effect/explosion/explosion_1");
+        image2 = setup("/Effect/explosion/explosion_2");
+        image3 = setup("/Effect/explosion/explosion_3");
+        image4 = setup("/Effect/explosion/explosion_4");
+        image5 = setup("/Effect/explosion/explosion_5");
+        image6 = setup("/Effect/explosion/explosion_6");
+        image7 = setup("/Effect/explosion/explosion_7");
+        image8 = setup("/Effect/explosion/explosion_8");
+        image9 = setup("/Effect/explosion/explosion_9");
+        image10 = setup("/Effect/explosion/explosion_10");
+        image11 = setup("/Effect/explosion/explosion_11");
+        image12 = setup("/Effect/explosion/explosion_12");
+        image13 = setup("/Effect/explosion/explosion_13");
     }
     public void update(){
         effectCounter++;
