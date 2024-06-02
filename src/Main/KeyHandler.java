@@ -117,10 +117,6 @@ public class KeyHandler implements KeyListener {
         {
             gamePanel.gameState = gamePanel.characterState;
         }
-        if(code == KeyEvent.VK_F)
-        {
-                enterPressed = true;
-        }
         // Debug
         if(code == KeyEvent.VK_T){
             if(showDebugText == false){

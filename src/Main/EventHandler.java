@@ -53,8 +53,8 @@ public class EventHandler {
             //gamePanel.gameState = gamePanel.battleState;
             //gamePanel.ui.indexBattle = 1;
 
-            if( hit(0, 14,33,"left") == true ) {    // ???????????????????????
-                healingamePanelool(gamePanel.dialogueState);}
+            if( hit(0, 13,33,"any") == true ) {    // ???????????????????????
+                healingGamePanelPool(gamePanel.dialogueState);}
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 16 (COLS), Y = 48 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
                 teleport(1, 16, 48, gamePanel.dungeon);}
@@ -89,7 +89,7 @@ public class EventHandler {
         }
         return hit;
     }
-    public void healingamePanelool(int gameState){
+    public void healingGamePanelPool(int gameState){
         if (gamePanel.keyHandler.enterPressed == true){
             gamePanel.gameState = gameState;
             gamePanel.ui.currentDialogue = "Your life has been recovered!";

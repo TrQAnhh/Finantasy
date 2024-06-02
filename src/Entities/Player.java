@@ -35,7 +35,6 @@ public class Player extends Entity{
             // PLAYER'S STARTING POSITION:
                 worldX = 16 * gamePanel.tileSize;
                 worldY = 48 * gamePanel.tileSize;
-                speed = 3;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
             // INSTANTIATE RECTANGLE CLASS;
@@ -51,7 +50,7 @@ public class Player extends Entity{
         public void setDefaultValues(){
             worldX = gamePanel.tileSize * 15; 
             worldY = gamePanel.tileSize * 18;
-            speed = 7;
+            speed = 10;
             direction = "down";
     
             // Player status
@@ -222,6 +221,7 @@ public class Player extends Entity{
             // Check event
                 gamePanel.eHandler.checkEvent();
 
+            gamePanel.keyHandler.enterPressed = false;
 
         // IF COLISION IS FALSE, PLAYER CAN MOVE:
             if ( collisionOn == false ) {
@@ -269,7 +269,6 @@ public class Player extends Entity{
                 gamePanel.npc[gamePanel.currentMap][i].speak(gamePanel);
             }
         }
-        gamePanel.keyHandler.enterPressed = false;
     }
     public void damageMonster(int i){
 
