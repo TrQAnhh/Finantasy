@@ -9,7 +9,7 @@ public class OBJ_Sword extends Entity {
         super(gamePanel);
         type = type_sword;
         name = "Sword";
-        down1 = setup("/object/sword_normal",gamePanel.tileSize,gamePanel.tileSize);
+        down1 = setup("Objects/Sword");
         attackValue = 1;
         description = "[" + name + "]\nAn old sword.";
     }

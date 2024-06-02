@@ -1,15 +1,14 @@
 package Main;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.awt.Window;
+
 
 public class Main {
-    public static <image> void main(String[] args) {
+    public static Window window;
+
+	public static <image> void main(String[] args) {
 
     // GENERATING WINDOW JFRAME:
         JFrame window = new JFrame("Finantasy");
@@ -24,13 +23,19 @@ public class Main {
             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             window.setResizable(false);
 
+
             GamePanel gamePanel = new GamePanel();
             window.add(gamePanel);
+
+//            gamePanel.config.loadConfig();
+//            if(gamePanel.fullScreenOn == true) {
+//                window.setUndecorated(true);
+//            }
+
             window.pack();
 
             window.setLocationRelativeTo(null);
             window.setVisible(true);
-
             gamePanel.setupGame();
             gamePanel.startGameThread();
 
