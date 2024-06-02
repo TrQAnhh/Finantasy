@@ -14,7 +14,7 @@ public class OBJ_HealPot extends Entity {
         this.gamePanel = gamePanel;
         name = "Healing Pot";
         type = type_consumable_player;
-        down1 = setup("/Object/potion_red");
+        down1 = setup("Objects/Healing");
         description = "[" + name + "]\nIt is used for healing.";
     }
     public void use(Entity entity){

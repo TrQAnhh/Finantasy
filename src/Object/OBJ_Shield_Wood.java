@@ -9,7 +9,7 @@ public class OBJ_Shield_Wood extends Entity {
         super(gp);
         type = type_shield;
         name = "Wood Armor";
-        down1 = setup("/Object/shield_wood");
+        down1 = setup("Objects/Shield");
         defenseValue = 1;
         description = "[" + name + "]\nAn old shield.";
     }

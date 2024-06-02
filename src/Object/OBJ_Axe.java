@@ -10,7 +10,7 @@ public class OBJ_Axe extends Entity {
         
         type = type_axe;
         name = "Axe";
-        down1 = setup("/Object/axe");
+        down1 = setup("Objects/axe");
         defenseValue = 1;
         description = "[" + name + "]\nAn old axe.";
     }
