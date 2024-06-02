@@ -87,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int characterState = 5;
     public final int optionsState = 6;
     public final int transitionState = 7;
+    public final int gameOverState = 8;
 
 //    // Config
 //        Config config = new Config(this);
@@ -123,6 +124,22 @@ public class GamePanel extends JPanel implements Runnable{
                 eManager.setup();
 
 
+        }
+        public void retry(){
+            player.setDefaultPosition();
+            player.restoreLife();
+            aSetter.setNPC();
+            aSetter.setMonster();
+        }
+        public void restart(){
+            player.setDefaultValues();
+            player.setItem();
+            
+            aSetter.setObject();
+            aSetter.setNPC();
+            aSetter.setMonster();
+            aSetter.setEffect();
+            // aSetter.setInteractiveTile();            Wtf is this???
         }
         public void setFullScreen() {
 

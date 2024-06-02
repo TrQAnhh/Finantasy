@@ -68,7 +68,17 @@ public class Player extends Entity{
             life = maxLife;
             state = normalState;
         }
+        public void setDefaultPosition(){
+            worldX = gamePanel.tileSize * 15; 
+            worldY = gamePanel.tileSize * 18;
+            direction = "down";
+        }
+        public void restoreLife(){
+            life = maxLife;
+        }
         public void setItem(){
+
+            inventory.clear();
             inventory.add(currentWeapon);
             inventory.add(currentArmor);
             inventory.add(new OBJ_Key(gamePanel));
@@ -253,6 +263,13 @@ public class Player extends Entity{
                 }
                 spriteCounter = 0;
             }
+        }
+        if(life > maxLife){
+            life = maxLife;
+        }
+        if(life < 0){
+            gamePanel.gameState = gamePanel.gameOverState;
+            // gp.playSE(12);
         }
     }
     // INTERACTION WITH OBJECTS METHOD:
