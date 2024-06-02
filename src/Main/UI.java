@@ -1007,8 +1007,8 @@ public class UI {
         // Frame
         int frameX = gamePanel.tileSize*9;
         int frameY = gamePanel.tileSize;
-        int frameWidth = gamePanel.tileSize*6;
-        int frameHeight = gamePanel.tileSize*5;
+        int frameWidth = gamePanel.tileSize*7 + gamePanel.tileSize/2;
+        int frameHeight = gamePanel.tileSize*6;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // Slot
@@ -1016,13 +1016,13 @@ public class UI {
         final int slotYstart = frameY + 20;
         int slotX = slotXstart;
         int slotY = slotYstart;
-        int slotSize = gamePanel.tileSize + 3;
+        int slotSize = gamePanel.tileSize + 16;
 
         // Cursor
         int cursorX = slotXstart + (slotSize * slotCol);
-        int cursorY = slotYstart + (slotSize * slotRow);
-        int cursorWidth = gamePanel.tileSize;
-        int cursorHeight = gamePanel.tileSize;
+        int cursorY = slotYstart + (slotSize * slotRow) - 4;
+        int cursorWidth = gamePanel.tileSize + 16;
+        int cursorHeight = gamePanel.tileSize + 16;
 
         // Draw Player Items
         for(int i=0; i < gamePanel.player.inventory.size(); i++){
@@ -1031,9 +1031,9 @@ public class UI {
             if(gamePanel.player.inventory.get(i) == gamePanel.player.currentWeapon ||
                 gamePanel.player.inventory.get(i) == gamePanel.player.currentArmor){
                     g2.setColor(new Color(240,190,90));
-                    g2.fillRoundRect(slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
+                    g2.fillRoundRect(slotX + 5/2, slotY - 3, gamePanel.tileSize + 13, gamePanel.tileSize + 13, 10, 10);
                 }
-            g2.drawImage(gamePanel.player.inventory.get(i).down1, slotX, slotY, null);
+            g2.drawImage(gamePanel.player.inventory.get(i).down1, slotX + 9, slotY - 3, null);
             slotX += slotSize;
             if(i == 4 || i == 9 || i == 14){
                 slotX = slotXstart;
