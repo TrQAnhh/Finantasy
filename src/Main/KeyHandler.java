@@ -210,6 +210,9 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.slotCol++;
             }
         }
+        if(code == KeyEvent.VK_ENTER){
+            gamePanel.player.selectItem();
+        }
     }
     public void battleState(int code){
         if(gamePanel.ui.orderTurn == 0){

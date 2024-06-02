@@ -2,7 +2,7 @@ package Main;
 
 import Object.OBJ_Door;
 import Monster.MON_Slime;
-import Effect.explosion;
+import Effect.*;
 import Entities.*;
 
 public class AssetSetter{
@@ -77,7 +77,15 @@ public class AssetSetter{
 
     public void setEffect(){
         int i=0;
-        gamePanel.effect[i] = new explosion(gamePanel);
+        gamePanel.effect[i] = new Slash(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Stunt(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Bleed(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Healing(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Explosion(gamePanel);
         i++;
     }
 }

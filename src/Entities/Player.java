@@ -46,6 +46,8 @@ public class Player extends Entity{
                 getBasePlayerImage();
             // Set Player default value
                 setDefaultValues();
+            // Set Player inventory
+                setItem();
             
         }
         public void setDefaultValues(){
@@ -63,7 +65,7 @@ public class Player extends Entity{
             coin = 0;
             currentWeapon = new OBJ_Sword(gamePanel);
             currentArmor = new OBJ_Shield_Wood(gamePanel);
-            maxLife = 999;
+            maxLife = 10;
             attack = strength;
             defense = dexterity;
             life = maxLife;
