@@ -184,9 +184,10 @@ public class Entity {
 }
 
     public void use(Entity entity){}
-    public void draw(Graphics2D g2,GamePanel gamePanel){
-        BufferedImage image = null;
 
+    public void draw(Graphics2D g2,GamePanel gamePanel){
+
+        BufferedImage image = null;
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 
