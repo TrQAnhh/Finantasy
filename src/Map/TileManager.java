@@ -401,6 +401,9 @@ public class TileManager {
                     setup(1,334,"Dungeon/stone_lower_left_corner",true);
                     setup(1,335,"Dungeon/stone_upper_right_corner",true);
                     setup(1,336,"Dungeon/stone_lower_left_corner",true);
+                    setup(1,337,"Dungeon/stone_tower_1_2",true);
+                    setup(1,338,"Dungeon/stone_tower_3_2",true);
+
 
             }
         public void setup(int map, int index, String imagePath, boolean collision) {
