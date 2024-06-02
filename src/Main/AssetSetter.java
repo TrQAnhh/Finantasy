@@ -1,49 +1,83 @@
 package Main;
 
-import Object.OBJ_Chest;
 import Object.OBJ_Door;
-import Object.OBJ_Key;
-import Entities.NPC_Logan;
-import Entities.NPC_Oldman;
 import Monster.MON_Slime;
-import Object.OBJ_Boots;
+import Effect.explosion;
+import Entities.*;
 
 public class AssetSetter{
 
-    GamePanel gp;
-    public AssetSetter(GamePanel gp){
-        this.gp = gp;
-    }
-    public void setObject(){
-
-        gp.object[0] = new OBJ_Door(gp);
-        gp.object[0].worldX = gp.tileSize*21;
-        gp.object[0].worldY = gp.tileSize*21;
-
-        gp.object[1] = new OBJ_Door(gp);
-        gp.object[1].worldX = gp.tileSize*11;
-        gp.object[1].worldY = gp.tileSize*21;
-        
+    GamePanel gamePanel;
+    int mapNum = 0;
+    public AssetSetter(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
     }
     public void setNPC(){
+        // NON - MOVEMENT NPC SAMPLE CODE:
+            gamePanel.npc[mapNum][0] = new NPC_King(gamePanel);
+            gamePanel.npc[mapNum][0].worldX = gamePanel.tileSize * 17; // 17 columns * 48
+            gamePanel.npc[mapNum][0].worldY = gamePanel.tileSize * 50; // 50 rows * 48
 
-        gp.npc[0] = new NPC_Oldman(gp);
-        gp.npc[0].worldX = gp.tileSize*21;
-        gp.npc[0].worldY = gp.tileSize*21;
+            gamePanel.npc[mapNum][1] = new NPC_Soldier(gamePanel);
+            gamePanel.npc[mapNum][1].worldX = gamePanel.tileSize * 23; // 23 columns * 48
+            gamePanel.npc[mapNum][1].worldY = gamePanel.tileSize * 46; // 46 rows * 48
 
-        gp.npc[1] = new NPC_Logan(gp);
-        gp.npc[1].worldX = gp.tileSize*19;
-        gp.npc[1].worldY = gp.tileSize*31;
+            gamePanel.npc[mapNum][2] = new NPC_Oldman(gamePanel);
+            gamePanel.npc[mapNum][2].worldX = gamePanel.tileSize * 42; // 42 columns * 48
+            gamePanel.npc[mapNum][2].worldY = gamePanel.tileSize * 47; // 47 rows * 48
+
+            gamePanel.npc[mapNum][3] = new NPC_Male(gamePanel);
+            gamePanel.npc[mapNum][3].worldX = gamePanel.tileSize * 36; // 36 columns * 48
+            gamePanel.npc[mapNum][3].worldY = gamePanel.tileSize * 47; // 47 rows * 48
+
+            gamePanel.npc[mapNum][4] = new NPC_Kid(gamePanel);
+            gamePanel.npc[mapNum][4].worldX = gamePanel.tileSize * 38; // 38 columns * 48
+            gamePanel.npc[mapNum][4].worldY = gamePanel.tileSize * 50; // 50 rows * 48
+
+            gamePanel.npc[mapNum][5] = new NPC_Merchant(gamePanel);
+            gamePanel.npc[mapNum][5].worldX = gamePanel.tileSize * 29; // 29 columns * 48
+            gamePanel.npc[mapNum][5].worldY = gamePanel.tileSize * 47; // 47 rows * 48
+
+            gamePanel.npc[mapNum][6] = new NPC_Merchant(gamePanel);
+            gamePanel.npc[mapNum][6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
+            gamePanel.npc[mapNum][6].worldY = gamePanel.tileSize * 30; // 30 rows * 48
+
+            gamePanel.npc[mapNum][7] = new NPC_Soldier(gamePanel);
+            gamePanel.npc[mapNum][7].worldX = gamePanel.tileSize * 36; // 36 columns * 48
+            gamePanel.npc[mapNum][7].worldY = gamePanel.tileSize * 34; // 34 rows * 48
+
+            gamePanel.npc[mapNum][8] = new NPC_Soldier(gamePanel);
+            gamePanel.npc[mapNum][8].worldX = gamePanel.tileSize * 32; // 32 columns * 48
+            gamePanel.npc[mapNum][8].worldY = gamePanel.tileSize * 19; // 19 rows * 48
+
+
+    }
+    public void setObject(){
+        
     }
     public void setMonster(){
+        //Set monster for first map
+            gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
+            gamePanel.monster[mapNum][0].worldX = 700;
+            gamePanel.monster[mapNum][0].worldY = 2336;
 
-        gp.monster[0] = new MON_Slime(gp);
-        gp.monster[0].worldX = gp.tileSize*20;
-        gp.monster[0].worldY = gp.tileSize*12;
+            gamePanel.monster[mapNum][1] = new MON_Slime(gamePanel);
+            gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
+            gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
+        //Set monster for second map
+            mapNum = 1;
+            gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
+            gamePanel.monster[mapNum][0].worldX = 700;
+            gamePanel.monster[mapNum][0].worldY = 2336;
 
-        gp.monster[1] = new MON_Slime(gp);
-        gp.monster[1].worldX = gp.tileSize*25;
-        gp.monster[1].worldY = gp.tileSize*12;
+            gamePanel.monster[mapNum][1] = new MON_Slime(gamePanel);
+            gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
+            gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
+    }
 
+    public void setEffect(){
+        int i=0;
+        gamePanel.effect[i] = new explosion(gamePanel);
+        i++;
     }
 }
