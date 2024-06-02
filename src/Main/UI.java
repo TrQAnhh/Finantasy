@@ -548,87 +548,87 @@ public class UI {
             }
     }
     public void drawCharacterScreen(){
-    // Create a frame
-    final int frameX = gamePanel.tileSize;
-    final int frameY = gamePanel.tileSize;
-    final int frameWidth = gamePanel.tileSize*5;
-    final int frameHeight = gamePanel.tileSize*10;
-    drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        // Create a frame
+            final int frameX = gamePanel.tileSize;
+            final int frameY = gamePanel.tileSize;
+            final int frameWidth = gamePanel.tileSize*5;
+            final int frameHeight = gamePanel.tileSize*10;
+            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-    g2.setColor(Color.WHITE);
-    g2.setFont(g2.getFont().deriveFont(32F));
+            g2.setColor(Color.WHITE);
+            g2.setFont(g2.getFont().deriveFont(32F));
 
-    int textX = frameX + 20;
-    int textY = frameY + gamePanel.tileSize;
-    final int lineHeight = 35;
+            int textX = frameX + 20;
+            int textY = frameY + gamePanel.tileSize;
+            final int lineHeight = 35;
 
-    // Names
-    g2.drawString("Level", textX, textY);
-    textY += lineHeight;
-    g2.drawString("Life", textX, textY);
-    textY += lineHeight;
-    g2.drawString("Strength", textX, textY);
-    textY += lineHeight;
-    g2.drawString("Dexterity", textX, textY);
-    textY += lineHeight;
-    g2.drawString("Attack", textX, textY);
-    textY += lineHeight;
-    g2.drawString("Defense", textX, textY);
-    textY += lineHeight;
-    g2.drawString("Exp", textX, textY);
-    textY += lineHeight;
-    g2.drawString("Coin", textX, textY);
-    textY += lineHeight + 20;
-    g2.drawString("Weapon", textX, textY);
-    textY += lineHeight + 15;
-    g2.drawString("Armor", textX, textY);
-    textY += lineHeight;
+            // Names
+                g2.drawString("Level", textX, textY);
+                textY += lineHeight;
+                g2.drawString("Life", textX, textY);
+                textY += lineHeight;
+                g2.drawString("Strength", textX, textY);
+                textY += lineHeight;
+                g2.drawString("Dexterity", textX, textY);
+                textY += lineHeight;
+                g2.drawString("Attack", textX, textY);
+                textY += lineHeight;
+                g2.drawString("Defense", textX, textY);
+                textY += lineHeight;
+                g2.drawString("Exp", textX, textY);
+                textY += lineHeight;
+                g2.drawString("Coin", textX, textY);
+                textY += lineHeight + 20;
+                g2.drawString("Weapon", textX, textY);
+                textY += lineHeight + 15;
+                g2.drawString("Armor", textX, textY);
+                textY += lineHeight;
 
-    // Value
-    int tailX = (frameX + frameWidth) - 30;
-    // Reset text Y
-    textY = frameY + gamePanel.tileSize;
-    String value;
+            // Value
+                int tailX = (frameX + frameWidth) - 30;
+            // Reset text Y
+                textY = frameY + gamePanel.tileSize;
+                String value;
     
-    value = String.valueOf(gamePanel.player.level);
-    textX = getXforAlignToRightText(value, tailX);
-    g2.drawString(value, textX, textY);
-    textY += lineHeight;
+                value = String.valueOf(gamePanel.player.level);
+                textX = getXforAlignToRightText(value, tailX);
+                g2.drawString(value, textX, textY);
+                textY += lineHeight;
 
-    value = String.valueOf(gamePanel.player.life + "/" + gamePanel.player.maxLife);
-    textX = getXforAlignToRightText(value, tailX);
-    g2.drawString(value, textX, textY);
-    textY += lineHeight;
+                value = String.valueOf(gamePanel.player.life + "/" + gamePanel.player.maxLife);
+                textX = getXforAlignToRightText(value, tailX);
+                g2.drawString(value, textX, textY);
+                textY += lineHeight;
 
-    value = String.valueOf(gamePanel.player.strength);
-    textX = getXforAlignToRightText(value, tailX);
-    g2.drawString(value, textX, textY);
-    textY += lineHeight;
+                value = String.valueOf(gamePanel.player.strength);
+                textX = getXforAlignToRightText(value, tailX);
+                g2.drawString(value, textX, textY);
+                textY += lineHeight;
 
-    value = String.valueOf(gamePanel.player.dexterity);
-    textX = getXforAlignToRightText(value, tailX);
-    g2.drawString(value, textX, textY);
-    textY += lineHeight;
+                value = String.valueOf(gamePanel.player.dexterity);
+                textX = getXforAlignToRightText(value, tailX);
+                g2.drawString(value, textX, textY);
+                textY += lineHeight;
 
-    value = String.valueOf(gamePanel.player.attack);
-    textX = getXforAlignToRightText(value, tailX);
-    g2.drawString(value, textX, textY);
-    textY += lineHeight;
+                value = String.valueOf(gamePanel.player.attack);
+                textX = getXforAlignToRightText(value, tailX);
+                g2.drawString(value, textX, textY);
+                textY += lineHeight;
 
-    value = String.valueOf(gamePanel.player.defense);
-    textX = getXforAlignToRightText(value, tailX);
-    g2.drawString(value, textX, textY);
-    textY += lineHeight;
+                value = String.valueOf(gamePanel.player.defense);
+                textX = getXforAlignToRightText(value, tailX);
+                g2.drawString(value, textX, textY);
+                textY += lineHeight;
 
-    value = String.valueOf(gamePanel.player.exp);
-    textX = getXforAlignToRightText(value, tailX);
-    g2.drawString(value, textX, textY);
-    textY += lineHeight;
+                value = String.valueOf(gamePanel.player.exp);
+                textX = getXforAlignToRightText(value, tailX);
+                g2.drawString(value, textX, textY);
+                textY += lineHeight;
 
-    value = String.valueOf(gamePanel.player.coin);
-    textX = getXforAlignToRightText(value, tailX);
-    g2.drawString(value, textX, textY);
-    textY += lineHeight;
+                value = String.valueOf(gamePanel.player.coin);
+                textX = getXforAlignToRightText(value, tailX);
+                g2.drawString(value, textX, textY);
+                textY += lineHeight;
 
 }
     public BufferedImage setup(String imagePath,int width, int height) {

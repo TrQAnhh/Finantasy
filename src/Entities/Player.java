@@ -29,14 +29,14 @@ public class Player extends Entity{
 
             this.gamePanel = gamePanel;
             this.keyHandler = keyHandler;
-            // PLAYER'S SCREEN POSITION:
-                screenX = ( gamePanel.screenWidth / 2 ) - 48;
-                screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // PLAYER'S STARTING POSITION:
                 worldX = 16 * gamePanel.tileSize;
                 worldY = 48 * gamePanel.tileSize;
             // PLAYER'S MOVEMENT ANIMATIONS:
                 direction = " "; // default direction
+            // PLAYER'S SCREEN POSITION:
+                screenX = ( gamePanel.screenWidth / 2 ) - 48;
+                screenY = ( gamePanel.screenHeight / 2 ) - 48;
             // INSTANTIATE RECTANGLE CLASS;
                 solidArea = new Rectangle(20,42,35,20);
                 solidAreaDefaultX = solidArea.x;
@@ -48,25 +48,22 @@ public class Player extends Entity{
             
         }
         public void setDefaultValues(){
-            worldX = gamePanel.tileSize * 15; 
-            worldY = gamePanel.tileSize * 18;
-            speed = 10;
-            direction = "down";
-    
-            // Player status
-            level = 1;
-            strength = 1;
-            dexterity = 1;
-            exp = 0;
-            nextLevelExp = 4;
-            coin = 0;
-            currentWeapon = new OBJ_Sword(gamePanel);
-            currentArmor = new OBJ_Shield_Wood(gamePanel);
-            maxLife = 999;
-            attack = strength;
-            defense = dexterity;
-            life = maxLife;
-            state = normalState;
+            // PLAYER'S SPEED:
+                 speed = 3;
+            // PLAYER STATUS:
+                level = 1;
+                strength = 1;
+                dexterity = 1;
+                exp = 0;
+                nextLevelExp = 4;
+                coin = 0;
+                currentWeapon = new OBJ_Sword(gamePanel);
+                currentArmor = new OBJ_Shield_Wood(gamePanel);
+                maxLife = 999;
+                attack = strength;
+                defense = dexterity;
+                life = maxLife;
+                state = normalState;
         }
         public void setItem(){
             inventory.add(currentWeapon);
