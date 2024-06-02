@@ -96,7 +96,6 @@ public class Entity {
     public final int healingState = 4;
     public final int burningState = 5;
 
-
     public Entity ( GamePanel gamePanel ) {
         this.gamePanel = gamePanel;
     }

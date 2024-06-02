@@ -977,6 +977,8 @@ public class UI {
                     effect = false;
                     resetEffect();
             }
+        System.out.println(effectted.state - 1);
+        System.out.println(gamePanel.effect[effectted.state - 1].effectNum);
         }
     }
     // Reset effect after draw
