@@ -61,7 +61,8 @@ public class Stunt extends Entity{
                     effectCounter = 0;
             }
     }
-    public void draw(Graphics2D g2){
+    @Override
+    public void draw(Graphics2D g2, GamePanel gamePanel){
         BufferedImage image = null;
         if(effectNum == 1) image = image1;
         if(effectNum == 2) image = image2;
