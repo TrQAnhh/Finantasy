@@ -1,5 +1,8 @@
 package Monster;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import Entities.Entity;
 import Main.GamePanel;
 
@@ -13,7 +16,7 @@ public class MON_GateKeeper extends Entity {
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Slime";
+        name = "Gate Keeper";
         direction = "down";
         maxLife = 4;
         life = maxLife;
@@ -36,10 +39,10 @@ public class MON_GateKeeper extends Entity {
     //change later
     public void getImage(){
 
-        up1 = setup("Monster/Slime/slime_down_1");
-        down1 = setup("Monster/Slime/slime_down_1");
-        left1 = setup("Monster/Slime/slime_down_1");
-        right1 = setup("Monster/Slime/slime_down_1");
+        up1 = setup("Monster/GateKeeper/GateKeeper");
+        down1 = setup("Monster/GateKeeper/GateKeeper");
+        left1 = setup("Monster/GateKeeper/GateKeeper");
+        right1 = setup("Monster/GateKeeper/GateKeeper");
     }   
     public void setAction(){
 
@@ -68,4 +71,13 @@ public class MON_GateKeeper extends Entity {
             }
         }
     }
+    @Override
+        public void draw(Graphics2D g2,GamePanel gamePanel){
+            BufferedImage image = up1;
+    
+            int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+            int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+    
+            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 150, gamePanel.tileSize + 150, null);
+        }
 }

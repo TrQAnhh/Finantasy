@@ -954,9 +954,9 @@ public class UI {
 
         }
         if(index == 4) {
-            listofMonster.add(gamePanel.monster[1][4]);
-            listofMonster.add(gamePanel.monster[1][4]);
-            listofMonster.add(gamePanel.monster[1][4]);
+            listofMonster.add(gamePanel.monster[1][0]);
+            listofMonster.add(gamePanel.monster[1][0]);
+            listofMonster.add(gamePanel.monster[1][0]);
 
         }
         //Battle 3 in map 1 for boss
@@ -1100,7 +1100,7 @@ public class UI {
 
         // Draw Monster
         int PositionX = gamePanel.tileSize*5;
-        int PositionY = 100;
+        int PositionY = 350;
         for(int i=0; i<listofMonster.size(); i++){
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                 effectPosX = PositionX;
@@ -1122,7 +1122,7 @@ public class UI {
         }
 
         PositionX = gamePanel.tileSize*12;
-        PositionY = 150;
+        PositionY = 350;
         // Draw Character
         if(gamePanel.player.state != gamePanel.player.normalState){
             effectPosX = PositionX;
