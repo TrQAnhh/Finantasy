@@ -1056,7 +1056,7 @@ public class UI {
             addMonster(3);
             checker = true;
         }
-        int i = 0;
+
         int frameX;
         int frameY;
         int frameHeight;
@@ -1074,11 +1074,13 @@ public class UI {
         nameX = frameX + 20;
         nameY = frameY + 35;
         g2.setFont(g2.getFont().deriveFont(20F));
+        for(int i=0; i < listofMonster.size(); i++){
             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                 g2.drawString(listofMonster.get(i).name, nameX, nameY);
                 g2.drawString(listofMonster.get(i).life + "/" + listofMonster.get(i).maxLife, nameX+gamePanel.tileSize*5, nameY);
                 nameY += 30;
             }
+        }
 
         // Draw Player Board
         String value = "";
@@ -1097,6 +1099,7 @@ public class UI {
         // Draw Monster
         int PositionX = gamePanel.tileSize*5;
         int PositionY = 350;
+        for(int i=0; i<listofMonster.size(); i++){
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                 effectPosX = PositionX;
                 effectPosY = PositionY;
@@ -1114,6 +1117,7 @@ public class UI {
                 }
             }
             PositionY += gamePanel.tileSize;
+        }
 
         PositionX = gamePanel.tileSize*12;
         PositionY = 350;
@@ -1191,8 +1195,8 @@ public class UI {
                     y = frameY + 35;
                     numberOfInteractNum = numberOfInteract() - 1;
 
-                    for(int index =0; index <numberOfInteract(); index++){
-                        if(interactNum == index){
+                    for(int i=0; i<numberOfInteract(); i++){
+                        if(interactNum == i){
                             g2.drawString(">", x - 20, y);
                         }
                         y += 35;
@@ -1200,12 +1204,12 @@ public class UI {
 
                     int j = 0;      // To select the equipment suit to the interactNum
                     y = frameY + 35;
-                    for(int index = 0; index<gamePanel.player.inventory.size(); index++){
-                        if((selectAction == 0 && (gamePanel.player.inventory.get(index).type == gamePanel.player.type_sword || gamePanel.player.inventory.get(index).type == gamePanel.player.type_axe))
-                                || (selectAction == 1 && (gamePanel.player.inventory.get(index).type == gamePanel.player.type_shield))
-                                || (selectAction == 2 && (gamePanel.player.inventory.get(index).type == gamePanel.player.type_consumable_player || gamePanel.player.inventory.get(index).type == gamePanel.player.type_consumable_enemy))){
-                            if(j == interactNum) choosingEquipAction = index;
-                            text = gamePanel.player.inventory.get(index).name;
+                    for(int i = 0; i<gamePanel.player.inventory.size(); i++){
+                        if((selectAction == 0 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_sword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_axe))
+                                || (selectAction == 1 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_shield))
+                                || (selectAction == 2 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_player || gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_enemy))){
+                            if(j == interactNum) choosingEquipAction = i;
+                            text = gamePanel.player.inventory.get(i).name;
                             g2.drawString(text, x, y);
                             y += 35;
                             j++;
@@ -1230,8 +1234,8 @@ public class UI {
                     }
                     else
                     {
-                        for(int index = 0; index<numberOfInteract(); index++){
-                            if(interactNum == index){
+                        for(int i=0; i<numberOfInteract(); i++){
+                            if(interactNum == i){
                                 g2.drawString(">", x - 20, y);
                             }
                             y += 35;
@@ -1239,6 +1243,7 @@ public class UI {
 
                         int j = 0;      // To select the enemy suit to the interactNum
                         y = frameY + 35;
+                        for(int i = 0; i<listofMonster.size(); i++){
                             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                                 if(j == interactNum) choosingEnemyAction = i;
                                 text = listofMonster.get(i).name;
@@ -1246,6 +1251,7 @@ public class UI {
                                 y += 35;
                                 j++;
                             }
+                        }
                     }
                 }
             }

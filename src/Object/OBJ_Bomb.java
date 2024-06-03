@@ -20,7 +20,7 @@ public class OBJ_Bomb extends Entity {
     // Ability
     public void use(Entity entity){
         entity.life -= value;
-        if(gamePanel.gameState == gamePanel.battleState){
+        if(gamePanel.gameState == gamePanel.battleState || gamePanel.gameState == gamePanel.bossBattleState){
             gamePanel.ui.addMessage(value + " damage!");
         }
         entity.state = entity.burningState;

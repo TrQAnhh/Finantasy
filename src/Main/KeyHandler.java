@@ -54,6 +54,9 @@ public class KeyHandler implements KeyListener {
             else if(gamePanel.gameState == gamePanel.gameOverState){
                 gameOverState(code);
             }
+            else if(gamePanel.gameState == gamePanel.bossBattleState) {
+                battleState(code);
+            }
     }
     public void titleState(int code){
         if(code == KeyEvent.VK_W)
