@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable{
         public Collision collision = new Collision(this); 
     // NPC CLASS 
         public AssetSetter aSetter = new AssetSetter(this); 
-        public Entity npc[][] = new Entity[maxMap][10]; 
+        public Entity npc[][] = new Entity[maxMap][20]; 
     // Monster CLASS 
         public Entity monster[][] = new Entity[maxMap][20]; 
     // Object CLASS 
