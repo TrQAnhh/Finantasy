@@ -139,10 +139,4 @@ public class EventHandler {
             canTouchEvent = false;
             //gamePanel.playSE(13);
     }
-    public void BossEvent() {
-        if(gamePanel.bossBattleOn == false) {
-            gamePanel.gameState = gamePanel.cutScenceState;
-
-        }
-    }
 }

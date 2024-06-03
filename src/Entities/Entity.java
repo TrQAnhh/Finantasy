@@ -93,21 +93,6 @@ public class Entity {
     public Entity ( GamePanel gamePanel ) {
         this.gamePanel = gamePanel;
     }
-    public BufferedImage setup(String imagePath, int i, int j) {
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-
-        String filePath = "res/Entities/" + imagePath + ".png";
-        File imageFile = new File(filePath);
-
-        try (FileInputStream readImage = new FileInputStream(imageFile)) {
-            image = ImageIO.read(readImage);
-            image = uTool.scaleImage(image,i * 40, j * 40);
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
     public BufferedImage setup(String imagePath) {
 
         UtilityTool uTool = new UtilityTool();

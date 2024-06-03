@@ -41,11 +41,10 @@ public class MON_Boss extends Entity {
     //change later 
     public void getImage(){
 
-        int i = 5;
-        up1 = setup("Monster/BossMonster/Dragon", gamePanel.tileSize * i, gamePanel.tileSize * i);
-        down1 = setup("Monster/BossMonster/Dragon", gamePanel.tileSize * i, gamePanel.tileSize * i);
-        left1 = setup("Monster/BossMonster/Dragon", gamePanel.tileSize * i, gamePanel.tileSize * i);
-        right1 = setup("Monster/BossMonster/Dragon", gamePanel.tileSize * i, gamePanel.tileSize * i);
+        up1 = setup("Monster/BossMonster/Dragon");
+        down1 = setup("Monster/BossMonster/Dragon");
+        left1 = setup("Monster/BossMonster/Dragon");
+        right1 = setup("Monster/BossMonster/Dragon");
     }   
     public void setAction(){
 
