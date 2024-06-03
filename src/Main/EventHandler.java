@@ -71,20 +71,17 @@ public class EventHandler {
                         gamePanel.ui.indexBattle = 1;
                     }
             }
-            if(hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true) {
-                System.out.println("1");
-                    gamePanel.gameState = gamePanel.battleState;
-                    gamePanel.ui.indexBattle = 2;
+            if(hit(1, 19, 33, "any") == true || hit(1, 20, 33, "any") == true || hit(1, 21, 33, "any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 2;
             }
-            if(hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true) {
-                    System.out.println("1");
-                    gamePanel.gameState = gamePanel.battleState;
-                    gamePanel.ui.indexBattle = 4;
+            if(hit(1, 30, 38, "any") == true || hit(1, 31, 38, "any") == true || hit(1, 32, 38, "any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 4;
             }
-            if(hit(1, 42, 37, "any") == true || hit(1, 43, 37, "any") == true || hit(1, 44, 37, "any") == true) {
-                    System.out.println("1");
-                    gamePanel.gameState = gamePanel.battleState;
-                    gamePanel.ui.indexBattle = 5;
+            if(hit(1, 41, 36, "any") == true || hit(1, 42, 37, "any") == true || hit(1, 43, 37, "any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 5;
             }
             if(gamePanel.currentMap == 1 && gamePanel.ui.gateCounterKill == 0) {
                 gamePanel.ui.bossAppear = true;

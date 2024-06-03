@@ -3,6 +3,7 @@ import Monster.MON_BloodySlime;
 import Monster.MON_Boss;
 import Monster.MON_GateKeeper;
 import Monster.MON_Slime;
+import Monster.MON_Spider;
 import Effect.*;
 import Entities.*;
 
@@ -75,9 +76,9 @@ public class AssetSetter{
         gamePanel.monster[mapNum][1] = new MON_BloodySlime(gamePanel);
         gamePanel.monster[mapNum][1].worldX = 900;
         gamePanel.monster[mapNum][1].worldY = 1514;
-        gamePanel.monster[mapNum][2] = new MON_Slime(gamePanel);
-        gamePanel.monster[mapNum][2].worldX = gamePanel.tileSize*25;
-        gamePanel.monster[mapNum][2].worldY = gamePanel.tileSize*12;
+        gamePanel.monster[mapNum][2] = new MON_Spider(gamePanel);
+        gamePanel.monster[mapNum][2].worldX = 2050;
+        gamePanel.monster[mapNum][2].worldY = 1600;
         //Boss appear when player kill three monster in the cave
         gamePanel.monster[mapNum][3] = new MON_Boss(gamePanel);
         gamePanel.monster[mapNum][3].worldX = 1360;

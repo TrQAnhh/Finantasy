@@ -661,6 +661,12 @@ public class UI {
             if(indexBattle == 2)
             {image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
+            if(indexBattle == 4)
+            {image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
+                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
+            if(indexBattle == 5)
+            {image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
+                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -941,16 +947,16 @@ public class UI {
             listofMonster.add(gamePanel.monster[1][1]);
 
         }
-        if(index == 4) {
-            listofMonster.add(gamePanel.monster[1][1]);
-            listofMonster.add(gamePanel.monster[1][1]);
-            listofMonster.add(gamePanel.monster[1][1]);
+        if(index == 5) {
+            listofMonster.add(gamePanel.monster[1][2]);
+            listofMonster.add(gamePanel.monster[1][2]);
+            listofMonster.add(gamePanel.monster[1][2]);
 
         }
-        if(index == 5) {
-            listofMonster.add(gamePanel.monster[1][1]);
-            listofMonster.add(gamePanel.monster[1][1]);
-            listofMonster.add(gamePanel.monster[1][1]);
+        if(index == 4) {
+            listofMonster.add(gamePanel.monster[1][4]);
+            listofMonster.add(gamePanel.monster[1][4]);
+            listofMonster.add(gamePanel.monster[1][4]);
 
         }
         //Battle 3 in map 1 for boss
