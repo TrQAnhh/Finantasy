@@ -26,6 +26,7 @@ public class EventHandler {
             eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
             eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
+            eventRect[map][col][row].eventDone = false;
             col++;
 
             if(col == gamePanel.maxWorldColumn){
@@ -57,18 +58,39 @@ public class EventHandler {
                 healingGamePanelPool(gamePanel.dialogueState);}
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 16 (COLS), Y = 48 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
-                teleport(1, 16, 48, gamePanel.dungeon);}
+                teleport(1, 31, 43, gamePanel.dungeon);}
 
             // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
-            else if( hit(1, 20, 46, "any") == true ) {
+            else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true) {
                 teleport(0, 16, 15, gamePanel.outside);}
             
+            //MONSTER CHECKED PLACED
             if(hit(0,13,16,"any") == true) {
                     if(gamePanel.keyHandler.enterPressed == true){
-                    gamePanel.gameState = gamePanel.battleState;
-                    gamePanel.ui.indexBattle = 1;
+                        gamePanel.gameState = gamePanel.battleState;
+                        gamePanel.ui.indexBattle = 1;
                     }
-                }
+            }
+            if(hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true) {
+                System.out.println("1");
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 2;
+            }
+            if(hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true) {
+                    System.out.println("1");
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 4;
+            }
+            if(hit(1, 42, 37, "any") == true || hit(1, 43, 37, "any") == true || hit(1, 44, 37, "any") == true) {
+                    System.out.println("1");
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 5;
+            }
+            if(gamePanel.currentMap == 1 && gamePanel.ui.gateCounterKill == 0) {
+                gamePanel.ui.bossAppear = true;
+                gamePanel.gameState = gamePanel.bossBattleState;
+                gamePanel.ui.indexBattle = 3;
+            }
         }
     }
     public boolean hit(int map, int col, int row, String reqDirection){
@@ -85,6 +107,7 @@ public class EventHandler {
                     hit = true;
                     previousEventX = gamePanel.player.worldX;
                     previousEventY = gamePanel.player.worldY;
+                    eventRect[map][col][row].eventDone = true;
                 }
             }
 
@@ -107,8 +130,8 @@ public class EventHandler {
     }
     public void teleport(int map, int col, int row, int area) {
             gamePanel.gameState = gamePanel.transitionState;
-            gamePanel.currentMap = map;
             gamePanel.nextArea = area;
+            gamePanel.currentMap = map;
             tempMap = map;
             tempCol = col;
             tempRow = row;

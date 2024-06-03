@@ -2,15 +2,10 @@ package Main;
 
 import Entities.Entity;
 import javax.swing.JPanel;
-import Entities.Entity;
 import Entities.Player;
 import Enviroment.EnviromentManager;
 import Map.TileManager;
-import Main.EventHandler;
-import Objects.OBJ_Chest;
-import Objects.SuperObject;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -61,6 +56,8 @@ public class GamePanel extends JPanel implements Runnable{
         public Entity npc[][] = new Entity[maxMap][10]; 
     // Monster CLASS 
         public Entity monster[][] = new Entity[maxMap][20]; 
+    // Set number of maximum monster for each map
+        public final int maxMonsterSet = 10;
     // Object CLASS 
         public Entity object[][] = new Entity[maxMap][10];
     // Effect CLASS
@@ -88,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int optionsState = 6;
     public final int transitionState = 7;
     public final int gameOverState = 8;
+    public final int bossBattleState = 9;
 
 //    // Config
 //        Config config = new Config(this);
@@ -122,7 +120,6 @@ public class GamePanel extends JPanel implements Runnable{
                 playMusic(1);
                 currentArea = outside;
                 eManager.setup();
-
 
         }
         public void retry(){
@@ -236,11 +233,11 @@ public class GamePanel extends JPanel implements Runnable{
             else if(gameState == battleState) {
                 ui.draw(graphics2D);
             }
-        // BATTLE STATE:
-            else if(gameState == battleState) {
+            // BATTLE STATE:
+            else if(gameState == bossBattleState) {
                 ui.draw(graphics2D);
             }
-        // PLAY STATE:
+            // PLAY STATE:
             else {
                 // DRAW TILES:
                     tileManager.draw(graphics2D);
@@ -314,7 +311,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     // GAME THEME SONG:
 
-        public void playMusic(int i){
+    public void playMusic(int i){
         music.setFile(i);
         music.play();
         music.loop();

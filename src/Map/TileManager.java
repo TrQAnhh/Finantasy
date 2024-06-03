@@ -17,7 +17,7 @@ public class TileManager {
         public TileManager (GamePanel gamePanel){
 
             this.gamePanel = gamePanel;
-            tile = new Tile[gamePanel.maxMap][250]; // 250 kinds of tile: a water tile, a grass tile, a wall tile...
+            tile = new Tile[gamePanel.maxMap][350]; // 350 kinds of tile: a water tile, a grass tile, a wall tile...
             mapTileNum = new int[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
 
             // GET TILES IMAGES:
@@ -300,23 +300,110 @@ public class TileManager {
                 setup(0,238,"Statue/wooden_box_3",true);
                 setup(0,239,"Statue/wooden_box_4",true);
             // DESTRUCTION:
-                setup(0,240,"Destruction/destruction_1_1",true);
-                setup(0,241,"Destruction/destruction_1_2",true);
-                setup(0,242,"Destruction/destruction_1_3",true);
-                setup(0,243,"Destruction/destruction_1_4",true);
-                setup(0,244,"Destruction/destruction_2_1",true);
-                setup(0,245,"Destruction/destruction_2_2",true);
-                setup(0,246,"Destruction/destruction_2_3",true);
-                setup(0,247,"Destruction/destruction_2_4",true);
-
-
-
-
-
+                setup(0,240,"Statue/stone_column_1",true);
+                setup(0,241,"Statue/stone_column_2",true);
+                setup(0,242,"Statue/stone_column_3",true);
+                setup(0,243,"Statue/stone_column_4",true);
+                setup(0,244,"Statue/stone_column_5",true);
+                setup(0,245,"Statue/stone_column_6",true);
+                setup(0,246,"Statue/stone_column_7",true);
+                setup(0,247,"Statue/stone_column_8",true);
         }
             public void getTileImageSecondMap() {
                 // WATER TILES:
-                setup(1, 0,"Water/water_1",false);
+                    // DUNGEON TILES:
+                    setup(1,248,"Dungeon/void",true);
+                    setup(1,249,"Dungeon/ground",false);
+                    setup(1,250,"Dungeon/stone_1_1",true);
+                    setup(1,251,"Dungeon/stone_1_2",true);
+                    setup(1,252,"Dungeon/stone_1_3",true);
+                    setup(1,253,"Dungeon/stone_1_4",true);
+                    setup(1,254,"Dungeon/stone_1_5",true);
+                    setup(1,255,"Dungeon/stone_1_6",true);
+                    setup(1,256,"Dungeon/stone_tower_1",true);
+                    setup(1,257,"Dungeon/stone_tower_2",true);
+                    setup(1,258,"Dungeon/stone_tower_3",true);
+                    setup(1,259,"Dungeon/stone_tower_4",true);
+                    setup(1,260,"Dungeon/stone_tower_6",true);
+                    setup(1,261,"Dungeon/stone_tower_7",true);
+                    setup(1,262,"Dungeon/stone_tower_8",true);
+                    setup(1,263,"Dungeon/stone_tower_9",true);
+                    setup(1,264,"Dungeon/stone_tower_10",true);
+                    setup(1,265,"Dungeon/stone_tower_11",true);
+                    setup(1,266,"Dungeon/stone_tower_12",true);
+                    setup(1,267,"Dungeon/stone_tower_13",true);
+                    setup(1,268,"Dungeon/stone_tower_14",true);
+                    setup(1,269,"Dungeon/stone_tower_15",true);
+                    setup(1,270,"Dungeon/stone_tower_16",true);
+                    setup(1,271,"Dungeon/stone_tower_17",true);
+                    setup(1,272,"Dungeon/stone_tower_18",true);
+                    setup(1,273,"Dungeon/stone_cave_1",true);
+                    setup(1,274,"Dungeon/stone_cave_2",true);
+                    setup(1,275,"Dungeon/stone_cave_3",true);
+                    setup(1,276,"Dungeon/stone_cave_4",true);
+                    setup(1,277,"Dungeon/stone_cave_5",true);
+                    setup(1,278,"Dungeon/stone_cave_6",true);
+                    setup(1,279,"Dungeon/stone_stair_1",false);
+                    setup(1,280,"Dungeon/stone_stair_2",false);
+                    setup(1,281,"Dungeon/stone_stair_3",false);
+                    setup(1,282,"Dungeon/stone_stair_4",true);
+                    setup(1,283,"Dungeon/stone_stair_5",false);
+                    setup(1,284,"Dungeon/stone_stair_6",true);
+                    setup(1,285,"Dungeon/stone_stair_7",true);
+                    setup(1,286,"Dungeon/stone_stair_8",false);
+                    setup(1,287,"Dungeon/stone_stair_9",true);
+                    setup(1,288,"Dungeon/stone_2_1",true);
+                    setup(1,289,"Dungeon/stone_2_2",true);
+                    setup(1,290,"Dungeon/stone_2_3",true);
+                    setup(1,291,"Dungeon/stone_2_4",true);
+                    setup(1,292,"Dungeon/stone_2_5",true);
+                    setup(1,293,"Dungeon/stone_2_6",true);
+                    setup(1,294,"Dungeon/stone_3_1",true);
+                    setup(1,295,"Dungeon/stone_3_2",true);
+                    setup(1,296,"Dungeon/stone_3_3",true);
+                    setup(1,297,"Dungeon/stone_3_4",true);
+                    setup(1,298,"Dungeon/bone_1",true);
+                    setup(1,299,"Dungeon/bone_2",true);
+                    setup(1,300,"Dungeon/bone_3",true);
+                    setup(1,301,"Dungeon/bone_4",true);
+                    setup(1,302,"Dungeon/sign",true);
+                    setup(1,303,"Dungeon/left_tentacles_1",true);
+                    setup(1,304,"Dungeon/left_tentacles_2",true);
+                    setup(1,305,"Dungeon/left_tentacles_3",true);
+                    setup(1,306,"Dungeon/left_tentacles_4",true);
+                    setup(1,307,"Dungeon/left_tentacles_5",true);
+                    setup(1,308,"Dungeon/left_tentacles_6",true);
+                    setup(1,309,"Dungeon/left_tentacles_7",true);
+                    setup(1,310,"Dungeon/left_tentacles_8",true);
+                    setup(1,311,"Dungeon/left_tentacles_9",true);
+                    setup(1,312,"Dungeon/left_tentacles_10",true);
+                    setup(1,313,"Dungeon/left_tentacles_11",true);
+                    setup(1,314,"Dungeon/left_tentacles_12",true);
+                    setup(1,315,"Dungeon/left_tentacle_1",true);
+                    setup(1,316,"Dungeon/left_tentacle_2",true);
+                    setup(1,317,"Dungeon/left_tentacle_3",true);
+                    setup(1,318,"Dungeon/right_tentacles_1",true);
+                    setup(1,319,"Dungeon/right_tentacles_2",true);
+                    setup(1,320,"Dungeon/right_tentacles_3",true);
+                    setup(1,321,"Dungeon/right_tentacles_4",true);
+                    setup(1,322,"Dungeon/right_tentacles_5",true);
+                    setup(1,323,"Dungeon/right_tentacles_6",true);
+                    setup(1,324,"Dungeon/right_tentacles_7",true);
+                    setup(1,325,"Dungeon/right_tentacles_8",true);
+                    setup(1,326,"Dungeon/right_tentacles_9",true);
+                    setup(1,327,"Dungeon/right_tentacles_10",true);
+                    setup(1,328,"Dungeon/right_tentacles_11",true);
+                    setup(1,329,"Dungeon/right_tentacles_12",true);
+                    setup(1,330,"Dungeon/right_tentacle_1",true);
+                    setup(1,331,"Dungeon/right_tentacle_2",true);
+                    setup(1,332,"Dungeon/right_tentacle_3",true);
+                    setup(1,333,"Dungeon/stone_lower_right_corner",true);
+                    setup(1,334,"Dungeon/stone_lower_left_corner",true);
+                    setup(1,335,"Dungeon/stone_upper_right_corner",true);
+                    setup(1,336,"Dungeon/stone_lower_left_corner",true);
+                    setup(1,337,"Dungeon/stone_tower_1_2",true);
+                    setup(1,338,"Dungeon/stone_tower_3_2",true);
+
 
             }
         public void setup(int map, int index, String imagePath, boolean collision) {

@@ -4,7 +4,6 @@ import Main.GamePanel;
 import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -13,20 +12,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import Main.GamePanel;
-import Main.UtilityTool;
 
 public class Entity {
     GamePanel gamePanel;
     public BufferedImage up1, up2, up3,
-                         down1, down2, down3,
-                         left1, left2, left3,
-                         right1, right2, right3;
+            down1, down2, down3,
+            left1, left2, left3,
+            right1, right2, right3;
     public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
     public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
@@ -100,7 +92,21 @@ public class Entity {
     public Entity ( GamePanel gamePanel ) {
         this.gamePanel = gamePanel;
     }
+    public BufferedImage setup(String imagePath, int i, int j) {
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
 
+        String filePath = "res/Entities/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,i * 40, j * 40);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
     public BufferedImage setup(String imagePath) {
 
         UtilityTool uTool = new UtilityTool();
@@ -163,26 +169,26 @@ public class Entity {
     public void speak(GamePanel gamePanel)
     {
         if(dialogue[dialogueIndex] == null){
-        dialogueIndex = 0;
-    }
-    gamePanel.ui.currentDialogue = dialogue[dialogueIndex];
-    dialogueIndex++;
+            dialogueIndex = 0;
+        }
+        gamePanel.ui.currentDialogue = dialogue[dialogueIndex];
+        dialogueIndex++;
 
-    switch (gamePanel.player.direction) {
-        case "up":
-            direction = "down";
-            break;
-        case "down":
-            direction = "up";
-            break;
-        case "left":
-            direction = "right";
-            break;
-        case "right":
-            direction = "left";
-            break;
+        switch (gamePanel.player.direction) {
+            case "up":
+                direction = "down";
+                break;
+            case "down":
+                direction = "up";
+                break;
+            case "left":
+                direction = "right";
+                break;
+            case "right":
+                direction = "left";
+                break;
+        }
     }
-}
 
     public void use(Entity entity){}
     public void draw(Graphics2D g2,GamePanel gamePanel){
@@ -238,22 +244,22 @@ public class Entity {
                 break;
         }
         // Monster HP bar
-            if (type == 2 && hpBarOn == true) {
-                double oneScale = (double) gamePanel.tileSize / maxLife;
-                double hpBarValue = oneScale * life;
+        if (type == 2 && hpBarOn == true) {
+            double oneScale = (double) gamePanel.tileSize / maxLife;
+            double hpBarValue = oneScale * life;
 
-                g2.setColor(new Color(35, 35, 35));
-                g2.fillRect(screenX - 1, screenY - 16, gamePanel.tileSize + 2, 12);
+            g2.setColor(new Color(35, 35, 35));
+            g2.fillRect(screenX - 1, screenY - 16, gamePanel.tileSize + 2, 12);
 
-                g2.setColor(new Color(255, 0, 30));
-                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
+            g2.setColor(new Color(255, 0, 30));
+            g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
 
-                hpBarCounter++;
-                if (hpBarCounter > 600) {
-                    hpBarCounter = 0;
-                    hpBarOn = false;
-                }
+            hpBarCounter++;
+            if (hpBarCounter > 600) {
+                hpBarCounter = 0;
+                hpBarOn = false;
             }
+        }
 
 //        if (dying == true) {
 //            dyingAnimation(g2);
