@@ -70,11 +70,11 @@ public class AssetSetter{
         mapNum = 1;
         //Monster in the cave condition for boss appear
         gamePanel.monster[mapNum][0] = new MON_GateKeeper(gamePanel);
-        gamePanel.monster[mapNum][0].worldX = 700;
-        gamePanel.monster[mapNum][0].worldY = 2336;
+        gamePanel.monster[mapNum][0].worldX = gamePanel.tileSize*25;
+        gamePanel.monster[mapNum][0].worldY = gamePanel.tileSize*12;
         gamePanel.monster[mapNum][1] = new MON_BloodySlime(gamePanel);
-        gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
-        gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
+        gamePanel.monster[mapNum][1].worldX = 900;
+        gamePanel.monster[mapNum][1].worldY = 1514;
         gamePanel.monster[mapNum][2] = new MON_Slime(gamePanel);
         gamePanel.monster[mapNum][2].worldX = gamePanel.tileSize*25;
         gamePanel.monster[mapNum][2].worldY = gamePanel.tileSize*12;

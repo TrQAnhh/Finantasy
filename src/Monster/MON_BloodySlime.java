@@ -1,5 +1,8 @@
 package Monster;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import Entities.Entity;
 import Main.GamePanel;
 
@@ -67,4 +70,14 @@ public class MON_BloodySlime extends Entity {
             }
         }
     }
+    
+    @Override
+        public void draw(Graphics2D g2,GamePanel gamePanel){
+            BufferedImage image = up1;
+    
+            int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+            int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+    
+            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
+        }
 }
