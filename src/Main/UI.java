@@ -81,7 +81,6 @@ public class UI {
     Entity effectted;      // Using arraylist when AOE skill
 
     //Boss event
-    public boolean bossAppear = false;
     public static int gateCounterKill = 3;
 
     public UI(GamePanel gamePanel){
@@ -157,7 +156,7 @@ public class UI {
         else if(gamePanel.gameState == gamePanel.gameOverState){
             drawGameOverScreen();
         }
-        else if(gamePanel.gameState == gamePanel.bossBattleState && bossAppear == true){
+        else if(gamePanel.gameState == gamePanel.bossBattleState){
             drawBattleBossScreen();
         }
     }

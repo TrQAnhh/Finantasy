@@ -55,21 +55,26 @@ public class EventHandler {
             //gamePanel.ui.indexBattle = 1;
 
             if( hit(0, 13,33,"any") == true ) {
-                healingGamePanelPool(gamePanel.dialogueState);}
+                healingGamePanelPool(gamePanel.dialogueState);
+            }
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 16 (COLS), Y = 48 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
-                teleport(1, 31, 43, gamePanel.dungeon);}
-
+                teleport(1, 31, 43, gamePanel.dungeon);
+            }
+            if( hit(1, 31,43,"any") == true ) {
+                //BossEvent();
+            }
             // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
             else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true) {
-                teleport(0, 16, 15, gamePanel.outside);}
+                teleport(0, 16, 15, gamePanel.outside);
+            }
             
             //MONSTER CHECKED PLACED
             if(hit(0,13,16,"any") == true) {
-                    if(gamePanel.keyHandler.enterPressed == true){
-                        gamePanel.gameState = gamePanel.battleState;
-                        gamePanel.ui.indexBattle = 1;
-                    }
+                if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 1;
+                }
             }
             if(hit(1, 19, 33, "any") == true || hit(1, 20, 33, "any") == true || hit(1, 21, 33, "any") == true) {
                 gamePanel.gameState = gamePanel.battleState;
@@ -84,7 +89,6 @@ public class EventHandler {
                 gamePanel.ui.indexBattle = 5;
             }
             if(gamePanel.currentMap == 1 && gamePanel.ui.gateCounterKill == 0) {
-                gamePanel.ui.bossAppear = true;
                 gamePanel.gameState = gamePanel.bossBattleState;
                 gamePanel.ui.indexBattle = 3;
             }
@@ -134,5 +138,11 @@ public class EventHandler {
             tempRow = row;
             canTouchEvent = false;
             //gamePanel.playSE(13);
+    }
+    public void BossEvent() {
+        if(gamePanel.bossBattleOn == false) {
+            gamePanel.gameState = gamePanel.cutScenceState;
+
+        }
     }
 }

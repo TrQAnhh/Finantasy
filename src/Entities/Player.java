@@ -51,14 +51,14 @@ public class Player extends Entity{
             
         }
         public void setDefaultValues(){
-            worldX = gamePanel.tileSize * 15; 
-            worldY = gamePanel.tileSize * 18;
+            worldX = gamePanel.tileSize * 20; 
+            worldY = gamePanel.tileSize * 30;
             speed = 10;
             direction = "down";
     
             // Player status
             level = 1;
-            strength = 1;
+            strength = 10;
             dexterity = 1;
             exp = 0;
             nextLevelExp = 4;
@@ -440,8 +440,11 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 }
                 break;
         }
-        if (image != null ) {
-            g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
+        // change temp screen to drawing
+        if(drawing == true) {
+            if (image != null ) {
+                g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
+            }
         }
     }
 }

@@ -71,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
     // Config
         Config config = new Config(this);
     // EnviromentManager
-        EnviromentManager eManager = new EnviromentManager(this);
+        EnviromentManager eManager = new EnviromentManager(this);       
 
     // GAME STATE VARIABLES :
     public int gameState;
@@ -86,6 +86,9 @@ public class GamePanel extends JPanel implements Runnable{
     public final int transitionState = 7;
     public final int gameOverState = 8;
     public final int bossBattleState = 9;
+    public final int cutScenceState = 10;
+
+    public boolean bossBattleOn = false;
 
 //    // Config
 //        Config config = new Config(this);
@@ -213,7 +216,7 @@ public class GamePanel extends JPanel implements Runnable{
                 
             }
         }
-    public void paintComponent(Graphics graphics){
+        public void paintComponent(Graphics graphics){
 
             super.paintComponent(graphics);
 
@@ -229,11 +232,11 @@ public class GamePanel extends JPanel implements Runnable{
             if(gameState == titleState) {
                 ui.draw(graphics2D);
             }
-            // BATTLE (Can u delete it?)   
+            // BATTLE STATE  
             else if(gameState == battleState) {
                 ui.draw(graphics2D);
             }
-            // BATTLE STATE:
+            // BOSS BATTLE STATE
             else if(gameState == bossBattleState) {
                 ui.draw(graphics2D);
             }

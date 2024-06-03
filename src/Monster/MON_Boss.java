@@ -36,6 +36,7 @@ public class MON_Boss extends Entity {
         solidAreaDefaultY = solidArea.y;
 
         getImage();
+        setDialog();
     }
     //change later 
     public void getImage(){
@@ -48,6 +49,11 @@ public class MON_Boss extends Entity {
     }   
     public void setAction(){
 
+    }
+    public void setDialog() {
+        dialogue[0] = "Foul Tarnished,";
+        dialogue[1] = "In search of the Elden Ring.";
+        dialogue[2] = "Emboldened by the flame of ambition";
     }
     public void damage(Entity entity){
         

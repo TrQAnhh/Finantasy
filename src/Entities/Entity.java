@@ -24,7 +24,7 @@ public class Entity {
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
-    String dialogue[] = new String[20];
+    public String dialogue[] = new String[20];
 
     // State
     public int worldX, worldY;
@@ -36,6 +36,7 @@ public class Entity {
     public boolean alive = true;
     public boolean dying = false;
     boolean hpBarOn = false;
+    public boolean drawing = true;
 
     // Counter
     public int spriteCounter = 0;
