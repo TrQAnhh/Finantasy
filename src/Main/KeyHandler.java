@@ -360,6 +360,6 @@ public class KeyHandler implements KeyListener {
         {
             rightPressed = false;
         }
-        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+    //    throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 }
