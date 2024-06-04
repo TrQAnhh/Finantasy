@@ -2,10 +2,7 @@ package Entities;
 
 import Main.GamePanel;
 import Main.KeyHandler;
-import Object.OBJ_HealPot;
-import Object.OBJ_Key;
-import Object.OBJ_Shield_Wood;
-import Object.OBJ_Sword;
+import Objects.*;
 import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
@@ -17,18 +14,19 @@ import java.util.ArrayList;
 public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
+
         public final int screenY;
         public ArrayList<Entity> inventory = new ArrayList<>();
-        public final int inventorySize = 20;
+        public final int maxInventorySize = 20;
         KeyHandler keyHandler;
 
     // CONSTRUCTORS:
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
 
-            super(gamePanel);
+                super(gamePanel);
 
-            this.gamePanel = gamePanel;
-            this.keyHandler = keyHandler;
+                this.gamePanel = gamePanel;
+                this.keyHandler = keyHandler;
             // PLAYER'S STARTING POSITION:
                 worldX = 16 * gamePanel.tileSize;
                 worldY = 48 * gamePanel.tileSize;
@@ -45,7 +43,8 @@ public class Player extends Entity{
                 getBasePlayerImage();
             // Set Player default value
                 setDefaultValues();
-            
+            // Set Player Items
+                setItem();
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
@@ -58,7 +57,7 @@ public class Player extends Entity{
                 nextLevelExp = 4;
                 coin = 0;
                 currentWeapon = new OBJ_Sword(gamePanel);
-                currentArmor = new OBJ_Shield_Wood(gamePanel);
+                currentArmor = new OBJ_Silver_Shield(gamePanel);
                 maxLife = 999;
                 attack = strength;
                 defense = dexterity;
@@ -69,7 +68,16 @@ public class Player extends Entity{
             inventory.add(currentWeapon);
             inventory.add(currentArmor);
             inventory.add(new OBJ_Key(gamePanel));
-            inventory.add(new OBJ_HealPot(gamePanel));
+//            inventory.add(new OBJ_HealPot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(new OBJ_GoldIngot(gamePanel));
         }
         public int getAttack(){
             return attack = strength + currentWeapon.attackValue;
@@ -78,79 +86,80 @@ public class Player extends Entity{
             return defense = dexterity + currentArmor.defenseValue;
         }
     // METHODS:
-    public void getBasePlayerImage(){
-//        try (
-//                InputStream moving_down01 = new FileInputStream(new File("res/Entities/Player_warrior/down_1.png"));
-//                InputStream moving_down02 = new FileInputStream(new File("res/Entities/Player_warrior/down_2.png"));
-//                InputStream moving_down03 = new FileInputStream(new File("res/Entities/Player_warrior/down_3.png"));
-//
-//                InputStream moving_left01 = new FileInputStream(new File("res/Entities/Player_warrior/left_1.png"));
-//                InputStream moving_left02 = new FileInputStream(new File("res/Entities/Player_warrior/left_2.png"));
-//                InputStream moving_left03 = new FileInputStream(new File("res/Entities/Player_warrior/left_3.png"));
-//
-//                InputStream moving_right01 = new FileInputStream(new File("res/Entities/Player_warrior/right_1.png"));
-//                InputStream moving_right02 = new FileInputStream(new File("res/Entities/Player_warrior/right_2.png"));
-//                InputStream moving_right03 = new FileInputStream(new File("res/Entities/Player_warrior/right_3.png"));
-//
-//                InputStream moving_up01 = new FileInputStream(new File("res/Entities/Player_warrior/up_1.png"));
-//                InputStream moving_up02 = new FileInputStream(new File("res/Entities/Player_warrior/up_2.png"));
-//                InputStream moving_up03 = new FileInputStream(new File("res/Entities/Player_warrior/up_3.png"));
-//            ) {
-//
-//            down1 = ImageIO.read(moving_down01);
-//            down2 = ImageIO.read(moving_down02);
-//            down3 = ImageIO.read(moving_down03);
-//
-//            left1 = ImageIO.read(moving_left01);
-//            left2 = ImageIO.read(moving_left02);
-//            left3 = ImageIO.read(moving_left03);
-//
-//            right1 = ImageIO.read(moving_right01);
-//            right2 = ImageIO.read(moving_right02);
-//            right3 = ImageIO.read(moving_right03);
-//
-//            up1 = ImageIO.read(moving_up01);
-//            up2 = ImageIO.read(moving_up02);
-//            up3 = ImageIO.read(moving_up03);
-//
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
+        // GET PLAYER IMAGES:
+            public void getBasePlayerImage(){
+        //        try (
+        //                InputStream moving_down01 = new FileInputStream(new File("res/Entities/Player_warrior/down_1.png"));
+        //                InputStream moving_down02 = new FileInputStream(new File("res/Entities/Player_warrior/down_2.png"));
+        //                InputStream moving_down03 = new FileInputStream(new File("res/Entities/Player_warrior/down_3.png"));
+        //
+        //                InputStream moving_left01 = new FileInputStream(new File("res/Entities/Player_warrior/left_1.png"));
+        //                InputStream moving_left02 = new FileInputStream(new File("res/Entities/Player_warrior/left_2.png"));
+        //                InputStream moving_left03 = new FileInputStream(new File("res/Entities/Player_warrior/left_3.png"));
+        //
+        //                InputStream moving_right01 = new FileInputStream(new File("res/Entities/Player_warrior/right_1.png"));
+        //                InputStream moving_right02 = new FileInputStream(new File("res/Entities/Player_warrior/right_2.png"));
+        //                InputStream moving_right03 = new FileInputStream(new File("res/Entities/Player_warrior/right_3.png"));
+        //
+        //                InputStream moving_up01 = new FileInputStream(new File("res/Entities/Player_warrior/up_1.png"));
+        //                InputStream moving_up02 = new FileInputStream(new File("res/Entities/Player_warrior/up_2.png"));
+        //                InputStream moving_up03 = new FileInputStream(new File("res/Entities/Player_warrior/up_3.png"));
+        //            ) {
+        //
+        //            down1 = ImageIO.read(moving_down01);
+        //            down2 = ImageIO.read(moving_down02);
+        //            down3 = ImageIO.read(moving_down03);
+        //
+        //            left1 = ImageIO.read(moving_left01);
+        //            left2 = ImageIO.read(moving_left02);
+        //            left3 = ImageIO.read(moving_left03);
+        //
+        //            right1 = ImageIO.read(moving_right01);
+        //            right2 = ImageIO.read(moving_right02);
+        //            right3 = ImageIO.read(moving_right03);
+        //
+        //            up1 = ImageIO.read(moving_up01);
+        //            up2 = ImageIO.read(moving_up02);
+        //            up3 = ImageIO.read(moving_up03);
+        //
+        //        }catch (IOException e){
+        //            e.printStackTrace();
+        //        }
 
-        // PLAYER DEFAULT IMAGES:
-//            down1 = setupPlayerDefault("down_1");
-//            down2 = setupPlayerDefault("down_2");
-//            down3 = setupPlayerDefault("down_3");
-//
-//            left1 = setupPlayerDefault("left_1");
-//            left2 = setupPlayerDefault("left_2");
-//            left3 = setupPlayerDefault("left_3");
-//
-//            right1 = setupPlayerDefault("right_1");
-//            right2 = setupPlayerDefault("right_2");
-//            right3 = setupPlayerDefault("right_3");
-//
-//            up1 = setupPlayerDefault("up_1");
-//            up2 = setupPlayerDefault("up_2");
-//            up3 = setupPlayerDefault("up_3");
-        // PLAYER WARRIOR IMAGES:
-            down1 = setupPlayerWarrior("down_1");
-            down2 = setupPlayerWarrior("down_2");
-            down3 = setupPlayerWarrior("down_3");
+                // PLAYER DEFAULT IMAGES:
+        //            down1 = setupPlayerDefault("down_1");
+        //            down2 = setupPlayerDefault("down_2");
+        //            down3 = setupPlayerDefault("down_3");
+        //
+        //            left1 = setupPlayerDefault("left_1");
+        //            left2 = setupPlayerDefault("left_2");
+        //            left3 = setupPlayerDefault("left_3");
+        //
+        //            right1 = setupPlayerDefault("right_1");
+        //            right2 = setupPlayerDefault("right_2");
+        //            right3 = setupPlayerDefault("right_3");
+        //
+        //            up1 = setupPlayerDefault("up_1");
+        //            up2 = setupPlayerDefault("up_2");
+        //            up3 = setupPlayerDefault("up_3");
+                // PLAYER WARRIOR IMAGES:
+                    down1 = setupPlayerWarrior("down_1");
+                    down2 = setupPlayerWarrior("down_2");
+                    down3 = setupPlayerWarrior("down_3");
 
-            left1 = setupPlayerWarrior("left_1");
-            left2 = setupPlayerWarrior("left_2");
-            left3 = setupPlayerWarrior("left_3");
+                    left1 = setupPlayerWarrior("left_1");
+                    left2 = setupPlayerWarrior("left_2");
+                    left3 = setupPlayerWarrior("left_3");
 
-            right1 = setupPlayerWarrior("right_1");
-            right2 = setupPlayerWarrior("right_2");
-            right3 = setupPlayerWarrior("right_3");
+                    right1 = setupPlayerWarrior("right_1");
+                    right2 = setupPlayerWarrior("right_2");
+                    right3 = setupPlayerWarrior("right_3");
 
-            up1 = setupPlayerWarrior("up_1");
-            up2 = setupPlayerWarrior("up_2");
-            up3 = setupPlayerWarrior("up_3");
+                    up1 = setupPlayerWarrior("up_1");
+                    up2 = setupPlayerWarrior("up_2");
+                    up3 = setupPlayerWarrior("up_3");
 
-    }
+            }
 
     public BufferedImage setupPlayerDefault(String imagePath) {
 
@@ -255,8 +264,15 @@ public class Player extends Entity{
     // INTERACTION WITH OBJECTS METHOD:
     public void pickUpObject(int i){
         if(i != 999){
-            
+            String text;
+            if (inventory.size() != maxInventorySize){
+               inventory.add(gamePanel.object[0][i]);
+            }
+            else{
+                gamePanel.ui.addMessage("Your inventory is full!");
         }
+            gamePanel.object[gamePanel.currentMap][i] = null;
+    }
     }
     // INTERACTION WITH NPC:
     public void interactNPC(int i){

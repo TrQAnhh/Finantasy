@@ -1,9 +1,9 @@
 package Main;
 
-import Object.OBJ_Door;
 import Monster.MON_Slime;
 import Effect.explosion;
 import Entities.*;
+import Objects.*;
 
 public class AssetSetter{
 
@@ -12,6 +12,15 @@ public class AssetSetter{
     public AssetSetter(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
+    public void setObject(){
+        int i = 0;
+        gamePanel.object[mapNum][i] = new OBJ_GoldIngot(gamePanel);
+        gamePanel.object[mapNum][i].worldX = gamePanel.tileSize * 25; // 32 columns * 48
+        gamePanel.object[mapNum][i].worldY = gamePanel.tileSize * 49; // 19 rows * 48
+        i++;
+
+    }
+
     public void setNPC(){
         // NON - MOVEMENT NPC SAMPLE CODE:
             gamePanel.npc[0][0] = new NPC_King(gamePanel);
@@ -51,9 +60,6 @@ public class AssetSetter{
             gamePanel.npc[0][8].worldY = gamePanel.tileSize * 19; // 19 rows * 48
 
 
-    }
-    public void setObject(){
-        
     }
     public void setMonster(){
         //Set monster for first map
