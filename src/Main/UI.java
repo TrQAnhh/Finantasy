@@ -82,6 +82,8 @@ public class UI {
 
     //Boss event
     public static int gateCounterKill = 4;
+    public boolean bossMode = false;
+    int scaleFactor = 3;
 
     public UI(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -655,13 +657,7 @@ public class UI {
             {image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_1.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
             //change later
-            if(indexBattle == 2)
-            {image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground.png"));
-                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
-            if(indexBattle == 4)
-            {image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground.png"));
-                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
-            if(indexBattle == 5)
+            else
             {image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
 
@@ -719,24 +715,29 @@ public class UI {
         // Draw Monster
         int PositionX = gamePanel.tileSize*5;
         int PositionY = 100;
+        
         for(int i=0; i<listofMonster.size(); i++){
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                 effectPosX = PositionX;
                 effectPosY = PositionY;
             }
+            BufferedImage monsImage = listofMonster.get(i).right1;
+
+            int scaleWidth = monsImage.getWidth() * scaleFactor;
+            int scaleHeight = monsImage.getHeight() * scaleFactor;
             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                 if(listofMonster.get(i).life <= 0){
                     gamePanel.player.exp += listofMonster.get(i).exp;
                     listofMonster.get(i).dying = true;
                 }
                 if(i == (orderTurn - 1)){
-                    g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*5, PositionY, null);
+                    g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*5, PositionY,scaleWidth, scaleHeight, null);
                 }
                 else{
-                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
+                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY,scaleWidth, scaleHeight, null);
                 }
             }
-            PositionY += gamePanel.tileSize;
+            PositionY += gamePanel.tileSize * scaleFactor;
         }
 
         PositionX = gamePanel.tileSize*12;
@@ -895,14 +896,29 @@ public class UI {
         if(checkBattleEnd() == true){
             orderTurn = 0;
             checker = false;
-            listofMonster.get(0).Defeat = true;
+            resetDefeatState(indexBattle);
             listofMonster.clear();
             //For boss event 
             if(indexBattle == 2 || indexBattle == 4 || indexBattle == 5) {
                 gateCounterKill--;
             }
+            if(indexBattle == 6) {
+                bossMode = true;
+            }
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
+        }
+    }
+    // Set defeat variable of monster to stop the draw function of monster in gamepanel class
+    public void resetDefeatState(int i) {
+        if(i == 2) {
+            gamePanel.monster[1][1].Defeat = true;
+        }
+        if(i == 4) {
+            gamePanel.monster[1][0].Defeat = true;
+        }
+        if(i == 5) {
+            gamePanel.monster[1][2].Defeat = true;
         }
     }
     // Count the number of interaction
@@ -960,6 +976,9 @@ public class UI {
         //Battle 3 in map 1 for boss
         if(index == 3) {
             listofMonster.add(gamePanel.monster[1][3]);
+        }
+        if(index == 6) {
+            listofMonster.add(gamePanel.monster[1][4]);
         }
     }
     // Monster Turn
@@ -1037,6 +1056,8 @@ public class UI {
         }
     }
     public void drawBattleBossScreen() {
+        //drawBattleScreen();
+        //indexBattle = 3;
         //Draw background
         Image image;
         try {
@@ -1047,7 +1068,7 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
         // Draw Monster
         if(checker == false)
         {
@@ -1103,19 +1124,23 @@ public class UI {
                 effectPosX = PositionX;
                 effectPosY = PositionY;
             }
+            BufferedImage monsImage = listofMonster.get(i).right1;
+
+            int scaleWidth = monsImage.getWidth() * scaleFactor;
+            int scaleHeight = monsImage.getHeight() * scaleFactor;
             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                 if(listofMonster.get(i).life <= 0){
                     gamePanel.player.exp += listofMonster.get(i).exp;
                     listofMonster.get(i).dying = true;
                 }
                 if(i == (orderTurn - 1)){
-                    g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*2, PositionY, null);
+                    g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*5, PositionY,scaleWidth, scaleHeight, null);
                 }
                 else{
-                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
+                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY,scaleWidth, scaleHeight, null);
                 }
             }
-            PositionY += gamePanel.tileSize;
+            PositionY += gamePanel.tileSize * scaleFactor;
         }
 
         PositionX = gamePanel.tileSize*12;

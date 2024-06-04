@@ -6,22 +6,21 @@ import java.awt.image.BufferedImage;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_GateKeeper extends Entity {
+public class MON_GreenDragon extends Entity {
 
     GamePanel gamePanel;
 
-    public MON_GateKeeper(GamePanel gamePanel) {
+    public MON_GreenDragon(GamePanel gamePanel) {
         super(gamePanel);
-
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Gate Keeper";
+        name = "Earth Dragon";
         direction = "down";
         maxLife = 4;
         life = maxLife;
-        attack = 5;
-        defense = 0;
+        attack = 2;
+        defense = 5;
         exp = 2;
         mana = 0;
         maxMana = 2;
@@ -36,13 +35,12 @@ public class MON_GateKeeper extends Entity {
         Defeat = false;
         getImage();
     }
-    //change later
     public void getImage(){
-
-        up1 = setup("Monster/GateKeeper/GateKeeper");
-        down1 = setup("Monster/GateKeeper/GateKeeper");
-        left1 = setup("Monster/GateKeeper/GateKeeper");
-        right1 = setup("Monster/GateKeeper/GateKeeper");
+        
+        up1 = setup("Monster/BossMonster/Dragon_1");
+        down1 = setup("Monster/BossMonster/status_dragon");
+        left1 = setup("Monster/BossMonster/Dragon_1");
+        right1 = setup("Monster/BossMonster/Dragon_1");
     }   
     public void setAction(){
 
@@ -71,9 +69,10 @@ public class MON_GateKeeper extends Entity {
             }
         }
     }
+    
     @Override
         public void draw(Graphics2D g2,GamePanel gamePanel){
-            BufferedImage image = up1;
+            BufferedImage image = down1;
     
             int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
             int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;

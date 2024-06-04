@@ -89,6 +89,10 @@ public class EventHandler {
                 gamePanel.ui.indexBattle = 5;
             }
             if(gamePanel.currentMap == 1 && gamePanel.ui.gateCounterKill == 0) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 6;
+            }
+            if(gamePanel.ui.bossMode == true) {
                 gamePanel.gameState = gamePanel.bossBattleState;
                 gamePanel.ui.indexBattle = 3;
             }
