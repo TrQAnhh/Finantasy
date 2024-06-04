@@ -33,7 +33,7 @@ public class MON_GateKeeper extends Entity {
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-
+        Defeat = false;
         getImage();
     }
     //change later

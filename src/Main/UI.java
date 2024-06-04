@@ -532,8 +532,6 @@ public class UI {
         // DRAW DIALOGUE SETTINGS:
         int x = gamePanel.tileSize;
         int y = gamePanel.tileSize * 7;
-        int width = gamePanel.screenWidth - (gamePanel.tileSize * 2);
-        int height = gamePanel.tileSize * 7;
 
         g2.drawImage(dialouge,x,y,null);
 
@@ -542,7 +540,7 @@ public class UI {
         y += gamePanel.tileSize * 2;
         g2.setFont(alagard);
         g2.setColor(Color.BLACK);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,25F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
 
         for (String line: currentDialogue.split("\n")) {
             g2.drawString(line, x, y);
@@ -897,6 +895,7 @@ public class UI {
         if(checkBattleEnd() == true){
             orderTurn = 0;
             checker = false;
+            listofMonster.get(0).Defeat = true;
             listofMonster.clear();
             //For boss event 
             if(indexBattle == 2 || indexBattle == 4 || indexBattle == 5) {

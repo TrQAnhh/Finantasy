@@ -356,7 +356,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             defense += 2;
 
             gamePanel.gameState = gamePanel.dialogueState;
-            gamePanel.ui.currentDialogue = "You are level " + level + " now!\n";
+            gamePanel.ui.currentDialogue = "YOU ARE LEVEL UP " + level + " NOW !\n";
         }
     }
     public void selectItem(){

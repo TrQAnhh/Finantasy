@@ -18,9 +18,9 @@ public class MON_Boss extends Entity {
         type = type_monster;
         name = "Dragon Lord";
         direction = "down";
-        maxLife = 4;
+        maxLife = 100;
         life = maxLife;
-        attack = 5;
+        attack = 8;
         defense = 0;
         exp = 2;
         mana = 0;
@@ -34,9 +34,8 @@ public class MON_Boss extends Entity {
         solidArea.height = size - 48;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-
+        Defeat = false;
         getImage();
-        setDialog();
     }
     //change later 
     public void getImage(){
@@ -48,11 +47,6 @@ public class MON_Boss extends Entity {
     }   
     public void setAction(){
 
-    }
-    public void setDialog() {
-        dialogue[0] = "Foul Tarnished,";
-        dialogue[1] = "In search of the Elden Ring.";
-        dialogue[2] = "Emboldened by the flame of ambition";
     }
     public void damage(Entity entity){
         

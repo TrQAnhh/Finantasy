@@ -277,7 +277,16 @@ public class GamePanel extends JPanel implements Runnable{
 
                     // DRAW ENTITIES:
                         for(int i=0; i < entityList.size(); i++){
-                            entityList.get(i).draw(graphics2D,this);
+                            if(entityList.get(i) == monster[1][i]) {
+                                for(int j = 0; j < 3; j++) {
+                                    if(monster[currentMap][i].Defeat == false) {
+                                        entityList.get(i).draw(graphics2D,this);
+                                    }
+                                }
+                            }
+                            else {
+                                entityList.get(i).draw(graphics2D,this);
+                            }
                         }
                     // EMPTY ENTITY LIST
                         entityList.clear();
