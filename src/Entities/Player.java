@@ -271,6 +271,7 @@ public class Player extends Entity{
             else{
                 gamePanel.ui.addMessage("Your inventory is full!");
         }
+            gamePanel.object[gamePanel.currentMap][i] = null;
     }
     }
     // INTERACTION WITH NPC:

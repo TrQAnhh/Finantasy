@@ -229,16 +229,16 @@ public class GamePanel extends JPanel implements Runnable{
                             }
                         }
 
-                    for(int i = 0; i < object[1].length; ++i) {
-                        if(object[currentMap][i] != null) {
-                            entityList.add(object[currentMap][i]);
+                        for(int i = 0; i < object[1].length; ++i) {
+                            if(object[currentMap][i] != null) {
+                                entityList.add(object[currentMap][i]);
+                            }
                         }
-                    }
-                    for(int i = 0; i < monster[1].length; ++i) {
-                        if(monster[currentMap][i] != null) {
-                            entityList.add(monster[currentMap][i]);
+                        for(int i = 0; i < monster[1].length; ++i) {
+                            if(monster[currentMap][i] != null) {
+                                entityList.add(monster[currentMap][i]);
+                            }
                         }
-                    }
 
                 // SORT
                     Collections.sort(entityList, new Comparator<Entity>() {

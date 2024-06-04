@@ -277,12 +277,12 @@ public class Entity {
                 }
             }
 
-        if (dying == true) {
-            dyingAnimation(g2);
-        }
+//        if (dying == true) {
+//            dyingAnimation(g2);
+//        }
         g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
 
-        changeAlpha(g2, 1F);
+//        changeAlpha(g2, 1F);
     }
 
     public void dyingAnimation(Graphics2D g2){
