@@ -6,28 +6,28 @@ import java.awt.image.BufferedImage;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class Explosion extends Entity{
+public class Stunt extends Entity{
     
-    GamePanel gamePanel;
+    GamePanel gp;
 
-    public Explosion(GamePanel gamePanel){
+    public Stunt(GamePanel gp){
 
-        super(gamePanel);
-        this.gamePanel = gamePanel;
+        super(gp);
+        this.gp = gp;
 
-        image1 = setup("Effect/Explosion/explosion_1");
-        image2 = setup("Effect/Explosion/explosion_2");
-        image3 = setup("Effect/Explosion/explosion_3");
-        image4 = setup("Effect/Explosion/explosion_4");
-        image5 = setup("Effect/Explosion/explosion_5");
-        image6 = setup("Effect/Explosion/explosion_6");
-        image7 = setup("Effect/Explosion/explosion_7");
-        image8 = setup("Effect/Explosion/explosion_8");
-        image9 = setup("Effect/Explosion/explosion_9");
-        image10 = setup("Effect/Explosion/explosion_10");
-        image11 = setup("Effect/Explosion/explosion_11");
-        image12 = setup("Effect/Explosion/explosion_12");
-        image13 = setup("Effect/Explosion/explosion_13");
+        image1 = setup("/effect/explosion/explosion_1");
+        image2 = setup("/effect/explosion/explosion_2");
+        image3 = setup("/effect/explosion/explosion_3");
+        image4 = setup("/effect/explosion/explosion_4");
+        image5 = setup("/effect/explosion/explosion_5");
+        image6 = setup("/effect/explosion/explosion_6");
+        image7 = setup("/effect/explosion/explosion_7");
+        image8 = setup("/effect/explosion/explosion_8");
+        image9 = setup("/effect/explosion/explosion_9");
+        image10 = setup("/effect/explosion/explosion_10");
+        image11 = setup("/effect/explosion/explosion_11");
+        image12 = setup("/effect/explosion/explosion_12");
+        image13 = setup("/effect/explosion/explosion_13");
     }
     public void update(){
         effectCounter++;
@@ -77,6 +77,6 @@ public class Explosion extends Entity{
         if(effectNum == 11) image = image11;
         if(effectNum == 12) image = image12;
         if(effectNum == 13) image = image13;
-        g2.drawImage(image,gamePanel.ui.effectPosX,gamePanel.ui.effectPosY,null);
+        g2.drawImage(image,gp.ui.effectPosX,gp.ui.effectPosY,null);
     }
 }

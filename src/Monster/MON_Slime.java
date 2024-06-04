@@ -36,11 +36,10 @@ public class MON_Slime extends Entity {
     }
     public void getImage(){
 
-//        up1 = setup("/monster/slime_down_1",gamePanel.tileSize, gamePanel.tileSize);
-//        down1 = setup("/monster/slime_down_1",gamePanel.tileSize, gamePanel.tileSize);
-//        down2 = setup("/monster/slime_down_2",gamePanel.tileSize, gamePanel.tileSize);
-//        left1 = setup("/monster/slime_down_1",gamePanel.tileSize, gamePanel.tileSize);
-//        right1 = setup("/monster/slime_down_1",gamePanel.tileSize, gamePanel.tileSize);
+        up1 = setup("Monster/Slime/slime_down_1");
+        down1 = setup("Monster/Slime/slime_down_1");
+        left1 = setup("Monster/Slime/slime_down_1");
+        right1 = setup("Monster/Slime/slime_down_1");
     }   
     public void setAction(){
 

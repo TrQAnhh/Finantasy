@@ -733,12 +733,26 @@ public class UI {
             PositionY += gamePanel.tileSize;
         }
 
+        PositionX = gamePanel.tileSize*12;
+        PositionY = 150;
         // Draw Character
+        if(gamePanel.player.state != gamePanel.player.normalState){
+            effectPosX = PositionX;
+            effectPosY = PositionY;
+        }
         if(orderTurn == 0){
-            g2.drawImage(gamePanel.player.left1, gamePanel.tileSize*10, 150,null);
+            g2.drawImage(gamePanel.player.left1, PositionX - gamePanel.tileSize*2, PositionY,null);
         }
         else{
-            g2.drawImage(gamePanel.player.left1, gamePanel.tileSize*12, 150,null);
+            g2.drawImage(gamePanel.player.left1, PositionX, PositionY,null);
+        }
+
+        // Print Whose Turn Text
+        if(orderTurn == 0){
+            textTurn = "IT IS PLAYER TURN";
+        }
+        else{
+            textTurn = "IT IS MONSTER TURN";
         }
         
         checkEffect();
@@ -748,8 +762,6 @@ public class UI {
         else{
             // Draw Player Interact
             if(orderTurn == 0){
-                
-                textTurn = "IT IS PLAYER TURN";
     
                 frameX = gamePanel.tileSize*5;
                 frameY = gamePanel.tileSize*9;
@@ -858,7 +870,6 @@ public class UI {
             } 
         }
             else if(orderTurn > 0){
-                textTurn = "IT IS MONSTER TURN";
                 monsterTurn();
     }
         }
@@ -883,6 +894,7 @@ public class UI {
             gamePanel.keyHandler.enterPressed = false;
         } 
 }
+    // Count the number of interaction
     public int numberOfInteract(){
         int t = 0;
         if(interactType == 1){
@@ -908,13 +920,15 @@ public class UI {
         }
         return t;
     }
+    // Add monster due to the place (indexBattle)
     public void addMonster(int index){
         //Battle 1
         if(index == 1){
         listofMonster.add(gamePanel.monster[0][0]);
-        listofMonster.add(gamePanel.monster[0][1]);
+        listofMonster.add(gamePanel.monster[1][0]);
         }
     }
+    // Monster Turn
     public void monsterTurn(){
         if((orderTurn - 1) >= listofMonster.size()) {
             orderTurn = 0;
@@ -931,6 +945,7 @@ public class UI {
             }
         }
     }
+    // Checking the state of all entities in the battle
     public void checkEffect(){
         effect = false;
         if(gamePanel.player.state != gamePanel.player.normalState){
@@ -948,27 +963,23 @@ public class UI {
             }
         }
     }
+    // Draw the effect
     public void drawEffect(){
 
-        if(effectted.state == effectted.burningState){
-            if(gamePanel.effect[0].effectNum != 0)
-            {
-                gamePanel.effect[0].update();
-                gamePanel.effect[0].draw(g2, gamePanel);
+        if(gamePanel.effect[effectted.state - 1] != null){
+            if(gamePanel.effect[effectted.state - 1].effectNum != 0){
+                gamePanel.effect[effectted.state - 1].update();
+                gamePanel.effect[effectted.state - 1].draw(g2, gamePanel);
             }
-            else if (gamePanel.effect[0].effectNum == 0){
-                orderTurn++;
-                effect = false;
-                resetEffect();
+            else if (gamePanel.effect[effectted.state - 1].effectNum == 0){
+                    gamePanel.effect[effectted.state - 1].effectNum = 1;
+                    orderTurn++;
+                    effect = false;
+                    resetEffect();
             }
         }
-        else{
-                orderTurn++;
-                effect = false;
-                resetEffect();
-        }
-        
     }
+    // Reset effect after draw
     public void resetEffect(){
         if(effectted.type == effectted.type_player){
             gamePanel.player.state = gamePanel.player.normalState;
@@ -977,6 +988,7 @@ public class UI {
             listofMonster.get(effecttedNo).state = listofMonster.get(effecttedNo).normalState;
         }
     }
+    // Checking if the battle end or not
     public boolean checkBattleEnd(){
         if(gamePanel.player.dying == true){
             return true;
@@ -995,8 +1007,8 @@ public class UI {
         // Frame
         int frameX = gamePanel.tileSize*9;
         int frameY = gamePanel.tileSize;
-        int frameWidth = gamePanel.tileSize*6;
-        int frameHeight = gamePanel.tileSize*5;
+        int frameWidth = gamePanel.tileSize*7 + gamePanel.tileSize/2;
+        int frameHeight = gamePanel.tileSize*6;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // Slot
@@ -1004,18 +1016,24 @@ public class UI {
         final int slotYstart = frameY + 20;
         int slotX = slotXstart;
         int slotY = slotYstart;
-        int slotSize = gamePanel.tileSize + 3;
+        int slotSize = gamePanel.tileSize + 16;
 
         // Cursor
         int cursorX = slotXstart + (slotSize * slotCol);
-        int cursorY = slotYstart + (slotSize * slotRow);
-        int cursorWidth = gamePanel.tileSize;
-        int cursorHeight = gamePanel.tileSize;
+        int cursorY = slotYstart + (slotSize * slotRow) - 4;
+        int cursorWidth = gamePanel.tileSize + 16;
+        int cursorHeight = gamePanel.tileSize + 16;
 
         // Draw Player Items
         for(int i=0; i < gamePanel.player.inventory.size(); i++){
 
-            g2.drawImage(gamePanel.player.inventory.get(i).down1, slotX, slotY, null);
+            // Equip cursor
+            if(gamePanel.player.inventory.get(i) == gamePanel.player.currentWeapon ||
+                gamePanel.player.inventory.get(i) == gamePanel.player.currentArmor){
+                    g2.setColor(new Color(240,190,90));
+                    g2.fillRoundRect(slotX + 5/2, slotY - 3, gamePanel.tileSize + 13, gamePanel.tileSize + 13, 10, 10);
+                }
+            g2.drawImage(gamePanel.player.inventory.get(i).down1, slotX + 9, slotY - 3, null);
             slotX += slotSize;
             if(i == 4 || i == 9 || i == 14){
                 slotX = slotXstart;
@@ -1033,8 +1051,7 @@ public class UI {
         int dFrameY = frameY + frameHeight;
         int dFrameWidth = frameWidth;
         int dFrameHeight = gamePanel.tileSize*3;
-        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
-
+        
         int textX = dFrameX + 20;
         int textY = dFrameY + gamePanel.tileSize;
         g2.setFont(g2.getFont().deriveFont(28F));
@@ -1042,6 +1059,7 @@ public class UI {
         int itemIndex = getItemIndexOnSlot();
         if(itemIndex < gamePanel.player.inventory.size()){
 
+            drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
             for(String line : gamePanel.player.inventory.get(itemIndex).description.split("\n")){
                 g2.drawString(line, textX, textY);
                 textY += 32;
@@ -1049,8 +1067,8 @@ public class UI {
         }
 
     }
-    public int getItemIndexOnSlot() {
-        int itemIndex = slotCol + (slotRow * 5);
+    public int getItemIndexOnSlot(){
+        int itemIndex = slotCol + (slotRow*5);
         return itemIndex;
     }
     public void drawGameOverScreen(){

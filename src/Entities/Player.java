@@ -2,6 +2,7 @@ package Entities;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Object.OBJ_Bomb;
 import Object.OBJ_HealPot;
 import Object.OBJ_Key;
 import Object.OBJ_Shield_Wood;
@@ -45,6 +46,8 @@ public class Player extends Entity{
                 getBasePlayerImage();
             // Set Player default value
                 setDefaultValues();
+            // Set Player inventory
+                setItem();
             
         }
         public void setDefaultValues(){
@@ -62,7 +65,7 @@ public class Player extends Entity{
             coin = 0;
             currentWeapon = new OBJ_Sword(gamePanel);
             currentArmor = new OBJ_Shield_Wood(gamePanel);
-            maxLife = 999;
+            maxLife = 10;
             attack = strength;
             defense = dexterity;
             life = maxLife;
@@ -83,6 +86,7 @@ public class Player extends Entity{
             inventory.add(currentArmor);
             inventory.add(new OBJ_Key(gamePanel));
             inventory.add(new OBJ_HealPot(gamePanel));
+            inventory.add(new OBJ_Bomb(gamePanel));
         }
         public int getAttack(){
             return attack = strength + currentWeapon.attackValue;
@@ -269,13 +273,23 @@ public class Player extends Entity{
         }
         if(life < 0){
             gamePanel.gameState = gamePanel.gameOverState;
-            // gp.playSE(12);
+            // gamePanel.playSE(12);
         }
     }
     // INTERACTION WITH OBJECTS METHOD:
     public void pickUpObject(int i){
         if(i != 999){
-            
+            String text;
+            if(inventory.size() != inventorySize){
+                inventory.add(gamePanel.object[0][i]);
+                // gamePanel.playSE(1);
+                text = "Got a " + gamePanel.object[0][i].name + "!";
+            }
+            else{
+                text = "You cannot carry anymore!";
+            }
+            gamePanel.ui.addMessage(text);
+            gamePanel.object[i] = null;
         }
     }
     // INTERACTION WITH NPC:
@@ -345,7 +359,26 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             gamePanel.ui.currentDialogue = "You are level " + level + " now!\n";
         }
     }
+    public void selectItem(){
 
+        int itemIndex = gamePanel.ui.getItemIndexOnSlot();
+
+        if(itemIndex < inventory.size()){
+            Entity selectedItem = inventory.get(itemIndex);
+            if(selectedItem.type == type_sword || selectedItem.type == type_axe){
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+            if(selectedItem.type == type_shield){
+                currentArmor = selectedItem;
+                defense = getDefense();
+            }
+            if(selectedItem.type == type_consumable_player){
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
+        }
+    }
     @Override
     public void draw(Graphics2D g2, GamePanel gamePanel) {
         BufferedImage image = down1;

@@ -53,7 +53,7 @@ public class EventHandler {
             //gamePanel.gameState = gamePanel.battleState;
             //gamePanel.ui.indexBattle = 1;
 
-            if( hit(0, 13,33,"any") == true ) {    // ???????????????????????
+            if( hit(0, 13,33,"any") == true ) {
                 healingGamePanelPool(gamePanel.dialogueState);}
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 16 (COLS), Y = 48 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
@@ -62,6 +62,13 @@ public class EventHandler {
             // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
             else if( hit(1, 20, 46, "any") == true ) {
                 teleport(0, 16, 15, gamePanel.outside);}
+            
+            if(hit(0,13,16,"any") == true) {
+                    if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 1;
+                    }
+                }
         }
     }
     public boolean hit(int map, int col, int row, String reqDirection){
