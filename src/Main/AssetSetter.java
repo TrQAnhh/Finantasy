@@ -1,9 +1,9 @@
 package Main;
 
-import Object.OBJ_Door;
 import Monster.MON_Slime;
 import Effect.explosion;
 import Entities.*;
+import Objects.*;
 
 public class AssetSetter{
 
@@ -53,7 +53,16 @@ public class AssetSetter{
 
     }
     public void setObject(){
-        
+        int i = 0;
+        gamePanel.npc[0][i] = new OBJ_Chest(gamePanel);
+        gamePanel.npc[0][i].worldX = gamePanel.tileSize * 25; // 32 columns * 48
+        gamePanel.npc[0][i].worldY = gamePanel.tileSize * 51; // 19 rows * 48
+        i++;
+        gamePanel.npc[0][i] = new OBJ_Sword(gamePanel);
+        gamePanel.npc[0][i].worldX = gamePanel.tileSize * 27; // 32 columns * 48
+        gamePanel.npc[0][i].worldY = gamePanel.tileSize * 51; // 19 rows * 48
+        i++;
+
     }
     public void setMonster(){
         //Set monster for first map

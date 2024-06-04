@@ -23,78 +23,84 @@ import Main.UtilityTool;
 
 public class Entity {
     GamePanel gamePanel;
-    public BufferedImage up1, up2, up3,
-                         down1, down2, down3,
-                         left1, left2, left3,
-                         right1, right2, right3;
-    public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
-    public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
-    public Rectangle solidArea = new Rectangle(0,0,48,48);
-    public int solidAreaDefaultX, solidAreaDefaultY;
-    public boolean collisionOn = false;
-    String dialogue[] = new String[20];
+    // IMAGES FOR PLAYERS, NPCs, MONSTERS:
+        public BufferedImage up1, up2, up3,
+                             down1, down2, down3,
+                             left1, left2, left3,
+                             right1, right2, right3;
+    // IMAGES OF ITEMS
+        public BufferedImage itemsImage;
+    // IMAGES OF ANIMATION FOR PLAYER'S EFFECTS
+        public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
 
-    // State
-    public int worldX, worldY;
-    public String direction = "down";
-    public int spriteNum = 1;
-    public int standNum = 1;
-    public int effectNum = 1;
-    int dialogueIndex = 0;
-    public boolean alive = true;
-    public boolean dying = false;
-    boolean hpBarOn = false;
+    // SOLID AREA FOR CHECK COLLISION OF EACH ENTITIES / NPCs / MONSTERS
+        public Rectangle solidArea = new Rectangle(0,0,48,48);
+        public int solidAreaDefaultX, solidAreaDefaultY;
+        public boolean collisionOn = false;
+    // DIALOGUES
+        String dialogue[] = new String[20];
 
-    // Counter
-    public int spriteCounter = 0;
-    public int actionLockCounter = 0;
-    public int effectCounter = 0;
-    int dyingCounter = 0;
-    int hpBarCounter = 0;
+    // STATE
+        public int worldX, worldY;
+        public String direction = "down";
+        public int spriteNum = 1;
+        public int standNum = 1;
+        public int effectNum = 1;
+        int dialogueIndex = 0;
+        public boolean alive = true;
+        public boolean dying = false;
+        boolean hpBarOn = false;
 
-    // Character Attributes
-    public int speed;
-    public int maxLife;
-    public int life;
-    public String name;
-    public int level;
-    public int strength;
-    public int dexterity;
-    public int attack;
-    public int defense;
-    public int exp;
-    public int nextLevelExp;
-    public int coin;
-    public Entity currentWeapon;
-    public Entity currentArmor;
-    public int mana;
-    public int maxMana;
+    // COUNTER
+        public int spriteCounter = 0;
+        public int actionLockCounter = 0;
+        public int effectCounter = 0;
+        int dyingCounter = 0;
+        int hpBarCounter = 0;
 
-    // Item attribute
-    public int attackValue;
-    public int defenseValue;
-    public String description = "";
+    // CHARACTER ATTRIBUTES
+        public int speed;
+        public int maxLife;
+        public int life;
+        public String name;
+        public int level;
+        public int strength;
+        public int dexterity;
+        public int attack;
+        public int defense;
+        public int exp;
+        public int nextLevelExp;
+        public int coin;
+        public Entity currentWeapon;
+        public Entity currentArmor;
+        public int mana;
+        public int maxMana;
 
-    // Type 
-    public int type;
-    public final int type_player = 0;
-    public final int type_npc = 1;
-    public final int type_monster = 2;
-    public final int type_sword = 3;
-    public final int type_axe = 4;
-    public final int type_shield = 5;
-    public final int type_consumable = 6;
-    public final int type_consumable_player = 7;
-    public final int type_consumable_enemy = 8;
+    // ITEM ATTRIBUTES
+        public int attackValue;
+        public int defenseValue;
+        public String description = " ";
 
-    // Battle state
-    public int state;
-    public final int normalState = 0;
-    public final int getDamageState = 1;
-    public final int stuntState = 2;
-    public final int bleedState = 3;
-    public final int healingState = 4;
-    public final int burningState = 5;
+    // TYPE
+        public int type;
+        public final int type_player = 0;
+        public final int type_npc = 1;
+        public final int type_monster = 2;
+        public final int type_sword = 3;
+        public final int type_axe = 4;
+        public final int type_shield = 5;
+        public final int type_consumable = 6;
+        public final int type_consumable_player = 7;
+        public final int type_consumable_enemy = 8;
+
+    // BATTLE STATE
+        public int state;
+        public final int normalState = 0;
+        public final int getDamageState = 1;
+        public final int stuntState = 2;
+        public final int bleedState = 3;
+        public final int healingState = 4;
+        public final int burningState = 5;
 
 
     public Entity ( GamePanel gamePanel ) {
@@ -112,6 +118,22 @@ public class Entity {
         try (FileInputStream readImage = new FileInputStream(imageFile)) {
             image = ImageIO.read(readImage);
             image = uTool.scaleImage(image,gamePanel.tileSize, gamePanel.tileSize + 16);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+    public BufferedImage setupItemImages(String imagePath) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,gamePanel.tileSize + 8, gamePanel.tileSize + 8);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -255,13 +277,14 @@ public class Entity {
                 }
             }
 
-//        if (dying == true) {
-//            dyingAnimation(g2);
-//        }
+        if (dying == true) {
+            dyingAnimation(g2);
+        }
         g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
 
-//        changeAlpha(g2, 1F);
+        changeAlpha(g2, 1F);
     }
+
     public void dyingAnimation(Graphics2D g2){
 
         dyingCounter++;

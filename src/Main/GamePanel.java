@@ -175,24 +175,25 @@ public class GamePanel extends JPanel implements Runnable{
                         if (npc[0][i] != null) {
                             npc[0][i].update(this);
                         }
-
-                for (int i = 0; i < monster[1].length; i++) {
-                    if (monster[currentMap][i] != null) {
-                        if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
-                            monster[currentMap][i].update();
-                        }
-                        if (monster[currentMap][i].alive == false) {
-                            monster[currentMap][i] = null;
+                    for (int i = 0; i < object[1].length; i++) {
+                        if (object[currentMap][i] != null) {
+                            if (object[currentMap][i] != null ) {
+                                object[currentMap][i].update();
+                            }
                         }
                     }
-                }
+
+                    for (int i = 0; i < monster[1].length; i++) {
+                        if (monster[currentMap][i] != null) {
+                            if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
+                                monster[currentMap][i].update();
+                            }
+                            if (monster[currentMap][i].alive == false) {
+                                monster[currentMap][i] = null;
+                            }
+                        }
+                    }
                 eManager.update();
-                if (gameState == pauseState) {
-                    // UPDATE LATER
-                }
-            }
-            if (gameState == pauseState){
-                
             }
         }
     public void paintComponent(Graphics graphics){
@@ -209,10 +210,6 @@ public class GamePanel extends JPanel implements Runnable{
             }
             // TITLE SCREEN
             if(gameState == titleState) {
-                ui.draw(graphics2D);
-            }
-            // BATTLE (Can u delete it?)   
-            else if(gameState == battleState) {
                 ui.draw(graphics2D);
             }
         // BATTLE STATE:

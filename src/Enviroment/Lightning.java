@@ -25,7 +25,7 @@ public class Lightning {
     final int night = 2;
     final int dawn = 3;
     int dayState = day;
-    int circleSize = 1000;
+    int circleSize = 600;
 
     public Lightning(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
