@@ -7,8 +7,6 @@ import Entities.Player;
 import Enviroment.EnviromentManager;
 import Map.TileManager;
 import Main.EventHandler;
-import Objects.OBJ_Chest;
-import Objects.SuperObject;
 
 import javax.swing.*;
 import java.awt.*;
