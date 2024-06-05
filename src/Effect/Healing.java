@@ -15,19 +15,18 @@ public class Healing extends Entity{
         super(gp);
         this.gp = gp;
 
-        image1 = setup("/effect/explosion/explosion_1");
-        image2 = setup("/effect/explosion/explosion_2");
-        image3 = setup("/effect/explosion/explosion_3");
-        image4 = setup("/effect/explosion/explosion_4");
-        image5 = setup("/effect/explosion/explosion_5");
-        image6 = setup("/effect/explosion/explosion_6");
-        image7 = setup("/effect/explosion/explosion_7");
-        image8 = setup("/effect/explosion/explosion_8");
-        image9 = setup("/effect/explosion/explosion_9");
-        image10 = setup("/effect/explosion/explosion_10");
-        image11 = setup("/effect/explosion/explosion_11");
-        image12 = setup("/effect/explosion/explosion_12");
-        image13 = setup("/effect/explosion/explosion_13");
+        image1 = setup("/effect/Healing/healing_1");
+        image2 = setup("/effect/Healing/healing_2");
+        image3 = setup("/effect/Healing/healing_3");
+        image4 = setup("/effect/Healing/healing_4");
+        image5 = setup("/effect/Healing/healing_5");
+        image6 = setup("/effect/Healing/healing_6");
+        image7 = setup("/effect/Healing/healing_7");
+        image8 = setup("/effect/Healing/healing_8");
+        image9 = setup("/effect/Healing/healing_9");
+        image10 = setup("/effect/Healing/healing_10");
+        image11 = setup("/effect/Healing/healing_11");
+        image12 = setup("/effect/Healing/healing_12");
     }
     public void update(){
         effectCounter++;
@@ -55,8 +54,6 @@ public class Healing extends Entity{
                     else if(effectNum==11)
                     effectNum = 12;
                     else if(effectNum==12)
-                    effectNum = 13;
-                    else if(effectNum==13)
                     effectNum = 0;
                     effectCounter = 0;
             }
@@ -76,7 +73,6 @@ public class Healing extends Entity{
         if(effectNum == 10) image = image10;
         if(effectNum == 11) image = image11;
         if(effectNum == 12) image = image12;
-        if(effectNum == 13) image = image13;
         g2.drawImage(image,gp.ui.effectPosX,gp.ui.effectPosY,null);
     }
 }
