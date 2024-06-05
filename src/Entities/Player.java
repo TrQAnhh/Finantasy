@@ -19,8 +19,6 @@ public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
         public final int screenY;
-        public ArrayList<Entity> inventory = new ArrayList<>();
-        public final int inventorySize = 20;
         KeyHandler keyHandler;
 
     // CONSTRUCTORS:
@@ -65,7 +63,7 @@ public class Player extends Entity{
             coin = 0;
             currentWeapon = new OBJ_Sword(gamePanel);
             currentArmor = new OBJ_Shield_Wood(gamePanel);
-            maxLife = 10;
+            maxLife = 30;
             attack = strength;
             defense = dexterity;
             life = maxLife;
@@ -361,7 +359,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
     }
     public void selectItem(){
 
-        int itemIndex = gamePanel.ui.getItemIndexOnSlot();
+        int itemIndex = gamePanel.ui.getItemIndexOnSlot(gamePanel.ui.playerSlotCol, gamePanel.ui.playerSlotRow);
 
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);

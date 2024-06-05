@@ -1,20 +1,23 @@
 package Entities;
 
 import Main.GamePanel;
+import Object.OBJ_HealPot;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class NPC_Merchant extends Entity{
-    GamePanel gamePanel;
 
     public NPC_Merchant(GamePanel gamePanel) {
+        
         super(gamePanel);
         direction = "down";
         speed = 0;
+
         getImage();
         setDialogue();
+        setItem();
     }
 
     public void getImage(){
@@ -37,10 +40,17 @@ public class NPC_Merchant extends Entity{
 
     }
     public void setDialogue(){
-        dialogue[0] = "Welcome to Finantasy Kingdom!";
+        dialogue[0] = "He he, so you found me.\nI have some good stuff.\nDo you want to trade?";
     }
     public void speak(GamePanel gamePanel){
         super.speak(gamePanel);
+        gamePanel.gameState = gamePanel.tradeState;
+        gamePanel.ui.npc = this;
+    }
+
+    public void setItem(){
+        inventory.add(new OBJ_HealPot(gamePanel));
+        inventory.add(new OBJ_HealPot(gamePanel));
     }
 
     @Override

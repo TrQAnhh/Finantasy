@@ -21,6 +21,7 @@ public class MON_Slime extends Entity {
         attack = 5;
         defense = 0;
         exp = 2;
+        coin = 10;
         mana = 0;
         maxMana = 3;
         state = normalState;

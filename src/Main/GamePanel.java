@@ -86,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int optionsState = 6;
     public final int transitionState = 7;
     public final int gameOverState = 8;
+    public final int tradeState = 9;
 
 //    // Config
 //        Config config = new Config(this);

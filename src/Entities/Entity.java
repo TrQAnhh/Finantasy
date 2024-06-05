@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 
@@ -71,9 +72,12 @@ public class Entity {
     public int maxMana;
 
     // Item attribute
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int inventorySize = 20;
     public int attackValue;
     public int defenseValue;
     public String description = "";
+    public int price;
 
     // Type 
     public int type;

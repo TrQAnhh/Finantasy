@@ -11,7 +11,8 @@ public class OBJ_Sword extends Entity {
         name = "Sword";
         down1 = setup("Objects/Sword");
         attackValue = 1;
-        description = "[" + name + "]\nAn old sword.";
+        description = "[" + name + "]\nAn old sword.\nATK: " + attackValue + "\nDEF: " + defenseValue;
+        price = 100;
     }
     
 }

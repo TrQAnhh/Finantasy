@@ -54,6 +54,10 @@ public class KeyHandler implements KeyListener {
             else if(gamePanel.gameState == gamePanel.gameOverState){
                 gameOverState(code);
             }
+            // TRADE STATE
+            else if(gamePanel.gameState == gamePanel.tradeState){
+                tradeState(code);
+            }
     }
     public void titleState(int code){
         if(code == KeyEvent.VK_W)
@@ -190,29 +194,11 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_C){
             gamePanel.gameState = gamePanel.playState;
         }
-        if(code == KeyEvent.VK_W){
-            if(gamePanel.ui.slotRow != 0){
-                gamePanel.ui.slotRow--;
-            }
-        }
-        if(code == KeyEvent.VK_A){
-            if(gamePanel.ui.slotCol != 0){
-                gamePanel.ui.slotCol--;
-            }
-        }
-        if(code == KeyEvent.VK_S){
-            if(gamePanel.ui.slotRow != 3){
-                gamePanel.ui.slotRow++;
-            }
-        }
-        if(code == KeyEvent.VK_D){
-            if(gamePanel.ui.slotCol != 4){
-                gamePanel.ui.slotCol++;
-            }
-        }
+        
         if(code == KeyEvent.VK_ENTER){
             gamePanel.player.selectItem();
         }
+        playerInventory(code);
     }
     public void battleState(int code){
         if(gamePanel.ui.orderTurn == 0){
@@ -337,6 +323,83 @@ public class KeyHandler implements KeyListener {
             else if(gamePanel.ui.commandNum == 1){
                 gamePanel.gameState = gamePanel.titleState;
                 gamePanel.restart();
+            }
+        }
+    }
+    public void tradeState(int code){
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = true;
+        }
+        if(gamePanel.ui.subState == 0){
+            if(code == KeyEvent.VK_W){
+                gamePanel.ui.tradeCommandNum--;
+                if (gamePanel.ui.tradeCommandNum < 0) {
+                    gamePanel.ui.tradeCommandNum = 2;
+                }
+                // gamePanel.playSE(9);
+            }
+            if(code == KeyEvent.VK_S){
+                gamePanel.ui.tradeCommandNum++;
+                if (gamePanel.ui.tradeCommandNum > 2) {
+                    gamePanel.ui.tradeCommandNum = 0;
+                }
+                // gamePanel.playSE(9);
+            }
+        }
+        if(gamePanel.ui.subState == 1){
+            npcInventory(code);
+            if(code == KeyEvent.VK_ESCAPE){
+                gamePanel.ui.subState = 0;
+            }
+        }
+        if(gamePanel.ui.subState == 2){
+            playerInventory(code);
+            if(code == KeyEvent.VK_ESCAPE){
+                gamePanel.ui.subState = 0;
+            }
+        }
+    }
+    public void playerInventory(int code){
+        if(code == KeyEvent.VK_W){
+            if(gamePanel.ui.playerSlotRow != 0){
+                gamePanel.ui.playerSlotRow--;
+            }
+        }
+        if(code == KeyEvent.VK_A){
+            if(gamePanel.ui.playerSlotCol != 0){
+                gamePanel.ui.playerSlotCol--;
+            }
+        }
+        if(code == KeyEvent.VK_S){
+            if(gamePanel.ui.playerSlotRow != 3){
+                gamePanel.ui.playerSlotRow++;
+            }
+        }
+        if(code == KeyEvent.VK_D){
+            if(gamePanel.ui.playerSlotCol != 4){
+                gamePanel.ui.playerSlotCol++;
+            }
+        }
+    }
+    public void npcInventory(int code){
+        if(code == KeyEvent.VK_W){
+            if(gamePanel.ui.npcSlotRow != 0){
+                gamePanel.ui.npcSlotRow--;
+            }
+        }
+        if(code == KeyEvent.VK_A){
+            if(gamePanel.ui.npcSlotCol != 0){
+                gamePanel.ui.npcSlotCol--;
+            }
+        }
+        if(code == KeyEvent.VK_S){
+            if(gamePanel.ui.npcSlotRow != 3){
+                gamePanel.ui.npcSlotRow++;
+            }
+        }
+        if(code == KeyEvent.VK_D){
+            if(gamePanel.ui.npcSlotCol != 4){
+                gamePanel.ui.npcSlotCol++;
             }
         }
     }
