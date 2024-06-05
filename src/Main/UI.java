@@ -896,7 +896,8 @@ public class UI {
         if(checkBattleEnd() == true){
             orderTurn = 0;
             checker = false;
-            resetDefeatState(indexBattle);
+            gamePanel.entityList.remove(listofMonster.get(0));
+            listofMonster.get(0).Defeat = true;
             listofMonster.clear();
             //For boss event 
             if(indexBattle == 2 || indexBattle == 4 || indexBattle == 5) {
@@ -907,18 +908,6 @@ public class UI {
             }
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
-        }
-    }
-    // Set defeat variable of monster to stop the draw function of monster in gamepanel class
-    public void resetDefeatState(int i) {
-        if(i == 2) {
-            gamePanel.monster[1][1].Defeat = true;
-        }
-        if(i == 4) {
-            gamePanel.monster[1][0].Defeat = true;
-        }
-        if(i == 5) {
-            gamePanel.monster[1][2].Defeat = true;
         }
     }
     // Count the number of interaction

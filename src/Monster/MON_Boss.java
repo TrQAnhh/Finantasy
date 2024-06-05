@@ -78,8 +78,10 @@ public class MON_Boss extends Entity {
     
             int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
             int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
-    
-            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
+            
+            if(Defeat == false) {
+                g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
+            }
         }
     }
 
