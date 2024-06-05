@@ -8,7 +8,7 @@ public class OBJ_Coin extends Entity {
 
         super(gamePanel);
         name = "Coin";
-        down1 = setup("Objects/key");
+        down1 = setup("Objects/GoldIngot");
         
     }
 }

@@ -12,7 +12,8 @@ public class OBJ_Armor extends Entity {
         type = type_shield;
         down1 = setup("Objects/Armor2");
         defenseValue = 1;
-        description = "[" + name + "]\nAn old axe.";
+        description = "[" + name + "]\nAn advanced shield.";
+        description = description + "\nATK: " + attackValue + "\nDEF: " + defenseValue;
     }
     
 }

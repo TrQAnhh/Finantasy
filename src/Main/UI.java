@@ -206,6 +206,9 @@ public class UI {
         int messageY = gamePanel.tileSize*4;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
 
+        if(gamePanel.gameState == gamePanel.battleState && orderTurn > 0){
+            messageX = gamePanel.tileSize*14;
+        }
         for(int i = 0; i < message.size(); i++){
 
             if(message.get(i) != null){
@@ -219,7 +222,7 @@ public class UI {
                 messageCounter.set(i, counter);
                 messageY += 50;
 
-                if(messageCounter.get(i) > 180){
+                if(messageCounter.get(i) > 85){
                     message.remove(i);
                     messageCounter.remove(i);
                 }
@@ -560,11 +563,12 @@ public class UI {
             }
     }
     public void drawCharacterScreen(){
+    
     // Create a frame
     final int frameX = gamePanel.tileSize;
     final int frameY = gamePanel.tileSize;
     final int frameWidth = gamePanel.tileSize*5;
-    final int frameHeight = gamePanel.tileSize*10;
+    final int frameHeight = gamePanel.tileSize*7;
     drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
     g2.setColor(Color.WHITE);
@@ -590,10 +594,6 @@ public class UI {
     g2.drawString("Exp", textX, textY);
     textY += lineHeight;
     g2.drawString("Coin", textX, textY);
-    textY += lineHeight + 20;
-    g2.drawString("Weapon", textX, textY);
-    textY += lineHeight + 15;
-    g2.drawString("Armor", textX, textY);
     textY += lineHeight;
 
     // Value
@@ -642,6 +642,17 @@ public class UI {
     g2.drawString(value, textX, textY);
     textY += lineHeight;
 
+    // CREATE COIN FRAME
+    final int coinFrameX = gamePanel.tileSize;
+    final int coinFrameY = gamePanel.tileSize * 8;
+    final int coinFrameWidth = gamePanel.tileSize * 5;
+    final int coinFrameHeight = gamePanel.tileSize * 2;
+    drawSubWindow(coinFrameX, coinFrameY, coinFrameWidth, coinFrameHeight);
+    g2.drawImage(coin, coinFrameX+12, coinFrameY+25, 42, 42, null);
+    String text = "" + gamePanel.player.coin;
+    textX = getXforAlignToRightText(text, tailX);
+    textY = coinFrameY+60;
+    g2.drawString(text, textX, textY);
 }
     public BufferedImage setup(String imagePath,int width, int height) {
 
@@ -724,7 +735,7 @@ public class UI {
         for(int i=0; i<listofMonster.size(); i++){
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                 effectPosX = PositionX;
-                effectPosY = PositionY;
+                effectPosY = PositionY + 10;
             }
             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                 if(listofMonster.get(i).life <= 0){
@@ -742,19 +753,17 @@ public class UI {
             PositionY += gamePanel.tileSize;
         }
 
+        // Draw Character
         PositionX = gamePanel.tileSize*12;
         PositionY = 150;
-        // Draw Character
+        if(orderTurn == 0){
+            PositionX = gamePanel.tileSize*10;
+        }
         if(gamePanel.player.state != gamePanel.player.normalState){
             effectPosX = PositionX;
             effectPosY = PositionY;
         }
-        if(orderTurn == 0){
-            g2.drawImage(gamePanel.player.left1, PositionX - gamePanel.tileSize*2, PositionY,null);
-        }
-        else{
-            g2.drawImage(gamePanel.player.left1, PositionX, PositionY,null);
-        }
+        g2.drawImage(gamePanel.player.left1, PositionX, PositionY,null);
 
         // Print Whose Turn Text
         if(orderTurn == 0){

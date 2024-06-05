@@ -15,7 +15,7 @@ public class OBJ_Bomb extends Entity {
         name = "Bomb";
         type = type_consumable_enemy;
         down1 = setup("/Objects/key");
-        description = "[" + name + "]\nDangerous";
+        description = "[" + name + "]\nDeal " + value + "DMG to your enemy.";
         price = 75;
     }
     // Ability

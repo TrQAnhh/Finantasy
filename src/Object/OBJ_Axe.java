@@ -15,6 +15,7 @@ public class OBJ_Axe extends Entity {
         down1 = setup("Objects/axe");
         defenseValue = 1;
         description = "[" + name + "]\nAn old axe.";
+        description = description + "\nATK: " + attackValue + "\nDEF: " + defenseValue;
     }
     @Override
     public void use(Entity entity){
