@@ -313,36 +313,36 @@ public class Player extends Entity{
         gamePanel.ui.listofMonster.get(i).life -= damage;
         gamePanel.ui.addMessage(damage + " damage!");
 }
-public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
-    if(state == stuntState){
-        gamePanel.ui.addMessage("You Was Stunt");
-    }
-    else{
-        
-        if(selectAction == 0){
-            currentWeapon = inventory.get(choosingEquipAction);
-            attack = getAttack();
-            damageMonster(choosingEnemyAction);
+    public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
+        if(state == stuntState){
+            gamePanel.ui.addMessage("You Was Stunt");
         }
-        else if(selectAction == 1){
-            currentArmor = inventory.get(choosingEquipAction);
-            defense = getDefense() + getDefense()*30/100;       // Increase your defense 30%
-            gamePanel.ui.orderTurn++;
-        }
-        else if(selectAction == 2){
-            Entity selectedItem = inventory.get(choosingEquipAction);
-            if(selectedItem.type == selectedItem.type_consumable_player)
-            {
-                selectedItem.use(this);
+        else{
+            
+            if(selectAction == 0){
+                currentWeapon = inventory.get(choosingEquipAction);
+                attack = getAttack();
+                damageMonster(choosingEnemyAction);
             }
-            else{
-                selectedItem.use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+            else if(selectAction == 1){
+                currentArmor = inventory.get(choosingEquipAction);
+                defense = getDefense() + getDefense()*30/100;       // Increase your defense 30%
+                gamePanel.ui.orderTurn++;
             }
-            inventory.remove(choosingEquipAction);
+            else if(selectAction == 2){
+                Entity selectedItem = inventory.get(choosingEquipAction);
+                if(selectedItem.type == selectedItem.type_consumable_player)
+                {
+                    selectedItem.use(this);
+                }
+                else{
+                    selectedItem.use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+                }
+                inventory.remove(choosingEquipAction);
+            }
+            
         }
-        
     }
-}
     public void checkLevelUp(){
 
         if(exp >= nextLevelExp){

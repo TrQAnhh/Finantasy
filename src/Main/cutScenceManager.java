@@ -4,7 +4,6 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import Entities.Entity;
 
 public class cutScenceManager{
     GamePanel gp;

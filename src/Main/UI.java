@@ -23,6 +23,7 @@ public class UI {
     Graphics2D g2;
     Font maruMonica, purisaB;
     public boolean messageOn = false;
+    Font Puritan;
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
     public boolean gameFinished = false;  //#10
@@ -90,12 +91,12 @@ public class UI {
         getUIImage();
         // FONT CHỮ TRONG GAME:
         try {
-            InputStream is = getClass().getResourceAsStream("/Font/alagard.ttf");
+            InputStream is = getClass().getResourceAsStream("/Font/Puritan Bold.ttf");
             if (is != null) {
                 alagard = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(28f);
                 is.close();
             }
-            is = getClass().getResourceAsStream("/Font/romulus.ttf");
+            is = getClass().getResourceAsStream("/Font/Puritan Alternate Regular.ttf");
             if (is != null) {
                 romulus = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(28f);
                 is.close();
@@ -539,8 +540,8 @@ public class UI {
         // DISPLAY TEXT SETTING:
         x += gamePanel.tileSize * 3;
         y += gamePanel.tileSize * 2;
-        g2.setFont(alagard);
-        g2.setColor(Color.BLACK);
+        g2.setFont(romulus);
+        g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
 
         for (String line: currentDialogue.split("\n")) {
@@ -688,7 +689,9 @@ public class UI {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
         nameX = frameX + 20;
         nameY = frameY + 35;
-        g2.setFont(g2.getFont().deriveFont(20F));
+        g2.setFont(romulus);
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20F));
         for(int i=0; i < listofMonster.size(); i++){
             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                 g2.drawString(listofMonster.get(i).name, nameX, nameY);
@@ -888,7 +891,9 @@ public class UI {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
         nameX = frameX + gamePanel.tileSize*3+10;
         nameY = frameY + 31;
-        g2.setFont(g2.getFont().deriveFont(20F));
+        g2.setFont(romulus);
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
         g2.drawString(textTurn, nameX, nameY);
 
         // End of the battle

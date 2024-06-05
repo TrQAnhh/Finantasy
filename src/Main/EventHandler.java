@@ -1,7 +1,6 @@
 package Main;
 
 import Data.Progress;
-import Entities.Entity;
 
 public class EventHandler {
 
