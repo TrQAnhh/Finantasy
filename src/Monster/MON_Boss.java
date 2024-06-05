@@ -3,6 +3,7 @@ package Monster;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import Data.Progress;
 import Entities.Entity;
 import Main.GamePanel;
 
@@ -18,7 +19,7 @@ public class MON_Boss extends Entity {
         type = type_monster;
         name = "Dragon Lord";
         direction = "down";
-        maxLife = 100;
+        maxLife = 1;
         life = maxLife;
         attack = 8;
         defense = 0;
@@ -82,6 +83,11 @@ public class MON_Boss extends Entity {
             if(Defeat == false) {
                 g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
             }
+        }
+        @Override
+        public void checkDrop() {
+            gamePanel.bossBattleOn = false;
+            Progress.DragonBossDefeated = true;
         }
     }
 

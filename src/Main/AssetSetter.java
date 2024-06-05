@@ -5,6 +5,7 @@ import Monster.MON_GateKeeper;
 import Monster.MON_GreenDragon;
 import Monster.MON_Slime;
 import Monster.MON_Spider;
+import Data.Progress;
 import Effect.*;
 import Entities.*;
 
@@ -82,9 +83,11 @@ public class AssetSetter{
         gamePanel.monster[mapNum][2].worldY = 1600;
         gamePanel.monster[mapNum][4] = new MON_GreenDragon(gamePanel);
         //Boss appear when player kill three monster in the cave
-        gamePanel.monster[mapNum][3] = new MON_Boss(gamePanel);
-        gamePanel.monster[mapNum][3].worldX = 1360;
-        gamePanel.monster[mapNum][3].worldY = 650;
+        if(Progress.DragonBossDefeated == false) {
+            gamePanel.monster[mapNum][3] = new MON_Boss(gamePanel);
+            gamePanel.monster[mapNum][3].worldX = 1360;
+            gamePanel.monster[mapNum][3].worldY = 650;
+        }
     }
 
     public void setEffect(){

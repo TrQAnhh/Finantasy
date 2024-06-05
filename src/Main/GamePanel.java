@@ -70,9 +70,10 @@ public class GamePanel extends JPanel implements Runnable{
         public EventHandler eHandler = new EventHandler(this);
     // Config
         Config config = new Config(this);
+    // Cut Scence Manager
+        public cutScenceManager csManager = new cutScenceManager(this);
     // EnviromentManager
-        EnviromentManager eManager = new EnviromentManager(this);       
-
+        public EnviromentManager eManager = new EnviromentManager(this);       
     // GAME STATE VARIABLES :
     public int gameState;
     public int tempGameState; // USED WHEN PLAYER HITS BUTTON "BACK"
@@ -86,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int transitionState = 7;
     public final int gameOverState = 8;
     public final int bossBattleState = 9;
+    public final int cutScenceState = 10;
 
     public boolean bossBattleOn = false;
 
@@ -126,6 +128,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
         public void retry(){
             player.setDefaultPosition();
+            bossBattleOn = false;
             player.restoreLife();
             aSetter.setNPC();
             aSetter.setMonster();
@@ -238,6 +241,10 @@ public class GamePanel extends JPanel implements Runnable{
             // BOSS BATTLE STATE
             else if(gameState == bossBattleState) {
                 ui.draw(graphics2D);
+            }
+            else if(gameState == cutScenceState) {
+                // CUTSCENCE
+                csManager.draw(graphics2D);
             }
             // PLAY STATE:
             else {

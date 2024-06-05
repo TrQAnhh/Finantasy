@@ -81,4 +81,9 @@ public class MON_GateKeeper extends Entity {
                 g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
             }
         }
+    @Override
+        public void checkDrop() {
+            gamePanel.ui.gateCounterKill --;
+            Defeat = true;
+        }
 }

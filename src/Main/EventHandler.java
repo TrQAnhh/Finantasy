@@ -1,5 +1,8 @@
 package Main;
 
+import Data.Progress;
+import Entities.Entity;
+
 public class EventHandler {
 
     GamePanel gamePanel;
@@ -7,7 +10,6 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
-
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
@@ -92,9 +94,12 @@ public class EventHandler {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 6;
             }
-            if(gamePanel.ui.bossMode == true) {
+            if(gamePanel.bossBattleOn == true) {
                 gamePanel.gameState = gamePanel.bossBattleState;
                 gamePanel.ui.indexBattle = 3;
+            }
+            if(Progress.DragonBossDefeated == true) {
+                use();
             }
         }
     }
@@ -142,5 +147,10 @@ public class EventHandler {
             tempRow = row;
             canTouchEvent = false;
             //gamePanel.playSE(13);
+    }
+    public boolean use() {
+        gamePanel.gameState = gamePanel.cutScenceState;
+        gamePanel.csManager.scenceNum = gamePanel.csManager.ending;
+        return true;
     }
 }

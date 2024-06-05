@@ -82,7 +82,6 @@ public class UI {
 
     //Boss event
     public static int gateCounterKill = 0;
-    public boolean bossMode = false;
     int scaleFactor = 3;
 
     public UI(GamePanel gamePanel){
@@ -896,16 +895,9 @@ public class UI {
         if(checkBattleEnd() == true){
             orderTurn = 0;
             checker = false;
+            listofMonster.get(0).checkDrop();
             gamePanel.entityList.remove(listofMonster.get(0));
-            listofMonster.get(0).Defeat = true;
             listofMonster.clear();
-            //For boss event 
-            if(indexBattle == 2 || indexBattle == 4 || indexBattle == 5) {
-                gateCounterKill--;
-            }
-            if(indexBattle == 6) {
-                bossMode = true;
-            }
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
         }
@@ -1284,6 +1276,7 @@ public class UI {
         if(checkBattleEnd() == true){
             orderTurn = 0;
             checker = false;
+            listofMonster.get(0).checkDrop();
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;

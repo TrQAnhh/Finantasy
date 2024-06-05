@@ -326,4 +326,7 @@ public class Entity {
             }
         }
     }
+    public void checkDrop() {
+        
+    }
 }
