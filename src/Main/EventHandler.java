@@ -88,12 +88,11 @@ public class EventHandler {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 5;
             }
-            if(gamePanel.currentMap == 1 && gamePanel.ui.gateCounterKill == 0) {
+            if(hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true)  {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 6;
             }
             if(gamePanel.ui.bossMode == true) {
-                BossScence(gamePanel.dialogueState);
                 gamePanel.gameState = gamePanel.bossBattleState;
                 gamePanel.ui.indexBattle = 3;
             }
@@ -124,11 +123,6 @@ public class EventHandler {
             eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
         }
         return hit;
-    }
-    public void BossScence(int gameState) {
-        gamePanel.gameState = gameState;
-        gamePanel.ui.currentDialogue = "Insert of the elden ring";
-        
     }
     public void healingGamePanelPool(int gameState){
         if (gamePanel.keyHandler.enterPressed == true){

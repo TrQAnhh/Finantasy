@@ -81,8 +81,6 @@ public class AssetSetter{
         gamePanel.monster[mapNum][2].worldX = 2050;
         gamePanel.monster[mapNum][2].worldY = 1600;
         gamePanel.monster[mapNum][4] = new MON_GreenDragon(gamePanel);
-        gamePanel.monster[mapNum][4].worldX = 1310;
-        gamePanel.monster[mapNum][4].worldY = 1280;
         //Boss appear when player kill three monster in the cave
         gamePanel.monster[mapNum][3] = new MON_Boss(gamePanel);
         gamePanel.monster[mapNum][3].worldX = 1360;

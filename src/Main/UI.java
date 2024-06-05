@@ -81,7 +81,7 @@ public class UI {
     Entity effectted;      // Using arraylist when AOE skill
 
     //Boss event
-    public static int gateCounterKill = 4;
+    public static int gateCounterKill = 0;
     public boolean bossMode = false;
     int scaleFactor = 3;
 
@@ -1106,31 +1106,29 @@ public class UI {
         g2.drawString(value, nameX, nameY);
 
         // Draw Monster
-        int PositionX = gamePanel.tileSize*5;
-        int PositionY = 350;
-        for(int i=0; i<listofMonster.size(); i++){
-            if(listofMonster.get(i).state != listofMonster.get(i).normalState){
+        int PositionX = 0;
+        int PositionY = 0;
+            if(listofMonster.get(0).state != listofMonster.get(0).normalState){
                 effectPosX = PositionX;
                 effectPosY = PositionY;
             }
-            BufferedImage monsImage = listofMonster.get(i).right1;
+            BufferedImage monsImage = listofMonster.get(0).right1;
 
-            int scaleWidth = monsImage.getWidth() * scaleFactor;
-            int scaleHeight = monsImage.getHeight() * scaleFactor;
-            if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
-                if(listofMonster.get(i).life <= 0){
-                    gamePanel.player.exp += listofMonster.get(i).exp;
-                    listofMonster.get(i).dying = true;
+            int scaleWidth = monsImage.getWidth() * scaleFactor * 2;
+            int scaleHeight = monsImage.getHeight() * scaleFactor * 2;
+            if(listofMonster.get(0) != null && listofMonster.get(0).dying == false){
+                if(listofMonster.get(0).life <= 0){
+                    gamePanel.player.exp += listofMonster.get(0).exp;
+                    listofMonster.get(0).dying = true;
                 }
-                if(i == (orderTurn - 1)){
-                    g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*5, PositionY,scaleWidth, scaleHeight, null);
+                if(0 == (orderTurn - 1)){
+                    g2.drawImage(listofMonster.get(0).right1, PositionX + gamePanel.tileSize*5, PositionY,scaleWidth, scaleHeight, null);
                 }
                 else{
-                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY,scaleWidth, scaleHeight, null);
+                    g2.drawImage(listofMonster.get(0).right1, PositionX, PositionY,scaleWidth, scaleHeight, null);
                 }
             }
             PositionY += gamePanel.tileSize * scaleFactor;
-        }
 
         PositionX = gamePanel.tileSize*12;
         PositionY = 350;
@@ -1256,10 +1254,9 @@ public class UI {
 
                         int j = 0;      // To select the enemy suit to the interactNum
                         y = frameY + 35;
-                        for(int i = 0; i<listofMonster.size(); i++){
-                            if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
-                                if(j == interactNum) choosingEnemyAction = i;
-                                text = listofMonster.get(i).name;
+                            if(listofMonster.get(0) != null && listofMonster.get(0).dying == false){
+                                if(j == interactNum) choosingEnemyAction = 0;
+                                text = listofMonster.get(0).name;
                                 g2.drawString(text, x, y);
                                 y += 35;
                                 j++;
@@ -1267,12 +1264,11 @@ public class UI {
                         }
                     }
                 }
+                else if(orderTurn > 0){
+                    monsterTurn();
+                }
             }
-            else if(orderTurn > 0){
-                monsterTurn();
-            }
-        }
-
+            
         // Draw whose turn
         frameX = gamePanel.tileSize*4;
         frameY = 15;
