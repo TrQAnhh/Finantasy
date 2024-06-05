@@ -9,9 +9,13 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
+    boolean first, second, third;
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
+            first = false;
+            second = false;
+            third = false;
             eventRect = new eventRect[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
             int map = 0;
             int col = 0;
@@ -77,27 +81,30 @@ public class EventHandler {
                     gamePanel.ui.indexBattle = 1;
                 }
             }
-            if(hit(1, 19, 33, "any") == true || hit(1, 20, 33, "any") == true || hit(1, 21, 33, "any") == true) {
+            if(first == false && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 2;
+                setCheckedGateEvent(0);
             }
-            if(hit(1, 30, 38, "any") == true || hit(1, 31, 38, "any") == true || hit(1, 32, 38, "any") == true) {
+            if(second == false && (hit(1, 30, 40, "any") == true || hit(1, 31, 40, "any") == true || hit(1, 32, 40, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 4;
+                setCheckedGateEvent(1);
             }
-            if(hit(1, 41, 36, "any") == true || hit(1, 42, 37, "any") == true || hit(1, 43, 37, "any") == true) {
+            if(third == false && (hit(1, 41, 36, "any") == true || hit(1, 42, 36, "any") == true || hit(1, 43, 36, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 5;
+                setCheckedGateEvent(2);
             }
-            if(hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true)  {
+            if(gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 6;
             }
-            if(gamePanel.bossBattleOn == true) {
+            if(gamePanel.bossBattleOn) {
                 gamePanel.gameState = gamePanel.bossBattleState;
                 gamePanel.ui.indexBattle = 3;
             }
-            if(Progress.DragonBossDefeated == true) {
+            if(Progress.DragonBossDefeated) {
                 use();
             }
         }
@@ -151,5 +158,18 @@ public class EventHandler {
         gamePanel.gameState = gamePanel.cutScenceState;
         gamePanel.csManager.scenceNum = gamePanel.csManager.ending;
         return true;
+    }
+    public void setCheckedGateEvent(int i) {
+        switch (i) {
+            case 0:
+                first = true;
+                break;
+            case 1:
+                second = true;
+                break;
+            case 2:
+                third = true;
+                break;
+        }
     }
 }
