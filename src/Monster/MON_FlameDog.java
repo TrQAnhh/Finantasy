@@ -1,29 +1,27 @@
 package Monster;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_GreenDragon extends Entity {
+public class MON_FlameDog extends Entity {
 
     GamePanel gamePanel;
 
-    public MON_GreenDragon(GamePanel gamePanel) {
+    public MON_FlameDog(GamePanel gamePanel) {
         super(gamePanel);
+
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Earth Dragon";
+        name = "Flame Dog";
         direction = "down";
         maxLife = 4;
         life = maxLife;
-        attack = 2;
-        defense = 5;
+        attack = 5;
+        defense = 0;
         exp = 2;
         mana = 0;
-        maxMana = 2;
+        maxMana = 3;
         state = normalState;
 
         solidArea.x = 3;
@@ -32,15 +30,15 @@ public class MON_GreenDragon extends Entity {
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        Defeat = false;
+
         getImage();
     }
     public void getImage(){
-        
-        up1 = setup("Monster/BossMonster/Dragon_1");
-        down1 = setup("Monster/BossMonster/Dragon_1");
-        left1 = setup("Monster/BossMonster/Dragon_1");
-        right1 = setup("Monster/BossMonster/Dragon_1");
+
+        up1 = setup("Monster/Dog/stand");
+        down1 = setup("Monster/Dog/stand");
+        left1 = setup("Monster/Dog/attack");
+        right1 = setup("Monster/Dog/down");
     }   
     public void setAction(){
 
@@ -69,19 +67,4 @@ public class MON_GreenDragon extends Entity {
             }
         }
     }
-    
-    @Override
-        public void draw(Graphics2D g2,GamePanel gamePanel) {
-            BufferedImage image = down1;
-    
-            int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
-            int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
-    
-            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
-        }
-    @Override
-        public void checkDrop() {
-            gamePanel.bossBattleOn = true;
-            Defeat = true;
-        }
 }

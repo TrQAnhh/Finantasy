@@ -733,7 +733,7 @@ public class UI {
                     listofMonster.get(i).dying = true;
                 }
                 if(i == (orderTurn - 1)){
-                    g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*5, PositionY,scaleWidth, scaleHeight, null);
+                    g2.drawImage(listofMonster.get(i).left1, PositionX + gamePanel.tileSize*5, PositionY,scaleWidth, scaleHeight, null);
                 }
                 else{
                     g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY,scaleWidth, scaleHeight, null);
@@ -966,7 +966,17 @@ public class UI {
         }
         if(index == 6) {
             listofMonster.add(gamePanel.monster[1][4]);
+            listofMonster.add(gamePanel.monster[1][5]);
         }
+        if(index == 7) {
+            listofMonster.add(gamePanel.monster[1][6]);
+        }
+        if(index == 8) {
+            listofMonster.add(gamePanel.monster[1][7]);
+        }
+        if(index == 9) {
+            listofMonster.add(gamePanel.monster[1][8]);
+        }   
     }
     // Monster Turn
     public void monsterTurn(){

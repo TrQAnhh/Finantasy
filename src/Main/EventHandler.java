@@ -75,11 +75,9 @@ public class EventHandler {
             }
             
             //MONSTER CHECKED PLACED
-            if(hit(0,13,16,"any") == true) {
-                if(gamePanel.keyHandler.enterPressed == true){
-                    gamePanel.gameState = gamePanel.battleState;
-                    gamePanel.ui.indexBattle = 1;
-                }
+            if(hit(1,13,16,"any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 7;
             }
             if(first == false && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;

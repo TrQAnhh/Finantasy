@@ -1,8 +1,12 @@
 package Main;
 import Monster.MON_BloodySlime;
+import Monster.MON_BlueFlameDog;
 import Monster.MON_Boss;
+import Monster.MON_FlameDog;
 import Monster.MON_GateKeeper;
 import Monster.MON_GreenDragon;
+import Monster.MON_RedPheonix;
+import Monster.MON_Robot;
 import Monster.MON_Spider;
 import Data.Progress;
 import Effect.*;
@@ -74,6 +78,10 @@ public class AssetSetter{
         gamePanel.monster[mapNum][2].worldX = 2050;
         gamePanel.monster[mapNum][2].worldY = 1600;
         gamePanel.monster[mapNum][4] = new MON_GreenDragon(gamePanel);
+        gamePanel.monster[mapNum][5] = new MON_RedPheonix(gamePanel);
+        gamePanel.monster[mapNum][6] = new MON_Robot(gamePanel);
+        gamePanel.monster[mapNum][7] = new MON_FlameDog(gamePanel);
+        gamePanel.monster[mapNum][8] = new MON_BlueFlameDog(gamePanel);
         //Boss appear when player kill three monster in the cave
         if(Progress.DragonBossDefeated == false) {
             gamePanel.monster[mapNum][3] = new MON_Boss(gamePanel);

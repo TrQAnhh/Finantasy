@@ -6,16 +6,16 @@ import java.awt.image.BufferedImage;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_GreenDragon extends Entity {
+public class MON_RedPheonix extends Entity {
 
     GamePanel gamePanel;
 
-    public MON_GreenDragon(GamePanel gamePanel) {
+    public MON_RedPheonix(GamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Earth Dragon";
+        name = "Flame Pheonix";
         direction = "down";
         maxLife = 4;
         life = maxLife;
@@ -37,10 +37,10 @@ public class MON_GreenDragon extends Entity {
     }
     public void getImage(){
         
-        up1 = setup("Monster/BossMonster/Dragon_1");
-        down1 = setup("Monster/BossMonster/Dragon_1");
-        left1 = setup("Monster/BossMonster/Dragon_1");
-        right1 = setup("Monster/BossMonster/Dragon_1");
+        up1 = setup("Monster/Pheonix/pheonix");
+        down1 = setup("Monster/Pheonix/pheonix");
+        left1 = setup("Monster/Pheonix/pheonix");
+        right1 = setup("Monster/Pheonix/pheonix");
     }   
     public void setAction(){
 

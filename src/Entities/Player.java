@@ -58,7 +58,7 @@ public class Player extends Entity{
     
             // Player status
             level = 1;
-            strength = 10;
+            strength = 1;
             dexterity = 1;
             exp = 0;
             nextLevelExp = 4;
