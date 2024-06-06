@@ -36,7 +36,7 @@ public class KeyHandler implements KeyListener {
                 pauseState(code);
             }
         // DIALOGUE STATE:
-            else if(gamePanel.gameState == gamePanel.dialogueState || gamePanel.gameState == gamePanel.cutScenceState){
+            else if(gamePanel.gameState == gamePanel.dialogueState){
                 dialogueState(code);
             }
         // CHARACTER STATE:

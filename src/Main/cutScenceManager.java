@@ -3,6 +3,7 @@ package Main;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.IOException;
 
 
 public class cutScenceManager{
@@ -41,20 +42,9 @@ public class cutScenceManager{
 
     }
     public void scenceEnding() {
-        for(int i = 0; i < 8 ; ++i) {
-            if(i == 0) {
-                gp.stopMusic();
-                scencePhase ++;
-            }
-            if(i == 1) {
-                gp.ui.drawDialogueScreen();
-            }
-            if(i == 2) {
-                counterReached(200);
-                System.out.println(i);
-            }
-            if(i == 3) {
-                alpha += 0.005f;
+        try {
+
+            alpha += 0.005f;
                 if(alpha > 1f) {
                     alpha = 1f;
                 }
@@ -63,48 +53,9 @@ public class cutScenceManager{
                 if(alpha == 1f) {
                     alpha = 0;
                 }
-                System.out.println(i);
-            }
-            if(i == 4) {
-                drawBlackBackGround(1f);
-                alpha += 0.005f;
-                if(alpha > 1f) {
-                    alpha = 1f;
-                }
-    
-                String text = "Foul Tarnished,\n"
-                + "In search of the Elden Ring.\n"
-                + "Emboldened by the flame of ambition.\n";
-    
-                drawString(alpha, 38f, 200, text, 70);
-                
-                counterReached(700);
-    
-                System.out.println(i);
-            }
-            if(i == 5) {
-                drawBlackBackGround(1f);
-    
-                drawString(1f, 120f, gp.screenHeight / 2, "Final Fantasy Adventure", 40);
-    
-                counterReached(480);
-                System.out.println(i);
-            }
-            if(i == 6) {
-                drawBlackBackGround(1f);
-    
-                drawString(1f, 38f, y, endCredit, 40);
-    
-                counterReached(480);
-                System.out.println(i);
-            }
-            if(i == 7) {
-                drawBlackBackGround(1f);
-    
-                y--;
-                drawString(1f, 38f, y, endCredit, 40);
-                System.out.println(i);
-            }
+            credit c = new credit();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     public void counterReached(int target) {

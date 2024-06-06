@@ -2,6 +2,8 @@ package Main;
 
 import Entities.Entity;
 import javax.swing.JPanel;
+
+import Data.Progress;
 import Entities.Player;
 import Enviroment.EnviromentManager;
 import Map.TileManager;
@@ -242,11 +244,6 @@ public class GamePanel extends JPanel implements Runnable{
                 else if(gameState == bossBattleState) {
                     ui.draw(graphics2D);
                 }
-                else if(gameState == cutScenceState) {
-                // CUTSCENCE
-                    csManager.scenceNum = csManager.ending;
-                    csManager.draw(graphics2D);
-                }
             // PLAY STATE:
                 else {
                     // DRAW TILES:
@@ -290,6 +287,12 @@ public class GamePanel extends JPanel implements Runnable{
                             entityList.clear();
                         // DRAW PLAYERS:
                             entityList.clear();
+                        // DRAW CUTSCREEN
+                            if(Progress.DragonBossDefeated) {
+                                csManager.scenceNum = csManager.ending;
+                                csManager.draw(graphics2D);
+                                Progress.DragonBossDefeated = false;
+                            }
                         // ENVIRONMENT
                             eManager.draw(graphics2D);
                         // UI

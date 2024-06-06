@@ -1,6 +1,5 @@
 package Main;
 
-import Data.Progress;
 
 public class EventHandler {
 
@@ -101,9 +100,6 @@ public class EventHandler {
                 gamePanel.gameState = gamePanel.bossBattleState;
                 gamePanel.ui.indexBattle = 3;
             }
-            if(Progress.DragonBossDefeated) {
-                use();
-            }
         }
     }
     public boolean hit(int map, int col, int row, String reqDirection){
@@ -150,11 +146,6 @@ public class EventHandler {
             tempRow = row;
             canTouchEvent = false;
             //gamePanel.playSE(13);
-    }
-    public boolean use() {
-        gamePanel.gameState = gamePanel.cutScenceState;
-        gamePanel.csManager.scenceNum = gamePanel.csManager.ending;
-        return true;
     }
     public void setCheckedGateEvent(int i) {
         switch (i) {
