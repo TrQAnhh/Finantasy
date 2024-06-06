@@ -85,6 +85,7 @@ public class Entity {
 
     // Battle state
     public int state;
+    public int preState;
     public final int normalState = 0;
     public final int getDamageState = 1;
     public final int stuntState = 2;

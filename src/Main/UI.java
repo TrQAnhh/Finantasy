@@ -749,7 +749,7 @@ public class UI {
                     gamePanel.player.coin += listofMonster.get(i).coin;
                     listofMonster.get(i).dying = true;
                 }
-                if(i == (orderTurn - 1)){
+                if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stuntState){
                     g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*2, PositionY, null);
                 }
                 else{
@@ -966,14 +966,25 @@ public class UI {
             choosingEnemyAction = 0;
         }
         else{
-            if(listofMonster.get(orderTurn-1).dying == false){
-                listofMonster.get(orderTurn - 1).damage(gamePanel.player);
-            }
-            else{
+            if(listofMonster.get(orderTurn - 1).preState == listofMonster.get(orderTurn - 1).stuntState){
+                listofMonster.get(orderTurn - 1).preState = listofMonster.get(orderTurn - 1).normalState;
                 orderTurn++;
             }
-        }
+            else{
+                
+                if(listofMonster.get(orderTurn-1).dying == false){
+                    if(listofMonster.get(orderTurn - 1).preState == listofMonster.get(orderTurn - 1).bleedState){
+                        listofMonster.get(orderTurn - 1).life--;
+                        listofMonster.get(orderTurn - 1).preState = listofMonster.get(orderTurn - 1).normalState;
+                    }
+                    listofMonster.get(orderTurn - 1).damage(gamePanel.player);
+                }
+                else{
+                orderTurn++;
+                }
+            }
     }
+}
     // Checking the state of all entities in the battle
     public void checkEffect(){
         effect = false;
@@ -981,6 +992,7 @@ public class UI {
             effect = true;
             effectted = gamePanel.player;
             effecttedNo = 0;
+            gamePanel.player.preState = gamePanel.player.state;
         }
         else{
             for(int i=0;i<listofMonster.size();i++){
@@ -988,6 +1000,7 @@ public class UI {
                     effect = true;
                     effectted = listofMonster.get(i);
                     effecttedNo = i;
+                    listofMonster.get(i).preState = listofMonster.get(i).state;
                 }
             }
         }
@@ -1010,9 +1023,6 @@ public class UI {
     }
     // Reset effect after draw
     public void resetEffect(){
-        if(effectted.state == effectted.stuntState){
-            orderTurn++;
-        }
             if(effectted.type == effectted.type_player){
                 gamePanel.player.state = gamePanel.player.normalState;
             }

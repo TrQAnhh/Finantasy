@@ -24,6 +24,7 @@ public class MON_Reaper extends Entity {
         mana = 0;
         maxMana = 3;
         state = normalState;
+        preState = normalState;
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -46,9 +47,6 @@ public class MON_Reaper extends Entity {
     }
     public void damage(Entity entity){
 
-            if(state == bleedState){
-                life--;
-            }
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;

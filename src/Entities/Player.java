@@ -63,6 +63,7 @@ public class Player extends Entity{
             defense = dexterity;
             life = maxLife;
             state = normalState;
+            preState = state;
         }
         public void setDefaultPosition(){
             worldX = gamePanel.tileSize * 15; 
@@ -310,27 +311,38 @@ public class Player extends Entity{
 }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
 
-        if(selectAction == 0){
-            currentWeapon = inventory.get(choosingEquipAction);
-            attack = getAttack();
-            damageMonster(choosingEquipAction, choosingEnemyAction);
-        }
-        else if(selectAction == 1){
-            currentArmor = inventory.get(choosingEquipAction);
-            defense = getDefense() + getDefense()*30/100;       // Increase your defense 30%
+        if(preState == stuntState){
             gamePanel.ui.orderTurn++;
+            preState = normalState;
         }
-        else if(selectAction == 2){
-            Entity selectedItem = inventory.get(choosingEquipAction);
-            if(selectedItem.type == selectedItem.type_consumable_player)
-            {
-                selectedItem.use(this);
+        else{
+            if(preState == bleedState){
+                life--;
+                preState = normalState;
             }
-            else{
-                selectedItem.use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+            if(selectAction == 0){
+                currentWeapon = inventory.get(choosingEquipAction);
+                attack = getAttack();
+                damageMonster(choosingEquipAction, choosingEnemyAction);
             }
-            inventory.remove(choosingEquipAction);
+            else if(selectAction == 1){
+                currentArmor = inventory.get(choosingEquipAction);
+                defense = getDefense() + getDefense()*30/100;       // Increase your defense 30%
+                gamePanel.ui.orderTurn++;
+            }
+            else if(selectAction == 2){
+                Entity selectedItem = inventory.get(choosingEquipAction);
+                if(selectedItem.type == selectedItem.type_consumable_player)
+                {
+                    selectedItem.use(this);
+                }
+                else{
+                    selectedItem.use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+                }
+                inventory.remove(choosingEquipAction);
+            }
         }
+        
         
 }
     public void checkLevelUp(){
