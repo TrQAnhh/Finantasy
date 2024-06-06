@@ -1157,7 +1157,7 @@ public class UI {
         switch (subState) {
             case 0: trade_select(); break;
             case 1: trade_buy(); break;
-            case 2: trade_sell(); break;
+//            case 2: trade_sell(); break;
         }
         gamePanel.keyHandler.enterPressed = false;
     }
@@ -1184,17 +1184,19 @@ public class UI {
         }
         y += gamePanel.tileSize;
 
-        g2.drawString("Sell", x, y);
+/*        g2.drawString("Sell", x, y);
         if(tradeCommandNum == 1){
             g2.drawString(">", x-24, y);
             if(gamePanel.keyHandler.enterPressed == true){
                 subState = 2;
             }
         }
-        y += gamePanel.tileSize;
+        y += gamePanel.tileSize;             */
 
         g2.drawString("Leave", x, y);
-        if(tradeCommandNum == 2){
+        if(tradeCommandNum == 1
+        
+        ){
             g2.drawString(">", x-24, y);
             if(gamePanel.keyHandler.enterPressed == true){
                 tradeCommandNum = 0;
@@ -1264,7 +1266,7 @@ public class UI {
         }
 
     }
-    public void trade_sell(){
+/*     public void trade_sell(){
 
         // DRAW PLAYER INVENTORY
         drawInventory(gamePanel.player, true);
@@ -1328,6 +1330,7 @@ public class UI {
         }
 
     }
+    */
     public int getItemIndexOnSlot(int slotCol, int slotRow){
         int itemIndex = slotCol + (slotRow*5);
         return itemIndex;

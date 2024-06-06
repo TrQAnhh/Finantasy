@@ -334,13 +334,13 @@ public class KeyHandler implements KeyListener {
             if(code == KeyEvent.VK_W){
                 gamePanel.ui.tradeCommandNum--;
                 if (gamePanel.ui.tradeCommandNum < 0) {
-                    gamePanel.ui.tradeCommandNum = 2;
+                    gamePanel.ui.tradeCommandNum = 1;
                 }
                 // gamePanel.playSE(9);
             }
             if(code == KeyEvent.VK_S){
                 gamePanel.ui.tradeCommandNum++;
-                if (gamePanel.ui.tradeCommandNum > 2) {
+                if (gamePanel.ui.tradeCommandNum > 1) {
                     gamePanel.ui.tradeCommandNum = 0;
                 }
                 // gamePanel.playSE(9);
@@ -352,12 +352,12 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.subState = 0;
             }
         }
-        if(gamePanel.ui.subState == 2){
+    /*     if(gamePanel.ui.subState == 2){
             playerInventory(code);
             if(code == KeyEvent.VK_ESCAPE){
                 gamePanel.ui.subState = 0;
             }
-        }
+        } */
     }
     public void playerInventory(int code){
         if(code == KeyEvent.VK_W){

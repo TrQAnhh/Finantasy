@@ -15,20 +15,25 @@ public class Bleed extends Entity{
         super(gp);
         this.gp = gp;
 
-        image1 = setup("/effect/Bleed/bleed_1");
-        image2 = setup("/effect/Bleed/bleed_2");
-        image3 = setup("/effect/Bleed/bleed_3");
-        image4 = setup("/effect/Bleed/bleed_4");
-        image5 = setup("/effect/Bleed/bleed_5");
-        image6 = setup("/effect/Bleed/bleed_6");
-        image7 = setup("/effect/Bleed/bleed_7");
-        image8 = setup("/effect/Bleed/bleed_8");
-        image9 = setup("/effect/Bleed/bleed_9");
-        image10 = setup("/effect/Bleed/bleed_10");
+        image1 = setupEffectImages("/effect/Bleed/bleed_1", 128, 96);
+        image2 = setupEffectImages("/effect/Bleed/bleed_2", 128, 96);
+        image3 = setupEffectImages("/effect/Bleed/bleed_3", 128, 96);
+        image4 = setupEffectImages("/effect/Bleed/bleed_4", 128, 96);
+        image5 = setupEffectImages("/effect/Bleed/bleed_5", 128, 96);
+        image6 = setupEffectImages("/effect/Bleed/bleed_6", 128, 96);
+        image7 = setupEffectImages("/effect/Bleed/bleed_7", 128, 96);
+        image8 = setupEffectImages("/effect/Bleed/bleed_8", 128, 96);
+        image9 = setupEffectImages("/effect/Bleed/bleed_9", 128, 96);
+        image10 = setupEffectImages("/effect/Bleed/bleed_10", 128, 96);
+        image11 = setupEffectImages("/effect/Bleed/bleed_11", 128, 96);
+        image12 = setupEffectImages("/effect/Bleed/bleed_12", 128, 96);
+        image13 = setupEffectImages("/effect/Bleed/bleed_13", 128, 96);
+        image14 = setupEffectImages("/effect/Bleed/bleed_14", 128, 96);
+        image15 = setupEffectImages("/effect/Bleed/bleed_15", 128, 96);
     }
     public void update(){
         effectCounter++;
-                if(effectCounter > 5){
+                if(effectCounter > 4){
                     if(effectNum==1)
                     effectNum = 2;
                     else if(effectNum==2)
@@ -48,6 +53,16 @@ public class Bleed extends Entity{
                     else if(effectNum==9)
                     effectNum = 10;
                     else if(effectNum==10)
+                    effectNum = 11;
+                    else if(effectNum==11)
+                    effectNum = 12;
+                    else if(effectNum==12)
+                    effectNum = 13;
+                    else if(effectNum==13)
+                    effectNum = 14;
+                    else if(effectNum==14)
+                    effectNum = 15;
+                    else if(effectNum==15)
                     effectNum = 0;
                     effectCounter = 0;
             }
@@ -65,6 +80,11 @@ public class Bleed extends Entity{
         if(effectNum == 8) image = image8;
         if(effectNum == 9) image = image9;
         if(effectNum == 10) image = image10;
-        g2.drawImage(image,gp.ui.effectPosX,gp.ui.effectPosY,null);
+        if(effectNum == 11) image = image11;
+        if(effectNum == 12) image = image12;
+        if(effectNum == 13) image = image13;
+        if(effectNum == 14) image = image14;
+        if(effectNum == 15) image = image15;
+        g2.drawImage(image,gp.ui.effectPosX - 24,gp.ui.effectPosY - 5,null);
     }
 }

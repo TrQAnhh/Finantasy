@@ -29,7 +29,7 @@ public class Slash extends Entity{
     }
     public void update(){
         effectCounter++;
-                if(effectCounter > 4){
+                if(effectCounter > 5){
                     if(effectNum==1)
                     effectNum = 2;
                     else if(effectNum==2)

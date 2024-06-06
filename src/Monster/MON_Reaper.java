@@ -13,7 +13,7 @@ public class MON_Reaper extends Entity {
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Dark Reaper";
+        name = "Reaper";
         direction = "right";
         maxLife = 4;
         life = maxLife;
