@@ -19,13 +19,11 @@ public class Sound {
     public Sound(){
         soundURL[0] = getClass().getResource("/Sound/VillageTheme.wav");
         soundURL[1] = getClass().getResource("/Sound/MenuTheme.wav");
+        soundURL[2] = getClass().getResource("/Sound/BarrelsBreakSE.wav");
     }
 
     public void setFile(int i){
         try {
-            if (soundURL[i] == null) {
-                throw new IOException("Resource URL is null");
-            }
 
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();

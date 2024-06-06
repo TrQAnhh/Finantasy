@@ -128,8 +128,10 @@ public class KeyHandler implements KeyListener {
                 }
                 if(code == KeyEvent.VK_ENTER){
                     enterPressed = true;
+                } else if (code != KeyEvent.VK_ENTER){
+                    enterPressed = false;
                 }
-                // CHANGE STATES:
+            // CHANGE STATE:
                 // PRESS ESCAPE TOP PAUSE GAME AND SETTINGS:
                 if(code == KeyEvent.VK_ESCAPE)
                 {
@@ -150,18 +152,18 @@ public class KeyHandler implements KeyListener {
                         showDebugText = false;
                     }
                 }
-            if(code == KeyEvent.VK_R) {
-                System.out.println(+gamePanel.currentMap);
-                switch (gamePanel.currentMap) {
-                    case 0:
-                        gamePanel.tileManager.loadMap("res/MapData/mapdata.txt", 0);
-                        break;
-                    case 1:
-                        gamePanel.tileManager.loadMap("res/MapData/mapdataDung.txt", 1);
-                        break;
+                if(code == KeyEvent.VK_R) {
+                    System.out.println(+gamePanel.currentMap);
+                    switch (gamePanel.currentMap) {
+                        case 0:
+                            gamePanel.tileManager.loadMap("res/MapData/mapdata.txt", 0);
+                            break;
+                        case 1:
+                            gamePanel.tileManager.loadMap("res/MapData/mapdataDung.txt", 1);
+                            break;
+                    }
                 }
-            }
-            }
+    }
 
         // PAUSE STATE
             public void pauseState(int code){
@@ -235,6 +237,9 @@ public class KeyHandler implements KeyListener {
                         gamePanel.ui.slotCol++;
                     }
                 }
+                if (code == KeyEvent.VK_ENTER){
+                    gamePanel.player.selectItem();
+                }
             }
         // BATTLE STATE
             public void battleState(int code){
@@ -291,14 +296,6 @@ public class KeyHandler implements KeyListener {
                 }
                 // PRESS ENTER:
                     if (code == KeyEvent.VK_ENTER){
-                        // PRESS ENTER WITH SFX BUTTON & VOLUME BAR:
-                            if(gamePanel.ui.settingCommandNum == 1){
-
-                            }
-                        // PRESS ENTER WITH CONTROL BUTTON:
-                            if(gamePanel.ui.settingCommandNum == 2){
-
-                            }
                         // PRESS ENTER WITH EXIT BUTTON:
                             if(gamePanel.ui.settingCommandNum == 3){
                                 System.exit(0);

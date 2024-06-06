@@ -19,7 +19,6 @@ public class Player extends Entity{
         public ArrayList<Entity> inventory = new ArrayList<>();
         public final int maxInventorySize = 20;
         KeyHandler keyHandler;
-
     // CONSTRUCTORS:
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
 
@@ -48,6 +47,7 @@ public class Player extends Entity{
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
+
                  speed = 13;
             // PLAYER STATUS:
                 level = 1;
@@ -56,8 +56,8 @@ public class Player extends Entity{
                 exp = 0;
                 nextLevelExp = 4;
                 coin = 0;
-                currentWeapon = new OBJ_Sword(gamePanel);
-                currentArmor = new OBJ_Silver_Shield(gamePanel);
+                currentWeapon = new OBJ_Axe(gamePanel);
+                currentItem = new OBJ_Key(gamePanel);
                 maxLife = 999;
                 attack = strength;
                 defense = dexterity;
@@ -66,18 +66,9 @@ public class Player extends Entity{
         }
         public void setItem(){
             inventory.add(currentWeapon);
-            inventory.add(currentArmor);
-            inventory.add(new OBJ_Key(gamePanel));
-//            inventory.add(new OBJ_HealPot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
-            inventory.add(new OBJ_GoldIngot(gamePanel));
+            inventory.add(currentItem);
+            inventory.add(new OBJ_Sword(gamePanel));
+            inventory.add(new OBJ_WoodenShield(gamePanel));
         }
         public int getAttack(){
             return attack = strength + currentWeapon.attackValue;
@@ -264,15 +255,20 @@ public class Player extends Entity{
     // INTERACTION WITH OBJECTS METHOD:
     public void pickUpObject(int i){
         if(i != 999){
-            String text;
-            if (inventory.size() != maxInventorySize){
-               inventory.add(gamePanel.object[0][i]);
+            if(gamePanel.keyHandler.enterPressed == true){
+                if(inventory.size() < maxInventorySize){
+                    if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
+                        gamePanel.object[gamePanel.currentMap][i].use(this);
+                        inventory.remove(gamePanel.ui.getItemIndexOnSlot());
+                        gamePanel.object[gamePanel.currentMap][i] = null;
+                    } else if ( currentWeapon instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
+                        gamePanel.playSE(2);
+                        gamePanel.object[gamePanel.currentMap][i].use(this);
+                        gamePanel.object[gamePanel.currentMap][i] = null;
+                    }
+                }
             }
-            else{
-                gamePanel.ui.addMessage("Your inventory is full!");
         }
-            gamePanel.object[gamePanel.currentMap][i] = null;
-    }
     }
     // INTERACTION WITH NPC:
     public void interactNPC(int i){
@@ -325,6 +321,18 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
         
     }
 }
+   public void selectItem(){
+            int itemIndex = gamePanel.ui.getItemIndexOnSlot();
+            if ( itemIndex < inventory.size() ){
+                Entity selectedItem = inventory.get(itemIndex);
+                if( selectedItem.type == type_axe ){
+                    currentWeapon = selectedItem;
+                }
+                if ( selectedItem.type == type_key ){
+                    currentItem = selectedItem;
+                }
+            }
+   }
     public void checkLevelUp(){
 
         if(exp >= nextLevelExp){

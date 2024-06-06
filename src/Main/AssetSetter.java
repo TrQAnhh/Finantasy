@@ -14,11 +14,14 @@ public class AssetSetter{
     }
     public void setObject(){
         int i = 0;
-        gamePanel.object[mapNum][i] = new OBJ_GoldIngot(gamePanel);
-        gamePanel.object[mapNum][i].worldX = gamePanel.tileSize * 25; // 32 columns * 48
-        gamePanel.object[mapNum][i].worldY = gamePanel.tileSize * 49; // 19 rows * 48
+        gamePanel.object[mapNum][i] = new OBJ_Chest(gamePanel);
+        gamePanel.object[mapNum][i].worldX = gamePanel.tileSize * 25; // 25 columns * 48
+        gamePanel.object[mapNum][i].worldY = gamePanel.tileSize * 49; // 49 rows * 48
         i++;
-
+        gamePanel.object[mapNum][i] = new OBJ_Barrels(gamePanel);
+        gamePanel.object[mapNum][i].worldX = gamePanel.tileSize * 22; // 22 columns * 48
+        gamePanel.object[mapNum][i].worldY = gamePanel.tileSize * 49; // 49 rows * 48
+        i++;
     }
 
     public void setNPC(){

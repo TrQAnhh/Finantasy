@@ -4,7 +4,6 @@ import Main.GamePanel;
 import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -13,13 +12,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import Main.GamePanel;
-import Main.UtilityTool;
 
 public class Entity {
     GamePanel gamePanel;
@@ -30,6 +22,8 @@ public class Entity {
                              right1, right2, right3;
     // IMAGES OF ITEMS
         public BufferedImage itemsImage;
+    // IMAGES OF OBJECTS
+        public BufferedImage objectImage1,objectImage2,objectImage3,objectImage4;
     // IMAGES OF ANIMATION FOR PLAYER'S EFFECTS
         public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
 
@@ -73,6 +67,7 @@ public class Entity {
         public int coin;
         public Entity currentWeapon;
         public Entity currentArmor;
+        public Entity currentItem;
         public int mana;
         public int maxMana;
 
@@ -83,15 +78,20 @@ public class Entity {
 
     // TYPE
         public int type;
-        public final int type_player = 0;
-        public final int type_npc = 1;
-        public final int type_monster = 2;
-        public final int type_sword = 3;
-        public final int type_axe = 4;
-        public final int type_shield = 5;
-        public final int type_consumable = 6;
-        public final int type_consumable_player = 7;
-        public final int type_consumable_enemy = 8;
+            public final int type_player = 0;
+            public final int type_npc = 1;
+            public final int type_monster = 2;
+        // TOOLS:
+            public final int type_sword = 3;
+            public final int type_axe = 4;
+            public final int type_shield = 5;
+            public final int type_consumable = 6;
+            public final int type_consumable_player = 7;
+            public final int type_consumable_enemy = 8;
+        // OBJECTS & ITEMS TYPE:
+            public final int type_key = 9;
+            public final int type_barrel = 10;
+            public final int type_chest = 11;
 
     // BATTLE STATE
         public int state;
@@ -139,6 +139,23 @@ public class Entity {
         }
         return image;
     }
+    public BufferedImage setupObjectImages(String imagePath,int width, int height) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,width, height);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
     public void update(GamePanel gamePanel) {
 
         setAction();
