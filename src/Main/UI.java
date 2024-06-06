@@ -49,11 +49,11 @@ public class UI {
                       bar2_1,bar2_2,bar2_3,bar2_4,bar2_5,bar2_6,bar2_7,bar2_8,bar2_9,bar2_10,bar2_11,bar2_12;
 
     // INVENTORY SCREEN:
-        BufferedImage inventoryBackground, cursor;
+        BufferedImage inventoryBackground, cursor,equippedCursor;
         BufferedImage heart_full, heart_half, heart_blank;
         public int slotCol = 0;
         public int slotRow = 0;
-    int counter = 0;
+        int counter = 0;
 
     // ANIMATION FOR BUTTON:
             // TITLE SCREEN BUTTONS:
@@ -65,21 +65,21 @@ public class UI {
             // ANIMATION FOR DIALOGUES:
                 public String currentDialogue = " ";
 
-    public ArrayList<Entity> listofMonster = new ArrayList<>();
-    public boolean effect = false;
-    boolean checker = false;
-    public int indexBattle = 0;
-    public int orderTurn = 0; // 0 for player
-    public int interactNum = 0;  // 0 for stuff 1, stuff 2, stuff 3
-    public int interactType = 0; // 0 for selection, 1 for choosing equipment, 2 for choosing enemy
-    public int selectAction = 0;
-    public int choosingEquipAction = 0;
-    public int choosingEnemyAction = 0;
-    public int numberOfInteractNum = interactNum;
-    public int effectPosX;     // Using arraylist when AOE skill
-    public int effectPosY;     // Using arraylist when AOE skill
-    int effecttedNo;    // Using arraylist when AOE skill
-    Entity effectted;      // Using arraylist when AOE skill
+            public ArrayList<Entity> listofMonster = new ArrayList<>();
+            public boolean effect = false;
+            boolean checker = false;
+            public int indexBattle = 0;
+            public int orderTurn = 0; // 0 for player
+            public int interactNum = 0;  // 0 for stuff 1, stuff 2, stuff 3
+            public int interactType = 0; // 0 for selection, 1 for choosing equipment, 2 for choosing enemy
+            public int selectAction = 0;
+            public int choosingEquipAction = 0;
+            public int choosingEnemyAction = 0;
+            public int numberOfInteractNum = interactNum;
+            public int effectPosX;     // Using arraylist when AOE skill
+            public int effectPosY;     // Using arraylist when AOE skill
+            int effecttedNo;    // Using arraylist when AOE skill
+            Entity effectted;      // Using arraylist when AOE skill
 
     public UI(GamePanel gamePanel){
             this.gamePanel = gamePanel;
@@ -138,8 +138,8 @@ public class UI {
         }
         // CHARACTER STATE:
         else if(gamePanel.gameState == gamePanel.characterState){
-            drawCharacterScreen();
             drawInventory();
+            drawCharacterScreen();
         }
         // BATTLE STATE:
         else if(gamePanel.gameState == gamePanel.battleState){
@@ -290,6 +290,7 @@ public class UI {
         // INVENTORY SCREEN:
             inventoryBackground = setup("InventoryBackground", gamePanel.screenWidth, gamePanel.screenHeight );
             cursor = setup("Cursor" ,gamePanel.tileSize + 6 , gamePanel.tileSize + 6 );
+            equippedCursor = setup("EquippedCursor" ,gamePanel.tileSize + 6 , gamePanel.tileSize + 6 );
 
         // DIALOGUE:
             dialouge = setup("dialogue_1",gamePanel.screenWidth - (gamePanel.tileSize * 2),gamePanel.tileSize * 7);
@@ -545,88 +546,38 @@ public class UI {
             }
     }
     public void drawCharacterScreen(){
-        // Create a frame
-            final int frameX = gamePanel.tileSize;
-            final int frameY = gamePanel.tileSize;
-            final int frameWidth = gamePanel.tileSize*5;
-            final int frameHeight = gamePanel.tileSize*10;
+            int textX = gamePanel.tileSize * 7;
+            int textY = gamePanel.tileSize * 10 - 18;
+            String value;
+            String value2;
 
-            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
-
+            g2.setFont(alagard);
+            g2.setFont(g2.getFont().deriveFont(28F));
             g2.setColor(Color.WHITE);
-            g2.setFont(g2.getFont().deriveFont(32F));
 
-            int textX = frameX + 20;
-            int textY = frameY + gamePanel.tileSize;
-            final int lineHeight = 35;
+            value = String.valueOf(gamePanel.player.level);
+            g2.drawString(value, textX, textY);
 
-            // Names
-                g2.drawString("Level", textX, textY);
-                textY += lineHeight;
-                g2.drawString("Life", textX, textY);
-                textY += lineHeight;
-                g2.drawString("Strength", textX, textY);
-                textY += lineHeight;
-                g2.drawString("Dexterity", textX, textY);
-                textY += lineHeight;
-                g2.drawString("Attack", textX, textY);
-                textY += lineHeight;
-                g2.drawString("Defense", textX, textY);
-                textY += lineHeight;
-                g2.drawString("Exp", textX, textY);
-                textY += lineHeight;
-                g2.drawString("Coin", textX, textY);
-                textY += lineHeight + 20;
-                g2.drawString("Weapon", textX, textY);
-                textY += lineHeight + 15;
-                g2.drawString("Armor", textX, textY);
-                textY += lineHeight;
+            textX += 50;
+            textY += 63;
+            value = String.valueOf(gamePanel.player.strength);
+            g2.drawString(value, textX, textY);
 
-            // Value
-                int tailX = (frameX + frameWidth) - 30;
-            // Reset text Y
-                textY = frameY + gamePanel.tileSize;
-                String value;
-    
-                value = String.valueOf(gamePanel.player.level);
-                textX = getXforAlignToRightText(value, tailX);
-                g2.drawString(value, textX, textY);
-                textY += lineHeight;
+            textX += 8;
+            textY += 63;
+            value = String.valueOf(gamePanel.player.dexterity);
+            g2.drawString(value, textX, textY);
 
-                value = String.valueOf(gamePanel.player.life + "/" + gamePanel.player.maxLife);
-                textX = getXforAlignToRightText(value, tailX);
-                g2.drawString(value, textX, textY);
-                textY += lineHeight;
+            textX += gamePanel.tileSize * 4 + 10;
+            textY -= 100;
+            value = String.valueOf(gamePanel.player.exp);
+            value2 = String.valueOf(gamePanel.player.nextLevelExp);
+            g2.drawString(value + "/" +value2, textX, textY);
 
-                value = String.valueOf(gamePanel.player.strength);
-                textX = getXforAlignToRightText(value, tailX);
-                g2.drawString(value, textX, textY);
-                textY += lineHeight;
-
-                value = String.valueOf(gamePanel.player.dexterity);
-                textX = getXforAlignToRightText(value, tailX);
-                g2.drawString(value, textX, textY);
-                textY += lineHeight;
-
-                value = String.valueOf(gamePanel.player.attack);
-                textX = getXforAlignToRightText(value, tailX);
-                g2.drawString(value, textX, textY);
-                textY += lineHeight;
-
-                value = String.valueOf(gamePanel.player.defense);
-                textX = getXforAlignToRightText(value, tailX);
-                g2.drawString(value, textX, textY);
-                textY += lineHeight;
-
-                value = String.valueOf(gamePanel.player.exp);
-                textX = getXforAlignToRightText(value, tailX);
-                g2.drawString(value, textX, textY);
-                textY += lineHeight;
-
-                value = String.valueOf(gamePanel.player.coin);
-                textX = getXforAlignToRightText(value, tailX);
-                g2.drawString(value, textX, textY);
-                textY += lineHeight;
+            textX += 5;
+            textY += 64;
+            value = String.valueOf(gamePanel.player.coin);
+            g2.drawString(value, textX, textY);
 
 }
     public BufferedImage setup(String imagePath,int width, int height) {
@@ -1004,9 +955,15 @@ public class UI {
             int slotX = slotXstart;
             int slotY = slotYstart;
 
-        // Draw PLAYER ITEMS
+        // DRAW PLAYER ITEMS
             int slotSize = 54;
             for( int i = 0 ; i < gamePanel.player.inventory.size() ; i++ ){
+            // DRAW EQUIPPED CURSOR:
+                if(gamePanel.player.inventory.get(i) == gamePanel.player.currentWeapon ||
+                        gamePanel.player.inventory.get(i) == gamePanel.player.currentItem){
+                    g2.drawImage(equippedCursor,slotX,slotY,null);
+                }
+
                 g2.drawImage(gamePanel.player.inventory.get(i).itemsImage, slotX, slotY, null);
                 slotX += slotSize + 4;
             // RESET slotX slotY
@@ -1032,8 +989,8 @@ public class UI {
             int dFrameHeight = gamePanel.tileSize*3;
 
             // DRAW DESCRIPTION TEXT
-                int textX = dFrameX + 8;
-                int textY = dFrameY + gamePanel.tileSize;
+                int textX = dFrameX + 5;
+                int textY = dFrameY + gamePanel.tileSize - 10;
                     g2.setFont(alagard);
                     g2.setFont(g2.getFont().deriveFont(15F));
                     g2.setColor(Color.WHITE);
@@ -1060,16 +1017,6 @@ public class UI {
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
-    }
-    public int getXforCenteredText(String text){
-        int length =(int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gamePanel.screenWidth/2 - length/2;
-        return x;
-    }
-    public int getXforAlignToRightText(String text, int tailX){
-        int length =(int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = tailX - length;
-        return x;
     }
     public void drawTransition() {
         counter++;
