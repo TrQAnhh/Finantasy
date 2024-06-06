@@ -53,6 +53,7 @@ public class MON_Reaper extends Entity {
             }
             else{
                 entity.state = entity.getDamageState;
+                mana++;
             }
             entity.life -= damage;
             entity.state = entity.bleedState;

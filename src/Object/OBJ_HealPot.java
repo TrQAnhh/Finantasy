@@ -17,6 +17,7 @@ public class OBJ_HealPot extends Entity {
         down1 = setup("Objects/Healing");
         description = "[" + name + "]\nHeal " + value + "HP to your life.";
         price = 10;
+        stackable = true;
     }
     public void use(Entity entity){
         entity.life += value;

@@ -65,11 +65,13 @@ public class Entity {
 
     // Item attribute
     public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int inventorySize = 20;
+    public final int maxInventorySize = 20;
     public int attackValue;
     public int defenseValue;
     public String description = "";
     public int price;
+    public boolean stackable = false;
+    public int amount = 1;
 
     // Type 
     public int type;

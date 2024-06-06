@@ -17,6 +17,7 @@ public class OBJ_Bomb extends Entity {
         down1 = setup("/Objects/key");
         description = "[" + name + "]\nDeal " + value + "DMG to your enemy.";
         price = 75;
+        stackable = true;
     }
     // Ability
     public void use(Entity entity){

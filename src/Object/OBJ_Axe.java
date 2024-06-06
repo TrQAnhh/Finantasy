@@ -24,7 +24,9 @@ public class OBJ_Axe extends Entity {
         
         Random rand = new Random();
         int i = rand.nextInt(100)+1;
-        entity.state = entity.stuntState;
+        if(i <= 50){
+            entity.state = entity.stuntState;
+        }
         gamePanel.ui.addMessage("Stunt");
     }
 }

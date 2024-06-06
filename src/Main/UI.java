@@ -1092,6 +1092,25 @@ public class UI {
                     g2.fillRoundRect(slotX + 5/2, slotY - 3, gamePanel.tileSize + 13, gamePanel.tileSize + 13, 10, 10);
                 }
             g2.drawImage(entity.inventory.get(i).down1, slotX + 9, slotY - 3, null);
+
+            // DISPLAY AMOUNT
+            if(entity == gamePanel.player && entity.inventory.get(i).amount > 1){
+
+                g2.setFont(g2.getFont().deriveFont(32F));
+                int amountX;
+                int amountY;
+
+                String s = "" + entity.inventory.get(i).amount;
+                amountX = getXforAlignToRightText(s, slotX + 62);
+                amountY = slotY + gamePanel.tileSize + 10;
+
+                // SHADOW
+                g2.setColor(new Color(60,60,60));
+                g2.drawString(s, amountX, amountY);
+                // NUMBER
+                g2.setColor(Color.WHITE);
+                g2.drawString(s, amountX-3, amountY-3);
+            }
             slotX += slotSize;
             if(i == 4 || i == 9 || i == 14){
                 slotX = slotXstart;
@@ -1231,14 +1250,15 @@ public class UI {
                     currentDialogue = "You need more coin to buy that!";
                     drawDialogueScreen();
                 }
-                else if(gamePanel.player.inventory.size() == gamePanel.player.inventorySize){
-                    subState = 0;
-                    gamePanel.gameState = gamePanel.dialogueState;
-                    currentDialogue = "You cannot carry anymore!";
-                }
                 else{
-                    gamePanel.player.coin -= npc.inventory.get(itemIndex).price;
-                    gamePanel.player.inventory.add(npc.inventory.get(itemIndex));
+                    if(gamePanel.player.canObtainItem(npc.inventory.get(itemIndex)) == true){
+                        gamePanel.player.coin -= npc.inventory.get(itemIndex).price;
+                    }
+                    else{
+                        subState = 0;
+                        gamePanel.gameState = gamePanel.dialogueState;
+                        currentDialogue = "You cannot carry anymore!";
+                    }
                 }
             }
         }
@@ -1296,7 +1316,12 @@ public class UI {
                         currentDialogue = "You cannot sell an equipped item!";  
                     }
                 else{
-                    gamePanel.player.inventory.remove(itemIndex);
+                    if(gamePanel.player.inventory.get(itemIndex).amount > 1){
+                        gamePanel.player.inventory.get(itemIndex).amount--;
+                    }
+                    else{
+                        gamePanel.player.inventory.remove(itemIndex);
+                    }
                     gamePanel.player.coin += price;
                 }
             }
