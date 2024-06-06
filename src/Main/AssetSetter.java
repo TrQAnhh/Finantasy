@@ -3,7 +3,6 @@ import Monster.MON_BloodySlime;
 import Monster.MON_Boss;
 import Monster.MON_GateKeeper;
 import Monster.MON_GreenDragon;
-import Monster.MON_Slime;
 import Monster.MON_Spider;
 import Data.Progress;
 import Effect.*;
@@ -62,13 +61,6 @@ public class AssetSetter{
     public void setMonster(){
         //Set monster for first map
         int mapNum = 0;
-        gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
-        gamePanel.monster[mapNum][0].worldX = 700;
-        gamePanel.monster[mapNum][0].worldY = 2336;
-
-        gamePanel.monster[mapNum][1] = new MON_Slime(gamePanel);
-        gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
-        gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
         //Set monster for second map
         mapNum = 1;
         //Monster in the cave condition for boss appear

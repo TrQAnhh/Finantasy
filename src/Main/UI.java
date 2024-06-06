@@ -196,7 +196,7 @@ public class UI {
     public void drawMessage(){
         int messageX = gamePanel.tileSize;
         int messageY = gamePanel.tileSize*4;
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 20F));
 
         for(int i = 0; i < message.size(); i++){
 
@@ -541,8 +541,8 @@ public class UI {
         x += gamePanel.tileSize * 3;
         y += gamePanel.tileSize * 2;
         g2.setFont(romulus);
-        g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
+        g2.setColor(Color.BLACK);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,30F));
 
         for (String line: currentDialogue.split("\n")) {
             g2.drawString(line, x, y);
@@ -905,6 +905,7 @@ public class UI {
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
+            System.out.println(gateCounterKill);
         }
     }
     // Count the number of interaction
@@ -1048,7 +1049,7 @@ public class UI {
         Image image;
         try {
             //change later
-            image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
+            image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_2.png"));
             g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
 
         } catch (IOException e) {
@@ -1419,7 +1420,7 @@ public class UI {
         counter++;
         g2.setColor(new Color(0, 0, 0, counter * 5));
         g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
-        if(counter == 10) { // Transition is done
+        if(counter == 5) { // Transition is done
             counter = 0;
             gamePanel.gameState = gamePanel.playState;
             gamePanel.currentMap = gamePanel.eHandler.tempMap;

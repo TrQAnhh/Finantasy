@@ -3,17 +3,17 @@ package Monster;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_Slime extends Entity {
+public class MON_Robot extends Entity {
 
     GamePanel gamePanel;
 
-    public MON_Slime(GamePanel gamePanel) {
+    public MON_Robot(GamePanel gamePanel) {
         super(gamePanel);
 
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Slime";
+        name = "Robot";
         direction = "down";
         maxLife = 4;
         life = maxLife;
@@ -35,10 +35,10 @@ public class MON_Slime extends Entity {
     }
     public void getImage(){
 
-        up1 = setup("Monster/Slime/slime_down_1");
-        down1 = setup("Monster/Slime/slime_down_1");
-        left1 = setup("Monster/Slime/slime_down_1");
-        right1 = setup("Monster/Slime/slime_down_1");
+        up1 = setup("Monster/Robot/stand");
+        down1 = setup("Monster/Robot/down");
+        left1 = setup("Monster/Robot/attack");
+        right1 = setup("Monster/Robot/right");
     }   
     public void setAction(){
 

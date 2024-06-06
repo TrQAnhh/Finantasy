@@ -41,84 +41,76 @@ public class cutScenceManager{
 
     }
     public void scenceEnding() {
-        if(scencePhase == 0) {
-            gp.stopMusic();
-            scencePhase++;
-        }
-        if(scencePhase == 1) {
-            gp.ui.drawDialogueScreen();
-        }
-        if(scencePhase == 2) {
-            if(counterReached(300)){
+        for(int i = 0; i < 8 ; ++i) {
+            if(i == 0) {
+                gp.stopMusic();
                 scencePhase ++;
             }
-        }
-        if(scencePhase == 3) {
-            alpha += 0.005f;
-            if(alpha > 1f) {
-                alpha = 1f;
+            if(i == 1) {
+                gp.ui.drawDialogueScreen();
             }
-            drawBlackBackGround(alpha);
-
-            if(alpha == 1f) {
-                alpha = 0;
-                scencePhase ++;
+            if(i == 2) {
+                counterReached(200);
+                System.out.println(i);
             }
-        }
-        if(scencePhase == 4) {
-            drawBlackBackGround(1f);
-            alpha += 0.005f;
-            if(alpha > 1f) {
-                alpha = 1f;
+            if(i == 3) {
+                alpha += 0.005f;
+                if(alpha > 1f) {
+                    alpha = 1f;
+                }
+                drawBlackBackGround(alpha);
+    
+                if(alpha == 1f) {
+                    alpha = 0;
+                }
+                System.out.println(i);
             }
-
-            String text = "Foul Tarnished,\n"
-            + "In search of the Elden Ring.\n"
-            + "Emboldened by the flame of ambition.\n";
-
-            drawString(alpha, 38f, 200, text, 70);
-            
-            if(counterReached(600) ==  true) {
-
-                scencePhase ++;
-            }
-        }
-        if(scenceNum == 5) {
-            drawBlackBackGround(1f);
-
-            drawString(1f, 120f, gp.screenHeight / 2, "Final Fantasy Adventure", 40);
-
-            if(counterReached(480) ==  true) {
+            if(i == 4) {
+                drawBlackBackGround(1f);
+                alpha += 0.005f;
+                if(alpha > 1f) {
+                    alpha = 1f;
+                }
+    
+                String text = "Foul Tarnished,\n"
+                + "In search of the Elden Ring.\n"
+                + "Emboldened by the flame of ambition.\n";
+    
+                drawString(alpha, 38f, 200, text, 70);
                 
-                scencePhase ++;
+                counterReached(700);
+    
+                System.out.println(i);
             }
-        }
-        if(scenceNum == 6) {
-            drawBlackBackGround(1f);
-
-            drawString(1f, 38f, y, endCredit, 40);
-
-            if(counterReached(480) ==  true) {
-                
-                scencePhase ++;
+            if(i == 5) {
+                drawBlackBackGround(1f);
+    
+                drawString(1f, 120f, gp.screenHeight / 2, "Final Fantasy Adventure", 40);
+    
+                counterReached(480);
+                System.out.println(i);
             }
-        }
-        if(scenceNum == 7) {
-            drawBlackBackGround(1f);
-
-            y--;
-            drawString(1f, 38f, y, endCredit, 40);
+            if(i == 6) {
+                drawBlackBackGround(1f);
+    
+                drawString(1f, 38f, y, endCredit, 40);
+    
+                counterReached(480);
+                System.out.println(i);
+            }
+            if(i == 7) {
+                drawBlackBackGround(1f);
+    
+                y--;
+                drawString(1f, 38f, y, endCredit, 40);
+                System.out.println(i);
+            }
         }
     }
-    public boolean counterReached(int target) {
-        boolean counterReached = false;
-
-        counter++;
-        if(counter > target) {
-            counterReached = true;
-            counter = 0;
+    public void counterReached(int target) {
+        while(counter < target) {
+            counter++;
         }
-        return counterReached;
     }
     public void drawBlackBackGround(float alpha) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
@@ -133,7 +125,7 @@ public class cutScenceManager{
         g2.setFont(g2.getFont().deriveFont(fontSize));
 
         for(String line: text.split("\n")) {
-            int x = gp.ui.getXforCenteredText(text);
+            int x = gp.ui.getXforCenteredText(line);
             g2.drawString(line, x, y);
             y += lineHeight;
         }

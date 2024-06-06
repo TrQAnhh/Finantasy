@@ -82,6 +82,7 @@ public class MON_Boss extends Entity {
             
             if(Defeat == false) {
                 g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
+                g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
             }
         }
         @Override

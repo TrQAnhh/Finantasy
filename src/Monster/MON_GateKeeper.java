@@ -83,7 +83,7 @@ public class MON_GateKeeper extends Entity {
         }
     @Override
         public void checkDrop() {
-            gamePanel.ui.gateCounterKill --;
+            gamePanel.ui.gateCounterKill ++;
             Defeat = true;
         }
 }

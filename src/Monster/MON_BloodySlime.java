@@ -84,7 +84,7 @@ public class MON_BloodySlime extends Entity {
         }
     @Override
         public void checkDrop() {
-            gamePanel.ui.gateCounterKill --;
+            gamePanel.ui.gateCounterKill ++;
             Defeat = true;
         }
 }
