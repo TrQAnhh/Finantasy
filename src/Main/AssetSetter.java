@@ -50,18 +50,6 @@ public class AssetSetter{
             gamePanel.npc[mapNum][8].worldX = gamePanel.tileSize * 32; // 32 columns * 48
             gamePanel.npc[mapNum][8].worldY = gamePanel.tileSize * 19; // 19 rows * 48
 
-            gamePanel.npc[mapNum][9] = new NPC_Ghost(gamePanel);
-            gamePanel.npc[mapNum][9].worldX = gamePanel.tileSize * 21; // 32 columns * 48
-            gamePanel.npc[mapNum][9].worldY = gamePanel.tileSize * 30; // 19 rows * 48
-
-            gamePanel.npc[mapNum][10] = new NPC_Ghost(gamePanel);
-            gamePanel.npc[mapNum][10].worldX = gamePanel.tileSize * 18; // 32 columns * 48
-            gamePanel.npc[mapNum][10].worldY = gamePanel.tileSize * 33; // 19 rows * 48
-
-            gamePanel.npc[mapNum][11] = new NPC_Ghost(gamePanel);
-            gamePanel.npc[mapNum][11].worldX = gamePanel.tileSize * 16; // 32 columns * 48
-            gamePanel.npc[mapNum][11].worldY = gamePanel.tileSize * 31; // 19 rows * 48
-
     }
     public void setObject(){
         
