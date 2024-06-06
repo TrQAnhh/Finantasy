@@ -234,7 +234,7 @@ public class Entity {
                 break;
         }
         // Monster HP bar
-            if (type == 2 && hpBarOn == true) {
+            if (type == type_monster && hpBarOn == true) {
                 double oneScale = (double) gamePanel.tileSize / maxLife;
                 double hpBarValue = oneScale * life;
 

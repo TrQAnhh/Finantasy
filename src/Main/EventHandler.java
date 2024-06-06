@@ -64,11 +64,17 @@ public class EventHandler {
                 teleport(0, 16, 15, gamePanel.outside);}
             
             if(hit(0,13,16,"any") == true) {
-                    if(gamePanel.keyHandler.enterPressed == true){
+                if(gamePanel.keyHandler.enterPressed == true){
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 1;
-                    }
                 }
+            }
+            if(hit(0,17,16,"any") == true) {
+                if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 2;
+                }
+            }
         }
     }
     public boolean hit(int map, int col, int row, String reqDirection){

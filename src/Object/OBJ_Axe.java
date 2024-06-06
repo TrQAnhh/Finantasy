@@ -7,13 +7,15 @@ import Main.GamePanel;
 
 public class OBJ_Axe extends Entity {
 
+    GamePanel gamePanel;
     public OBJ_Axe(GamePanel gamePanel) {
+
         super(gamePanel);
-        
+        this.gamePanel = gamePanel;
         type = type_axe;
         name = "Axe";
         down1 = setup("Objects/axe");
-        defenseValue = 1;
+        attackValue = 2;
         description = "[" + name + "]\nAn old axe.";
         description = description + "\nATK: " + attackValue + "\nDEF: " + defenseValue;
     }
@@ -22,8 +24,7 @@ public class OBJ_Axe extends Entity {
         
         Random rand = new Random();
         int i = rand.nextInt(100)+1;
-        if(i <= 50){
-            entity.state = entity.stuntState;
-        }
+        entity.state = entity.stuntState;
+        gamePanel.ui.addMessage("Stunt");
     }
 }

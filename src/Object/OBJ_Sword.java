@@ -1,5 +1,7 @@
 package Object;
 
+import java.util.Random;
+
 import Entities.Entity;
 import Main.GamePanel;
 
@@ -15,5 +17,8 @@ public class OBJ_Sword extends Entity {
         description = description + "\nATK: " + attackValue + "\nDEF: " + defenseValue;
         price = 100;
     }
-    
+    @Override
+    public void use(Entity entity){
+        
+    }
 }

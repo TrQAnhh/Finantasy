@@ -87,6 +87,7 @@ public class UI {
     public int effectPosY;     // Using arraylist when AOE skill
     int effecttedNo;    // Using arraylist when AOE skill
     Entity effectted;      // Using arraylist when AOE skill
+    int preEffectedState = 0;
 
     public Entity npc;
 
@@ -674,9 +675,14 @@ public class UI {
         //Draw background
         Image image;
         try {
-            if(indexBattle == 1)
-            {image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
-            g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
+            if(indexBattle == 1){
+                image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
+            g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
+            }
+            if(indexBattle == 2){
+                image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
+            g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -750,7 +756,7 @@ public class UI {
                     g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                 }
             }
-            PositionY += gamePanel.tileSize;
+            PositionY += gamePanel.tileSize + 20;
         }
 
         // Draw Character
@@ -945,6 +951,11 @@ public class UI {
         listofMonster.add(gamePanel.monster[0][0]);
         listofMonster.add(gamePanel.monster[1][0]);
         }
+        //Battle 2
+        if(index == 2){
+            listofMonster.add(gamePanel.monster[0][1]);
+            listofMonster.add(gamePanel.monster[0][2]);
+            }
     }
     // Monster Turn
     public void monsterTurn(){
@@ -999,12 +1010,15 @@ public class UI {
     }
     // Reset effect after draw
     public void resetEffect(){
-        if(effectted.type == effectted.type_player){
-            gamePanel.player.state = gamePanel.player.normalState;
+        if(effectted.state == effectted.stuntState){
+            orderTurn++;
         }
-        if(effectted.type == effectted.type_monster){
-            listofMonster.get(effecttedNo).state = listofMonster.get(effecttedNo).normalState;
-        }
+            if(effectted.type == effectted.type_player){
+                gamePanel.player.state = gamePanel.player.normalState;
+            }
+            if(effectted.type == effectted.type_monster){
+                listofMonster.get(effecttedNo).state = listofMonster.get(effecttedNo).normalState;
+            }
     }
     // Checking if the battle end or not
     public boolean checkBattleEnd(){

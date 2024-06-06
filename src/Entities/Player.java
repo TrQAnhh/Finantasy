@@ -2,18 +2,13 @@ package Entities;
 
 import Main.GamePanel;
 import Main.KeyHandler;
-import Object.OBJ_Bomb;
-import Object.OBJ_HealPot;
-import Object.OBJ_Key;
-import Object.OBJ_Shield_Wood;
-import Object.OBJ_Sword;
+import Object.*;
 import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayList;
 
 public class Player extends Entity{
     // VARIABLES:
@@ -85,6 +80,7 @@ public class Player extends Entity{
             inventory.add(new OBJ_Key(gamePanel));
             inventory.add(new OBJ_HealPot(gamePanel));
             inventory.add(new OBJ_Bomb(gamePanel));
+            inventory.add(new OBJ_Axe(gamePanel));
         }
         public int getAttack(){
             return attack = strength + currentWeapon.attackValue;
@@ -299,28 +295,25 @@ public class Player extends Entity{
             }
         }
     }
-    public void damageMonster(int i){
+    public void damageMonster(int choosingEquipAction, int choosingEnemyAction){
 
-        int damage = attack - gamePanel.ui.listofMonster.get(i).defense;
+        int damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         if(damage < 0){
             damage = 0;
         }
         else{
-            gamePanel.ui.listofMonster.get(i).state = gamePanel.ui.listofMonster.get(i).getDamageState;
+            gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
         }
-        gamePanel.ui.listofMonster.get(i).life -= damage;
+        gamePanel.ui.listofMonster.get(choosingEnemyAction).life -= damage;
+        inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
         gamePanel.ui.addMessage(damage + " damage!");
 }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
-    if(state == stuntState){
-        gamePanel.ui.addMessage("You Was Stunt");
-    }
-    else{
-        
+
         if(selectAction == 0){
             currentWeapon = inventory.get(choosingEquipAction);
             attack = getAttack();
-            damageMonster(choosingEnemyAction);
+            damageMonster(choosingEquipAction, choosingEnemyAction);
         }
         else if(selectAction == 1){
             currentArmor = inventory.get(choosingEquipAction);
@@ -339,7 +332,6 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             inventory.remove(choosingEquipAction);
         }
         
-    }
 }
     public void checkLevelUp(){
 

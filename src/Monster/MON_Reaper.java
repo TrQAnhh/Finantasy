@@ -3,18 +3,18 @@ package Monster;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_Slime extends Entity {
+public class MON_Reaper extends Entity {
 
     GamePanel gamePanel;
 
-    public MON_Slime(GamePanel gamePanel) {
-        super(gamePanel);
+    public MON_Reaper(GamePanel gamePanel) {
 
+        super(gamePanel);
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Slime";
-        direction = "down";
+        name = "Dark Reaper";
+        direction = "right";
         maxLife = 4;
         life = maxLife;
         attack = 5;
@@ -36,16 +36,16 @@ public class MON_Slime extends Entity {
     }
     public void getImage(){
 
-        up1 = setup("Monster/Slime/slime_down_1");
-        down1 = setup("Monster/Slime/slime_down_1");
-        left1 = setup("Monster/Slime/slime_down_1");
-        right1 = setup("Monster/Slime/slime_down_1");
+        up1 = setup("Monster/Reaper/up_1");
+        down1 = setup("Monster/Reaper/down_1");
+        left1 = setup("Monster/Reaper/left_1");
+        right1 = setup("Monster/Reaper/right_1");
     }   
     public void setAction(){
 
     }
     public void damage(Entity entity){
-        
+
             if(state == bleedState){
                 life--;
             }
@@ -57,10 +57,7 @@ public class MON_Slime extends Entity {
                 entity.state = entity.getDamageState;
             }
             entity.life -= damage;
+            entity.state = entity.bleedState;
             gamePanel.ui.addMessage(damage + " damage!");
-            if(entity.life <= 0){
-                entity.dying = true;
-                gamePanel.ui.addMessage("You lose!");
-            }
-        }
+    }
 }
