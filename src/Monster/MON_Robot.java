@@ -1,5 +1,8 @@
 package Monster;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import Entities.Entity;
 import Main.GamePanel;
 
@@ -39,6 +42,7 @@ public class MON_Robot extends Entity {
         down1 = setup("Monster/Robot/down");
         left1 = setup("Monster/Robot/attack");
         right1 = setup("Monster/Robot/right");
+        up2 = setup("");
     }   
     public void setAction(){
 
@@ -67,4 +71,18 @@ public class MON_Robot extends Entity {
             }
         }
     }
+    @Override
+        public void draw(Graphics2D g2,GamePanel gamePanel){
+            BufferedImage image = up1;
+    
+            int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+            int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+            if(Defeat == false) {
+                g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+            }
+        }
+    @Override
+        public void checkDrop() {
+            Defeat = true;
+        }
 }

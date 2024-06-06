@@ -9,13 +9,14 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
-    boolean first, second, third;
+    boolean first, second, third, fourth;
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
             first = false;
             second = false;
             third = false;
+            fourth = false;
             eventRect = new eventRect[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
             int map = 0;
             int col = 0;
@@ -66,18 +67,16 @@ public class EventHandler {
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
                 teleport(1, 31, 43, gamePanel.dungeon);
             }
-            if( hit(1, 31,43,"any") == true ) {
-                //BossEvent();
-            }
             // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
             else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true) {
                 teleport(0, 16, 15, gamePanel.outside);
             }
             
             //MONSTER CHECKED PLACED
-            if(hit(1,13,16,"any") == true) {
+            if(hit(1,28,27,"any") == true || hit(1,34,27,"any") == true) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 7;
+                setCheckedGateEvent(4);
             }
             if(first == false && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
@@ -167,6 +166,9 @@ public class EventHandler {
                 break;
             case 2:
                 third = true;
+                break;
+            case 4:
+                fourth = true;
                 break;
         }
     }

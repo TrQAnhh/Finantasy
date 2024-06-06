@@ -767,6 +767,7 @@ public class UI {
         checkEffect();
         if(effect == true){
             drawEffect();
+            System.out.println("1");
         }
         else{
             // Draw Player Interact
@@ -901,7 +902,6 @@ public class UI {
             orderTurn = 0;
             checker = false;
             listofMonster.get(0).checkDrop();
-            gamePanel.entityList.remove(listofMonster.get(0));
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
@@ -970,13 +970,8 @@ public class UI {
         }
         if(index == 7) {
             listofMonster.add(gamePanel.monster[1][6]);
-        }
-        if(index == 8) {
-            listofMonster.add(gamePanel.monster[1][7]);
-        }
-        if(index == 9) {
-            listofMonster.add(gamePanel.monster[1][8]);
-        }   
+            listofMonster.add(gamePanel.monster[1][6]);
+        } 
     }
     // Monster Turn
     public void monsterTurn(){
