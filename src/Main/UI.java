@@ -1167,9 +1167,9 @@ public class UI {
 
         // DRAW WINDOW
         int x = gamePanel.tileSize * 13;
-        int y = (int) (gamePanel.tileSize * 3.5);
+        int y = (int) (gamePanel.tileSize * 4.5);
         int width = gamePanel.tileSize * 3;
-        int height = gamePanel.tileSize * 4;
+        int height = gamePanel.tileSize * 3;
         drawSubWindow(x, y, width, height);
 
         // DRAW TEXTS
@@ -1253,6 +1253,11 @@ public class UI {
                 else{
                     if(gamePanel.player.canObtainItem(npc.inventory.get(itemIndex)) == true){
                         gamePanel.player.coin -= npc.inventory.get(itemIndex).price;
+                        if(npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable 
+                            && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable_player 
+                            && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable_enemy){
+                                npc.inventory.remove(itemIndex);
+                        }
                     }
                     else{
                         subState = 0;
