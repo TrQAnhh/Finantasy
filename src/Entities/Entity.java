@@ -79,11 +79,12 @@ public class Entity {
     public final int type_npc = 1;
     public final int type_monster = 2;
     public final int type_sword = 3;
-    public final int type_axe = 4;
+    public final int type_greatsword = 4;
     public final int type_shield = 5;
     public final int type_consumable = 6;
     public final int type_consumable_player = 7;
     public final int type_consumable_enemy = 8;
+    public final int type_dagger = 9;
 
     // Battle state
     public int state;

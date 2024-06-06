@@ -1,7 +1,7 @@
 package Entities;
 
 import Main.GamePanel;
-import Object.OBJ_HealPot;
+import Object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -50,7 +50,8 @@ public class NPC_Merchant extends Entity{
 
     public void setItem(){
         inventory.add(new OBJ_HealPot(gamePanel));
-        inventory.add(new OBJ_HealPot(gamePanel));
+        inventory.add(new OBJ_Bomb(gamePanel));
+        inventory.add(new OBJ_Dagger(gamePanel));
     }
 
     @Override

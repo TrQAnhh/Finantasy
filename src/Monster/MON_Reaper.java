@@ -54,9 +54,11 @@ public class MON_Reaper extends Entity {
             else{
                 entity.state = entity.getDamageState;
                 mana++;
+                if(mana == maxMana){
+                    entity.state = entity.bleedState;
+                }
             }
             entity.life -= damage;
-            entity.state = entity.bleedState;
             gamePanel.ui.addMessage(damage + " damage!");
     }
 }

@@ -843,7 +843,7 @@ public class UI {
                 int j = 0;      // To select the equipment suit to the interactNum
                 y = frameY + 35;
                 for(int i = 0; i<gamePanel.player.inventory.size(); i++){
-                    if((selectAction == 0 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_sword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_axe))
+                    if((selectAction == 0 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_sword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_greatsword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_dagger))
                       || (selectAction == 1 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_shield))
                       || (selectAction == 2 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_player || gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_enemy))){
                             if(j == interactNum) choosingEquipAction = i;
@@ -924,7 +924,7 @@ public class UI {
         if(interactType == 1){
             
         for(int i = 0; i<gamePanel.player.inventory.size(); i++){
-            if((selectAction == 0 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_sword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_axe))
+            if((selectAction == 0 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_sword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_greatsword || gamePanel.player.inventory.get(i).type == gamePanel.player.type_dagger))
                   || (selectAction == 1 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_shield))
                   || (selectAction == 2 && (gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_player || gamePanel.player.inventory.get(i).type == gamePanel.player.type_consumable_enemy))){
                 t++;
@@ -1194,9 +1194,7 @@ public class UI {
         y += gamePanel.tileSize;             */
 
         g2.drawString("Leave", x, y);
-        if(tradeCommandNum == 1
-        
-        ){
+        if(tradeCommandNum == 1){
             g2.drawString(">", x-24, y);
             if(gamePanel.keyHandler.enterPressed == true){
                 tradeCommandNum = 0;

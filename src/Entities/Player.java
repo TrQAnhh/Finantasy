@@ -79,7 +79,7 @@ public class Player extends Entity{
             inventory.add(currentWeapon);
             inventory.add(currentArmor);
             inventory.add(new OBJ_Key(gamePanel));
-            inventory.add(new OBJ_Axe(gamePanel));
+            inventory.add(new OBJ_GreatSword(gamePanel));
         }
         public int getAttack(){
             return attack = strength + currentWeapon.attackValue;
@@ -302,9 +302,9 @@ public class Player extends Entity{
         }
         else{
             gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
+            inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
         }
         gamePanel.ui.listofMonster.get(choosingEnemyAction).life -= damage;
-        inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
         gamePanel.ui.addMessage(damage + " damage!");
 }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
@@ -365,7 +365,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
 
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
-            if(selectedItem.type == type_sword || selectedItem.type == type_axe){
+            if(selectedItem.type == type_sword || selectedItem.type == type_greatsword || selectedItem.type == type_dagger){
                 currentWeapon = selectedItem;
                 attack = getAttack();
             }
