@@ -47,7 +47,6 @@ public class Player extends Entity{
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
-
                  speed = 13;
             // PLAYER STATUS:
                 level = 1;
@@ -257,13 +256,13 @@ public class Player extends Entity{
         if(i != 999){
             if(gamePanel.keyHandler.enterPressed == true){
                 if(inventory.size() < maxInventorySize){
-                    if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
-                        gamePanel.object[gamePanel.currentMap][i].use(this);
-                        inventory.remove(gamePanel.ui.getItemIndexOnSlot());
-                        gamePanel.object[gamePanel.currentMap][i] = null;
-                    } else if ( currentWeapon instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
+                    if ( currentWeapon instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
                         gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
+                        gamePanel.object[gamePanel.currentMap][i] = null;
+                    } else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
+                        gamePanel.object[gamePanel.currentMap][i].use(this);
+                        inventory.remove(currentItem);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
                 }
