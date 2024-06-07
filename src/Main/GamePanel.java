@@ -2,6 +2,7 @@ package Main;
 
 import Entities.Entity;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import Data.Progress;
 import Entities.Player;
@@ -287,21 +288,16 @@ public class GamePanel extends JPanel implements Runnable{
                             entityList.clear();
                         // DRAW PLAYERS:
                             entityList.clear();
+                        // ENVIRONMENT
+                            eManager.draw(graphics2D);
+                        // UI
+                            ui.draw(graphics2D);
                         // DRAW CUTSCREEN ENDING
                             if(Progress.DragonBossDefeated == true) {
                                 csManager.scenceNum = csManager.ending;
                                 csManager.draw(graphics2D);
                                 Progress.DragonBossDefeated = false;
                             }
-                            if(EventHandler.bossAppearScreen == true) {
-                                csManager.scenceNum = csManager.DragonBoss;
-                                csManager.draw(graphics2D);
-                                EventHandler.bossAppearScreen = false;
-                            }
-                        // ENVIRONMENT
-                            eManager.draw(graphics2D);
-                        // UI
-                            ui.draw(graphics2D);
                 }
 
             // Debug

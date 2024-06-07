@@ -655,7 +655,10 @@ public class UI {
             if(indexBattle == 1)
             {image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_1.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
-            //change later
+
+            if(indexBattle == 6)
+            {image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/DragonAppear.png"));
+                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
             else
             {image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}

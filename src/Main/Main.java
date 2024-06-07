@@ -2,6 +2,8 @@ package Main;
 
 import javax.swing.*;
 
+import Data.Progress;
+
 import java.awt.Window;
 
 
@@ -37,6 +39,8 @@ public class Main {
             window.setVisible(true);
             gamePanel.setupGame();
             gamePanel.startGameThread();
+            
+                            
     }
 }
     

@@ -28,7 +28,7 @@ public class credit extends JPanel implements ActionListener {
     JFrame frame;
     JLabel label;
     Image image;
-    public credit(String is, GamePanel gp, Graphics2D g2, String text) throws IOException{
+    public credit(String is, String text) throws IOException{
         this.gp = gp;
         this.g2 = g2;
         frame = new JFrame("END GAME");
@@ -40,7 +40,7 @@ public class credit extends JPanel implements ActionListener {
         frame.add(this);
         this.text = text;
         //text = "FINAL FANTASY COOKED BY\n"+ "MASTER CHEF QUOC ANH\n" + "MASTER CHEF THANH HUY\n" + "MASTER CHEF KHANH NGAN\n" ;
-        //    creditTimer.start();
+        creditTimer.start();
 
     }
 
@@ -56,14 +56,12 @@ public class credit extends JPanel implements ActionListener {
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         int y = textY;
-
-        drawString(1f, 38f, gp.screenHeight / 2, text,40);
-        //for(String line : text.split("\n")){
+        for(String line : text.split("\n")){
             
-        //int stringLength = (int)g2d.getFontMetrics().getStringBounds(line, g2d).getWidth();
-        //int x = getWidth()/2 - stringLength/2;
-        //g2d.drawString(line,x,y+=30);
-        //}
+        int stringLength = (int)g2d.getFontMetrics().getStringBounds(line, g2d).getWidth();
+        int x = getWidth()/2 - stringLength/2;
+        g2d.drawString(line,x,y+=30);
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -75,18 +73,5 @@ public class credit extends JPanel implements ActionListener {
         }
         repaint();
         
-    }
-    public void drawString(float alpha, float fontSize, int y, String text, int lineHeight) {
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-        g2.setColor(Color.WHITE);
-
-        g2.setFont(g2.getFont().deriveFont(fontSize));
-
-        for(String line: text.split("\n")) {
-            int x = gp.ui.getXforCenteredText(line);
-            g2.drawString(line, x, y);
-            y += lineHeight;
-        }
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }
