@@ -20,6 +20,7 @@ public class cutScenceManager{
     float alpha = 0f;
     int y;
     String endCredit;
+    String text;
 
 
     public cutScenceManager(GamePanel gp) {
@@ -39,12 +40,18 @@ public class cutScenceManager{
     }
 
     public void scenceDragonBoss() {
-
+        try {   
+            text = "FINAL FANTASY COOKED BY\n"+ "MASTER CHEF QUOC ANH\n" + "MASTER CHEF THANH HUY\n" + "MASTER CHEF KHANH NGAN\n" ;
+            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/DragonAppear.JPG";
+            credit c = new credit(s, gp, g2, text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void scenceEnding() {
         try {
 
-            alpha += 0.005f;
+            alpha += 0.0005f;
                 if(alpha > 1f) {
                     alpha = 1f;
                 }
@@ -53,7 +60,9 @@ public class cutScenceManager{
                 if(alpha == 1f) {
                     alpha = 0;
                 }
-            credit c = new credit();
+            text = "Welcome to my world" ;
+            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/thiep.JPG";
+            credit c = new credit(s, gp, g2, text);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,19 +76,6 @@ public class cutScenceManager{
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-    }
-    public void drawString(float alpha, float fontSize, int y, String text, int lineHeight) {
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-        g2.setColor(Color.WHITE);
-
-        g2.setFont(g2.getFont().deriveFont(fontSize));
-
-        for(String line: text.split("\n")) {
-            int x = gp.ui.getXforCenteredText(line);
-            g2.drawString(line, x, y);
-            y += lineHeight;
-        }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
     

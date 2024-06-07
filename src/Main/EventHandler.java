@@ -9,6 +9,7 @@ public class EventHandler {
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
     boolean first, second, third, fourth;
+    public static boolean bossAppearScreen;
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
@@ -16,6 +17,7 @@ public class EventHandler {
             second = false;
             third = false;
             fourth = false;
+            bossAppearScreen = false;
             eventRect = new eventRect[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
             int map = 0;
             int col = 0;
@@ -93,12 +95,14 @@ public class EventHandler {
                 setCheckedGateEvent(2);
             }
             if(gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
+                System.out.println("2");
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 6;
             }
             if(gamePanel.bossBattleOn) {
                 gamePanel.gameState = gamePanel.bossBattleState;
                 gamePanel.ui.indexBattle = 3;
+                bossAppearScreen = true;
             }
         }
     }

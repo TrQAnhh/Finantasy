@@ -82,7 +82,7 @@ public class UI {
     Entity effectted;      // Using arraylist when AOE skill
 
     //Boss event
-    public static int gateCounterKill;
+    public static int gateCounterKill = 0;
     int scaleFactor = 3;
 
     public UI(GamePanel gamePanel){
@@ -113,7 +113,6 @@ public class UI {
     }
     public void draw(Graphics2D g2) {
         this.g2 = g2;
-        gateCounterKill = 0;
         g2.setFont(maruMonica);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.WHITE);
@@ -905,6 +904,7 @@ public class UI {
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
+            System.out.println("Number of gateKeeper " + gateCounterKill);
         }
     }
     // Count the number of interaction

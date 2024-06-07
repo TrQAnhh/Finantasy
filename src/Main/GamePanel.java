@@ -287,11 +287,16 @@ public class GamePanel extends JPanel implements Runnable{
                             entityList.clear();
                         // DRAW PLAYERS:
                             entityList.clear();
-                        // DRAW CUTSCREEN
-                            if(Progress.DragonBossDefeated) {
+                        // DRAW CUTSCREEN ENDING
+                            if(Progress.DragonBossDefeated == true) {
                                 csManager.scenceNum = csManager.ending;
                                 csManager.draw(graphics2D);
                                 Progress.DragonBossDefeated = false;
+                            }
+                            if(EventHandler.bossAppearScreen == true) {
+                                csManager.scenceNum = csManager.DragonBoss;
+                                csManager.draw(graphics2D);
+                                EventHandler.bossAppearScreen = false;
                             }
                         // ENVIRONMENT
                             eManager.draw(graphics2D);

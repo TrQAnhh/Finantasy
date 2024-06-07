@@ -10,7 +10,6 @@ import Main.GamePanel;
 public class MON_Boss extends Entity {
 
     GamePanel gamePanel;
-
     public MON_Boss(GamePanel gamePanel) {
         super(gamePanel);
 

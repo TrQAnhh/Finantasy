@@ -230,7 +230,7 @@ public class Player extends Entity{
                 int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
                 interactNPC(npcIndex);
             // Check monster collision
-                int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
+                //int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);  not use
 
             // Check event
                 gamePanel.eHandler.checkEvent();
