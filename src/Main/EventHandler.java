@@ -50,17 +50,15 @@ public class EventHandler {
         }
         if(canTouchEvent == true){
 
-            //gamePanel.gameState = gamePanel.battleState;
-            //gamePanel.ui.indexBattle = 1;
-
+            // HEALING BY STATUE AT X1 = 13 (COLS), Y1 = 33 (ROWS) AND X2 = 13 (COLS), Y2 = 32 (ROWS)
             if( hit(0, 13,33,"any") == true ) {
                 healingGamePanelPool(gamePanel.dialogueState);}
-            // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 16 (COLS), Y = 48 (ROWS)
+            // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 31 (COLS), Y = 43 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
-                teleport(1, 16, 48, gamePanel.dungeon);}
+                teleport(1, 31, 43, gamePanel.dungeon);}
 
-            // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
-            else if( hit(1, 20, 46, "any") == true ) {
+        // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
+            else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true ) {
                 teleport(0, 16, 15, gamePanel.outside);}
             
             if(hit(0,13,16,"any") == true) {

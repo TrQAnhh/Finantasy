@@ -1,7 +1,7 @@
 package Entities;
 
 import Main.GamePanel;
-import Object.*;
+import Objects.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
