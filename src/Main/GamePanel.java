@@ -2,7 +2,6 @@ package Main;
 
 import Entities.Entity;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
 import Data.Progress;
 import Entities.Player;
