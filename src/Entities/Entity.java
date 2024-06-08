@@ -71,17 +71,16 @@ public class Entity {
         public final int type_monster = 2;
     // TOOLS:
         public final int type_sword = 3;
-        public final int type_greatsword = 4;
-        public final int type_shield = 5;
-        public final int type_consumable = 6;
-        public final int type_consumable_player = 7;
-        public final int type_consumable_enemy = 8;
-        public final int type_dagger = 9;
+        public final int type_shield = 4;
+        public final int type_consumable = 5;
+        public final int type_consumable_player = 6;
+        public final int type_consumable_enemy = 7;
+        public final int type_dagger = 8;
     // OBJECTS & ITEMS TYPE:
-        public final int type_key = 10;
-        public final int type_barrel = 11;
-        public final int type_chest = 12;
-        public final int type_axe = 13;
+        public final int type_key = 9;
+        public final int type_barrel = 10;
+        public final int type_chest = 11;
+        public final int type_axe = 12;
 
     // Battle state
     public int state;
@@ -93,6 +92,7 @@ public class Entity {
     public final int healingState = 4;
     public final int burningState = 5;
     public final int defenseState = 6;
+    public final int criticalState = 7;
     // CHARACTER ATTRIBUTES
         public int speed;
         public int maxLife;

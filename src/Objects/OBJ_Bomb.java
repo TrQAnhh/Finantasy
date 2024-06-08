@@ -14,7 +14,7 @@ public class OBJ_Bomb extends Entity {
         this.gamePanel = gamePanel;
         name = "Bomb";
         type = type_consumable_enemy;
-        itemsImage = setup("/Objects/key");
+        itemsImage = setup("/Objects/Bomb");
         description = "[" + name + "]\nDeal " + value + "DMG to your enemy.";
         price = 75;
         stackable = true;

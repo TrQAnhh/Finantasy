@@ -6,27 +6,27 @@ import java.awt.image.BufferedImage;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class Defense extends Entity{
+public class Critical extends Entity{
     
     GamePanel gp;
 
-    public Defense(GamePanel gp){
+    public Critical(GamePanel gp){
 
         super(gp);
         this.gp = gp;
 
-        image1 = setupEffectImages("/effect/Defense/defense_1", 128, 96);
-        image2 = setupEffectImages("/effect/Defense/defense_2", 128, 96);
-        image3 = setupEffectImages("/effect/Defense/defense_3", 128, 96);
-        image4 = setupEffectImages("/effect/Defense/defense_4", 128, 96);
-        image5 = setupEffectImages("/effect/Defense/defense_5", 128, 96);
-        image6 = setupEffectImages("/effect/Defense/defense_6", 128, 96);
-        image7 = setupEffectImages("/effect/Defense/defense_7", 128, 96);
-        image8 = setupEffectImages("/effect/Defense/defense_8", 128, 96);
-        image9 = setupEffectImages("/effect/Defense/defense_9", 128, 96);
-        image10 = setupEffectImages("/effect/Defense/defense_10", 128, 96);
-        image11 = setupEffectImages("/effect/Defense/defense_11", 128, 96);
-        image12 = setupEffectImages("/effect/Defense/defense_12", 128, 96);
+        image1 = setupEffectImages("/effect/Critical/critical_1", 128, 96);
+        image2 = setupEffectImages("/effect/Critical/critical_2", 128, 96);
+        image3 = setupEffectImages("/effect/Critical/critical_3", 128, 96);
+        image4 = setupEffectImages("/effect/Critical/critical_4", 128, 96);
+        image5 = setupEffectImages("/effect/Critical/critical_5", 128, 96);
+        image6 = setupEffectImages("/effect/Critical/critical_6", 128, 96);
+        image7 = setupEffectImages("/effect/Critical/critical_7", 128, 96);
+        image8 = setupEffectImages("/effect/Critical/critical_8", 128, 96);
+        image9 = setupEffectImages("/effect/Critical/critical_9", 128, 96);
+        image10 = setupEffectImages("/effect/Critical/critical_10", 128, 96);
+        image11 = setupEffectImages("/effect/Critical/critical_11", 128, 96);
+        image12 = setupEffectImages("/effect/Critical/critical_12", 128, 96);
     }
     public void update(){
         effectCounter++;

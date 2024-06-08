@@ -5,19 +5,18 @@ import java.util.Random;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class OBJ_GreatSword extends Entity {
+public class OBJ_DragonSword extends Entity {
 
     GamePanel gamePanel;
-    public OBJ_GreatSword(GamePanel gamePanel) {
+    public OBJ_DragonSword(GamePanel gamePanel) {
 
         super(gamePanel);
         this.gamePanel = gamePanel;
-        type = type_greatsword;
-        name = "A.Sword";
-        itemsImage = setup("Objects/axe");
-        attackValue = 2;
-        description = "[" + name + "]\nAn old axe.";
-        description = description + "\nATK: " + attackValue + "\nDEF: " + defenseValue;
+        type = type_sword;
+        name = "Excalibur";
+        itemsImage = setup("Objects/DragonSword");
+        attackValue = 3;
+        description = "[" + name + "]" + " \n- King Arthur's Legendary Sword." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
     }
     @Override
     public void use(Entity entity){

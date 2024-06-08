@@ -80,8 +80,7 @@ public class Player extends Entity{
             inventory.add(currentWeapon);
             inventory.add(currentShield);
             inventory.add(new OBJ_Key(gamePanel));
-            inventory.add(new OBJ_GreatSword(gamePanel));
-            inventory.add(new OBJ_SilverShield(gamePanel));
+            inventory.add(new OBJ_GoldSword(gamePanel));
             inventory.add(new OBJ_Axe(gamePanel));
         }
         public int getAttack(){
@@ -393,7 +392,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
 
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
-            if(selectedItem.type == type_sword || selectedItem.type == type_greatsword || selectedItem.type == type_dagger || selectedItem.type == type_axe){
+            if(selectedItem.type == type_sword || selectedItem.type == type_dagger || selectedItem.type == type_axe){
                 currentWeapon = selectedItem;
                 attack = getAttack();
             }
