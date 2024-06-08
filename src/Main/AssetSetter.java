@@ -83,6 +83,9 @@ public class AssetSetter{
         gamePanel.monster[mapNum][6] = new MON_Robot(gamePanel);
         gamePanel.monster[mapNum][6].worldX = 1648;
         gamePanel.monster[mapNum][6].worldY = 1254;
+        gamePanel.monster[mapNum][7] = new MON_Robot(gamePanel);
+        gamePanel.monster[mapNum][7].worldX = 1358;
+        gamePanel.monster[mapNum][7].worldY = 1264;
         //Boss appear when player kill three monster in the cave
         if(Progress.DragonBossDefeated == false) {
             gamePanel.monster[mapNum][3] = new MON_Boss(gamePanel);
