@@ -61,7 +61,7 @@ public class EventHandler {
             else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true ) {
                 teleport(0, 16, 15, gamePanel.outside);}
             
-            if(hit(0,13,16,"any") == true) {
+            if(hit(0,14,17,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 1;

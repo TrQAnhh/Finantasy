@@ -149,8 +149,8 @@ public class UI {
         }
         // CHARACTER STATE:
         else if(gamePanel.gameState == gamePanel.characterState){
-            drawCharacterScreen();
             drawInventory(gamePanel.player, true);
+            drawCharacterScreen();
         }
         // BATTLE STATE:
         else if(gamePanel.gameState == gamePanel.battleState){
@@ -577,8 +577,6 @@ public class UI {
         g2.setColor(Color.WHITE);
 
         value = String.valueOf(gamePanel.player.level);
-        
-        System.out.println(value);
         g2.drawString(value, textX, textY);
 
         textX += 50;
@@ -601,8 +599,6 @@ public class UI {
         textY += 64;
         value = String.valueOf(gamePanel.player.coin);
         g2.drawString(value, textX, textY);
-
-
 }
     public BufferedImage setup(String imagePath,int width, int height) {
 

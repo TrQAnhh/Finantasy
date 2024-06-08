@@ -81,6 +81,7 @@ public class Player extends Entity{
             inventory.add(currentShield);
             inventory.add(new OBJ_Key(gamePanel));
             inventory.add(new OBJ_GreatSword(gamePanel));
+            inventory.add(new OBJ_SilverShield(gamePanel));
             inventory.add(new OBJ_Axe(gamePanel));
         }
         public int getAttack(){
