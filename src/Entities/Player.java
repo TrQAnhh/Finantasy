@@ -325,7 +325,11 @@ public class Player extends Entity{
         }
         gamePanel.ui.listofMonster.get(choosingEnemyAction).life -= damage;
         gamePanel.ui.addMessage(damage + " damage!");
-}
+    }
+    public void defensePlayer(int choosingEquipAction){
+        defense = getDefense();
+        inventory.get(choosingEquipAction).use(this);
+    }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
 
         if(preState == stuntState){
@@ -344,8 +348,9 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             }
             else if(selectAction == 1){
                 currentShield = inventory.get(choosingEquipAction);
-                defense = getDefense() + getDefense()*30/100;       // Increase your defense 30%
-                gamePanel.ui.orderTurn++;
+                defense = getDefense();
+                state = defenseState;
+                defensePlayer(choosingEquipAction);
             }
             else if(selectAction == 2){
                 Entity selectedItem = inventory.get(choosingEquipAction);
@@ -356,11 +361,15 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 else{
                     selectedItem.use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
                 }
-                inventory.remove(choosingEquipAction);
+                if(selectedItem.amount > 0){
+                    inventory.get(choosingEquipAction).amount--;
+                }
+                else{
+                    inventory.remove(choosingEquipAction);
+                }
             }
         }
-        
-        
+
 }
     public void checkLevelUp(){
 

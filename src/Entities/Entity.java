@@ -92,6 +92,7 @@ public class Entity {
     public final int bleedState = 3;
     public final int healingState = 4;
     public final int burningState = 5;
+    public final int defenseState = 6;
     // CHARACTER ATTRIBUTES
         public int speed;
         public int maxLife;

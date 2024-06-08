@@ -100,5 +100,7 @@ public class AssetSetter{
         i++;
         gamePanel.effect[i] = new Explosion(gamePanel);
         i++;
+        gamePanel.effect[i] = new Defense(gamePanel);
+        i++;
     }
 }

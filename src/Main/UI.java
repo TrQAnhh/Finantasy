@@ -55,7 +55,7 @@ public class UI {
 
     // INVENTORY SCREEN:
     BufferedImage inventoryBackground, cursorScreen,equippedCursor;
-    BufferedImage heart_full, heart_half, heart_blank, gold;
+    BufferedImage gold;
     public int slotCol = 0;
     public int slotRow = 0;
     int counter = 0;
@@ -170,7 +170,7 @@ public class UI {
             drawTradeScreen();
         }
     }
-    public void drawPlayerLife(){
+/*    public void drawPlayerLife(){
 
         //   gamePanel.player.life = 5;
    
@@ -200,7 +200,7 @@ public class UI {
                i++;
                x += gamePanel.tileSize;
            }
-    }
+    }           */
     public void drawMessage(){
         int messageX = gamePanel.tileSize;
         int messageY = gamePanel.tileSize*4;
