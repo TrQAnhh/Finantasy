@@ -31,37 +31,13 @@ public class cutScenceManager{
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
-        switch (scenceNum) {
-            case DragonBoss: scenceDragonBoss();
-                break;
-            case ending: scenceEnding();
-                break;
-        }
+        scenceEnding();
     }
 
-    public void scenceDragonBoss() {
+    public void scenceEnding() {
         try {   
             text = "FINAL FANTASY COOKED BY\n"+ "MASTER CHEF QUOC ANH\n" + "MASTER CHEF THANH HUY\n" + "MASTER CHEF KHANH NGAN\n" ;
-            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/DragonAppear.JPG";
-            credit c = new credit(s, text);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void scenceEnding() {
-        try {
-
-            alpha += 0.0005f;
-                if(alpha > 1f) {
-                    alpha = 1f;
-                }
-                drawBlackBackGround(alpha);
-    
-                if(alpha == 1f) {
-                    alpha = 0;
-                }
-            text = "Welcome to my world" ;
-            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/thiep.JPG";
+            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/Ending.JPG";
             credit c = new credit(s, text);
         } catch (IOException e) {
             e.printStackTrace();

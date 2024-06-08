@@ -8,7 +8,7 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
-    boolean first, second, third, fourth;
+    boolean first, second, third, fourth, fifth;
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
@@ -16,6 +16,7 @@ public class EventHandler {
             second = false;
             third = false;
             fourth = false;
+            fifth = false;
             eventRect = new eventRect[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
             int map = 0;
             int col = 0;
@@ -72,10 +73,15 @@ public class EventHandler {
             }
             
             //MONSTER CHECKED PLACED
-            if(hit(1,28,27,"any") == true || hit(1,34,27,"any") == true) {
+            if(hit(1,34,27,"any") == true) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 7;
                 setCheckedGateEvent(4);
+            }
+            if(hit(1,28,27,"any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 8;
+                setCheckedGateEvent(5);
             }
             if(first == false && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
@@ -160,6 +166,9 @@ public class EventHandler {
                 break;
             case 4:
                 fourth = true;
+                break;
+            case 5:
+                fifth = true;
                 break;
         }
     }

@@ -941,24 +941,17 @@ public class UI {
         //Battle 1 in map 0
         if(index == 1){
             listofMonster.add(gamePanel.monster[0][0]);
-            listofMonster.add(gamePanel.monster[0][0]);
         }
         //Battle 2 in map 1
         if(index == 2) {
-            listofMonster.add(gamePanel.monster[1][1]);
-            listofMonster.add(gamePanel.monster[1][1]);
             listofMonster.add(gamePanel.monster[1][1]);
 
         }
         if(index == 5) {
             listofMonster.add(gamePanel.monster[1][2]);
-            listofMonster.add(gamePanel.monster[1][2]);
-            listofMonster.add(gamePanel.monster[1][2]);
 
         }
         if(index == 4) {
-            listofMonster.add(gamePanel.monster[1][0]);
-            listofMonster.add(gamePanel.monster[1][0]);
             listofMonster.add(gamePanel.monster[1][0]);
 
         }
@@ -972,8 +965,10 @@ public class UI {
         }
         if(index == 7) {
             listofMonster.add(gamePanel.monster[1][6]);
-            listofMonster.add(gamePanel.monster[1][6]);
         } 
+        if(index == 8) {
+            listofMonster.add(gamePanel.monster[1][7]);
+        }
     }
     // Monster Turn
     public void monsterTurn(){
