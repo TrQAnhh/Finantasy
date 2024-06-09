@@ -28,8 +28,6 @@ public class credit extends JPanel implements ActionListener {
     JLabel label;
     Image image;
     public credit(String is, String text) throws IOException{
-        this.gp = gp;
-        this.g2 = g2;
         frame = new JFrame("END GAME");
         image = ImageIO.read(new File(is));
         frame.setSize(500,500);
@@ -38,7 +36,6 @@ public class credit extends JPanel implements ActionListener {
         frame.setVisible(true);
         frame.add(this);
         this.text = text;
-        //text = "FINAL FANTASY COOKED BY\n"+ "MASTER CHEF QUOC ANH\n" + "MASTER CHEF THANH HUY\n" + "MASTER CHEF KHANH NGAN\n" ;
         creditTimer.start();
 
     }
