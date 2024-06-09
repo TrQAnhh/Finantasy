@@ -64,14 +64,19 @@ public class AssetSetter{
 
     }
     public void setMonster(){
-        int mapNum = 0;
+        
         //Set monster for first map
-        gamePanel.monster[mapNum][0] = new MON_Pumpkin(gamePanel);
-        gamePanel.monster[mapNum][1] = new MON_Pumpkin(gamePanel);
-        gamePanel.monster[mapNum][2] = new MON_Pumpkin(gamePanel);
-        gamePanel.monster[mapNum][3] = new MON_Reaper(gamePanel);
-        gamePanel.monster[mapNum][4] = new MON_Reaper(gamePanel);
-        gamePanel.monster[mapNum][5] = new MON_GhostRider(gamePanel);
+            int mapNum = 0;
+            gamePanel.monster[mapNum][0] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][1] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][2] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][3] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][4] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][5] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][6] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][7] = new MON_Reaper(gamePanel);
+            gamePanel.monster[mapNum][8] = new MON_Reaper(gamePanel);
+            gamePanel.monster[mapNum][9] = new MON_GhostRider(gamePanel);
         //Set monster for second map
         mapNum = 1;
         //Monster in the cave condition for boss appear

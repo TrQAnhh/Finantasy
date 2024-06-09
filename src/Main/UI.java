@@ -721,6 +721,7 @@ public class UI {
                     gamePanel.player.exp += listofMonster.get(i).exp;
                     gamePanel.player.coin += listofMonster.get(i).coin;
                     listofMonster.get(i).dying = true;
+
                 }
                 if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stuntState){
                     g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*2, PositionY, null);
@@ -934,16 +935,16 @@ public class UI {
         }
         //Battle 2
         if(index == 2){
-            listofMonster.add(gamePanel.monster[0][4]);
-            listofMonster.add(gamePanel.monster[0][0]);
-            listofMonster.add(gamePanel.monster[0][1]);
+            listofMonster.add(gamePanel.monster[0][7]);
             listofMonster.add(gamePanel.monster[0][3]);
+            listofMonster.add(gamePanel.monster[0][4]);
+            listofMonster.add(gamePanel.monster[0][8]);
         }
         //Battle 3
         if(index == 3){
-            listofMonster.add(gamePanel.monster[0][0]);
+            listofMonster.add(gamePanel.monster[0][9]);
             listofMonster.add(gamePanel.monster[0][5]);
-            listofMonster.add(gamePanel.monster[0][1]);
+            listofMonster.add(gamePanel.monster[0][6]);
         }
         //Battle 2 in map 1
         if(index == 4) {
@@ -977,6 +978,7 @@ public class UI {
     public void monsterTurn(){
         if((orderTurn - 1) >= listofMonster.size()) {
             orderTurn = 0;
+            interactType = 0;
             selectAction = 0;
             choosingEquipAction = 0;
             choosingEnemyAction = 0;
