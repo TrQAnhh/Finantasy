@@ -58,6 +58,7 @@ public class MON_GhostRider extends Entity {
                     state = healingState;
                     life += 5;
                     if(life > maxLife){
+                        maxLife *= 2;
                         defense += 2;
                         state = defenseState;
                     }
