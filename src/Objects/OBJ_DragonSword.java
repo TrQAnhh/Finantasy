@@ -17,6 +17,7 @@ public class OBJ_DragonSword extends Entity {
         itemsImage = setup("Objects/DragonSword");
         attackValue = 3;
         description = "[" + name + "]" + " \n- King Arthur's Legendary Sword." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
+        price = 75;
     }
     @Override
     public void use(Entity entity){

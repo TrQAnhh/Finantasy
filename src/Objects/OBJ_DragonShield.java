@@ -9,10 +9,10 @@ public class OBJ_DragonShield extends Entity {
         super(gp);
         type = type_shield;
         name = "Pridwen";
-        itemsImage = setupItemImages("Objects/SilverShield");
+        itemsImage = setupItemImages("Objects/DragonShield");
         defenseValue = 2;
         description = "[" + name + "]" + " \n- King Arthur's Shield" + " \n- Defense: " + defenseValue + "\n- Can only be equipped in Battle World";
-
+        price = 75;
     }
     @Override
     public void use(Entity entity){

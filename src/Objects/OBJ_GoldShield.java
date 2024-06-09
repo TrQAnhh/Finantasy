@@ -12,7 +12,7 @@ public class OBJ_GoldShield extends Entity {
         itemsImage = setupItemImages("Objects/GoldShield");
         defenseValue = 2;
         description = "[" + name + "]" + " \n- A popular recurring item in Final Fantasy series." + " \n- Defense: " + defenseValue + "\n- Can only be equipped in Battle World";
-
+        price = 50;
     }
     @Override
     public void use(Entity entity){

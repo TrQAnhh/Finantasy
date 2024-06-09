@@ -16,6 +16,7 @@ public class OBJ_GoldSword extends Entity {
         itemsImage = setup("Objects/GoldSword");
         attackValue = 4;
         description = "[" + name + "]" + " \n- Sakata Gintoki's Bokuto." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
+        price = 20;
     }
     @Override
     public void use(Entity entity){

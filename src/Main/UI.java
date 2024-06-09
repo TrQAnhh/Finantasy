@@ -222,7 +222,7 @@ public class UI {
                 messageCounter.set(i, counter);
                 messageY += 50;
 
-                if(messageCounter.get(i) > 85){
+                if(messageCounter.get(i) > 70){
                     message.remove(i);
                     messageCounter.remove(i);
                 }
@@ -715,7 +715,7 @@ public class UI {
             PositionX = gamePanel.tileSize*10;
         }
         if(gamePanel.player.state != gamePanel.player.normalState){
-            effectPosX = PositionX + 10;
+            effectPosX = PositionX + 5;
             effectPosY = PositionY + 5;
         }
         g2.drawImage(gamePanel.player.left1, PositionX, PositionY,null);
@@ -1098,7 +1098,7 @@ public class UI {
                 textY += 22;
             }
         }
-        }
+    }
 
         }
         else{
@@ -1296,7 +1296,8 @@ public class UI {
                         gamePanel.player.coin -= npc.inventory.get(itemIndex).price;
                         if(npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable 
                             && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable_player 
-                            && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable_enemy){
+                            && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable_enemy
+                            && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_key){
                                 npc.inventory.remove(itemIndex);
                         }
                     }

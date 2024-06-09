@@ -12,7 +12,7 @@ public class OBJ_SilverShield extends Entity {
         itemsImage = setupItemImages("Objects/SilverShield");
         defenseValue = 2;
         description = "[" + name + "]" + " \n- Naofumi Iwatani's Legendary Shield" + " \n- Defense: " + defenseValue + "\n- Can only be equipped in Battle World";
-
+        price = 25;
     }
     @Override
     public void use(Entity entity){

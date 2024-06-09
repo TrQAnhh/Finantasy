@@ -12,5 +12,6 @@ public class OBJ_Key extends Entity{
         name = "Key";
         itemsImage = setupItemImages("Objects/Key");
         description = "[" + name + "]" + " \n- A gold key" + " \n- Can only be used to open a chest" + "\n- Can only be equipped in Normal World";
+        price = 5;
     }
 }

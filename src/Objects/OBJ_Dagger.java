@@ -15,9 +15,8 @@ public class OBJ_Dagger extends Entity {
         name = "Dagger";
         itemsImage = setup("Objects/Dagger");
         attackValue = 3;
-        description = "[" + name + "]\nA Dagger.";
-        description = description + "\nATK: " + attackValue + "\nDEF: " + defenseValue;
-        price = 125;
+        description = "[" + name + "]" + " \n- A Dagger." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
+        price = 40;
     }
     @Override
     public void use(Entity entity){

@@ -16,7 +16,7 @@ public class OBJ_Bomb extends Entity {
         type = type_consumable_enemy;
         itemsImage = setup("/Objects/Bomb");
         description = "[" + name + "]\nDeal " + value + "DMG to your enemy.";
-        price = 75;
+        price = 30;
         stackable = true;
     }
     // Ability
