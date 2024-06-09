@@ -1014,145 +1014,43 @@ public class UI {
         if(gamePanel.gameState == gamePanel.characterState){
 
         // DRAW INVENTORY BACKGROUND:
-        frameX = 0;
-        frameY = 0;
-        frameWidth = gamePanel.screenWidth;
-        frameHeight = gamePanel.screenHeight;
-        slotCol = playerSlotCol;
-        slotRow = playerSlotRow;
-        g2.drawImage(inventoryBackground,frameX,frameY,null);
+            frameX = 0;
+            frameY = 0;
+            frameWidth = gamePanel.screenWidth;
+            frameHeight = gamePanel.screenHeight;
+            slotCol = playerSlotCol;
+            slotRow = playerSlotRow;
+            g2.drawImage(inventoryBackground,frameX,frameY,null);
+        // SLOT
+            frameX += gamePanel.tileSize * 7;
+            frameY = gamePanel.tileSize;
 
+            final int slotXstart = frameX - 8;
+            final int slotYstart = frameY * 2 + 6;
 
-    // SLOT
-        frameX += gamePanel.tileSize * 7;
-        frameY = gamePanel.tileSize;
-
-        final int slotXstart = frameX - 8;
-        final int slotYstart = frameY * 2 + 6;
-
-        int slotX = slotXstart;
-        int slotY = slotYstart;
-
-    // DRAW PLAYER ITEMS
-        int slotSize = 54;
-        for( int i = 0 ; i < entity.inventory.size() ; i++ ){
-        // DRAW EQUIPPED CURSOR:
-            if(entity.inventory.get(i) == entity.currentWeapon ||
-                    entity.inventory.get(i) == entity.currentItem){
-                g2.drawImage(equippedCursor,slotX,slotY,null);
-            }
-
-            g2.drawImage(entity.inventory.get(i).itemsImage, slotX, slotY, null);
-            // DISPLAY AMOUNT
-            if(entity == gamePanel.player && entity.inventory.get(i).amount > 1){
-    
-                g2.setFont(g2.getFont().deriveFont(32F));
-                int amountX;
-                int amountY;
-
-                String s = "" + entity.inventory.get(i).amount;
-                amountX = getXforAlignToRightText(s, slotX + 62);
-                amountY = slotY + gamePanel.tileSize + 10;
-
-                // SHADOW
-                g2.setColor(new Color(60,60,60));
-                g2.drawString(s, amountX, amountY);
-                // NUMBER
-                g2.setColor(Color.WHITE);
-                g2.drawString(s, amountX-3, amountY-3);
-            }
-            slotX += slotSize + 4;
-        // RESET slotX slotY
-            if(i == 5 || i == 11 || i == 17 ){
-                slotX = slotXstart;
-                slotY += slotSize;
-            }
-        }
-        if(cursor == true){
-        // DRAW CURSOR
-
-        int cursorWidth = gamePanel.tileSize + 6;
-        int cursorHeight = gamePanel.tileSize + 6;
-        int cursorX = slotXstart + ( cursorWidth * slotCol ) + ( 5 * slotCol ) ;
-        int cursorY = slotYstart + ( cursorHeight * slotRow ) + ( 5 * slotRow );
-
-        g2.drawImage(cursorScreen,cursorX,cursorY,null);
-
-        // DESCRIPTION FRAME:
-        int dFrameX = frameX - 8;
-        int dFrameY = frameY + (4 * slotSize + 10);
-
-        int dFrameWidth = frameWidth;
-        int dFrameHeight = gamePanel.tileSize*3;
-
-        // DRAW DESCRIPTION TEXT
-        int textX = dFrameX + 5;
-        int textY = dFrameY + gamePanel.tileSize - 10;
-        g2.setFont(alagard);
-        g2.setFont(g2.getFont().deriveFont(15F));
-        g2.setColor(Color.WHITE);
-        int itemIndex = getItemIndexOnSlot(slotCol, slotRow);
-        if(itemIndex < gamePanel.player.inventory.size()){
-            for(String line : gamePanel.player.inventory.get(itemIndex).description.split("\n")){
-                g2.drawString(line, textX, textY);
-                textY += 22;
-            }
-        }
-    }
-
-        }
-        else{
-            if(entity == gamePanel.player){
-
-                frameX = gamePanel.tileSize*9 + gamePanel.tileSize/2;
-                frameY = gamePanel.tileSize;
-                frameWidth = gamePanel.tileSize*7 + gamePanel.tileSize/2;
-                frameHeight = gamePanel.tileSize*6;
-                slotCol = playerSlotCol;
-                slotRow = playerSlotRow;
-            }
-            else{
-                
-                frameX = gamePanel.tileSize*1;
-                frameY = gamePanel.tileSize;
-                frameWidth = gamePanel.tileSize*7 + gamePanel.tileSize/2;
-                frameHeight = gamePanel.tileSize*6;
-                slotCol = npcSlotCol;
-                slotRow = npcSlotRow;
-                
-            }
-    
-            // Frame
-            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
-            // Slot
-            final int slotXstart = frameX + 20;
-            final int slotYstart = frameY + 20;
             int slotX = slotXstart;
             int slotY = slotYstart;
-            int slotSize = gamePanel.tileSize + 16;
-    
-            // Draw Player Items
-            for(int i=0; i < entity.inventory.size(); i++){
-    
-                // Equip cursor
+
+        // DRAW PLAYER ITEMS
+            int slotSize = 54;
+            for( int i = 0 ; i < entity.inventory.size() ; i++ ){
+            // DRAW EQUIPPED CURSOR:
                 if(entity.inventory.get(i) == entity.currentWeapon ||
-                    entity.inventory.get(i) == entity.currentShield){
-                        g2.setColor(new Color(240,190,90));
-                        g2.fillRoundRect(slotX + 5/2, slotY - 3, gamePanel.tileSize + 13, gamePanel.tileSize + 13, 10, 10);
-                    }
-                g2.drawImage(entity.inventory.get(i).itemsImage, slotX + 9, slotY - 3, null);
-    
-                // DISPLAY AMOUNT
+                        entity.inventory.get(i) == entity.currentItem){
+                    g2.drawImage(equippedCursor,slotX,slotY,null);
+                }
+                g2.drawImage(entity.inventory.get(i).itemsImage, slotX, slotY, null);
+            // DISPLAY AMOUNT
                 if(entity == gamePanel.player && entity.inventory.get(i).amount > 1){
-    
+
                     g2.setFont(g2.getFont().deriveFont(32F));
                     int amountX;
                     int amountY;
-    
+
                     String s = "" + entity.inventory.get(i).amount;
                     amountX = getXforAlignToRightText(s, slotX + 62);
                     amountY = slotY + gamePanel.tileSize + 10;
-    
+
                     // SHADOW
                     g2.setColor(new Color(60,60,60));
                     g2.drawString(s, amountX, amountY);
@@ -1160,49 +1058,148 @@ public class UI {
                     g2.setColor(Color.WHITE);
                     g2.drawString(s, amountX-3, amountY-3);
                 }
-                slotX += slotSize;
-                if(i == 4 || i == 9 || i == 14){
+                slotX += slotSize + 4;
+            // RESET slotX slotY
+                if(i == 5 || i == 11 || i == 17 ){
                     slotX = slotXstart;
                     slotY += slotSize;
                 }
             }
-    
-            // Cursor
             if(cursor == true){
-                int cursorX = slotXstart + (slotSize * slotCol);
-                int cursorY = slotYstart + (slotSize * slotRow) - 4;
-                int cursorWidth = gamePanel.tileSize + 16;
-                int cursorHeight = gamePanel.tileSize + 16;
-                // Draw cursor
-                g2.setColor(Color.WHITE);
-                g2.setStroke(new BasicStroke(3));
-                g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
-        
-                // Descriptom frame
-                int dFrameX = frameX;
-                int dFrameY = frameY + frameHeight;
+            // DRAW CURSOR
+
+                int cursorWidth = gamePanel.tileSize + 6;
+                int cursorHeight = gamePanel.tileSize + 6;
+                int cursorX = slotXstart + ( cursorWidth * slotCol ) + ( 5 * slotCol ) ;
+                int cursorY = slotYstart + ( cursorHeight * slotRow ) + ( 5 * slotRow );
+
+                g2.drawImage(cursorScreen,cursorX,cursorY,null);
+
+            // DESCRIPTION FRAME:
+                int dFrameX = frameX - 8;
+                int dFrameY = frameY + (4 * slotSize + 10);
+
                 int dFrameWidth = frameWidth;
-                int dFrameHeight = gamePanel.tileSize*4;
-                
-                int textX = dFrameX + 20;
-                int textY = dFrameY + gamePanel.tileSize;
-                g2.setFont(g2.getFont().deriveFont(28F));
-        
+                int dFrameHeight = gamePanel.tileSize*3;
+
+            // DRAW DESCRIPTION TEXT
+                int textX = dFrameX + 5;
+                int textY = dFrameY + gamePanel.tileSize - 10;
+                g2.setFont(alagard);
+                g2.setFont(g2.getFont().deriveFont(15F));
+                g2.setColor(Color.WHITE);
                 int itemIndex = getItemIndexOnSlot(slotCol, slotRow);
-                if(itemIndex < entity.inventory.size()){
-        
-                    drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
-                    for(String line : entity.inventory.get(itemIndex).description.split("\n")){
+                if(itemIndex < gamePanel.player.inventory.size()){
+                    for(String line : gamePanel.player.inventory.get(itemIndex).description.split("\n")){
                         g2.drawString(line, textX, textY);
-                        textY += 32;
+                        textY += 22;
                     }
                 }
-        
-            }
-            
         }
 
-    }
+            }
+            else{
+                if(entity == gamePanel.player){
+
+                    frameX = gamePanel.tileSize*9 + gamePanel.tileSize/2;
+                    frameY = gamePanel.tileSize;
+                    frameWidth = gamePanel.tileSize*7 + gamePanel.tileSize/2;
+                    frameHeight = gamePanel.tileSize*6;
+                    slotCol = playerSlotCol;
+                    slotRow = playerSlotRow;
+                }
+                else{
+
+                    frameX = gamePanel.tileSize*1;
+                    frameY = gamePanel.tileSize;
+                    frameWidth = gamePanel.tileSize*7 + gamePanel.tileSize/2;
+                    frameHeight = gamePanel.tileSize*6;
+                    slotCol = npcSlotCol;
+                    slotRow = npcSlotRow;
+
+                }
+
+                // Frame
+                drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+                // Slot
+                final int slotXstart = frameX + 20;
+                final int slotYstart = frameY + 20;
+                int slotX = slotXstart;
+                int slotY = slotYstart;
+                int slotSize = gamePanel.tileSize + 16;
+
+                // Draw Player Items
+                for(int i=0; i < entity.inventory.size(); i++){
+
+                    // Equip cursor
+                    if(entity.inventory.get(i) == entity.currentWeapon ||
+                        entity.inventory.get(i) == entity.currentShield){
+                            g2.setColor(new Color(240,190,90));
+                            g2.fillRoundRect(slotX + 5/2, slotY - 3, gamePanel.tileSize + 13, gamePanel.tileSize + 13, 10, 10);
+                        }
+                    g2.drawImage(entity.inventory.get(i).itemsImage, slotX + 9, slotY - 3, null);
+
+                    // DISPLAY AMOUNT
+                    if(entity == gamePanel.player && entity.inventory.get(i).amount > 1){
+
+                        g2.setFont(g2.getFont().deriveFont(32F));
+                        int amountX;
+                        int amountY;
+
+                        String s = "" + entity.inventory.get(i).amount;
+                        amountX = getXforAlignToRightText(s, slotX + 62);
+                        amountY = slotY + gamePanel.tileSize + 10;
+
+                        // SHADOW
+                        g2.setColor(new Color(60,60,60));
+                        g2.drawString(s, amountX, amountY);
+                        // NUMBER
+                        g2.setColor(Color.WHITE);
+                        g2.drawString(s, amountX-3, amountY-3);
+                    }
+                    slotX += slotSize;
+                    if(i == 4 || i == 9 || i == 14){
+                        slotX = slotXstart;
+                        slotY += slotSize;
+                    }
+                }
+
+                // Cursor
+                if(cursor == true){
+                    int cursorX = slotXstart + (slotSize * slotCol);
+                    int cursorY = slotYstart + (slotSize * slotRow) - 4;
+                    int cursorWidth = gamePanel.tileSize + 16;
+                    int cursorHeight = gamePanel.tileSize + 16;
+                    // Draw cursor
+                    g2.setColor(Color.WHITE);
+                    g2.setStroke(new BasicStroke(3));
+                    g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
+                    // Descriptom frame
+                    int dFrameX = frameX;
+                    int dFrameY = frameY + frameHeight;
+                    int dFrameWidth = frameWidth;
+                    int dFrameHeight = gamePanel.tileSize*4;
+
+                    int textX = dFrameX + 20;
+                    int textY = dFrameY + gamePanel.tileSize;
+                    g2.setFont(g2.getFont().deriveFont(28F));
+
+                    int itemIndex = getItemIndexOnSlot(slotCol, slotRow);
+                    if(itemIndex < entity.inventory.size()){
+
+                        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+                        for(String line : entity.inventory.get(itemIndex).description.split("\n")){
+                            g2.drawString(line, textX, textY);
+                            textY += 32;
+                        }
+                    }
+
+                }
+
+            }
+
+        }
     public void drawTradeScreen(){
 
         switch (subState) {
@@ -1234,15 +1231,6 @@ public class UI {
             }
         }
         y += gamePanel.tileSize;
-
-/*        g2.drawString("Sell", x, y);
-        if(tradeCommandNum == 1){
-            g2.drawString(">", x-24, y);
-            if(gamePanel.keyHandler.enterPressed == true){
-                subState = 2;
-            }
-        }
-        y += gamePanel.tileSize;             */
 
         g2.drawString("Leave", x, y);
         if(tradeCommandNum == 1){
@@ -1311,6 +1299,7 @@ public class UI {
         }
 
     }
+
 /*     public void trade_sell(){
 
         // DRAW PLAYER INVENTORY
@@ -1450,15 +1439,21 @@ public class UI {
         counter++;
         g2.setColor(new Color(0, 0, 0, counter * 5));
         g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
-        if(counter == 10) { // Transition is done
+        if(counter == 40) { // Transition is done
+
             counter = 0;
-            gamePanel.gameState = gamePanel.playState;
-            gamePanel.currentMap = gamePanel.eHandler.tempMap;
+
+            gamePanel.changeArea();
+
             gamePanel.player.worldX = gamePanel.tileSize * gamePanel.eHandler.tempCol;
             gamePanel.player.worldY = gamePanel.tileSize * gamePanel.eHandler.tempRow;
+
             gamePanel.eHandler.previousEventX = gamePanel.player.worldX;
             gamePanel.eHandler.previousEventY = gamePanel.player.worldY;
-            gamePanel.changeArea();
+
+            gamePanel.currentMap = gamePanel.eHandler.tempMap;
+            gamePanel.gameState = gamePanel.playState;
+
         }
     }
 }
