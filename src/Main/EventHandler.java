@@ -4,35 +4,35 @@ package Main;
 public class EventHandler {
 
     GamePanel gamePanel;
-    eventRect eventRect[][][];
+    EventRect EventRect[][][];
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
     boolean first, second, third, fourth, fifth;
+    boolean[] checkHappened;
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
-
-            first = false;
-            second = false;
-            third = false;
-            fourth = false;
-            fifth = false;
-            eventRect = new eventRect[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
+            checkHappened = new boolean[6];
+            for(int i = 0; i < 6; ++i) {
+                checkHappened[i] = false;
+            }
+            
+            EventRect = new EventRect[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
             int map = 0;
             int col = 0;
             int row = 0;
             while(map < gamePanel.maxMap && col < gamePanel.maxWorldColumn && row < gamePanel.maxWorldRow){
 
-            eventRect[map][col][row] = new eventRect();
-            eventRect[map][col][row].x = 48;
-            eventRect[map][col][row].y = 48;
-            eventRect[map][col][row].width = gamePanel.tileSize;
-            eventRect[map][col][row].height = gamePanel.tileSize;
+            EventRect[map][col][row] = new EventRect();
+            EventRect[map][col][row].x = 48;
+            EventRect[map][col][row].y = 48;
+            EventRect[map][col][row].width = gamePanel.tileSize;
+            EventRect[map][col][row].height = gamePanel.tileSize;
 
-            eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
-            eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
+            EventRect[map][col][row].eventRectDefaultX = EventRect[map][col][row].x;
+            EventRect[map][col][row].eventRectDefaultY = EventRect[map][col][row].y;
 
-            eventRect[map][col][row].eventDone = false;
+            EventRect[map][col][row].eventDone = false;
             col++;
 
             if(col == gamePanel.maxWorldColumn){
@@ -91,30 +91,30 @@ public class EventHandler {
                 }
             }
             //MONSTER CHECKED PLACED MAP 1
-            if(hit(1,36,31,"any") == true) {
+            if((checkHappened[5] == false) && hit(1,36,31,"any") == true) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 7;
-                setCheckedGateEvent(4);
+                checkHappened[5] = true;
             }
-            if(hit(1,26,31,"any") == true) {
+            if((checkHappened[4] == false) && hit(1,26,31,"any") == true) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 8;
-                setCheckedGateEvent(5);
+                checkHappened[4] = true;
             }
-            if(first == false && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
+            if((checkHappened[0] == false) && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 4;
-                setCheckedGateEvent(0);
+                checkHappened[0] = true;
             }
-            if(second == false && (hit(1, 30, 40, "any") == true || hit(1, 31, 40, "any") == true || hit(1, 32, 40, "any") == true)) {
+            if((checkHappened[1] == false) && (hit(1, 30, 40, "any") == true || hit(1, 31, 40, "any") == true || hit(1, 32, 40, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 6;
-                setCheckedGateEvent(1);
+                checkHappened[1] = true;
             }
-            if(third == false && (hit(1, 41, 36, "any") == true || hit(1, 42, 36, "any") == true || hit(1, 43, 36, "any") == true)) {
+            if((checkHappened[2] == false) && (hit(1, 41, 36, "any") == true || hit(1, 42, 36, "any") == true || hit(1, 43, 36, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 5;
-                setCheckedGateEvent(2);
+                checkHappened[2] = true;
             }
             if(gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
                 gamePanel.gameState = gamePanel.battleState;
@@ -132,23 +132,23 @@ public class EventHandler {
         if(map == gamePanel.currentMap) {
             gamePanel.player.solidArea.x = gamePanel.player.worldX + gamePanel.player.solidArea.x;
             gamePanel.player.solidArea.y = gamePanel.player.worldY + gamePanel.player.solidArea.y;
-            eventRect[map][col][row].x = col*gamePanel.tileSize + eventRect[map][col][row].x;
-            eventRect[map][col][row].y = row *gamePanel.tileSize + eventRect[map][col][row].y;
+            EventRect[map][col][row].x = col*gamePanel.tileSize + EventRect[map][col][row].x;
+            EventRect[map][col][row].y = row *gamePanel.tileSize + EventRect[map][col][row].y;
 
-            if(gamePanel.player.solidArea.intersects(eventRect[map][col][row]) && eventRect[map][col][row].eventDone == false){
+            if(gamePanel.player.solidArea.intersects(EventRect[map][col][row]) && EventRect[map][col][row].eventDone == false){
                 if(gamePanel.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")){
                     hit = true;
                     previousEventX = gamePanel.player.worldX;
                     previousEventY = gamePanel.player.worldY;
-                    eventRect[map][col][row].eventDone = true;
+                    EventRect[map][col][row].eventDone = true;
                 }
             }
 
             gamePanel.player.solidArea.x = gamePanel.player.solidAreaDefaultX;
             gamePanel.player.solidArea.y = gamePanel.player.solidAreaDefaultY;
 
-            eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-            eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+            EventRect[map][col][row].x = EventRect[map][col][row].eventRectDefaultX;
+            EventRect[map][col][row].y = EventRect[map][col][row].eventRectDefaultY;
         }
         return hit;
     }
@@ -171,23 +171,5 @@ public class EventHandler {
             canTouchEvent = false;
             //gamePanel.playSE(13);
     }
-    public void setCheckedGateEvent(int i) {
-        switch (i) {
-            case 0:
-                first = true;
-                break;
-            case 1:
-                second = true;
-                break;
-            case 2:
-                third = true;
-                break;
-            case 4:
-                fourth = true;
-                break;
-            case 5:
-                fifth = true;
-                break;
-        }
-    }
+   
 }
