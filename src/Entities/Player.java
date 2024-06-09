@@ -60,7 +60,7 @@ public class Player extends Entity{
             currentWeapon = new OBJ_Sword(gamePanel);
             currentShield = new OBJ_WoodenShield(gamePanel);
             currentItem = new OBJ_Key(gamePanel);
-            maxLife = 30;
+            maxLife = 100;
             attack = strength;
             defense = dexterity;
             life = maxLife;

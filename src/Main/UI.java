@@ -628,12 +628,16 @@ public class UI {
                 image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
             g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
             }
+            if(indexBattle == 3){
+                image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
+            g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Draw Monster
+        // Set Monster
         if(checker == false)
         {
             listofMonster = new ArrayList<>();
@@ -682,7 +686,7 @@ public class UI {
 
         // Draw Monster
         int PositionX = gamePanel.tileSize*5;
-        int PositionY = 100;
+        int PositionY = 370/listofMonster.size();
         for(int i=0; i<listofMonster.size(); i++){
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                 effectPosX = PositionX;
@@ -711,8 +715,8 @@ public class UI {
             PositionX = gamePanel.tileSize*10;
         }
         if(gamePanel.player.state != gamePanel.player.normalState){
-            effectPosX = PositionX;
-            effectPosY = PositionY;
+            effectPosX = PositionX + 10;
+            effectPosY = PositionY + 5;
         }
         g2.drawImage(gamePanel.player.left1, PositionX, PositionY,null);
 
@@ -894,13 +898,22 @@ public class UI {
         //Battle 1
         if(index == 1){
         listofMonster.add(gamePanel.monster[0][0]);
-        listofMonster.add(gamePanel.monster[1][0]);
+        listofMonster.add(gamePanel.monster[0][1]);
+        listofMonster.add(gamePanel.monster[0][2]);
         }
         //Battle 2
         if(index == 2){
+            listofMonster.add(gamePanel.monster[0][4]);
+            listofMonster.add(gamePanel.monster[0][0]);
             listofMonster.add(gamePanel.monster[0][1]);
-            listofMonster.add(gamePanel.monster[0][2]);
-            }
+            listofMonster.add(gamePanel.monster[0][3]);
+        }
+        //Battle 3
+        if(index == 3){
+            listofMonster.add(gamePanel.monster[0][0]);
+            listofMonster.add(gamePanel.monster[0][5]);
+            listofMonster.add(gamePanel.monster[0][1]);
+        }
     }
     // Monster Turn
     public void monsterTurn(){

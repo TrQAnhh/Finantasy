@@ -3,22 +3,22 @@ package Monster;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_Pumpkin extends Entity {
+public class MON_GhostRider extends Entity {
 
     GamePanel gamePanel;
 
-    public MON_Pumpkin(GamePanel gamePanel) {
+    public MON_GhostRider(GamePanel gamePanel) {
 
         super(gamePanel);
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Pumpkin";
+        name = "Ghost Rider";
         direction = "down";
-        maxLife = 10;
+        maxLife = 20;
         life = maxLife;
-        attack = 5;
-        defense = 0;
+        attack = 3;
+        defense = 2;
         exp = 2;
         coin = 10;
         mana = 0;
@@ -37,10 +37,10 @@ public class MON_Pumpkin extends Entity {
     }
     public void getImage(){
 
-        up1 = setup("Monster/Pumpkin/up_1");
-        down1 = setup("Monster/Pumpkin/down_1");
-        left1 = setup("Monster/Pumpkin/left_1");
-        right1 = setup("Monster/Pumpkin/right_1");
+        up1 = setup("Monster/HatHatPumpkinWithHorseWithHorse/up_2");
+        down1 = setup("Monster/HatPumpkinWithHorse/down_2");
+        left1 = setup("Monster/HatPumpkinWithHorse/left_2");
+        right1 = setup("Monster/HatPumpkinWithHorse/right_2");
     }   
     public void setAction(){
 
@@ -53,6 +53,15 @@ public class MON_Pumpkin extends Entity {
             }
             else{
                 entity.state = entity.getDamageState;
+                mana++;
+                if(mana == maxMana){
+                    state = healingState;
+                    life += 5;
+                    if(life > maxLife){
+                        defense += 2;
+                        state = defenseState;
+                    }
+                }
             }
             entity.life -= damage;
             gamePanel.ui.addMessage(damage + " damage!");

@@ -15,18 +15,18 @@ public class Critical extends Entity{
         super(gp);
         this.gp = gp;
 
-        image1 = setupEffectImages("/effect/Critical/critical_1", 128, 96);
-        image2 = setupEffectImages("/effect/Critical/critical_2", 128, 96);
-        image3 = setupEffectImages("/effect/Critical/critical_3", 128, 96);
-        image4 = setupEffectImages("/effect/Critical/critical_4", 128, 96);
-        image5 = setupEffectImages("/effect/Critical/critical_5", 128, 96);
-        image6 = setupEffectImages("/effect/Critical/critical_6", 128, 96);
-        image7 = setupEffectImages("/effect/Critical/critical_7", 128, 96);
-        image8 = setupEffectImages("/effect/Critical/critical_8", 128, 96);
-        image9 = setupEffectImages("/effect/Critical/critical_9", 128, 96);
-        image10 = setupEffectImages("/effect/Critical/critical_10", 128, 96);
-        image11 = setupEffectImages("/effect/Critical/critical_11", 128, 96);
-        image12 = setupEffectImages("/effect/Critical/critical_12", 128, 96);
+        image1 = setupEffectImages("/effect/Critical/critical_1", 96, 64);
+        image2 = setupEffectImages("/effect/Critical/critical_2", 96, 64);
+        image3 = setupEffectImages("/effect/Critical/critical_3", 96, 64);
+        image4 = setupEffectImages("/effect/Critical/critical_4", 96, 64);
+        image5 = setupEffectImages("/effect/Critical/critical_5", 96, 64);
+        image6 = setupEffectImages("/effect/Critical/critical_6", 96, 64);
+        image7 = setupEffectImages("/effect/Critical/critical_7", 96, 64);
+        image8 = setupEffectImages("/effect/Critical/critical_8", 96, 64);
+        image9 = setupEffectImages("/effect/Critical/critical_9", 96, 64);
+        image10 = setupEffectImages("/effect/Critical/critical_10", 96, 64);
+        image11 = setupEffectImages("/effect/Critical/critical_11", 96, 64);
+        image12 = setupEffectImages("/effect/Critical/critical_12", 96, 64);
     }
     public void update(){
         effectCounter++;

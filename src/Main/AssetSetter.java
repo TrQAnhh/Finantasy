@@ -67,16 +67,14 @@ public class AssetSetter{
     public void setMonster(){
         //Set monster for first map
             gamePanel.monster[mapNum][0] = new MON_Pumpkin(gamePanel);
-            gamePanel.monster[mapNum][0].worldX = 700;
-            gamePanel.monster[mapNum][0].worldY = 2336;
-
-            gamePanel.monster[mapNum][1] = new MON_Reaper(gamePanel);
-
-            gamePanel.monster[mapNum][2] = new MON_Reaper(gamePanel);
+            gamePanel.monster[mapNum][1] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][2] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][3] = new MON_Reaper(gamePanel);
+            gamePanel.monster[mapNum][4] = new MON_Reaper(gamePanel);
+            gamePanel.monster[mapNum][5] = new MON_GhostRider(gamePanel);
         //Set monster for second map
             mapNum = 1;
             gamePanel.monster[mapNum][0] = new MON_Pumpkin(gamePanel);
-
             gamePanel.monster[mapNum][1] = new MON_Pumpkin(gamePanel);
     }
 
