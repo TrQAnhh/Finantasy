@@ -25,6 +25,7 @@ public class MON_Pumpkin extends Entity {
         maxMana = 3;
         state = normalState;
         preState = state;
+        dying = false;
 
         solidArea.x = 3;
         solidArea.y = 18;
