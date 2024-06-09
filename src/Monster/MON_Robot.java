@@ -12,20 +12,21 @@ public class MON_Robot extends Entity {
 
     public MON_Robot(GamePanel gamePanel) {
         super(gamePanel);
-
         this.gamePanel = gamePanel;
 
         type = type_monster;
         name = "Robot";
         direction = "down";
-        maxLife = 4;
+        maxLife = 10;
         life = maxLife;
         attack = 5;
         defense = 0;
         exp = 2;
+        coin = 10;
         mana = 0;
         maxMana = 3;
         state = normalState;
+        preState = state;
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -37,12 +38,10 @@ public class MON_Robot extends Entity {
         getImage();
     }
     public void getImage(){
-
         up1 = setup("Monster/Robot/stand");
         down1 = setup("Monster/Robot/down");
         left1 = setup("Monster/Robot/attack");
         right1 = setup("Monster/Robot/right");
-        up2 = setup("");
     }   
     public void setAction(){
 

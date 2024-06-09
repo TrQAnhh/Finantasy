@@ -12,85 +12,107 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Entity {
     GamePanel gamePanel;
+    // IMAGES FOR PLAYERS, NPCs, MONSTERS:
     public BufferedImage up1, up2, up3,
-            down1, down2, down3,
-            left1, left2, left3,
-            right1, right2, right3;
+        down1, down2, down3,
+        left1, left2, left3,
+        right1, right2, right3;
+    // IMAGES OF ITEMS
+    public BufferedImage itemsImage;
+    // IMAGES OF OBJECTS
+    public BufferedImage objectImage1,objectImage2,objectImage3,objectImage4;
     public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
-    public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
+    public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15;
+    // SOLID AREA FOR CHECK COLLISION OF EACH ENTITIES / NPCs / MONSTERS
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
-    public String dialogue[] = new String[20];
+    // DIALOGUES
+    String dialogue[] = new String[20];
 
-    // State
-    public int worldX, worldY;
-    public String direction = "down";
-    public int spriteNum = 1;
-    public int standNum = 1;
-    public int effectNum = 1;
-    int dialogueIndex = 0;
-    public boolean alive = true;
-    public boolean dying = false;
-    boolean hpBarOn = false;
-    public boolean drawing = true;
 
-    // Counter
-    public int spriteCounter = 0;
-    public int actionLockCounter = 0;
-    public int effectCounter = 0;
-    int dyingCounter = 0;
-    int hpBarCounter = 0;
+    // STATE
+        public int worldX, worldY;
+        public String direction = "down";
+        public int spriteNum = 1;
+        public int standNum = 1;
+        public int effectNum = 1;
+        int dialogueIndex = 0;
+        public boolean alive = true;
+        public boolean dying = false;
+        boolean hpBarOn = false;
+        public boolean drawing = true;
 
-    // Character Attributes
-    public int speed;
-    public int maxLife;
-    public int life;
-    public String name;
-    public int level;
-    public int strength;
-    public int dexterity;
-    public int attack;
-    public int defense;
-    public int exp;
-    public int nextLevelExp;
-    public int coin;
-    public Entity currentWeapon;
-    public Entity currentArmor;
-    public int mana;
-    public int maxMana;
+    // COUNTER
+        public int spriteCounter = 0;
+        public int actionLockCounter = 0;
+        public int effectCounter = 0;
+        int dyingCounter = 0;
+        int hpBarCounter = 0;
 
     // Item attribute
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
     public int attackValue;
     public int defenseValue;
     public String description = "";
+    public int price;
+    public boolean stackable = false;
+    public int amount = 1;
 
     // Type 
-    public int type;
-    public final int type_player = 0;
-    public final int type_npc = 1;
-    public final int type_monster = 2;
-    public final int type_sword = 3;
-    public final int type_axe = 4;
-    public final int type_shield = 5;
-    public final int type_consumable = 6;
-    public final int type_consumable_player = 7;
-    public final int type_consumable_enemy = 8;
+        public int type;
+        public final int type_player = 0;
+        public final int type_npc = 1;
+        public final int type_monster = 2;
+    // TOOLS:
+        public final int type_sword = 3;
+        public final int type_shield = 4;
+        public final int type_consumable = 5;
+        public final int type_consumable_player = 6;
+        public final int type_consumable_enemy = 7;
+        public final int type_dagger = 8;
+    // OBJECTS & ITEMS TYPE:
+        public final int type_key = 9;
+        public final int type_barrel = 10;
+        public final int type_chest = 11;
+        public final int type_axe = 12;
 
     // Battle state
     public int state;
+    public int preState;
     public final int normalState = 0;
     public final int getDamageState = 1;
     public final int stuntState = 2;
     public final int bleedState = 3;
     public final int healingState = 4;
     public final int burningState = 5;
-
     // Set up image
     public boolean Defeat;
+    public final int defenseState = 6;
+    public final int criticalState = 7;
+    // CHARACTER ATTRIBUTES
+        public int speed;
+        public int maxLife;
+        public int life;
+        public String name;
+        public int level;
+        public int strength;
+        public int dexterity;
+        public int attack;
+        public int defense;
+        public int exp;
+        public int nextLevelExp;
+        public int coin;
+        public Entity currentWeapon;
+        public Entity currentShield;
+        public Entity currentItem;
+        public int mana;
+        public int maxMana;
 
     public Entity ( GamePanel gamePanel ) {
         this.gamePanel = gamePanel;
@@ -106,6 +128,54 @@ public class Entity {
         try (FileInputStream readImage = new FileInputStream(imageFile)) {
             image = ImageIO.read(readImage);
             image = uTool.scaleImage(image,gamePanel.tileSize, gamePanel.tileSize + 16);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+    public BufferedImage setupEffectImages(String imagePath, int width, int height){
+ 
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,width, height);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+    public BufferedImage setupItemImages(String imagePath) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,gamePanel.tileSize + 8, gamePanel.tileSize + 8);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+    public BufferedImage setupObjectImages(String imagePath,int width, int height) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image,width, height);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -179,9 +249,10 @@ public class Entity {
     }
 
     public void use(Entity entity){}
-    public void draw(Graphics2D g2,GamePanel gamePanel){
-        BufferedImage image = null;
 
+    public void draw(Graphics2D g2,GamePanel gamePanel){
+
+        BufferedImage image = null;
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 
@@ -232,9 +303,9 @@ public class Entity {
                 break;
         }
         // Monster HP bar
-        if (type == 2 && hpBarOn == true) {
-            double oneScale = (double) gamePanel.tileSize / maxLife;
-            double hpBarValue = oneScale * life;
+    if (type == type_monster && hpBarOn == true) {
+        double oneScale = (double) gamePanel.tileSize / maxLife;
+        double hpBarValue = oneScale * life;
 
             g2.setColor(new Color(35, 35, 35));
             g2.fillRect(screenX - 1, screenY - 16, gamePanel.tileSize + 2, 12);
@@ -256,6 +327,7 @@ public class Entity {
 
 //        changeAlpha(g2, 1F);
     }
+
     public void dyingAnimation(Graphics2D g2){
 
         dyingCounter++;

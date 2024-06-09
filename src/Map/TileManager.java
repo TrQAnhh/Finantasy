@@ -291,23 +291,30 @@ public class TileManager {
                 setup(0,229,"Statue/grave_4_2",true);
                 setup(0,230,"Statue/grave_5_1",true);
                 setup(0,231,"Statue/grave_5_2",true);
-                setup(0,232,"Statue/barrels_1",true);
-                setup(0,233,"Statue/barrels_2",true);
-                setup(0,234,"Statue/urn",true);
-                setup(0,235,"Statue/urn2",true);
-                setup(0,236,"Statue/wooden_box_1",true);
-                setup(0,237,"Statue/wooden_box_2",true);
-                setup(0,238,"Statue/wooden_box_3",true);
-                setup(0,239,"Statue/wooden_box_4",true);
-            // DESTRUCTION:
+//                setup(0,232,"Statue/barrels_1",true);
+//                setup(0,233,"Statue/barrels_2",true);
+//                setup(0,234,"Statue/urn",true);
+//                setup(0,235,"Statue/urn2",true);
+//                setup(0,236,"Statue/wooden_box_1",true);
+//                setup(0,237,"Statue/wooden_box_2",true);
+//                setup(0,238,"Statue/wooden_box_3",true);
+//                setup(0,239,"Statue/wooden_box_4",true);
+            // STONE COLUMN
                 setup(0,240,"Statue/stone_column_1",true);
                 setup(0,241,"Statue/stone_column_2",true);
                 setup(0,242,"Statue/stone_column_3",true);
                 setup(0,243,"Statue/stone_column_4",true);
                 setup(0,244,"Statue/stone_column_5",true);
                 setup(0,245,"Statue/stone_column_6",true);
-                setup(0,246,"Statue/stone_column_7",true);
-                setup(0,247,"Statue/stone_column_8",true);
+                setup(0,246,"Statue/stone_column_2_1",true);
+                setup(0,247,"Statue/stone_column_2_2",true);
+                setup(0,248,"Statue/stone_column_2_3",true);
+                setup(0,249,"Statue/stone_column_2_4",true);
+                setup(0,250,"Statue/stone_column_3_1",true);
+                setup(0,251,"Statue/stone_column_3_2",true);
+                setup(0,252,"Statue/stone_column_3_3",true);
+                setup(0,253,"Statue/stone_column_3_4",true);
+
         }
             public void getTileImageSecondMap() {
                 // WATER TILES:
@@ -403,6 +410,14 @@ public class TileManager {
                     setup(1,336,"Dungeon/stone_lower_left_corner",true);
                     setup(1,337,"Dungeon/stone_tower_1_2",true);
                     setup(1,338,"Dungeon/stone_tower_3_2",true);
+                    setup(1,339,"Dungeon/dungeon_statue_1",true);
+                    setup(1,340,"Dungeon/dungeon_statue_2",true);
+                    setup(1,341,"Dungeon/dungeon_statue_3",true);
+                    setup(1,342,"Dungeon/dungeon_statue_4",true);
+                    setup(1,343,"Dungeon/dungeon_statue_5",true);
+                    setup(1,344,"Dungeon/dungeon_statue_6",true);
+
+
 
 
             }

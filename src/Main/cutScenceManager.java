@@ -25,8 +25,6 @@ public class cutScenceManager{
 
     public cutScenceManager(GamePanel gp) {
         this.gp = gp;
-
-        endCredit = "Master chefs Quoc Anh\n" + "Master chefs Thanh Huy\n " + "Master chefs Khanh Ngan\n ";
     }
 
     public void draw(Graphics2D g2) {
@@ -37,8 +35,8 @@ public class cutScenceManager{
     public void scenceEnding() {
         try {   
             text = "FINAL FANTASY COOKED BY\n"+ "MASTER CHEF QUOC ANH\n" + "MASTER CHEF THANH HUY\n" + "MASTER CHEF KHANH NGAN\n" ;
-            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/Ending.JPG";
-            credit c = new credit(s, text);
+            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_1.png";
+            new credit(s, text);
         } catch (IOException e) {
             e.printStackTrace();
         }

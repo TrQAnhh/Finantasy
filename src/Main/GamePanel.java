@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETTINGS:
     final int fps = 60;
     final int originalTileSize = 16; // 16x16 tile
@@ -57,9 +57,7 @@ public class GamePanel extends JPanel implements Runnable{
         public AssetSetter aSetter = new AssetSetter(this); 
         public Entity npc[][] = new Entity[maxMap][10]; 
     // Monster CLASS 
-        public Entity monster[][] = new Entity[maxMap][20]; 
-    // Set number of maximum monster for each map
-        public final int maxMonsterSet = 10;
+        public Entity monster[][] = new Entity[maxMap][20];
     // Object CLASS 
         public Entity object[][] = new Entity[maxMap][10];
     // Effect CLASS
@@ -88,8 +86,9 @@ public class GamePanel extends JPanel implements Runnable{
     public final int optionsState = 6;
     public final int transitionState = 7;
     public final int gameOverState = 8;
-    public final int bossBattleState = 9;
-    public final int cutScenceState = 10;
+    public final int tradeState = 9;
+    public final int bossBattleState = 10;
+    public final int cutScenceState = 11;
 
     public boolean bossBattleOn = false;
 
@@ -194,30 +193,29 @@ public class GamePanel extends JPanel implements Runnable{
             if (gameState == playState) {
                 player.update();
 
-                if ( currentMap == 0 ) {
                     for (int i = 0; i < npc[1].length; i++)
                         if (npc[0][i] != null) {
                             npc[0][i].update(this);
                         }
-                }
-
-                for (int i = 0; i < monster[1].length; i++) {
-                    if (monster[currentMap][i] != null) {
-                        if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
-                            monster[currentMap][i].update();
-                        }
-                        if (monster[currentMap][i].alive == false) {
-                            monster[currentMap][i] = null;
+                    for (int i = 0; i < object[1].length; i++) {
+                        if (object[currentMap][i] != null) {
+                            if (object[currentMap][i] != null ) {
+                                object[currentMap][i].update();
+                            }
                         }
                     }
-                }
+
+                    for (int i = 0; i < monster[1].length; i++) {
+                        if (monster[currentMap][i] != null) {
+                            if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
+                                monster[currentMap][i].update();
+                            }
+                            if (monster[currentMap][i].alive == false) {
+                                monster[currentMap][i] = null;
+                            }
+                        }
+                    }
                 eManager.update();
-                if (gameState == pauseState) {
-                    // UPDATE LATER
-                }
-            }
-            if (gameState == pauseState){
-                
             }
         }
         public void paintComponent(Graphics graphics){

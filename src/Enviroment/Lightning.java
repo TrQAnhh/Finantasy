@@ -51,7 +51,8 @@ public class Lightning {
         // Subtract the light circle from the screen rectangle
         screenArea.subtract(lightArea);
 
-        // Create a gradation effect within the light circle
+        // Create a gradation effect within the ligh
+        // dt circle
         Color color[] = new Color[12];
         float fraction[] = new float[12];
 

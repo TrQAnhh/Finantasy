@@ -57,40 +57,58 @@ public class EventHandler {
         }
         if(canTouchEvent == true){
 
-            //gamePanel.gameState = gamePanel.battleState;
-            //gamePanel.ui.indexBattle = 1;
-
+            // HEALING BY STATUE AT X1 = 13 (COLS), Y1 = 33 (ROWS) AND X2 = 13 (COLS), Y2 = 32 (ROWS)
             if( hit(0, 13,33,"any") == true ) {
-                healingGamePanelPool(gamePanel.dialogueState);
+            healingGamePanelPool(gamePanel.dialogueState);
             }
-            // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 16 (COLS), Y = 48 (ROWS)
+            // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 31 (COLS), Y = 43 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
                 teleport(1, 31, 43, gamePanel.dungeon);
             }
+
             // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
-            else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true) {
+            else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true ) {
                 teleport(0, 16, 15, gamePanel.outside);
             }
-            
-            //MONSTER CHECKED PLACED
-            if(hit(1,34,27,"any") == true) {
+
+            // MONSTER CHECKED PLACED MAP 0
+            if(hit(0,15,18,"any") == true) {
+                if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 1;
+                }
+            }
+            if(hit(0,17,15,"any") == true) {
+                if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 2;
+                }
+            }
+            if(hit(0,14,16,"any") == true) {
+                if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.gameState = gamePanel.battleState;
+                    gamePanel.ui.indexBattle = 3;
+                }
+            }
+            //MONSTER CHECKED PLACED MAP 1
+            if(hit(1,36,31,"any") == true) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 7;
                 setCheckedGateEvent(4);
             }
-            if(hit(1,28,27,"any") == true) {
+            if(hit(1,26,31,"any") == true) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 8;
                 setCheckedGateEvent(5);
             }
             if(first == false && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
-                gamePanel.ui.indexBattle = 2;
+                gamePanel.ui.indexBattle = 4;
                 setCheckedGateEvent(0);
             }
             if(second == false && (hit(1, 30, 40, "any") == true || hit(1, 31, 40, "any") == true || hit(1, 32, 40, "any") == true)) {
                 gamePanel.gameState = gamePanel.battleState;
-                gamePanel.ui.indexBattle = 4;
+                gamePanel.ui.indexBattle = 6;
                 setCheckedGateEvent(1);
             }
             if(third == false && (hit(1, 41, 36, "any") == true || hit(1, 42, 36, "any") == true || hit(1, 43, 36, "any") == true)) {
@@ -100,11 +118,11 @@ public class EventHandler {
             }
             if(gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
                 gamePanel.gameState = gamePanel.battleState;
-                gamePanel.ui.indexBattle = 6;
+                gamePanel.ui.indexBattle = 9;
             }
             if(gamePanel.bossBattleOn) {
                 gamePanel.gameState = gamePanel.bossBattleState;
-                gamePanel.ui.indexBattle = 3;
+                gamePanel.ui.indexBattle = 10;
             }
         }
     }
