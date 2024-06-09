@@ -56,9 +56,9 @@ public class GamePanel extends JPanel implements Runnable{
         public Collision collision = new Collision(this); 
     // NPC CLASS 
         public AssetSetter aSetter = new AssetSetter(this); 
-        public Entity npc[][] = new Entity[maxMap][10]; 
-    // Monster CLASS 
-        public Entity monster[][] = new Entity[maxMap][20]; 
+        public Entity npc[][] = new Entity[maxMap][20]; 
+    // Monster CLASS
+        public Entity monster[][] = new Entity[maxMap][30]; 
     // Object CLASS 
         public Entity object[][] = new Entity[maxMap][10];
     // Effect CLASS
@@ -85,6 +85,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int characterState = 5;
     public final int optionsState = 6;
     public final int transitionState = 7;
+    public final int gameOverState = 8;
+    public final int tradeState = 9;
 
 //    // Config
 //        Config config = new Config(this);
@@ -121,6 +123,22 @@ public class GamePanel extends JPanel implements Runnable{
                 eManager.setup();
 
 
+        }
+        public void retry(){
+            player.setDefaultPosition();
+            player.restoreLife();
+            aSetter.setNPC();
+            aSetter.setMonster();
+        }
+        public void restart(){
+            player.setDefaultValues();
+            player.setItem();
+            
+            aSetter.setObject();
+            aSetter.setNPC();
+            aSetter.setMonster();
+            aSetter.setEffect();
+            // aSetter.setInteractiveTile();            Wtf is this???
         }
         public void setFullScreen() {
 
@@ -301,20 +319,17 @@ public class GamePanel extends JPanel implements Runnable{
         se.setFile(i);
         se.play();
     }
-        public void changeArea(){
-            if(nextArea != currentArea) {
-                /*
+    public void changeArea(){
+        if(nextArea != currentArea) {
+            stopMusic();
+            playMusic(1);
+            if(nextArea == outside) {
                 stopMusic();
-                if(nextArea == outside) {
-                    playSE(0);
-                }
-                if(nextArea == dungeon) {
-                    playSE(1);
-                }
-                */
+                playMusic(0);
             }
-            currentArea = nextArea;
-            aSetter.setMonster();
-            aSetter.setNPC();
         }
+        currentArea = nextArea;
+        aSetter.setMonster();
+        aSetter.setNPC();
+    }
 }

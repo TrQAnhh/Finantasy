@@ -9,15 +9,12 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayList;
 
 public class Player extends Entity{
     // VARIABLES:
         public final int screenX;
 
         public final int screenY;
-        public ArrayList<Entity> inventory = new ArrayList<>();
-        public final int maxInventorySize = 20;
         KeyHandler keyHandler;
     // CONSTRUCTORS:
         public Player(GamePanel gamePanel, KeyHandler keyHandler){
@@ -42,38 +39,57 @@ public class Player extends Entity{
                 getBasePlayerImage();
             // Set Player default value
                 setDefaultValues();
-            // Set Player Items
+            // Set Player inventory
                 setItem();
+            
         }
         public void setDefaultValues(){
+                worldX = gamePanel.tileSize * 15;
+                worldY = gamePanel.tileSize * 18;
             // PLAYER'S SPEED:
-                 speed = 13;
-            // PLAYER STATUS:
+                speed = 10;
+                direction = "down";
+    
+            // PLAYER STATUS
                 level = 1;
                 strength = 1;
                 dexterity = 1;
                 exp = 0;
                 nextLevelExp = 4;
-                coin = 0;
-                currentWeapon = new OBJ_Axe(gamePanel);
+                coin = 500;
+
+                currentWeapon = new OBJ_Sword(gamePanel);
+                currentShield = new OBJ_WoodenShield(gamePanel);
                 currentItem = new OBJ_Key(gamePanel);
-                maxLife = 999;
+
+                maxLife = 100;
                 attack = strength;
                 defense = dexterity;
                 life = maxLife;
                 state = normalState;
+                preState = state;
+        }
+        public void setDefaultPosition(){
+            worldX = gamePanel.tileSize * 15; 
+            worldY = gamePanel.tileSize * 18;
+            direction = "down";
+        }
+        public void restoreLife(){
+            life = maxLife;
         }
         public void setItem(){
+
+            inventory.clear();
             inventory.add(currentWeapon);
+            inventory.add(currentShield);
             inventory.add(currentItem);
-            inventory.add(new OBJ_Sword(gamePanel));
-            inventory.add(new OBJ_WoodenShield(gamePanel));
+            inventory.add(new OBJ_Axe(gamePanel));
         }
         public int getAttack(){
             return attack = strength + currentWeapon.attackValue;
         }
         public int getDefense(){
-            return defense = dexterity + currentArmor.defenseValue;
+            return defense = dexterity + currentShield.defenseValue;
         }
     // METHODS:
         // GET PLAYER IMAGES:
@@ -250,9 +266,17 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
+        if(life > maxLife){
+            life = maxLife;
+        }
+        if(life < 0){
+            gamePanel.gameState = gamePanel.gameOverState;
+            // gamePanel.playSE(12);
+        }
     }
     // INTERACTION WITH OBJECTS METHOD:
     public void pickUpObject(int i){
+
         if(i != 999){
             if(gamePanel.keyHandler.enterPressed == true){
                 if(inventory.size() < maxInventorySize){
@@ -260,11 +284,16 @@ public class Player extends Entity{
                         gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
-                    } else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
+                    }
+                    else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         inventory.remove(currentItem);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
+                }
+                else {
+                    String text = "You cannot carry anymore!";
+                    gamePanel.ui.addMessage(text);
                 }
             }
         }
@@ -278,60 +307,65 @@ public class Player extends Entity{
             }
         }
     }
-    public void damageMonster(int i){
+    public void damageMonster(int choosingEquipAction, int choosingEnemyAction){
 
-        int damage = attack - gamePanel.ui.listofMonster.get(i).defense;
+        int damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         if(damage < 0){
             damage = 0;
         }
         else{
-            gamePanel.ui.listofMonster.get(i).state = gamePanel.ui.listofMonster.get(i).getDamageState;
+            gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
+            inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+            damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         }
-        gamePanel.ui.listofMonster.get(i).life -= damage;
+        gamePanel.ui.listofMonster.get(choosingEnemyAction).life -= damage;
         gamePanel.ui.addMessage(damage + " damage!");
-}
+    }
+    public void defensePlayer(int choosingEquipAction){
+        defense = getDefense();
+        inventory.get(choosingEquipAction).use(this);
+    }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
-    if(state == stuntState){
-        gamePanel.ui.addMessage("You Was Stunt");
-    }
-    else{
-        
-        if(selectAction == 0){
-            currentWeapon = inventory.get(choosingEquipAction);
-            attack = getAttack();
-            damageMonster(choosingEnemyAction);
-        }
-        else if(selectAction == 1){
-            currentArmor = inventory.get(choosingEquipAction);
-            defense = getDefense() + getDefense()*30/100;       // Increase your defense 30%
+
+        if(preState == stuntState){
             gamePanel.ui.orderTurn++;
+            preState = normalState;
         }
-        else if(selectAction == 2){
-            Entity selectedItem = inventory.get(choosingEquipAction);
-            if(selectedItem.type == selectedItem.type_consumable_player)
-            {
-                selectedItem.use(this);
+        else{
+            if(preState == bleedState){
+                life--;
+                preState = normalState;
             }
-            else{
-                selectedItem.use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+            if(selectAction == 0){
+                currentWeapon = inventory.get(choosingEquipAction);
+                attack = getAttack();
+                damageMonster(choosingEquipAction, choosingEnemyAction);
             }
-            inventory.remove(choosingEquipAction);
+            else if(selectAction == 1){
+                currentShield = inventory.get(choosingEquipAction);
+                defense = getDefense();
+                state = defenseState;
+                defensePlayer(choosingEquipAction);
+            }
+            else if(selectAction == 2){
+                Entity selectedItem = inventory.get(choosingEquipAction);
+                if(selectedItem.type == selectedItem.type_consumable_player)
+                {
+                    selectedItem.use(this);
+                }
+                else{
+                    selectedItem.use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+                }
+                if(selectedItem.amount > 0){
+                    inventory.get(choosingEquipAction).amount--;
+                }
+                else{
+                    inventory.remove(choosingEquipAction);
+                }
+            }
         }
-        
-    }
+
 }
-   public void selectItem(){
-            int itemIndex = gamePanel.ui.getItemIndexOnSlot();
-            if ( itemIndex < inventory.size() ){
-                Entity selectedItem = inventory.get(itemIndex);
-                if( selectedItem.type == type_axe ){
-                    currentWeapon = selectedItem;
-                }
-                if ( selectedItem.type == type_key ){
-                    currentItem = selectedItem;
-                }
-            }
-   }
     public void checkLevelUp(){
 
         if(exp >= nextLevelExp){
@@ -348,7 +382,78 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             gamePanel.ui.currentDialogue = "You are level " + level + " now!\n";
         }
     }
+    public void selectItem(){
 
+        int itemIndex = gamePanel.ui.getItemIndexOnSlot(gamePanel.ui.playerSlotCol, gamePanel.ui.playerSlotRow);
+
+        if(itemIndex < inventory.size()){
+            Entity selectedItem = inventory.get(itemIndex);
+        // EQUIP WEAPON
+            if(selectedItem.type == type_sword || selectedItem.type == type_dagger || selectedItem.type == type_axe){
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+        // EQUIP SHIELD
+            if(selectedItem.type == type_shield){
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+        // EQUIP KEY
+            if (selectedItem.type == type_key ) {
+                currentItem = selectedItem;
+            }
+        // EQUIP CONSUMABLE
+            if(selectedItem.type == type_consumable_player ){
+                selectedItem.use(this);
+                if(selectedItem.amount > 1){
+                    selectedItem.amount--;
+                }
+                else{
+                    inventory.remove(itemIndex);
+                }
+            }
+        }
+    }
+    public int searchItemInInventory(String itemName){
+
+        int itemIndex = 999;
+        for(int i=0; i<inventory.size();i++){
+            if(inventory.get(i).name.equals(itemName)){
+                itemIndex = i;
+                break;
+            }
+        }
+        return itemIndex;
+    }
+    public boolean canObtainItem(Entity item){
+        
+        boolean canObtain = false;
+
+        //  CHECK IF STACKABLE
+        if(item.stackable == true){
+            int index = searchItemInInventory(item.name);
+
+            if(index != 999){
+                inventory.get(index).amount++;
+                canObtain = true;
+            }
+            else{
+                //  NEW ITEM SO NEED TO CHECK VACANCY
+                if(inventory.size() != maxInventorySize){
+                    inventory.add(item);
+                    canObtain = true;
+                }
+            }
+        }
+        else{
+            // NOT STACKABLE SO CHECK VACANCY
+            if(inventory.size() != maxInventorySize){
+                inventory.add(item);
+                canObtain = true;
+            }
+        }
+        return canObtain;
+    }
     @Override
     public void draw(Graphics2D g2, GamePanel gamePanel) {
         BufferedImage image = down1;
