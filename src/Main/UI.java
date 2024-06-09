@@ -1377,7 +1377,14 @@ public class UI {
     }
     */
     public int getItemIndexOnSlot(int slotCol, int slotRow){
-        int itemIndex = slotCol + (slotRow*6);
+
+        int itemIndex = 0;
+        if(gamePanel.gameState == gamePanel.characterState){
+            itemIndex = slotCol + (slotRow*6);
+        }
+        else if(gamePanel.gameState == gamePanel.tradeState){
+            itemIndex = slotCol + (slotRow*5);
+        }
         return itemIndex;
     }
     public void drawGameOverScreen(){

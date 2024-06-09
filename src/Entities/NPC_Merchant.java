@@ -55,9 +55,9 @@ public class NPC_Merchant extends Entity{
         inventory.add(new OBJ_GoldSword(gamePanel));
         inventory.add(new OBJ_Dagger(gamePanel));
         inventory.add(new OBJ_DragonSword(gamePanel));
-    //    inventory.add(new OBJ_SilverShield(gamePanel));
-    //    inventory.add(new OBJ_GoldShield(gamePanel));
-    //    inventory.add(new OBJ_DragonShield(gamePanel));
+        inventory.add(new OBJ_SilverShield(gamePanel));
+        inventory.add(new OBJ_GoldShield(gamePanel));
+        inventory.add(new OBJ_DragonShield(gamePanel));
     }
 
     @Override
