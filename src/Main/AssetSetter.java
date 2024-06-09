@@ -22,6 +22,19 @@ public class AssetSetter{
         gamePanel.object[mapNum][i].worldX = gamePanel.tileSize * 22; // 22 columns * 48
         gamePanel.object[mapNum][i].worldY = gamePanel.tileSize * 49; // 49 rows * 48
         i++;
+        gamePanel.object[mapNum][i] = new OBJ_Barrels(gamePanel);
+        gamePanel.object[mapNum][i].worldX = gamePanel.tileSize * 13; // 13 columns * 48
+        gamePanel.object[mapNum][i].worldY = gamePanel.tileSize * 50; // 50 rows * 48
+        i++;
+        gamePanel.object[mapNum][i] = new OBJ_Barrels(gamePanel);
+        gamePanel.object[mapNum][i].worldX = gamePanel.tileSize * 28; // 28 columns * 48
+        gamePanel.object[mapNum][i].worldY = gamePanel.tileSize * 46; // 46 rows * 48
+        i++;
+        gamePanel.object[mapNum][i] = new OBJ_Barrels(gamePanel);
+        gamePanel.object[mapNum][i].worldX = gamePanel.tileSize * 50; // 50 columns * 48
+        gamePanel.object[mapNum][i].worldY = gamePanel.tileSize * 49; // 49 rows * 48
+        i++;
+
     }
 
     public void setNPC(){

@@ -44,11 +44,11 @@ public class Player extends Entity{
             
         }
         public void setDefaultValues(){
-            worldX = gamePanel.tileSize * 15; 
-            worldY = gamePanel.tileSize * 18;
+                worldX = gamePanel.tileSize * 15;
+                worldY = gamePanel.tileSize * 18;
             // PLAYER'S SPEED:
-            speed = 10;
-            direction = "down";
+                speed = 10;
+                direction = "down";
     
             // Player status
             level = 1;
@@ -80,7 +80,7 @@ public class Player extends Entity{
             inventory.clear();
             inventory.add(currentWeapon);
             inventory.add(currentShield);
-            inventory.add(new OBJ_Key(gamePanel));
+            inventory.add(currentItem);
             inventory.add(new OBJ_Axe(gamePanel));
         }
         public int getAttack(){
@@ -282,14 +282,10 @@ public class Player extends Entity{
                         gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
-                    } else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
+                    }
+                    else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
                         gamePanel.object[gamePanel.currentMap][i].use(this);
-                        if(currentItem.amount > 1){
-                            currentItem.amount--;
-                        }
-                        else{
-                            inventory.remove(currentItem);
-                        }
+                        inventory.remove(currentItem);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
                 }
@@ -390,15 +386,22 @@ public class Player extends Entity{
 
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
+        // EQUIP WEAPON
             if(selectedItem.type == type_sword || selectedItem.type == type_dagger || selectedItem.type == type_axe){
                 currentWeapon = selectedItem;
                 attack = getAttack();
             }
+        // EQUIP SHIELD
             if(selectedItem.type == type_shield){
                 currentShield = selectedItem;
                 defense = getDefense();
             }
-            if(selectedItem.type == type_consumable_player ||  selectedItem.type == type_key ){
+        // EQUIP KEY
+            if (selectedItem.type == type_key ) {
+                currentItem = selectedItem;
+            }
+        // EQUIP CONSUMABLE
+            if(selectedItem.type == type_consumable_player ){
                 selectedItem.use(this);
                 if(selectedItem.amount > 1){
                     selectedItem.amount--;

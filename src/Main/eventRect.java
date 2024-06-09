@@ -1,7 +1,6 @@
 package Main;
 import java.awt.Rectangle;
-public class EventRect extends Rectangle {
-    int eventRectDefaultX, eventRectDefaultY;
+public class eventRect extends Rectangle {
+    public int eventRectDefaultX, eventRectDefaultY;
     boolean eventDone = false;
-    
 }
