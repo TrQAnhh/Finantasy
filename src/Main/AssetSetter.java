@@ -1,7 +1,7 @@
 package Main;
 
 import Monster.*;
-import Monster.MON_Slime;
+import Monster.MON_Pumpkin;
 import Effect.*;
 import Entities.*;
 import Objects.*;
@@ -66,26 +66,18 @@ public class AssetSetter{
     }
     public void setMonster(){
         //Set monster for first map
-            gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
+            gamePanel.monster[mapNum][0] = new MON_Pumpkin(gamePanel);
             gamePanel.monster[mapNum][0].worldX = 700;
             gamePanel.monster[mapNum][0].worldY = 2336;
 
             gamePanel.monster[mapNum][1] = new MON_Reaper(gamePanel);
-            gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
-            gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
 
             gamePanel.monster[mapNum][2] = new MON_Reaper(gamePanel);
-            gamePanel.monster[mapNum][2].worldX = gamePanel.tileSize*25;
-            gamePanel.monster[mapNum][2].worldY = gamePanel.tileSize*12;
         //Set monster for second map
             mapNum = 1;
-            gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
-            gamePanel.monster[mapNum][0].worldX = 700;
-            gamePanel.monster[mapNum][0].worldY = 2336;
+            gamePanel.monster[mapNum][0] = new MON_Pumpkin(gamePanel);
 
-            gamePanel.monster[mapNum][1] = new MON_Slime(gamePanel);
-            gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
-            gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
+            gamePanel.monster[mapNum][1] = new MON_Pumpkin(gamePanel);
     }
 
     public void setEffect(){
@@ -101,6 +93,8 @@ public class AssetSetter{
         gamePanel.effect[i] = new Explosion(gamePanel);
         i++;
         gamePanel.effect[i] = new Defense(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Critical(gamePanel);
         i++;
     }
 }

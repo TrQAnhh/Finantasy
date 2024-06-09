@@ -23,6 +23,7 @@ public class OBJ_Barrels extends Entity {
     @Override
     public void use(Entity entity){
         gamePanel.player.coin++;
+        gamePanel.ui.addMessage("Got a coin");
     }
     @Override
     public void draw(Graphics2D g2, GamePanel gamePanel) {

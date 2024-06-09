@@ -1,7 +1,5 @@
 package Objects;
 
-import java.util.Random;
-
 import Entities.Entity;
 import Main.GamePanel;
 
@@ -21,12 +19,10 @@ public class OBJ_GoldSword extends Entity {
     }
     @Override
     public void use(Entity entity){
-        
-        Random rand = new Random();
-        int i = rand.nextInt(100)+1;
-        if(i <= 30){
-            entity.state = entity.criticalState;
+
+        if(130*gamePanel.player.attack/100 > entity.defense){
+            gamePanel.player.attack = 130*gamePanel.player.attack/100;
+            entity.state = criticalState;
         }
-        gamePanel.ui.addMessage("Stunt");
     }
 }

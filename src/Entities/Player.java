@@ -59,6 +59,7 @@ public class Player extends Entity{
             coin = 500;
             currentWeapon = new OBJ_Sword(gamePanel);
             currentShield = new OBJ_WoodenShield(gamePanel);
+            currentItem = new OBJ_Key(gamePanel);
             maxLife = 30;
             attack = strength;
             defense = dexterity;
@@ -81,6 +82,7 @@ public class Player extends Entity{
             inventory.add(currentShield);
             inventory.add(new OBJ_Key(gamePanel));
             inventory.add(new OBJ_GoldSword(gamePanel));
+            inventory.add(new OBJ_DragonSword(gamePanel));
             inventory.add(new OBJ_Axe(gamePanel));
         }
         public int getAttack(){
@@ -274,31 +276,29 @@ public class Player extends Entity{
     }
     // INTERACTION WITH OBJECTS METHOD:
     public void pickUpObject(int i){
+
         if(i != 999){
             if(gamePanel.keyHandler.enterPressed == true){
-                if(inventory.size() < maxInventorySize){
+                if(canObtainItem(gamePanel.object[gamePanel.currentMap][i]) == true){
                     if ( currentWeapon instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
                         gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     } else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
                         gamePanel.object[gamePanel.currentMap][i].use(this);
-                        inventory.remove(currentItem);
-                        gamePanel.object[gamePanel.currentMap][i] = null;
-                    }
-                    else{
-                        String text;
-
-                        if(canObtainItem(gamePanel.object[gamePanel.currentMap][i]) == true){
-                            // gamePanel.playSE(1);
-                            text = "Got a " + gamePanel.object[0][i].name + "!";
+                        if(currentItem.amount > 1){
+                            currentItem.amount--;
                         }
                         else{
-                            text = "You cannot carry anymore!";
+                            inventory.remove(currentItem);
                         }
-                        gamePanel.ui.addMessage(text);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
+                    
+                }
+                else {
+                    String text = "You cannot carry anymore!";
+                    gamePanel.ui.addMessage(text);
                 }
             }
         }
@@ -321,6 +321,7 @@ public class Player extends Entity{
         else{
             gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
             inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
+            damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         }
         gamePanel.ui.listofMonster.get(choosingEnemyAction).life -= damage;
         gamePanel.ui.addMessage(damage + " damage!");
@@ -400,7 +401,10 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 currentShield = selectedItem;
                 defense = getDefense();
             }
-            if(selectedItem.type == type_consumable_player ||  selectedItem.type == type_key ){
+            if(selectedItem.type == type_key){
+                currentItem = selectedItem;
+            }
+            if(selectedItem.type == type_consumable_player){
                 selectedItem.use(this);
                 if(selectedItem.amount > 1){
                     selectedItem.amount--;

@@ -21,6 +21,7 @@ public class OBJ_Chest extends Entity{
     @Override
     public void use(Entity entity){
         gamePanel.player.coin++;
+        gamePanel.ui.addMessage("Got a coin");
     }
 
     @Override
