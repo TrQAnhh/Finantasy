@@ -47,7 +47,7 @@ public class Player extends Entity{
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
-                 speed = 13;
+                 speed = 3;
             // PLAYER STATUS:
                 level = 1;
                 strength = 1;
