@@ -279,7 +279,7 @@ public class Player extends Entity{
 
         if(i != 999){
             if(gamePanel.keyHandler.enterPressed == true){
-                if(canObtainItem(gamePanel.object[gamePanel.currentMap][i]) == true){
+                if(inventory.size() < maxInventorySize){
                     if ( currentWeapon instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
                         gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
@@ -294,7 +294,6 @@ public class Player extends Entity{
                         }
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
-                    
                 }
                 else {
                     String text = "You cannot carry anymore!";
@@ -401,10 +400,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 currentShield = selectedItem;
                 defense = getDefense();
             }
-            if(selectedItem.type == type_key){
-                currentItem = selectedItem;
-            }
-            if(selectedItem.type == type_consumable_player){
+            if(selectedItem.type == type_consumable_player ||  selectedItem.type == type_key ){
                 selectedItem.use(this);
                 if(selectedItem.amount > 1){
                     selectedItem.amount--;
