@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class OBJ_Chest extends Entity{
+
     GamePanel gamePanel;
     public OBJ_Chest(GamePanel gamePanel){
 
@@ -20,7 +21,8 @@ public class OBJ_Chest extends Entity{
 
     @Override
     public void use(Entity entity){
-        gamePanel.player.coin++;
+        entity.coin++;
+        gamePanel.ui.addMessage("Got a coin");
     }
 
     @Override

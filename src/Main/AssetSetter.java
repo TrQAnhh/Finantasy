@@ -1,7 +1,8 @@
 package Main;
 
-import Monster.MON_Slime;
-import Effect.explosion;
+import Monster.*;
+import Monster.MON_Pumpkin;
+import Effect.*;
 import Entities.*;
 import Objects.*;
 
@@ -75,31 +76,36 @@ public class AssetSetter{
             gamePanel.npc[0][8].worldX = gamePanel.tileSize * 32; // 32 columns * 48
             gamePanel.npc[0][8].worldY = gamePanel.tileSize * 19; // 19 rows * 48
 
-
     }
     public void setMonster(){
         //Set monster for first map
-            gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
-            gamePanel.monster[mapNum][0].worldX = 700;
-            gamePanel.monster[mapNum][0].worldY = 2336;
-
-            gamePanel.monster[mapNum][1] = new MON_Slime(gamePanel);
-            gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
-            gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
+            gamePanel.monster[mapNum][0] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][1] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][2] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][3] = new MON_Reaper(gamePanel);
+            gamePanel.monster[mapNum][4] = new MON_Reaper(gamePanel);
+            gamePanel.monster[mapNum][5] = new MON_GhostRider(gamePanel);
         //Set monster for second map
             mapNum = 1;
-            gamePanel.monster[mapNum][0] = new MON_Slime(gamePanel);
-            gamePanel.monster[mapNum][0].worldX = 700;
-            gamePanel.monster[mapNum][0].worldY = 2336;
-
-            gamePanel.monster[mapNum][1] = new MON_Slime(gamePanel);
-            gamePanel.monster[mapNum][1].worldX = gamePanel.tileSize*25;
-            gamePanel.monster[mapNum][1].worldY = gamePanel.tileSize*12;
+            gamePanel.monster[mapNum][0] = new MON_Pumpkin(gamePanel);
+            gamePanel.monster[mapNum][1] = new MON_Pumpkin(gamePanel);
     }
 
     public void setEffect(){
         int i=0;
-        gamePanel.effect[i] = new explosion(gamePanel);
+        gamePanel.effect[i] = new Slash(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Stunt(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Bleed(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Healing(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Explosion(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Defense(gamePanel);
+        i++;
+        gamePanel.effect[i] = new Critical(gamePanel);
         i++;
     }
 }
