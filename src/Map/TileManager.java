@@ -17,7 +17,7 @@ public class TileManager {
         public TileManager (GamePanel gamePanel){
 
             this.gamePanel = gamePanel;
-            tile = new Tile[gamePanel.maxMap][350]; // 350 kinds of tile: a water tile, a grass tile, a wall tile...
+            tile = new Tile[gamePanel.maxMap][400]; // 350 kinds of tile: a water tile, a grass tile, a wall tile...
             mapTileNum = new int[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
 
             // GET TILES IMAGES:
