@@ -670,8 +670,8 @@ public class UI {
 
         // Draw Player Board
         String value = "";
-        frameX = gamePanel.tileSize*8;
-        frameY = gamePanel.tileSize*9;
+        frameX = gamePanel.tileSize*10;
+        frameY = gamePanel.tileSize*10;
         frameWidth = gamePanel.tileSize*9;
         frameHeight = gamePanel.tileSize*4;
         nameX = frameX + 20;
@@ -683,8 +683,10 @@ public class UI {
         g2.drawString(value, nameX, nameY);
 
         // Draw Monster
-        int PositionX = gamePanel.tileSize*5;
-        int PositionY = 370/listofMonster.size();
+        int PositionX = gamePanel.tileSize*2;
+        int PositionY;
+        if(gamePanel.currentMap == 0) PositionY = 370/listofMonster.size();
+        else PositionY = gamePanel.tileSize;
         for(int i=0; i<listofMonster.size(); i++){
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                 effectPosX = PositionX;
@@ -712,8 +714,8 @@ public class UI {
         }
 
         // Draw Character
-        PositionX = gamePanel.tileSize*12;
-        PositionY = 150;
+        PositionX = gamePanel.tileSize*18;
+        PositionY = 80;
         if(orderTurn == 0){
             PositionX = gamePanel.tileSize*10;
         }
@@ -1126,11 +1128,11 @@ public class UI {
         g2.drawString(value, nameX, nameY);
 
         // Draw Monster
-        int PositionX = 0;
-        int PositionY = 0;
+        int PositionX = titleScreenState;
+        int PositionY = titleScreenState;
             if(listofMonster.get(0).state != listofMonster.get(0).normalState){
-                effectPosX = PositionX;
-                effectPosY = PositionY;
+                effectPosX = 0;
+                effectPosY = 0;
             }
             BufferedImage monsImage = listofMonster.get(0).right1;
 
