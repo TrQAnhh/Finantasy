@@ -55,14 +55,14 @@ public class KeyHandler implements KeyListener {
             else if(gamePanel.gameState == gamePanel.gameOverState){
                 gameOverState(code);
             }
-            else if(gamePanel.gameState == gamePanel.bossBattleState) {
-                battleState(code);
-            }
             // TRADE STATE
             else if(gamePanel.gameState == gamePanel.tradeState){
                 tradeState(code);
             }
-        }
+            else if(gamePanel.gameState == gamePanel.bossBattleState){
+                battleState(code);
+            }
+    }
     // STATES
         // TITLE STATE
     public void titleState(int code){
@@ -431,5 +431,6 @@ public class KeyHandler implements KeyListener {
         {
             rightPressed = false;
         }
+        
     }
 }
