@@ -25,7 +25,7 @@ public class OBJ_DragonSword extends Entity {
         Random rand = new Random();
         int i = rand.nextInt(100)+1;
         if(i <= 50){
-            entity.state = entity.stuntState;
+            entity.state = entity.stunState;
         }
         gamePanel.ui.addMessage("Stunt");
     }

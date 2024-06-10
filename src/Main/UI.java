@@ -696,7 +696,7 @@ public class UI {
                     listofMonster.get(i).dying = true;
                 }
                 else{
-                    if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stuntState){
+                    if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stunState){
                         PositionX += gamePanel.tileSize*2;
                     }
                     g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
@@ -931,7 +931,7 @@ public class UI {
             choosingEnemyAction = 0;
         }
         else{
-            if(listofMonster.get(orderTurn - 1).preState == listofMonster.get(orderTurn - 1).stuntState){
+            if(listofMonster.get(orderTurn - 1).preState == listofMonster.get(orderTurn - 1).stunState){
                 listofMonster.get(orderTurn - 1).preState = listofMonster.get(orderTurn - 1).normalState;
                 orderTurn++;
             }
