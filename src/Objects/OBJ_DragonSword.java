@@ -14,7 +14,7 @@ public class OBJ_DragonSword extends Entity {
         this.gamePanel = gamePanel;
         type = type_sword;
         name = "Excalibur";
-        itemsImage = setup("Objects/DragonSword");
+        itemsImage = setupItemImages("Objects/DragonSword");
         attackValue = 3;
         description = "[" + name + "]" + " \n- King Arthur's Legendary Sword." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
         price = 75;

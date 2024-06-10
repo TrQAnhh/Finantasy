@@ -13,7 +13,7 @@ public class OBJ_GoldSword extends Entity {
         this.gamePanel = gamePanel;
         type = type_sword;
         name = "Touyako";
-        itemsImage = setup("Objects/GoldSword");
+        itemsImage = setupItemImages("Objects/GoldSword");
         attackValue = 4;
         description = "[" + name + "]" + " \n- Sakata Gintoki's Bokuto." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
         price = 20;
