@@ -620,10 +620,7 @@ public class UI {
             }
             if(indexBattle == 9){
                 image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/DragonAppear.png"));
-                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
-            if(indexBattle == 10){
-                image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_2.png"));
-                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
+                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow,864,672, null);}
             else{
                 image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
@@ -648,6 +645,37 @@ public class UI {
         int nameX;
         int nameY;
         String textTurn = "";
+
+        // Draw Monster
+        int PositionX = gamePanel.tileSize*2;
+        int PositionY;
+        if(gamePanel.currentMap == 0) PositionY = 370/listofMonster.size();
+        else PositionY = gamePanel.tileSize * 2;
+        for(int i=0; i<listofMonster.size(); i++){
+            if(listofMonster.get(i).state != listofMonster.get(i).normalState){
+                effectPosX = PositionX;
+                effectPosY = PositionY + 10;
+            }
+            BufferedImage monsImage = listofMonster.get(i).right1;
+
+            int scaleWidth = monsImage.getWidth() * scaleFactor;
+            int scaleHeight = monsImage.getHeight() * scaleFactor;
+            if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
+                if(listofMonster.get(i).life <= 0){
+                    gamePanel.player.exp += listofMonster.get(i).exp;
+                    gamePanel.player.coin += listofMonster.get(i).coin;
+                    listofMonster.get(i).dying = true;
+
+                }
+                if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stuntState){
+                    g2.drawImage(listofMonster.get(i).left1, PositionX + gamePanel.tileSize*2, PositionY, scaleWidth, scaleHeight, null);
+                }
+                else{
+                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY,scaleWidth, scaleHeight, null);
+                }
+            }
+            PositionY += gamePanel.tileSize + 180;
+        }
 
         // Draw Monster Board
         frameX = gamePanel.tileSize;
@@ -681,37 +709,6 @@ public class UI {
         g2.drawString("Player", nameX, nameY);
         nameX += gamePanel.tileSize*6.5;
         g2.drawString(value, nameX, nameY);
-
-        // Draw Monster
-        int PositionX = gamePanel.tileSize*2;
-        int PositionY;
-        if(gamePanel.currentMap == 0) PositionY = 370/listofMonster.size();
-        else PositionY = gamePanel.tileSize * 2;
-        for(int i=0; i<listofMonster.size(); i++){
-            if(listofMonster.get(i).state != listofMonster.get(i).normalState){
-                effectPosX = PositionX;
-                effectPosY = PositionY + 10;
-            }
-            BufferedImage monsImage = listofMonster.get(i).right1;
-
-            int scaleWidth = monsImage.getWidth() * scaleFactor;
-            int scaleHeight = monsImage.getHeight() * scaleFactor;
-            if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
-                if(listofMonster.get(i).life <= 0){
-                    gamePanel.player.exp += listofMonster.get(i).exp;
-                    gamePanel.player.coin += listofMonster.get(i).coin;
-                    listofMonster.get(i).dying = true;
-
-                }
-                if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stuntState){
-                    g2.drawImage(listofMonster.get(i).left1, PositionX + gamePanel.tileSize*2, PositionY, scaleWidth, scaleHeight, null);
-                }
-                else{
-                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY,scaleWidth, scaleHeight, null);
-                }
-            }
-            PositionY += gamePanel.tileSize + 180;
-        }
 
         // Draw Player
         PositionX = gamePanel.tileSize*14;
@@ -1073,7 +1070,7 @@ public class UI {
         try {
             //change later
             image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_2.png"));
-            g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
+            g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow,830,630, null);
 
         } catch (IOException e) {
             e.printStackTrace();
