@@ -197,9 +197,10 @@ public class KeyHandler implements KeyListener {
         }
         // DIALOGUE STATE
         public void dialogueState(int code) {
-        if(code == KeyEvent.VK_ENTER){
-            gamePanel.gameState = gamePanel.playState;
-        }
+            if(code == KeyEvent.VK_ENTER){
+                gamePanel.gameState = gamePanel.playState;
+                
+            }
         }
         // CHARACTER STATE
     public void characterState(int code) {

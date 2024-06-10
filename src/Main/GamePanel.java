@@ -215,6 +215,8 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                     }
                 eManager.update();
+                eHandler.checkEvent();
+                
             }
         }
         public void paintComponent(Graphics graphics){

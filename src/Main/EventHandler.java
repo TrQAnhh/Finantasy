@@ -32,7 +32,6 @@ public class EventHandler {
             eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
             eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
-            eventRect[map][col][row].eventDone = false;
             col++;
 
             if(col == gamePanel.maxWorldColumn){
@@ -58,9 +57,8 @@ public class EventHandler {
         if(canTouchEvent == true){
 
             // HEALING BY STATUE AT X1 = 13 (COLS), Y1 = 33 (ROWS) AND X2 = 13 (COLS), Y2 = 32 (ROWS)
-            if( hit(0, 14,33,"any") == true  || hit(0, 14,34,"any") == true ) {
-                healingGamePanelPool(gamePanel.dialogueState);
-            }
+            if( hit(0, 13,33,"any") == true ) {
+                healingGamePanelPool(gamePanel.dialogueState);}
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 31 (COLS), Y = 43 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
                 teleport(1, 31, 43, gamePanel.dungeon);
@@ -140,7 +138,6 @@ public class EventHandler {
                     hit = true;
                     previousEventX = gamePanel.player.worldX;
                     previousEventY = gamePanel.player.worldY;
-                    eventRect[map][col][row].eventDone = true;
                 }
             }
 
