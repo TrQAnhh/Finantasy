@@ -21,8 +21,8 @@ public class OBJ_GoldSword extends Entity {
     @Override
     public void use(Entity entity){
 
-        if(130*gamePanel.player.attack/100 > entity.defense){
-            gamePanel.player.attack = 130*gamePanel.player.attack/100;
+        if(200*gamePanel.player.attack/100 > entity.defense){
+            gamePanel.player.attack = 200*gamePanel.player.attack/100;
             entity.state = criticalState;
         }
     }

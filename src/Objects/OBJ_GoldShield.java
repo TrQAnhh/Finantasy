@@ -16,7 +16,7 @@ public class OBJ_GoldShield extends Entity {
     }
     @Override
     public void use(Entity entity){
-        entity.defense = 120*entity.defense/100;
+        entity.defense = 130*entity.defense/100;
     }
 
 }
