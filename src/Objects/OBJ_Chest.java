@@ -1,31 +1,39 @@
 package Objects;
 
+import Entities.Entity;
 import Main.GamePanel;
-import Map.Tile;
 
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public class OBJ_Chest extends SuperObject{
+public class OBJ_Chest extends Entity{
 
+    GamePanel gamePanel;
     public OBJ_Chest(GamePanel gamePanel){
 
+        super(gamePanel);
+        this.gamePanel = gamePanel;
+
+        type = type_chest;
         name = "Chest";
+        objectImage1 = setupObjectImages("/Objects/chest",100,100);
+    }
 
-            String filePath = "res/Objects/chest.png";
-            File imageFile = new File(filePath);
+    @Override
+    public void use(Entity entity){
 
-            try (FileInputStream readimage = new FileInputStream(imageFile)) {
-                image = ImageIO.read(readimage);
-                image = uTool.scaleImage(image,gamePanel.tileSize, gamePanel.tileSize);
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
+        entity.coin++;
+        gamePanel.ui.addMessage("Got a coin");
+    }
 
-        // SET COLLISION
-            collision = true;
+    @Override
+    public void draw(Graphics2D g2, GamePanel gamePanel) {
+        BufferedImage image = objectImage1;
+
+        int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+        int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+
+        g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
 
     }
 }

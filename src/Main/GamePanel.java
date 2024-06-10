@@ -56,9 +56,9 @@ public class GamePanel extends JPanel implements Runnable{
         public Collision collision = new Collision(this); 
     // NPC CLASS 
         public AssetSetter aSetter = new AssetSetter(this); 
-        public Entity npc[][] = new Entity[maxMap][10]; 
-    // Monster CLASS 
-        public Entity monster[][] = new Entity[maxMap][20]; 
+        public Entity npc[][] = new Entity[maxMap][20]; 
+    // Monster CLASS
+        public Entity monster[][] = new Entity[maxMap][30]; 
     // Object CLASS 
         public Entity object[][] = new Entity[maxMap][10];
     // Effect CLASS
@@ -86,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int optionsState = 6;
     public final int transitionState = 7;
     public final int gameOverState = 8;
+    public final int tradeState = 9;
 
 //    // Config
 //        Config config = new Config(this);
@@ -188,30 +189,29 @@ public class GamePanel extends JPanel implements Runnable{
             if (gameState == playState) {
                 player.update();
 
-                if ( currentMap == 0 ) {
                     for (int i = 0; i < npc[1].length; i++)
                         if (npc[0][i] != null) {
                             npc[0][i].update(this);
                         }
-                }
-
-                for (int i = 0; i < monster[1].length; i++) {
-                    if (monster[currentMap][i] != null) {
-                        if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
-                            monster[currentMap][i].update();
-                        }
-                        if (monster[currentMap][i].alive == false) {
-                            monster[currentMap][i] = null;
+                    for (int i = 0; i < object[1].length; i++) {
+                        if (object[currentMap][i] != null) {
+                            if (object[currentMap][i] != null ) {
+                                object[currentMap][i].update();
+                            }
                         }
                     }
-                }
+
+                    for (int i = 0; i < monster[1].length; i++) {
+                        if (monster[currentMap][i] != null) {
+                            if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
+                                monster[currentMap][i].update();
+                            }
+                            if (monster[currentMap][i].alive == false) {
+                                monster[currentMap][i] = null;
+                            }
+                        }
+                    }
                 eManager.update();
-                if (gameState == pauseState) {
-                    // UPDATE LATER
-                }
-            }
-            if (gameState == pauseState){
-                
             }
         }
     public void paintComponent(Graphics graphics){
@@ -230,10 +230,6 @@ public class GamePanel extends JPanel implements Runnable{
             if(gameState == titleState) {
                 ui.draw(graphics2D);
             }
-            // BATTLE (Can u delete it?)   
-            else if(gameState == battleState) {
-                ui.draw(graphics2D);
-            }
         // BATTLE STATE:
             else if(gameState == battleState) {
                 ui.draw(graphics2D);
@@ -245,24 +241,22 @@ public class GamePanel extends JPanel implements Runnable{
                 // ADD PLAYERS TO THE LIST
                     entityList.add(player);
                 // ADD ENTITIES TO THE LIST
-                    if ( currentMap == 0 ) {
                         for(int i = 0; i < npc[1].length; ++i) {
                             if(npc[currentMap][i] != null) {
                                 entityList.add(npc[currentMap][i]);
                             }
                         }
-                    }
 
-                    for(int i = 0; i < object[1].length; ++i) {
-                        if(object[currentMap][i] != null) {
-                            entityList.add(object[currentMap][i]);
+                        for(int i = 0; i < object[1].length; ++i) {
+                            if(object[currentMap][i] != null) {
+                                entityList.add(object[currentMap][i]);
+                            }
                         }
-                    }
-                    for(int i = 0; i < monster[1].length; ++i) {
-                        if(monster[currentMap][i] != null) {
-                            entityList.add(monster[currentMap][i]);
+                        for(int i = 0; i < monster[1].length; ++i) {
+                            if(monster[currentMap][i] != null) {
+                                entityList.add(monster[currentMap][i]);
+                            }
                         }
-                    }
 
                 // SORT
                     Collections.sort(entityList, new Comparator<Entity>() {
@@ -274,12 +268,10 @@ public class GamePanel extends JPanel implements Runnable{
                     });
 
                     // DRAW ENTITIES:
-                        for(int i=0; i < entityList.size(); i++){
-                            entityList.get(i).draw(graphics2D,this);
-                        }
+                            for(int i=0; i < entityList.size(); i++){
+                                entityList.get(i).draw(graphics2D,this);
+                            }
                     // EMPTY ENTITY LIST
-                        entityList.clear();
-                    // DRAW PLAYERS:
                         entityList.clear();
                     // ENVIRONMENT
                         eManager.draw(graphics2D);
@@ -327,20 +319,17 @@ public class GamePanel extends JPanel implements Runnable{
         se.setFile(i);
         se.play();
     }
-        public void changeArea(){
-            if(nextArea != currentArea) {
-                /*
+    public void changeArea(){
+        if(nextArea != currentArea) {
+            stopMusic();
+            playMusic(1);
+            if(nextArea == outside) {
                 stopMusic();
-                if(nextArea == outside) {
-                    playSE(0);
-                }
-                if(nextArea == dungeon) {
-                    playSE(1);
-                }
-                */
+                playMusic(0);
             }
-            currentArea = nextArea;
-            aSetter.setMonster();
-            aSetter.setNPC();
         }
+        currentArea = nextArea;
+        aSetter.setMonster();
+        aSetter.setNPC();
+    }
 }

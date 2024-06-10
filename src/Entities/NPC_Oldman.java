@@ -72,7 +72,7 @@ public class NPC_Oldman extends Entity {
 
         // ANIMATIONS FOR MOVEMENT:
         spriteCounter++;
-        if (spriteCounter > 0) {
+        if (spriteCounter > 8) {
             if (spriteNum == 1) {
                 spriteNum = 2;
             } else if (spriteNum == 2) {
