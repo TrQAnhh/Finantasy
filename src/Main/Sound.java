@@ -15,7 +15,7 @@ public class Sound {
     URL soundURL[] = new URL[30];
     FloatControl fc;
     int volumeScale = 7;
-    float volume = -10;
+    float volume = -20;
     public Sound(){
         soundURL[0] = getClass().getResource("/Sound/VillageTheme.wav");
         soundURL[1] = getClass().getResource("/Sound/MenuTheme.wav");
@@ -85,3 +85,4 @@ public class Sound {
         fc.setValue(volume);
     }
 }
+

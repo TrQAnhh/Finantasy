@@ -37,7 +37,7 @@ public class MON_GhostRider extends Entity {
     }
     public void getImage(){
 
-        up1 = setup("Monster/HatHatPumpkinWithHorseWithHorse/up_2");
+        up1 = setup("Monster/HatPumpkinWithHorse/up_2");
         down1 = setup("Monster/HatPumpkinWithHorse/down_2");
         left1 = setup("Monster/HatPumpkinWithHorse/left_2");
         right1 = setup("Monster/HatPumpkinWithHorse/right_2");

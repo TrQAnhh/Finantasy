@@ -6,7 +6,7 @@ import Main.GamePanel;
 public class OBJ_HealPot extends Entity {
 
     GamePanel gamePanel;
-    int value = 5;
+    public int value = 5;
 
     public OBJ_HealPot(GamePanel gamePanel){
 
