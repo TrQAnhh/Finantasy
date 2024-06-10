@@ -6,28 +6,27 @@ import java.awt.image.BufferedImage;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class Explosion extends Entity{
+public class Stun extends Entity{
     
-    GamePanel gamePanel;
+    GamePanel gp;
 
-    public Explosion(GamePanel gamePanel){
+    public Stun(GamePanel gp){
 
-        super(gamePanel);
-        this.gamePanel = gamePanel;
+        super(gp);
+        this.gp = gp;
 
-        image1 = setup("Effect/Explosion/explosion_1");
-        image2 = setup("Effect/Explosion/explosion_2");
-        image3 = setup("Effect/Explosion/explosion_3");
-        image4 = setup("Effect/Explosion/explosion_4");
-        image5 = setup("Effect/Explosion/explosion_5");
-        image6 = setup("Effect/Explosion/explosion_6");
-        image7 = setup("Effect/Explosion/explosion_7");
-        image8 = setup("Effect/Explosion/explosion_8");
-        image9 = setup("Effect/Explosion/explosion_9");
-        image10 = setup("Effect/Explosion/explosion_10");
-        image11 = setup("Effect/Explosion/explosion_11");
-        image12 = setup("Effect/Explosion/explosion_12");
-        image13 = setup("Effect/Explosion/explosion_13");
+        image1 = setup("/effect/Stunt/stunt_1");
+        image2 = setup("/effect/Stunt/stunt_2");
+        image3 = setup("/effect/Stunt/stunt_3");
+        image4 = setup("/effect/Stunt/stunt_4");
+        image5 = setup("/effect/Stunt/stunt_5");
+        image6 = setup("/effect/Stunt/stunt_6");
+        image7 = setup("/effect/Stunt/stunt_7");
+        image8 = setup("/effect/Stunt/stunt_8");
+        image9 = setup("/effect/Stunt/stunt_9");
+        image10 = setup("/effect/Stunt/stunt_10");
+        image11 = setup("/effect/Stunt/stunt_11");
+        image12 = setup("/effect/Stunt/stunt_12");
     }
     public void update(){
         effectCounter++;
@@ -55,8 +54,6 @@ public class Explosion extends Entity{
                     else if(effectNum==11)
                     effectNum = 12;
                     else if(effectNum==12)
-                    effectNum = 13;
-                    else if(effectNum==13)
                     effectNum = 0;
                     effectCounter = 0;
             }
@@ -76,7 +73,6 @@ public class Explosion extends Entity{
         if(effectNum == 10) image = image10;
         if(effectNum == 11) image = image11;
         if(effectNum == 12) image = image12;
-        if(effectNum == 13) image = image13;
-        g2.drawImage(image,gamePanel.ui.effectPosX,gamePanel.ui.effectPosY,null);
+        g2.drawImage(image,gp.ui.effectPosX,gp.ui.effectPosY,null);
     }
 }

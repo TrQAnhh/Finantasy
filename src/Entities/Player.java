@@ -331,7 +331,7 @@ public class Player extends Entity{
     }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
 
-        if(preState == stuntState){
+        if(preState == stunState){
             gamePanel.ui.orderTurn++;
             preState = normalState;
         }
@@ -414,6 +414,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
 
         int itemIndex = 999;
         for(int i=0; i<inventory.size();i++){
+
             if(inventory.get(i).name.equals(itemName)){
                 itemIndex = i;
                 break;

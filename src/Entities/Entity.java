@@ -87,7 +87,7 @@ public class Entity {
     public int preState;
     public final int normalState = 0;
     public final int getDamageState = 1;
-    public final int stuntState = 2;
+    public final int stunState = 2;
     public final int bleedState = 3;
     public final int healingState = 4;
     public final int burningState = 5;
