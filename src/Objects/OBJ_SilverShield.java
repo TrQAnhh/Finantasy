@@ -16,7 +16,7 @@ public class OBJ_SilverShield extends Entity {
     }
     @Override
     public void use(Entity entity){
-        entity.defense = 115*entity.defense/100;
+        entity.defense = 120*entity.defense/100;
     }
 
 }

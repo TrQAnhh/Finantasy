@@ -309,12 +309,13 @@ public class Player extends Entity{
     }
     public void damageMonster(int choosingEquipAction, int choosingEnemyAction){
 
+        gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
         int damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         if(damage < 0){
             damage = 0;
+            gamePanel.ui.orderTurn++;
         }
         else{
-            gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
             inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
             damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         }
@@ -324,6 +325,7 @@ public class Player extends Entity{
     public void defensePlayer(int choosingEquipAction){
         defense = getDefense();
         inventory.get(choosingEquipAction).use(this);
+        gamePanel.ui.addMessage("Increase Defense");
     }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
 
@@ -364,7 +366,6 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 }
             }
         }
-
 }
     public void checkLevelUp(){
 

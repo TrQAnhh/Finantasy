@@ -25,6 +25,7 @@ public class MON_Pumpkin extends Entity {
         maxMana = 3;
         state = normalState;
         preState = state;
+        dying = false;
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -47,14 +48,15 @@ public class MON_Pumpkin extends Entity {
     }
     public void damage(Entity entity){
 
+            entity.state = entity.getDamageState;
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
+                gamePanel.ui.orderTurn++;
             }
             else{
-                entity.state = entity.getDamageState;
+                entity.life -= damage;
+                gamePanel.ui.addMessage(damage + " damage!");
             }
-            entity.life -= damage;
-            gamePanel.ui.addMessage(damage + " damage!");
         }
 }
