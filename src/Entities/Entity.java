@@ -127,7 +127,7 @@ public class Entity {
 
         try (FileInputStream readImage = new FileInputStream(imageFile)) {
             image = ImageIO.read(readImage);
-            image = uTool.scaleImage(image,gamePanel.tileSize + 30, gamePanel.tileSize + 30);
+            image = uTool.scaleImage(image,gamePanel.tileSize + 25, gamePanel.tileSize + 25);
         } catch(IOException e) {
             e.printStackTrace();
         }

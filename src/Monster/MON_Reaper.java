@@ -54,10 +54,11 @@ public class MON_Reaper extends Entity implements MonsterInt<Graphics2D, GamePan
             }
             else{
                 entity.state = entity.getDamageState;
-                    entity.state = entity.bleedState;
+                entity.state = entity.bleedState;
+                entity.life -= damage;
+                gamePanel.ui.addMessage(damage + " damage!");
             }
-            entity.life -= damage;
-            gamePanel.ui.addMessage(damage + " damage!");
+            
     }
     @Override
     public void draw(Graphics2D t, GamePanel u) {}

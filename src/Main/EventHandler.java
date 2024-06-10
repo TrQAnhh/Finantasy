@@ -96,7 +96,7 @@ public class EventHandler {
                 gamePanel.ui.indexBattle = 7;
                 checkHappened[5] = true;
             }
-            if((checkHappened[4] == false) && hit(1,26,31,"any") == true) {
+            if((checkHappened[4] == false) && hit(1,25,31,"any") == true) {
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 8;
                 checkHappened[4] = true;
