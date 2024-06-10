@@ -206,7 +206,7 @@ public class UI {
         int messageY = gamePanel.tileSize*4;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
 
-        if(gamePanel.gameState == gamePanel.battleState && orderTurn > 0){
+        if(effectted != null && effectted.state != effectted.normalState && effectted.type == effectted.type_player){
             messageX = gamePanel.tileSize*14;
         }
         for(int i = 0; i < message.size(); i++){
@@ -685,28 +685,33 @@ public class UI {
         g2.drawString(value, nameX, nameY);
 
         // Draw Monster
-        int PositionX = gamePanel.tileSize*5;
+        int initialPostionX = gamePanel.tileSize*5;
+        int PositionX = initialPostionX;
         int PositionY = 370/listofMonster.size();
         for(int i=0; i<listofMonster.size(); i++){
-            if(listofMonster.get(i).state != listofMonster.get(i).normalState){
-                effectPosX = PositionX;
-                effectPosY = PositionY + 10;
-            }
             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                 if(listofMonster.get(i).life <= 0){
                     gamePanel.player.exp += listofMonster.get(i).exp;
                     gamePanel.player.coin += listofMonster.get(i).coin;
                     listofMonster.get(i).dying = true;
-
-                }
-                if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stuntState){
-                    g2.drawImage(listofMonster.get(i).right1, PositionX + gamePanel.tileSize*2, PositionY, null);
                 }
                 else{
+                    if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stuntState){
+                        PositionX += gamePanel.tileSize*2;
+                    }
                     g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                 }
             }
+            if(listofMonster.get(i).state != listofMonster.get(i).normalState){
+                effectPosX = PositionX;
+                effectPosY = PositionY + 10;
+            }
+            PositionX = initialPostionX;
             PositionY += gamePanel.tileSize + 20;
+            if(PositionY >= 420){
+                initialPostionX -= gamePanel.tileSize*2;
+                PositionY = 0;
+            }
         }
 
         // Draw Character
@@ -911,8 +916,8 @@ public class UI {
         }
         //Battle 3
         if(index == 3){
-            listofMonster.add(gamePanel.monster[0][9]);
             listofMonster.add(gamePanel.monster[0][5]);
+            listofMonster.add(gamePanel.monster[0][9]);
             listofMonster.add(gamePanel.monster[0][6]);
         }
     }
@@ -989,6 +994,7 @@ public class UI {
             if(effectted.type == effectted.type_monster){
                 listofMonster.get(effecttedNo).state = listofMonster.get(effecttedNo).normalState;
             }
+            effectted.state = effectted.normalState;
     }
     // Checking if the battle end or not
     public boolean checkBattleEnd(){

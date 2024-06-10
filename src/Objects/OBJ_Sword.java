@@ -10,7 +10,7 @@ public class OBJ_Sword extends Entity {
         type = type_sword;
         name = "Ion Sword";
         itemsImage = setupItemImages("Objects/Sword");
-        attackValue = 100;
+        attackValue = 1;
         description = "[" + name + "]" + " \n- An ion sword" + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
     }
     
