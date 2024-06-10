@@ -6,7 +6,7 @@ import Main.GamePanel;
 public class OBJ_HealPot extends Entity {
 
     GamePanel gamePanel;
-    int value = 5;
+    public int value = 5;
 
     public OBJ_HealPot(GamePanel gamePanel){
 
@@ -14,7 +14,7 @@ public class OBJ_HealPot extends Entity {
         this.gamePanel = gamePanel;
         name = "Blood Pot";
         type = type_consumable_player;
-        itemsImage = setup("Objects/Healing");
+        itemsImage = setupItemImages("Objects/Healing");
         description = "[" + name + "]\nHeal " + value + "HP to your life.";
         price = 15;
         stackable = true;
