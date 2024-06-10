@@ -869,7 +869,6 @@ public class UI {
             orderTurn = 0;
             checker = false;
             handlerMonsters();
-            System.out.println(listofMonster.get(0).Defeat);
             for(Entity monster: listofMonster) {
                 monster.dying = false;
             }
@@ -882,9 +881,17 @@ public class UI {
         Entity mons;
         for (int i = 0; i < listofMonster.size(); ++i) {
             mons = listofMonster.get(i);
-            if (mons instanceof MON_Spider || mons instanceof MON_GateKeeper || mons instanceof MON_BloodySlime) {
+            if (mons instanceof MON_GateKeeper) {
                 gamePanel.ui.gateCounterKill ++;
-                listofMonster.get(i).Defeat = true;
+                gamePanel.monster[1][0].Defeat = true;
+            } 
+            if (mons instanceof MON_BloodySlime) {
+                gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][1].Defeat = true;
+            } 
+            if (mons instanceof MON_Spider) {
+                gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][2].Defeat = true;
             } 
             if (mons instanceof MON_GreenDragon) {
                 gamePanel.bossBattleOn = true;
@@ -892,6 +899,7 @@ public class UI {
             }
             if (mons instanceof MON_Boss) {
                 gamePanel.bossBattleOn = false;
+                gamePanel.monster[1][3].Defeat = true;
                 Progress.DragonBossDefeated = true;
             }
         }

@@ -84,5 +84,6 @@ public class MON_Boss extends Entity implements MonsterInt<Graphics2D, GamePanel
             g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
         }
     }
+
 }
 
