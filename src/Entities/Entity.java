@@ -109,6 +109,7 @@ public class Entity {
         public Entity currentWeapon;
         public Entity currentShield;
         public Entity currentItem;
+        public Entity currentTool;
         public int mana;
         public int maxMana;
 

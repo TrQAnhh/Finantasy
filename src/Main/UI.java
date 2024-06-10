@@ -1045,7 +1045,7 @@ public class UI {
         int slotSize = 54;
         for( int i = 0 ; i < entity.inventory.size() ; i++ ){
         // DRAW EQUIPPED CURSOR:
-            if(entity.inventory.get(i) == entity.currentWeapon ||
+            if(entity.inventory.get(i) == entity.currentTool ||
                     entity.inventory.get(i) == entity.currentItem){
                 g2.drawImage(equippedCursor,slotX,slotY,null);
             }
@@ -1143,8 +1143,8 @@ public class UI {
             for(int i=0; i < entity.inventory.size(); i++){
     
                 // Equip cursor
-                if(entity.inventory.get(i) == entity.currentWeapon ||
-                    entity.inventory.get(i) == entity.currentShield){
+                if(entity.inventory.get(i) == entity.currentTool ||
+                    entity.inventory.get(i) == entity.currentItem){
                         g2.setColor(new Color(240,190,90));
                         g2.fillRoundRect(slotX + 5/2, slotY - 3, gamePanel.tileSize + 13, gamePanel.tileSize + 13, 10, 10);
                     }
@@ -1302,12 +1302,12 @@ public class UI {
                 else{
                     if(gamePanel.player.canObtainItem(npc.inventory.get(itemIndex)) == true){
                         gamePanel.player.coin -= npc.inventory.get(itemIndex).price;
-                        if(npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable 
+                         if(npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable 
                             && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable_player 
                             && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_consumable_enemy
                             && npc.inventory.get(itemIndex).type != npc.inventory.get(itemIndex).type_key){
                                 npc.inventory.remove(itemIndex);
-                        }
+                        }  
                     }
                     else{
                         subState = 0;
