@@ -185,7 +185,6 @@ public class GamePanel extends JPanel implements Runnable {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-
             }
 
         }
@@ -263,8 +262,8 @@ public class GamePanel extends JPanel implements Runnable {
                             }
                         }
                         for(int i = 0; i < monster[1].length; ++i) {
-                            if(monster[currentMap][i] != null) {
-                                entityList.add(monster[currentMap][i]);
+                            if(monster[1][i] != null) {
+                                entityList.add(monster[1][i]);
                             }
                         }
 

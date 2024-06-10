@@ -12,7 +12,7 @@ public class OBJ_Axe extends Entity {
         super(gamePanel);
         type = type_axe;
         name = "Axe";
-        itemsImage = setupItemImages("/Objects/Axe");
+        itemsImage = setupItemImages("/Objects/axe");
         attackValue = 0;
         description = "[" + name + "]" + " \n- An ion axe" + " \n- Can only be used to break barrels" + "\n- Can only be equipped in Normal World";
 

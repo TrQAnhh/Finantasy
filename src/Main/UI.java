@@ -8,6 +8,9 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import javax.imageio.ImageIO;
+
+import Data.Progress;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,6 +19,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import Entities.Entity;
+import Monster.MON_BloodySlime;
+import Monster.MON_Boss;
+import Monster.MON_GateKeeper;
+import Monster.MON_GreenDragon;
+import Monster.MON_Spider;
+import Monster.MonsterFactory;
 import Objects.*;
 
 public class UI {
@@ -859,13 +868,32 @@ public class UI {
         if(checkBattleEnd() == true){
             orderTurn = 0;
             checker = false;
-            listofMonster.get(0).checkDrop();
+            handlerMonsters();
+            System.out.println(listofMonster.get(0).Defeat);
             for(Entity monster: listofMonster) {
                 monster.dying = false;
             }
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
+        }
+    }
+    public void handlerMonsters() {
+        Entity mons;
+        for (int i = 0; i < listofMonster.size(); ++i) {
+            mons = listofMonster.get(i);
+            if (mons instanceof MON_Spider || mons instanceof MON_GateKeeper || mons instanceof MON_BloodySlime) {
+                gamePanel.ui.gateCounterKill ++;
+                listofMonster.get(i).Defeat = true;
+            } 
+            if (mons instanceof MON_GreenDragon) {
+                gamePanel.bossBattleOn = true;
+                listofMonster.get(i).Defeat = true;
+            }
+            if (mons instanceof MON_Boss) {
+                gamePanel.bossBattleOn = false;
+                Progress.DragonBossDefeated = true;
+            }
         }
     }
     // Count the number of interaction
@@ -898,49 +926,49 @@ public class UI {
     public void addMonster(int index){
         //Battle 1 in map 0
         if(index == 1){
-            listofMonster.add(gamePanel.monster[0][0]);
-            listofMonster.add(gamePanel.monster[0][1]);
-            listofMonster.add(gamePanel.monster[0][2]);
+            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
+            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
+            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
         }
         //Battle 2
         if(index == 2){
-            listofMonster.add(gamePanel.monster[0][7]);
-            listofMonster.add(gamePanel.monster[0][3]);
-            listofMonster.add(gamePanel.monster[0][4]);
-            listofMonster.add(gamePanel.monster[0][8]);
+            listofMonster.add(MonsterFactory.createMonster("Reaper", gamePanel));
+            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
+            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
+            listofMonster.add(MonsterFactory.createMonster("Reaper", gamePanel));
         }
         //Battle 3
         if(index == 3){
-            listofMonster.add(gamePanel.monster[0][9]);
-            listofMonster.add(gamePanel.monster[0][5]);
-            listofMonster.add(gamePanel.monster[0][6]);
+            listofMonster.add(MonsterFactory.createMonster("GhostRider", gamePanel));
+            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
+            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
         }
         //Battle 2 in map 1
         if(index == 4) {
-            listofMonster.add(gamePanel.monster[1][1]);
+            listofMonster.add(MonsterFactory.createMonster("Bloody Slime", gamePanel));
 
         }
         if(index == 5) {
-            listofMonster.add(gamePanel.monster[1][2]);
+            listofMonster.add(MonsterFactory.createMonster("Spider", gamePanel));
 
         }
         if(index == 6) {
-            listofMonster.add(gamePanel.monster[1][0]);
+            listofMonster.add( MonsterFactory.createMonster("Gate Keeper", gamePanel));
 
         }
         //Battle 3 in map 1 for boss
         if(index == 10) {
-            listofMonster.add(gamePanel.monster[1][3]);
+            listofMonster.add(MonsterFactory.createMonster("Boss", gamePanel));
         }
         if(index == 9) {
-            listofMonster.add(gamePanel.monster[1][4]);
-            //listofMonster.add(gamePanel.monster[1][5]);
+            listofMonster.add(MonsterFactory.createMonster("Green Dragon", gamePanel));
+            //listofMonster.add(MonsterFactory.createMonster("Red Pheonix", gamePanel));
         }
         if(index == 7) {
-            listofMonster.add(gamePanel.monster[1][6]);
+            listofMonster.add(MonsterFactory.createMonster("Robot", gamePanel));
         } 
         if(index == 8) {
-            listofMonster.add(gamePanel.monster[1][7]);
+            listofMonster.add(MonsterFactory.createMonster("Robot", gamePanel));
         }
     }
     // Monster Turn
@@ -1268,7 +1296,7 @@ public class UI {
         if(checkBattleEnd() == true){
             orderTurn = 0;
             checker = false;
-            listofMonster.get(0).checkDrop();
+            handlerMonsters();
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
@@ -1352,8 +1380,8 @@ public class UI {
                 int dFrameX = frameX - 8;
                 int dFrameY = frameY + (4 * slotSize + 10);
 
-                int dFrameWidth = frameWidth;
-                int dFrameHeight = gamePanel.tileSize*3;
+                //int dFrameWidth = frameWidth;
+                //int dFrameHeight = gamePanel.tileSize*3;
 
             // DRAW DESCRIPTION TEXT
                 int textX = dFrameX + 5;

@@ -181,9 +181,8 @@ public class Entity {
         }
         return image;
     }
+    public void setAction(){};
     public void update(GamePanel gamePanel) {
-
-        setAction();
 
         collisionOn = false;
         gamePanel.collision.checkTile(this);
@@ -222,8 +221,7 @@ public class Entity {
 
     }
 
-    public void setAction(){}
-    public void damage(Entity entity){}          //For monster
+    public void damage(Entity entity){}          
     public void speak(GamePanel gamePanel)
     {
         if(dialogue[dialogueIndex] == null){
@@ -364,7 +362,6 @@ public class Entity {
 //    }
 
     public void update(){
-        setAction();
 
         collisionOn = false;
 
@@ -397,8 +394,5 @@ public class Entity {
                 spriteCounter = 0;
             }
         }
-    }
-    public void checkDrop() {
-        
     }
 }

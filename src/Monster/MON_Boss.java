@@ -7,7 +7,7 @@ import Data.Progress;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_Boss extends Entity {
+public class MON_Boss extends Entity implements MonsterInt<Graphics2D, GamePanel>{
 
     GamePanel gamePanel;
     public MON_Boss(GamePanel gamePanel) {
@@ -45,9 +45,9 @@ public class MON_Boss extends Entity {
         left1 = setup("Monster/BossMonster/Dragon");
         right1 = setup("Monster/BossMonster/Dragon");
     }   
-    public void setAction(){
-
-    }
+    @Override
+    public void setAction(){}
+    @Override
     public void damage(Entity entity){
         
         if(state == stuntState){
@@ -72,22 +72,17 @@ public class MON_Boss extends Entity {
             }
         }
     }
-        @Override
-        public void draw(Graphics2D g2,GamePanel gamePanel){
-            BufferedImage image = up1;
-    
-            int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
-            int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
-            
-            if(Defeat == false) {
-                g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
-                g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
-            }
-        }
-        @Override
-        public void checkDrop() {
-            gamePanel.bossBattleOn = false;
-            Progress.DragonBossDefeated = true;
+    @Override
+    public void draw(Graphics2D g2,GamePanel gamePanel){
+        BufferedImage image = up1;
+
+        int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+        int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+        
+        if(Defeat == false) {
+            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
+            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 300, gamePanel.tileSize + 300, null);
         }
     }
+}
 

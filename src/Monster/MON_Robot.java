@@ -1,12 +1,11 @@
 package Monster;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_Robot extends Entity {
+public class MON_Robot extends Entity implements MonsterInt<Graphics2D, GamePanel>{
 
     GamePanel gamePanel;
 
@@ -43,9 +42,8 @@ public class MON_Robot extends Entity {
         left1 = setup("Monster/Robot/attack");
         right1 = setup("Monster/Robot/right");
     }   
-    public void setAction(){
-
-    }
+    @Override
+    public void setAction(){}
     public void damage(Entity entity){
         
         if(state == stuntState){
@@ -71,17 +69,6 @@ public class MON_Robot extends Entity {
         }
     }
     @Override
-        public void draw(Graphics2D g2,GamePanel gamePanel){
-            BufferedImage image = up1;
+    public void draw(Graphics2D g2,GamePanel gamePanel){}
     
-            int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
-            int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
-            if(Defeat == false) {
-                g2.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
-            }
-        }
-    @Override
-        public void checkDrop() {
-            Defeat = true;
-        }
 }
