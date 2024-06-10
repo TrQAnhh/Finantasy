@@ -395,6 +395,9 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             if(selectedItem.type == type_axe){
                 currentTool = selectedItem;
             }
+            if(selectedItem.type == type_key){
+                currentItem = selectedItem;
+            }
             if(selectedItem.type == type_sword || selectedItem.type == type_dagger){
                 currentWeapon = selectedItem;
                 attack = getAttack();
@@ -403,7 +406,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 currentShield = selectedItem;
                 defense = getDefense();
             }
-            if(selectedItem.type == type_consumable_player ||  selectedItem.type == type_key ){
+            if(selectedItem.type == type_consumable_player){
                 selectedItem.use(this);
                 if(selectedItem.amount > 1){
                     selectedItem.amount--;
