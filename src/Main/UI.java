@@ -192,7 +192,7 @@ public class UI {
         int messageY = gamePanel.tileSize*4;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 20F));
 
-        if(gamePanel.gameState == gamePanel.battleState && orderTurn > 0){
+        if(effectted != null && effectted.state != effectted.normalState && effectted.type == effectted.type_player){
             messageX = gamePanel.tileSize*14;
         }
         for(int i = 0; i < message.size(); i++){
@@ -867,9 +867,6 @@ public class UI {
             orderTurn = 0;
             checker = false;
             handlerMonsters();
-            for(Entity monster: listofMonster) {
-                monster.dying = false;
-            }
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
@@ -1050,6 +1047,7 @@ public class UI {
             if(effectted.type == effectted.type_monster){
                 listofMonster.get(effecttedNo).state = listofMonster.get(effecttedNo).normalState;
             }
+            effectted.state = effectted.normalState;
     }
     // Checking if the battle end or not
     public boolean checkBattleEnd(){

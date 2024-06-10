@@ -49,17 +49,17 @@ public class MON_Pumpkin extends Entity implements MonsterInt<Graphics2D, GamePa
     public void setAction(){}
     public void damage(Entity entity){
 
-        int damage = attack - entity.defense;
-        if(damage <= 0){
-            damage = 0;
-        }
-        else{
             entity.state = entity.getDamageState;
-            entity.life -= damage;
-            gamePanel.ui.addMessage(damage + " damage!");
+            int damage = attack - entity.defense;
+            if(damage <= 0){
+                damage = 0;
+                gamePanel.ui.orderTurn++;
+            }
+            else{
+                entity.life -= damage;
+                gamePanel.ui.addMessage(damage + " damage!");
+            }
         }
-        
-    }
     @Override
     public void draw(Graphics2D t, GamePanel u) {}
     

@@ -49,27 +49,35 @@ public class MON_GhostRider extends Entity implements MonsterInt<Graphics2D, Gam
     @Override
     public void damage(Entity entity){
 
+        if(mana >= maxMana){
+            String text = "";
+            state = healingState;
+            life += 5;
+            mana = 0;
+            text = "Healing";
+            if(life > maxLife){
+                maxLife *= 2;
+                defense += 2;
+                state = defenseState;
+                text = "Increase Defense";
+            }
+            gamePanel.ui.addMessage(text);
+        }
+        else{
+            entity.state = entity.getDamageState;
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
+                gamePanel.ui.orderTurn++;
             }
             else{
-                entity.state = entity.getDamageState;
                 mana++;
-                if(mana == maxMana){
-                    state = healingState;
-                    life += 5;
-                    if(life > maxLife){
-                        maxLife *= 2;
-                        defense += 2;
-                        state = defenseState;
-                    }
-                }
-                
                 entity.life -= damage;
                 gamePanel.ui.addMessage(damage + " damage!");
+                
             }
         }
+    }
     @Override
     public void draw(Graphics2D t, GamePanel u) {}
 }

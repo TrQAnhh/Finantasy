@@ -25,7 +25,7 @@ public class OBJ_HealPot extends Entity {
             entity.life = entity.maxLife;
         }
         if(gamePanel.gameState == gamePanel.battleState){
-            gamePanel.ui.addMessage("Heal" + value);
+            gamePanel.ui.addMessage("Healing");
         }
         else{
             gamePanel.gameState = gamePanel.dialogueState;
