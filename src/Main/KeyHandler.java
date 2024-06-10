@@ -387,23 +387,13 @@ public class KeyHandler implements KeyListener {
         }
     }
     public void npcInventory(int code){
-        if(code == KeyEvent.VK_W){
-            if(gamePanel.ui.npcSlotRow != 0){
-                gamePanel.ui.npcSlotRow--;
-            }
-        }
         if(code == KeyEvent.VK_A){
             if(gamePanel.ui.npcSlotCol != 0){
                 gamePanel.ui.npcSlotCol--;
             }
         }
-        if(code == KeyEvent.VK_S){
-            if(gamePanel.ui.npcSlotRow != 3){
-                gamePanel.ui.npcSlotRow++;
-            }
-        }
         if(code == KeyEvent.VK_D){
-            if(gamePanel.ui.npcSlotCol != 4){
+            if(gamePanel.ui.npcSlotCol < UI.getBuyingSlotCommandNum() - 1){
                 gamePanel.ui.npcSlotCol++;
             }
         }

@@ -78,7 +78,6 @@ public class Player extends Entity{
             life = maxLife;
         }
         public void setItem(){
-
             inventory.clear();
             inventory.add(currentWeapon);
             inventory.add(currentShield);
@@ -287,7 +286,11 @@ public class Player extends Entity{
                     }
                     else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
                         gamePanel.object[gamePanel.currentMap][i].use(this);
-                        inventory.remove(currentItem);
+                        if ( currentItem.amount > 1 ) {
+                            currentItem.amount--;
+                        } else {
+                            inventory.remove(currentItem);
+                        }
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
                 }
@@ -309,12 +312,13 @@ public class Player extends Entity{
     }
     public void damageMonster(int choosingEquipAction, int choosingEnemyAction){
 
+        gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
         int damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         if(damage < 0){
             damage = 0;
+            gamePanel.ui.orderTurn++;
         }
         else{
-            gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
             inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
             damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         }
@@ -324,6 +328,7 @@ public class Player extends Entity{
     public void defensePlayer(int choosingEquipAction){
         defense = getDefense();
         inventory.get(choosingEquipAction).use(this);
+        gamePanel.ui.addMessage("Increase Defense");
     }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
 
@@ -364,7 +369,6 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 }
             }
         }
-
 }
     public void checkLevelUp(){
 
@@ -399,7 +403,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 defense = getDefense();
             }
         // EQUIP KEY
-            if (selectedItem.type == type_key ) {
+            if (selectedItem.type == type_key) {
                 currentItem = selectedItem;
             }
         // EQUIP CONSUMABLE

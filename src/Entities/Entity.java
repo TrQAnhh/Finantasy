@@ -15,13 +15,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Entity {
-    GamePanel gamePanel;
+        GamePanel gamePanel;
     // IMAGES FOR PLAYERS, NPCs, MONSTERS:
-    public BufferedImage up1, up2, up3,
-                         down1, down2, down3,
-                         left1, left2, left3,
-                         right1, right2, right3;
-                         
+        public BufferedImage up1, up2, up3,
+                             down1, down2, down3,
+                             left1, left2, left3,
+                             right1, right2, right3;
+
     // IMAGES OF ITEMS
         public BufferedImage itemsImage;
     // IMAGES OF OBJECTS
@@ -55,14 +55,14 @@ public class Entity {
         int hpBarCounter = 0;
 
     // Item attribute
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 20;
-    public int attackValue;
-    public int defenseValue;
-    public String description = "";
-    public int price;
-    public boolean stackable = false;
-    public int amount = 1;
+        public ArrayList<Entity> inventory = new ArrayList<>();
+        public final int maxInventorySize = 18;
+        public int attackValue;
+        public int defenseValue;
+        public String description = "";
+        public int price;
+        public boolean stackable = false;
+        public int amount = 1;
 
     // Type 
         public int type;
@@ -83,16 +83,16 @@ public class Entity {
         public final int type_axe = 12;
 
     // Battle state
-    public int state;
-    public int preState;
-    public final int normalState = 0;
-    public final int getDamageState = 1;
-    public final int stuntState = 2;
-    public final int bleedState = 3;
-    public final int healingState = 4;
-    public final int burningState = 5;
-    public final int defenseState = 6;
-    public final int criticalState = 7;
+        public int state;
+        public int preState;
+        public final int normalState = 0;
+        public final int getDamageState = 1;
+        public final int stuntState = 2;
+        public final int bleedState = 3;
+        public final int healingState = 4;
+        public final int burningState = 5;
+        public final int defenseState = 6;
+        public final int criticalState = 7;
     // CHARACTER ATTRIBUTES
         public int speed;
         public int maxLife;
