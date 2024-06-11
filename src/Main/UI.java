@@ -672,7 +672,7 @@ public class UI {
                     g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY,scaleWidth, scaleHeight, null);
                 }
             }
-            PositionY += gamePanel.tileSize + 180;
+            PositionY += gamePanel.tileSize + 150;
         }
 
         // Draw Monster Board
@@ -881,6 +881,7 @@ public class UI {
             } 
             if (mons instanceof MON_BloodySlime) {
                 gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][1].Defeat = true;
                 gamePanel.monster[1][1].dying = true;
             } 
             if (mons instanceof MON_Spider) {
