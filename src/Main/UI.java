@@ -879,14 +879,17 @@ public class UI {
             if (mons instanceof MON_GateKeeper) {
                 gamePanel.ui.gateCounterKill ++;
                 gamePanel.monster[1][0].Defeat = true;
+                gamePanel.monster[1][0].dying = true;
             } 
             if (mons instanceof MON_BloodySlime) {
                 gamePanel.ui.gateCounterKill ++;
                 gamePanel.monster[1][1].Defeat = true;
+                gamePanel.monster[1][1].dying = true;
             } 
             if (mons instanceof MON_Spider) {
                 gamePanel.ui.gateCounterKill ++;
                 gamePanel.monster[1][2].Defeat = true;
+                gamePanel.monster[1][2].dying = true;
             } 
             if (mons instanceof MON_GreenDragon) {
                 gamePanel.bossBattleOn = true;

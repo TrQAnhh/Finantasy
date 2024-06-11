@@ -133,6 +133,7 @@ public class EventHandler {
             eventRect[map][col][row].x = col*gamePanel.tileSize + eventRect[map][col][row].x;
             eventRect[map][col][row].y = row *gamePanel.tileSize + eventRect[map][col][row].y;
 
+            
             if(gamePanel.player.solidArea.intersects(eventRect[map][col][row]) && eventRect[map][col][row].eventDone == false){
                 if(gamePanel.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")){
                     hit = true;
@@ -149,16 +150,22 @@ public class EventHandler {
         }
         return hit;
     }
-    public void healingGamePanelPool(int gameState){
-        //if (gamePanel.keyHandler.enterPressed == true){
+    public void healingGamePanelPool(int gameState) {
+        if (gamePanel.keyHandler.enterPressed == true){
             gamePanel.gameState = gameState;
             gamePanel.ui.currentDialogue = "Your life has been recovered!";
             gamePanel.player.life = gamePanel.player.maxLife;
+            setDyingAttribute();
             gamePanel.aSetter.setMonster();
             gamePanel.ui.listofMonster.clear();
-        //}
+        }
 
     }
+    public void setDyingAttribute() {
+        for(int i = 0; i < 3; ++i) {
+            gamePanel.monster[1][i].dying = false;
+        }
+    }   
     public void teleport(int map, int col, int row, int area) {
             gamePanel.gameState = gamePanel.transitionState;
             gamePanel.nextArea = area;
