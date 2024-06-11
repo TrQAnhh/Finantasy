@@ -37,10 +37,10 @@ public class MON_GhostRider extends Entity {
     }
     public void getImage(){
 
-        up1 = setup("Monster/HatPumpkinWithHorse/up_2");
-        down1 = setup("Monster/HatPumpkinWithHorse/down_2");
-        left1 = setup("Monster/HatPumpkinWithHorse/left_2");
-        right1 = setup("Monster/HatPumpkinWithHorse/right_2");
+        up1 = setupMonsterImages("Monster/HatPumpkinWithHorse/up_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
+        down1 = setupMonsterImages("Monster/HatPumpkinWithHorse/down_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
+        left1 = setupMonsterImages("Monster/HatPumpkinWithHorse/left_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
+        right1 = setupMonsterImages("Monster/HatPumpkinWithHorse/right_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
     }   
     public void setAction(){
 
@@ -57,7 +57,7 @@ public class MON_GhostRider extends Entity {
                 maxLife *= 2;
                 defense += 2;
                 state = defenseState;
-                text = "Increase Defense";
+                text = "Defense!";
             }
             gamePanel.ui.addMessage(text);
         }

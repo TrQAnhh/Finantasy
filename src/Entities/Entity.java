@@ -132,6 +132,22 @@ public class Entity {
         }
         return image;
     }
+    public BufferedImage setupMonsterImages(String imagePath, int width, int height) {
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        String filePath = "res/Entities/" + imagePath + ".png";
+        File imageFile = new File(filePath);
+
+        try (FileInputStream readImage = new FileInputStream(imageFile)) {
+            image = ImageIO.read(readImage);
+            image = uTool.scaleImage(image, width, height);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
     public BufferedImage setupEffectImages(String imagePath, int width, int height){
  
         UtilityTool uTool = new UtilityTool();

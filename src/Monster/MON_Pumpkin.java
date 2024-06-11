@@ -38,10 +38,10 @@ public class MON_Pumpkin extends Entity {
     }
     public void getImage(){
 
-        up1 = setup("Monster/Pumpkin/up_1");
-        down1 = setup("Monster/Pumpkin/down_1");
-        left1 = setup("Monster/Pumpkin/left_1");
-        right1 = setup("Monster/Pumpkin/right_1");
+        up1 = setupMonsterImages("Monster/Pumpkin/up_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
+        down1 = setupMonsterImages("Monster/Pumpkin/down_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
+        left1 = setupMonsterImages("Monster/Pumpkin/left_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
+        right1 = setupMonsterImages("Monster/Pumpkin/right_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
     }   
     public void setAction(){
 
