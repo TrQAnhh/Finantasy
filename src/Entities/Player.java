@@ -45,7 +45,7 @@ public class Player extends Entity{
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
-                speed = 3;
+                speed = 10;
                 direction = "down";
     
             // Player status

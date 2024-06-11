@@ -612,16 +612,8 @@ public class UI {
         //Draw background
         Image image;
         try {
-            if(indexBattle == 1){
-                image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
-                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
-            }
-            if(indexBattle == 2){
-                image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
-                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
-            }
-            if(indexBattle == 3){
-                image = ImageIO.read(new File("E:/Code/java/Hello/res/titlescreen/battle.png"));
+            if(indexBattle == 1 || indexBattle == 2 || indexBattle == 3){
+                image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_3.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
             }
             if(indexBattle == 9){
@@ -664,8 +656,8 @@ public class UI {
             }
             BufferedImage monsImage = listofMonster.get(i).right1;
 
-            int scaleWidth = monsImage.getWidth() * scaleFactor;
-            int scaleHeight = monsImage.getHeight() * scaleFactor;
+            int scaleWidth = monsImage.getWidth() * scaleFactor - 20;
+            int scaleHeight = monsImage.getHeight() * scaleFactor - 20;
             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                 if(listofMonster.get(i).life <= 0){
                     gamePanel.player.exp += listofMonster.get(i).exp;
@@ -939,19 +931,16 @@ public class UI {
         if(index == 1){
             listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
             listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
-            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
         }
         //Battle 2
         if(index == 2){
             listofMonster.add(MonsterFactory.createMonster("Reaper", gamePanel));
-            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
             listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
             listofMonster.add(MonsterFactory.createMonster("Reaper", gamePanel));
         }
         //Battle 3
         if(index == 3){
             listofMonster.add(MonsterFactory.createMonster("GhostRider", gamePanel));
-            listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
             listofMonster.add(MonsterFactory.createMonster("Pumpkin", gamePanel));
         }
         //Battle 2 in map 1
