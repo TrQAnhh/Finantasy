@@ -63,9 +63,9 @@ public class AssetSetter{
             gamePanel.npc[0][5].worldX = gamePanel.tileSize * 29; // 29 columns * 48
             gamePanel.npc[0][5].worldY = gamePanel.tileSize * 47; // 47 rows * 48
 
-            gamePanel.npc[0][6] = new NPC_Merchant(gamePanel);
-            gamePanel.npc[0][6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
-            gamePanel.npc[0][6].worldY = gamePanel.tileSize * 30; // 30 rows * 48
+//            gamePanel.npc[0][6] = new NPC_Merchant(gamePanel);
+//            gamePanel.npc[0][6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
+//            gamePanel.npc[0][6].worldY = gamePanel.tileSize * 30; // 30 rows * 48
 
             gamePanel.npc[0][7] = new NPC_Soldier(gamePanel);
             gamePanel.npc[0][7].worldX = gamePanel.tileSize * 36; // 36 columns * 48

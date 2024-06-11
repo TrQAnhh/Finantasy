@@ -13,9 +13,9 @@ public class OBJ_Dagger extends Entity {
         this.gamePanel = gamePanel;
         type = type_sword;
         name = "Dagger";
-        itemsImage = setup("Objects/Dagger");
+        itemsImage = setupItemImages("Objects/Dagger");
         attackValue = 3;
-        description = "[" + name + "]" + " \n- A Dagger." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
+        description = "[" + name + "]" + " \n- A Dagger." + " \n- Attack: " + attackValue + "\n- Useless in normal world";
         price = 40;
     }
     @Override

@@ -44,10 +44,8 @@ public class Player extends Entity{
             
         }
         public void setDefaultValues(){
-                worldX = gamePanel.tileSize * 15;
-                worldY = gamePanel.tileSize * 18;
             // PLAYER'S SPEED:
-                speed = 10;
+                speed = 3;
                 direction = "down";
     
             // Player status
@@ -76,7 +74,6 @@ public class Player extends Entity{
             life = maxLife;
         }
         public void setItem(){
-
             inventory.clear();
             inventory.add(currentWeapon);
             inventory.add(currentShield);
@@ -281,7 +278,11 @@ public class Player extends Entity{
                     }
                     else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
                         gamePanel.object[gamePanel.currentMap][i].use(this);
-                        inventory.remove(currentItem);
+                        if ( currentItem.amount > 1 ) {
+                            currentItem.amount--;
+                        } else {
+                            inventory.remove(currentItem);
+                        }
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
                 }
@@ -394,7 +395,7 @@ public class Player extends Entity{
                 defense = getDefense();
             }
         // EQUIP KEY
-            if (selectedItem.type == type_key ) {
+            if (selectedItem.type == type_key) {
                 currentItem = selectedItem;
             }
         // EQUIP CONSUMABLE
