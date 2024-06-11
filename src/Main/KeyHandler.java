@@ -156,7 +156,7 @@ public class KeyHandler implements KeyListener {
             }
 }
 
-    // PAUSE STATE
+        // PAUSE STATE
         public void pauseState(int code){
             if(code == KeyEvent.VK_ESCAPE)
             {
@@ -203,7 +203,7 @@ public class KeyHandler implements KeyListener {
             }
         }
         // CHARACTER STATE
-    public void characterState(int code) {
+        public void characterState(int code) {
         if(code == KeyEvent.VK_C){
             gamePanel.gameState = gamePanel.playState;
         }
@@ -213,8 +213,8 @@ public class KeyHandler implements KeyListener {
         }
         playerInventory(code);
     }
-    // BATTLE STATE
-    public void battleState(int code){
+        // BATTLE STATE
+        public void battleState(int code){
         if(gamePanel.ui.orderTurn == 0){
             if(code == KeyEvent.VK_W){
                 gamePanel.ui.interactNum--;
@@ -309,7 +309,7 @@ public class KeyHandler implements KeyListener {
                     }
                     enterPressed = false;
         }
-    public void gameOverState(int code){
+        public void gameOverState(int code){
         if(code == KeyEvent.VK_W){
             gamePanel.ui.commandNum--;
             if(gamePanel.ui.commandNum < 0){
@@ -335,7 +335,7 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-    public void tradeState(int code){
+        public void tradeState(int code){
         if(code == KeyEvent.VK_ENTER){
             enterPressed = true;
         }
@@ -368,7 +368,7 @@ public class KeyHandler implements KeyListener {
             }
         } */
     }
-    public void playerInventory(int code){
+        public void playerInventory(int code){
         if(code == KeyEvent.VK_W){
             if(gamePanel.ui.playerSlotRow != 0){
                 gamePanel.ui.playerSlotRow--;
@@ -390,7 +390,7 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-    public void npcInventory(int code){
+        public void npcInventory(int code){
         if(code == KeyEvent.VK_W){
             if(gamePanel.ui.npcSlotRow != 0){
                 gamePanel.ui.npcSlotRow--;
@@ -412,8 +412,8 @@ public class KeyHandler implements KeyListener {
             }
         }
     }
-    @Override
-    public void keyReleased(KeyEvent e) {
+        @Override
+        public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
 
         if(code == KeyEvent.VK_W)
