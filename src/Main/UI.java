@@ -206,7 +206,7 @@ public class UI {
     }           */
     public void drawMessage(){
         int messageX = gamePanel.tileSize;
-        int messageY = gamePanel.tileSize*4;
+        int messageY = gamePanel.tileSize * 5;
 
         g2.setFont(alagard);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
