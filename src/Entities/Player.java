@@ -45,9 +45,11 @@ public class Player extends Entity{
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
-                speed = 3;
+                speed = 13;
                 direction = "down";
-    
+
+                worldX = 17 * gamePanel.tileSize;
+                worldY = 19 * gamePanel.tileSize;
             // PLAYER STATUS
                 level = 1;
                 strength = 1;
@@ -326,7 +328,7 @@ public class Player extends Entity{
     public void defensePlayer(int choosingEquipAction){
         defense = getDefense();
         inventory.get(choosingEquipAction).use(this);
-        gamePanel.ui.addMessage("Increase Defense");
+        gamePanel.ui.addMessage("Defense!");
     }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
 
