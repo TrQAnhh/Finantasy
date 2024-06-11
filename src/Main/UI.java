@@ -612,13 +612,15 @@ public class UI {
         //Draw background
         Image image;
         try {
-            if(indexBattle == 1 || indexBattle == 2 || indexBattle == 3){
+            if(indexBattle == 1 || indexBattle == 3){
                 image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_3.png"));
-                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
-            }
+                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
+            if(indexBattle == 2) {
+                image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_4.png"));
+                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
             if(indexBattle == 9){
                 image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/DragonAppear.png"));
-                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow,864,672, null);}
+                g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
             else{
                 image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
@@ -1066,7 +1068,7 @@ public class UI {
         try {
             //change later
             image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_2.png"));
-            g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow,830,630, null);
+            g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow,null);
 
         } catch (IOException e) {
             e.printStackTrace();
