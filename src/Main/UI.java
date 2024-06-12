@@ -1490,7 +1490,7 @@ public class UI {
 
             // DRAW EQUIPPED CURSOR:
 
-                if(entity.inventory.get(i) == entity.currentWeapon ||
+                if(entity.inventory.get(i) == entity.currentTool ||
                         entity.inventory.get(i) == entity.currentItem){
                     g2.drawImage(equippedCursor,slotX,slotY,null);
                 }
