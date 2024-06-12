@@ -612,13 +612,13 @@ public class UI {
         //Draw background
         Image image;
         try {
-            if(indexBattle == 1 || indexBattle == 3){
+            if(indexBattle == 1 || indexBattle == 3) {
                 image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_3.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
             if(indexBattle == 2) {
                 image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_4.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
-            if(indexBattle == 9){
+            if(indexBattle == 9) {
                 image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/DragonAppear.png"));
                 g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);}
             else{
@@ -650,7 +650,7 @@ public class UI {
         int PositionX = gamePanel.tileSize*2;
         int PositionY;
         if(gamePanel.currentMap == 0) PositionY = 370/listofMonster.size();
-        else PositionY = gamePanel.tileSize * 2;
+        else PositionY = gamePanel.tileSize * 4;
         for(int i=0; i<listofMonster.size(); i++){
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                 effectPosX = PositionX;
@@ -861,9 +861,13 @@ public class UI {
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
         g2.drawString(textTurn, nameX, nameY);
-
+        if(gamePanel.player.dying == true){
+            gamePanel.gameState = gamePanel.gameOverState;
+        }
         // End of the battle
         if(checkBattleEnd() == true){
+            interactType = 0;
+            interactNum = 0;
             orderTurn = 0;
             checker = false;
             handlerMonsters();
@@ -964,8 +968,8 @@ public class UI {
             listofMonster.add(MonsterFactory.createMonster("Boss", gamePanel));
         }
         if(index == 9) {
-            listofMonster.add(MonsterFactory.createMonster("Green Dragon", gamePanel));
             listofMonster.add(MonsterFactory.createMonster("Red Pheonix", gamePanel));
+            listofMonster.add(MonsterFactory.createMonster("Green Dragon", gamePanel));
         }
         if(index == 7) {
             listofMonster.add(MonsterFactory.createMonster("Robot", gamePanel));
@@ -1001,7 +1005,8 @@ public class UI {
                 orderTurn++;
                 }
             }
-    }
+            if(gamePanel.player.life <= 0) gamePanel.player.dying = true;
+        }
 }
     // Checking the state of all entities in the battle
     public void checkEffect(){
@@ -1051,10 +1056,11 @@ public class UI {
     }
     // Checking if the battle end or not
     public boolean checkBattleEnd(){
-        if(gamePanel.player.dying == true){
+        if(gamePanel.player.life <= 0) {
+            gamePanel.gameState = gamePanel.gameOverState;
             return true;
         }
-        else{
+        else {
             for(int i = 0; i<listofMonster.size();i++){
                 if(listofMonster.get(i).dying == false){
                     return false;
@@ -1123,7 +1129,7 @@ public class UI {
 
         // Draw Monster
         int PositionX = titleScreenState;
-        int PositionY = titleScreenState;
+        int PositionY = titleScreenState * 4;
             if(listofMonster.get(0).state != listofMonster.get(0).normalState){
                 effectPosX = PositionX;
                 effectPosY = PositionY;
@@ -1883,6 +1889,14 @@ public class UI {
         }
         public void drawGameOverScreen(){
 
+                BufferedImage image;
+                try {
+                    image = ImageIO.read(new File("C:/Users/hoang/Downloads/Finantasy-1/res/Background/GameOver.png"));
+                    g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow, null);
+                } catch (IOException e) {
+                    
+                    e.printStackTrace();
+                }
                 g2.setColor(new Color(0,0,0,150));
                 g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 

@@ -328,10 +328,12 @@ public class KeyHandler implements KeyListener {
             if(gamePanel.ui.commandNum == 0){
                 gamePanel.gameState = gamePanel.playState;
                 gamePanel.retry();
+                System.out.println(gamePanel.gameState);
             }
             else if(gamePanel.ui.commandNum == 1){
                 gamePanel.gameState = gamePanel.titleState;
                 gamePanel.restart();
+                System.out.println(gamePanel.gameState);
             }
         }
     }
