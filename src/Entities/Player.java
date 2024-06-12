@@ -61,6 +61,7 @@ public class Player extends Entity{
                 currentWeapon = new OBJ_Sword(gamePanel);
                 currentShield = new OBJ_WoodenShield(gamePanel);
                 currentItem = new OBJ_Key(gamePanel);
+                currentTool = new OBJ_Axe(gamePanel);
 
                 maxLife = 100;
                 attack = strength;
@@ -84,8 +85,7 @@ public class Player extends Entity{
             inventory.add(currentWeapon);
             inventory.add(currentShield);
             inventory.add(currentItem);
-            inventory.add(new OBJ_Axe(gamePanel));
-            inventory.add(new OBJ_GoldenSword(gamePanel));
+            inventory.add(currentTool);
         }
         public int getAttack(){
             return attack = strength + currentWeapon.attackValue;
@@ -280,7 +280,7 @@ public class Player extends Entity{
         if(i != 999){
             if(gamePanel.keyHandler.enterPressed == true){
                 if(inventory.size() < maxInventorySize){
-                    if ( currentWeapon instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
+                    if (currentTool instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
                         gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
@@ -394,8 +394,13 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
 
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
+
+        // EQIP TOOL
+            if(selectedItem.type == type_axe){
+                currentTool = selectedItem;
+            }
         // EQUIP WEAPON
-            if(selectedItem.type == type_sword || selectedItem.type == type_dagger || selectedItem.type == type_axe){
+            if(selectedItem.type == type_sword || selectedItem.type == type_dagger){
                 currentWeapon = selectedItem;
                 attack = getAttack();
             }
