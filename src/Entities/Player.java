@@ -324,7 +324,7 @@ public class Player extends Entity{
     }
     public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
 
-        if(preState == stuntState){
+        if(preState == stunState){
             gamePanel.ui.orderTurn++;
             preState = normalState;
         }

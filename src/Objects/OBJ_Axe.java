@@ -19,7 +19,7 @@ public class OBJ_Axe extends Entity {
     }
     @Override
     public void use(Entity entity){
-        entity.state = entity.stuntState;
+        entity.state = entity.stunState;
     }
 
     @Override

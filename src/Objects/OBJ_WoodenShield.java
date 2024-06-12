@@ -11,6 +11,6 @@ public class OBJ_WoodenShield extends Entity {
         name = "Aspis";
         itemsImage = setupItemImages("Objects/WoodenShield");
         defenseValue = 1;
-        description = "[" + name + "]" + " \n- A wooden Greek shield" + " \n- Defense: " + defenseValue + "\n- Useless in normal world";
+        description = "[" + name + "]" + " \n- A wooden Greek shield" + " \n- Defense: " + defenseValue;
     }
 }

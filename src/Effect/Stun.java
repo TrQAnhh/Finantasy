@@ -6,11 +6,11 @@ import java.awt.image.BufferedImage;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class Stunt extends Entity{
+public class Stun extends Entity{
     
     GamePanel gp;
 
-    public Stunt(GamePanel gp){
+    public Stun(GamePanel gp){
 
         super(gp);
         this.gp = gp;

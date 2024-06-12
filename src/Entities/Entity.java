@@ -84,16 +84,16 @@ public class Entity {
         public final int type_axe = 12;
 
     // Battle state
-        public int state;
-        public int preState;
-        public final int normalState = 0;
-        public final int getDamageState = 1;
-        public final int stuntState = 2;
-        public final int bleedState = 3;
-        public final int healingState = 4;
-        public final int burningState = 5;
-        public final int defenseState = 6;
-        public final int criticalState = 7;
+    public int state;
+    public int preState;
+    public final int normalState = 0;
+    public final int getDamageState = 1;
+    public final int stunState = 2;
+    public final int bleedState = 3;
+    public final int healingState = 4;
+    public final int burningState = 5;
+    public final int defenseState = 6;
+    public final int criticalState = 7;
     // CHARACTER ATTRIBUTES
         public int speed;
         public int maxLife;
@@ -110,6 +110,7 @@ public class Entity {
         public Entity currentWeapon;
         public Entity currentShield;
         public Entity currentItem;
+        public Entity currentTool;
         public int mana;
         public int maxMana;
 

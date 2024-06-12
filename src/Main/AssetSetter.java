@@ -106,7 +106,7 @@ public class AssetSetter{
         int i=0;
         gamePanel.effect[i] = new Slash(gamePanel);
         i++;
-        gamePanel.effect[i] = new Stunt(gamePanel);
+        gamePanel.effect[i] = new Stun(gamePanel);
         i++;
         gamePanel.effect[i] = new Bleed(gamePanel);
         i++;
