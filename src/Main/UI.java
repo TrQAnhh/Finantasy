@@ -2030,6 +2030,14 @@ public class UI {
         }
         public void drawGameOverScreen(){
 
+                BufferedImage image;
+                try {
+                    image = ImageIO.read(new File("C:/Users/Hello/Downloads/Finantasy-1/res/Background/GameOver.png"));
+                    g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow,850,720, null);
+                } catch (IOException e) {
+                    
+                    e.printStackTrace();
+                }
                 g2.setColor(new Color(0,0,0,150));
                 g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 
