@@ -765,8 +765,10 @@ public class UI {
                         else{
                             if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stunState){
                                 PositionX += gamePanel.tileSize * 2;
+                                g2.drawImage(listofMonster.get(i).left1, PositionX, PositionY, null);
+                            } else {
+                                g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                             }
-                            g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                         }
                     }
                     if(listofMonster.get(i).state != listofMonster.get(i).normalState){
@@ -1161,8 +1163,10 @@ public class UI {
                 else{
                     if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stunState){
                         PositionX += gamePanel.tileSize * 2;
+                        g2.drawImage(listofMonster.get(i).left1, PositionX, PositionY, null);
+                    } else {
+                        g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                     }
-                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                 }
             }
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
