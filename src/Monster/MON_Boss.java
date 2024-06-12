@@ -3,7 +3,6 @@ package Monster;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import Data.Progress;
 import Entities.Entity;
 import Main.GamePanel;
 
@@ -50,7 +49,7 @@ public class MON_Boss extends Entity implements MonsterInt<Graphics2D, GamePanel
     @Override
     public void damage(Entity entity){
         
-        if(state == stuntState){
+        if(state == stunState){
             gamePanel.ui.addMessage(name + "Was Stunt");
         }
         else{

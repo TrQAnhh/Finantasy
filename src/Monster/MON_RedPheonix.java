@@ -45,7 +45,7 @@ public class MON_RedPheonix extends Entity implements MonsterInt<Graphics2D, Gam
     public void setAction(){}
     public void damage(Entity entity){
         
-        if(state == stuntState){
+        if(state == stunState){
             gamePanel.ui.addMessage(name + "Was Stunt");
         }
         else{

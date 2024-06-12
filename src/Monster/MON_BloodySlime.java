@@ -48,7 +48,7 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
     @Override
     public void damage(Entity entity){
         
-        if(state == stuntState){
+        if(state == stunState){
             gamePanel.ui.addMessage(name + "Was Stunt");
         }
         else{

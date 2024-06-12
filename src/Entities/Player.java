@@ -72,6 +72,8 @@ public class Player extends Entity{
         }
         public void restoreLife(){
             life = maxLife;
+            state = normalState;
+            preState = state;
         }
         public void setItem(){
             inventory.clear();

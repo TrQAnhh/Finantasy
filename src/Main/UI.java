@@ -861,20 +861,16 @@ public class UI {
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
         g2.drawString(textTurn, nameX, nameY);
-        if(gamePanel.player.dying == true){
-            gamePanel.gameState = gamePanel.gameOverState;
-        }
         // End of the battle
         if(checkBattleEnd() == true){
-            interactType = 0;
-            interactNum = 0;
             orderTurn = 0;
+            resetNum();
             checker = false;
             handlerMonsters();
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
-        }
+        } 
     }
     public void handlerMonsters() {
         Entity mons;
@@ -1992,3 +1988,4 @@ public class UI {
         return buyingSlotCommandNum;
     }
 }
+
