@@ -11,7 +11,7 @@ public class OBJ_GoldenShield extends Entity {
         name = "Aegis";
         itemsImage = setupItemImages("Objects/GoldShield");
         defenseValue = 2;
-        description = "[" + name + "]" + " \n- A popular recurring item in Finantasy series." + " \n- Defense: " + defenseValue + "\n- Useless in normal world";
+        description = "[" + name + "]" + " \n- A popular recurring item in Finantasy series." + " \n- Defense: " + defenseValue + "\n- [Ability] Gain 30% base Defense";
         price = 50;
     }
     @Override

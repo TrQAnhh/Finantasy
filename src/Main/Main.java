@@ -6,10 +6,10 @@ import java.awt.Window;
 
 
 public class Main {
+
     public static Window window;
 
 	public static <image> void main(String[] args) {
-
     // GENERATING WINDOW JFRAME:
         JFrame window = new JFrame("Finantasy");
 
@@ -38,6 +38,7 @@ public class Main {
             window.setVisible(true);
             gamePanel.setupGame();
             gamePanel.startGameThread();
-
+                            
     }
 }
+    

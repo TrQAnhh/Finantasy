@@ -71,9 +71,10 @@ public class GamePanel extends JPanel implements Runnable{
         public EventHandler eHandler = new EventHandler(this);
     // Config
         Config config = new Config(this);
+    // Cut Scence Manager
+        public cutScenceManager csManager = new cutScenceManager(this);
     // EnviromentManager
-        EnviromentManager eManager = new EnviromentManager(this);
-
+        public EnviromentManager eManager = new EnviromentManager(this);
     // GAME STATE VARIABLES :
     public int gameState;
     public int tempGameState; // USED WHEN PLAYER HITS BUTTON "BACK"
@@ -87,6 +88,10 @@ public class GamePanel extends JPanel implements Runnable{
     public final int transitionState = 7;
     public final int gameOverState = 8;
     public final int tradeState = 9;
+    public final int bossBattleState = 10;
+    public final int cutScenceState = 11;
+
+    public boolean bossBattleOn = false;
 
 //    // Config
 //        Config config = new Config(this);
@@ -126,6 +131,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
         public void retry(){
             player.setDefaultPosition();
+            bossBattleOn = false;
             player.restoreLife();
             aSetter.setNPC();
             aSetter.setMonster();
@@ -212,6 +218,8 @@ public class GamePanel extends JPanel implements Runnable{
                         }
                     }
                 eManager.update();
+                eHandler.checkEvent();
+
             }
         }
     public void paintComponent(Graphics graphics){
@@ -223,27 +231,33 @@ public class GamePanel extends JPanel implements Runnable{
             long drawStart = 0;
 
         // DEBUG TEXT:
-            if(keyHandler.showDebugText == true) {
-                drawStart = System.nanoTime();
-            }
-            // TITLE SCREEN
-            if(gameState == titleState) {
-                ui.draw(graphics2D);
-            }
-        // BATTLE STATE:
-            else if(gameState == battleState) {
-                ui.draw(graphics2D);
-            }
-        // PLAY STATE:
-            else {
-                // DRAW TILES:
-                    tileManager.draw(graphics2D);
-                // ADD PLAYERS TO THE LIST
-                    entityList.add(player);
-                // ADD ENTITIES TO THE LIST
-                        for(int i = 0; i < npc[1].length; ++i) {
-                            if(npc[currentMap][i] != null) {
-                                entityList.add(npc[currentMap][i]);
+                if(keyHandler.showDebugText == true) {
+                    drawStart = System.nanoTime();
+                }
+                // TITLE SCREEN
+                if(gameState == titleState) {
+                    ui.draw(graphics2D);
+                }
+                // BATTLE STATE
+                else if(gameState == battleState) {
+                    ui.draw(graphics2D);
+                }
+                // BOSS BATTLE STATE
+                else if(gameState == bossBattleState) {
+                    ui.draw(graphics2D);
+                }
+            // PLAY STATE:
+                else {
+                    // DRAW TILES:
+                        tileManager.draw(graphics2D);
+                    // ADD PLAYERS TO THE LIST
+                        entityList.add(player);
+                    // ADD ENTITIES TO THE LIST
+                        if ( currentMap == 0 ) {
+                            for(int i = 0; i < npc[1].length; ++i) {
+                                if(npc[currentMap][i] != null) {
+                                    entityList.add(npc[currentMap][i]);
+                                }
                             }
                         }
 
@@ -252,20 +266,20 @@ public class GamePanel extends JPanel implements Runnable{
                                 entityList.add(object[currentMap][i]);
                             }
                         }
-                        for(int i = 0; i < monster[1].length; ++i) {
+                        for(int i = 0; i < monster[currentMap].length; ++i) {
                             if(monster[currentMap][i] != null) {
                                 entityList.add(monster[currentMap][i]);
                             }
                         }
 
-                // SORT
-                    Collections.sort(entityList, new Comparator<Entity>() {
-                        @Override
-                        public int compare(Entity e1, Entity e2) {
-                            int result = Integer.compare(e1.worldY, e2.worldY);
-                            return result;
-                        }
-                    });
+                    // SORT
+                        Collections.sort(entityList, new Comparator<Entity>() {
+                            @Override
+                            public int compare(Entity e1, Entity e2) {
+                                int result = Integer.compare(e1.worldY, e2.worldY);
+                                return result;
+                            }
+                        });
 
                     // DRAW ENTITIES:
                             for(int i=0; i < entityList.size(); i++){
@@ -277,6 +291,12 @@ public class GamePanel extends JPanel implements Runnable{
                         eManager.draw(graphics2D);
                     // UI
                         ui.draw(graphics2D);
+                    // DRAW CUTSCREEN ENDING
+                        if(Progress.DragonBossDefeated == true) {
+                            csManager.scenceNum = csManager.ending;
+                            csManager.draw(graphics2D);
+                            Progress.DragonBossDefeated = false;
+                        }
             }
 
             // Debug
@@ -319,9 +339,17 @@ public class GamePanel extends JPanel implements Runnable{
         se.setFile(i);
         se.play();
     }
-        public void changeArea(){
-            currentArea = nextArea;
-            aSetter.setMonster();
-            aSetter.setNPC();
+    public void changeArea(){
+        if(nextArea != currentArea) {
+            stopMusic();
+            playMusic(1);
+            if(nextArea == outside) {
+                stopMusic();
+                playMusic(0);
+            }
         }
+        currentArea = nextArea;
+        aSetter.setMonster();
+        aSetter.setNPC();
+    }
 }

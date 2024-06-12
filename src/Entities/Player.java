@@ -76,6 +76,8 @@ public class Player extends Entity{
         }
         public void restoreLife(){
             life = maxLife;
+            state = normalState;
+            preState = state;
         }
         public void setItem(){
             inventory.clear();
@@ -223,14 +225,12 @@ public class Player extends Entity{
             int objIndex = gamePanel.collision.checkObject(this,true);
             pickUpObject(objIndex);
 
-            // check npc collision
-                int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
-                interactNPC(npcIndex);
-            // Check monster collision
-                int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
+        // check npc collision
+            int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
+            interactNPC(npcIndex);
+        // Check monster collision
+            //int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);  not use
 
-            // Check event
-                gamePanel.eHandler.checkEvent();
 
             gamePanel.keyHandler.enterPressed = false;
 
@@ -280,6 +280,7 @@ public class Player extends Entity{
             if(gamePanel.keyHandler.enterPressed == true){
                 if(inventory.size() < maxInventorySize){
                     if ( currentWeapon instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
+                        gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
@@ -312,7 +313,6 @@ public class Player extends Entity{
     public void damageMonster(int choosingEquipAction, int choosingEnemyAction){
 
         gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
-
         int damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         if(damage < 0){
             damage = 0;
@@ -520,8 +520,11 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 }
                 break;
         }
-        if (image != null ) {
-            g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
+        // change temp screen to drawing
+        if(drawing == true) {
+            if (image != null ) {
+                g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
+            }
         }
     }
 }

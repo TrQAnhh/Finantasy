@@ -1,5 +1,6 @@
 package Main;
 
+
 public class EventHandler {
 
     GamePanel gamePanel;
@@ -7,9 +8,14 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
-
+    boolean first, second, third, fourth, fifth;
+    boolean[] checkHappened;
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
+            checkHappened = new boolean[6];
+            for(int i = 0; i < 6; ++i) {
+                checkHappened[i] = false;
+            }
 
             eventRect = new eventRect[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
             int map = 0;
@@ -64,7 +70,7 @@ public class EventHandler {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(0);
                 teleport(0, 16, 15, gamePanel.outside);}
-            
+
             if(hit(0,15,18,"any") == true || hit(0,15,19,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
                     gamePanel.stopMusic();
@@ -89,6 +95,40 @@ public class EventHandler {
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 3;
                 }
+            }
+            //MONSTER CHECKED PLACED MAP 1
+            if((checkHappened[5] == false) && hit(1,36,31,"any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 7;
+                checkHappened[5] = true;
+            }
+            if((checkHappened[4] == false) && hit(1,25,31,"any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 8;
+                checkHappened[4] = true;
+            }
+            if((checkHappened[0] == false) && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 4;
+                checkHappened[0] = true;
+            }
+            if((checkHappened[1] == false) && (hit(1, 30, 40, "any") == true || hit(1, 31, 40, "any") == true || hit(1, 32, 40, "any") == true)) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 6;
+                checkHappened[1] = true;
+            }
+            if((checkHappened[2] == false) && (hit(1, 41, 36, "any") == true || hit(1, 42, 36, "any") == true || hit(1, 43, 36, "any") == true)) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 5;
+                checkHappened[2] = true;
+            }
+            if(gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 9;
+            }
+            if(gamePanel.bossBattleOn) {
+                gamePanel.gameState = gamePanel.bossBattleState;
+                gamePanel.ui.indexBattle = 10;
             }
         }
     }
@@ -122,9 +162,15 @@ public class EventHandler {
             gamePanel.gameState = gameState;
             gamePanel.ui.addMessage("Your life is restored!");
             gamePanel.player.life = gamePanel.player.maxLife;
+            setDyingAttribute();
             gamePanel.aSetter.setMonster();
         }
 
+    }
+    public void setDyingAttribute() {
+        for(int i = 0; i < 3; ++i) {
+            gamePanel.monster[1][i].dying = false;
+        }
     }
     public void teleport(int map, int col, int row, int area) {
             gamePanel.gameState = gamePanel.transitionState;
@@ -136,4 +182,5 @@ public class EventHandler {
             canTouchEvent = false;
             //gamePanel.playSE(13);
     }
+
 }

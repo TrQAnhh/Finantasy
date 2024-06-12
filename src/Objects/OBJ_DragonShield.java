@@ -11,7 +11,7 @@ public class OBJ_DragonShield extends Entity {
         name = "Pridwen";
         itemsImage = setupItemImages("Objects/DragonShield");
         defenseValue = 3;
-        description = "[" + name + "]" + " \n- King Arthur's Shield" + " \n- Defense: " + defenseValue + "\n- Useless in normal world";
+        description = "[" + name + "]" + " \n- King Arthur's Shield" + " \n- Defense: " + defenseValue + "\n- [Ability] Gain 50% base Defense";
         price = 75;
     }
     @Override
