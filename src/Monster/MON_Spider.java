@@ -20,7 +20,7 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
         direction = "down";
         maxLife = 4;
         life = maxLife;
-        attack = 2;
+        attack = 4;
         defense = 5;
         exp = 2;
         mana = 0;
@@ -47,24 +47,16 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
     public void setAction(){}
     public void damage(Entity entity){
         
-        if(state == stunState){
-            gamePanel.ui.addMessage(name + "Was Stunt");
-        }
-        else{
-            if(state == bleedState){
-                life--;
-            }
+            entity.state = entity.getDamageState;
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
                 gamePanel.ui.orderTurn++;
             }
             else{
-                entity.state = entity.getDamageState;
                 entity.life -= damage;
                 gamePanel.ui.addMessage(damage + " damage!");
             }
-        }
     }
     
     @Override

@@ -48,25 +48,16 @@ public class MON_GateKeeper extends Entity implements MonsterInt<Graphics2D, Gam
     public void setAction(){}
     public void damage(Entity entity){
         
-        if(state == stunState){
-            gamePanel.ui.addMessage(name + "Was Stunt");
-        }
-        else{
-            if(state == bleedState){
-                life--;
-            }
+            entity.state = entity.getDamageState;
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
                 gamePanel.ui.orderTurn++;
             }
             else{
-                entity.state = entity.getDamageState;
                 entity.life -= damage;
                 gamePanel.ui.addMessage(damage + " damage!");
-            }  
-            
-        }
+            }
     }
     @Override
     public void draw(Graphics2D g2,GamePanel gamePanel){

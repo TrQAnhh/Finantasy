@@ -18,7 +18,7 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
         direction = "down";
         maxLife = 4;
         life = maxLife;
-        attack = 2;
+        attack = 5;
         defense = 5;
         exp = 2;
         mana = 0;
@@ -46,25 +46,16 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
     @Override
     public void damage(Entity entity){
         
-        if(state == stunState){
-            gamePanel.ui.addMessage(name + "Was Stunt");
-        }
-        else{
-            if(state == bleedState){
-                life--;
-            }
+            entity.state = entity.getDamageState;
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
                 gamePanel.ui.orderTurn++;
             }
             else{
-                entity.state = entity.getDamageState;
                 entity.life -= damage;
                 gamePanel.ui.addMessage(damage + " damage!");
             }
-            
-        }
     }
     
     @Override
