@@ -17,24 +17,24 @@ import java.util.ArrayList;
 public class Entity {
         GamePanel gamePanel;
     // IMAGES FOR PLAYERS, NPCs, MONSTERS:
-        public BufferedImage up1, up2, up3,
-                             down1, down2, down3,
-                             left1, left2, left3,
-                             right1, right2, right3;
-
+    public BufferedImage up1, up2, up3,
+        down1, down2, down3,
+        left1, left2, left3,
+        right1, right2, right3;
     // IMAGES OF ITEMS
-        public BufferedImage itemsImage;
+    public BufferedImage itemsImage;
     // IMAGES OF OBJECTS
-        public BufferedImage objectImage1,objectImage2,objectImage3,objectImage4;
-    // IMAGES OF ANIMATION FOR PLAYER'S EFFECTS
-        public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15;
-
+    public BufferedImage objectImage1,objectImage2,objectImage3,objectImage4;
+    public BufferedImage upStand1, upStand2, upStand3, upStand4, downStand1, downStand2, downStand3, downStand4, leftStand1, leftStand2, leftStand3, leftStand4, rightStand1, rightStand2, rightStand3, rightStand4;
+    public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15;
     // SOLID AREA FOR CHECK COLLISION OF EACH ENTITIES / NPCs / MONSTERS
-        public Rectangle solidArea = new Rectangle(0,0,48,48);
-        public int solidAreaDefaultX, solidAreaDefaultY;
-        public boolean collisionOn = false;
+    public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public int solidAreaDefaultX, solidAreaDefaultY;
+    public boolean collisionOn = false;
+    public boolean Defeat;
     // DIALOGUES
-        String dialogue[] = new String[20];
+    String dialogue[] = new String[20];
+
 
     // STATE
         public int worldX, worldY;
@@ -46,6 +46,7 @@ public class Entity {
         public boolean alive = true;
         public boolean dying = false;
         boolean hpBarOn = false;
+        public boolean drawing = true;
 
     // COUNTER
         public int spriteCounter = 0;
@@ -83,16 +84,16 @@ public class Entity {
         public final int type_axe = 12;
 
     // Battle state
-        public int state;
-        public int preState;
-        public final int normalState = 0;
-        public final int getDamageState = 1;
-        public final int stuntState = 2;
-        public final int bleedState = 3;
-        public final int healingState = 4;
-        public final int burningState = 5;
-        public final int defenseState = 6;
-        public final int criticalState = 7;
+    public int state;
+    public int preState;
+    public final int normalState = 0;
+    public final int getDamageState = 1;
+    public final int stunState = 2;
+    public final int bleedState = 3;
+    public final int healingState = 4;
+    public final int burningState = 5;
+    public final int defenseState = 6;
+    public final int criticalState = 7;
     // CHARACTER ATTRIBUTES
         public int speed;
         public int maxLife;
@@ -109,13 +110,13 @@ public class Entity {
         public Entity currentWeapon;
         public Entity currentShield;
         public Entity currentItem;
+        public Entity currentTool;
         public int mana;
         public int maxMana;
 
     public Entity ( GamePanel gamePanel ) {
         this.gamePanel = gamePanel;
     }
-
     public BufferedImage setup(String imagePath) {
 
         UtilityTool uTool = new UtilityTool();
@@ -126,7 +127,7 @@ public class Entity {
 
         try (FileInputStream readImage = new FileInputStream(imageFile)) {
             image = ImageIO.read(readImage);
-            image = uTool.scaleImage(image,gamePanel.tileSize, gamePanel.tileSize + 16);
+            image = uTool.scaleImage(image,gamePanel.tileSize + 25, gamePanel.tileSize + 25);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -196,9 +197,8 @@ public class Entity {
         }
         return image;
     }
+    public void setAction(){};
     public void update(GamePanel gamePanel) {
-
-        setAction();
 
         collisionOn = false;
         gamePanel.collision.checkTile(this);
@@ -237,31 +237,30 @@ public class Entity {
 
     }
 
-    public void setAction(){}
-    public void damage(Entity entity){}          //For monster
+    public void damage(Entity entity){}          
     public void speak(GamePanel gamePanel)
     {
         if(dialogue[dialogueIndex] == null){
-        dialogueIndex = 0;
-    }
-    gamePanel.ui.currentDialogue = dialogue[dialogueIndex];
-    dialogueIndex++;
+            dialogueIndex = 0;
+        }
+        gamePanel.ui.currentDialogue = dialogue[dialogueIndex];
+        dialogueIndex++;
 
-    switch (gamePanel.player.direction) {
-        case "up":
-            direction = "down";
-            break;
-        case "down":
-            direction = "up";
-            break;
-        case "left":
-            direction = "right";
-            break;
-        case "right":
-            direction = "left";
-            break;
+        switch (gamePanel.player.direction) {
+            case "up":
+                direction = "down";
+                break;
+            case "down":
+                direction = "up";
+                break;
+            case "left":
+                direction = "right";
+                break;
+            case "right":
+                direction = "left";
+                break;
+        }
     }
-}
 
     public void use(Entity entity){}
 
@@ -318,22 +317,22 @@ public class Entity {
                 break;
         }
         // Monster HP bar
-            if (type == type_monster && hpBarOn == true) {
-                double oneScale = (double) gamePanel.tileSize / maxLife;
-                double hpBarValue = oneScale * life;
+    if (type == type_monster && hpBarOn == true) {
+        double oneScale = (double) gamePanel.tileSize / maxLife;
+        double hpBarValue = oneScale * life;
 
-                g2.setColor(new Color(35, 35, 35));
-                g2.fillRect(screenX - 1, screenY - 16, gamePanel.tileSize + 2, 12);
+            g2.setColor(new Color(35, 35, 35));
+            g2.fillRect(screenX - 1, screenY - 16, gamePanel.tileSize + 2, 12);
 
-                g2.setColor(new Color(255, 0, 30));
-                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
+            g2.setColor(new Color(255, 0, 30));
+            g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
 
-                hpBarCounter++;
-                if (hpBarCounter > 600) {
-                    hpBarCounter = 0;
-                    hpBarOn = false;
-                }
+            hpBarCounter++;
+            if (hpBarCounter > 600) {
+                hpBarCounter = 0;
+                hpBarOn = false;
             }
+        }
 
 //        if (dying == true) {
 //            dyingAnimation(g2);
@@ -379,7 +378,6 @@ public class Entity {
 //    }
 
     public void update(){
-        setAction();
 
         collisionOn = false;
 

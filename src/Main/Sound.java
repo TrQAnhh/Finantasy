@@ -5,8 +5,6 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.io.IOException;
-import java.net.URL;
 import javax.sound.sampled.FloatControl;
 
 public class Sound {
@@ -19,7 +17,19 @@ public class Sound {
     public Sound(){
         soundURL[0] = getClass().getResource("/Sound/VillageTheme.wav");
         soundURL[1] = getClass().getResource("/Sound/MenuTheme.wav");
-        soundURL[2] = getClass().getResource("/Sound/BarrelsBreakSE.wav");
+
+        soundURL[2] = getClass().getResource("/Sound/CaveTheme.wav");
+        soundURL[3] = getClass().getResource("/Sound/BattleOutsideCaveTheme.wav");
+
+//        soundURL[4] = getClass().getResource("/Sound/BeachTheme.wav");
+//        soundURL[5] = getClass().getResource("/Sound/CaveTheme.wav");
+//        soundURL[6] = getClass().getResource("/Sound/SnowTheme.wav");
+
+        soundURL[7] = getClass().getResource("/Sound/BarrelsBreakSE.wav");
+        soundURL[8] = getClass().getResource("/Sound/LevelUpSE.wav");
+        soundURL[9] = getClass().getResource("/Sound/BleedSE.wav");
+        soundURL[10] = getClass().getResource("/Sound/ExplosionSE.wav");
+        soundURL[11] = getClass().getResource("/Sound/StunSE.wav");
     }
 
     public void setFile(int i){

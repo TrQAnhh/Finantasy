@@ -1,5 +1,6 @@
 package Main;
 
+
 public class EventHandler {
 
     GamePanel gamePanel;
@@ -7,9 +8,14 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
-
+    boolean first, second, third, fourth, fifth;
+    boolean[] checkHappened;
     public EventHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
+            checkHappened = new boolean[6];
+            for(int i = 0; i < 6; ++i) {
+                checkHappened[i] = false;
+            }
 
             eventRect = new eventRect[gamePanel.maxMap][gamePanel.maxWorldColumn][gamePanel.maxWorldRow];
             int map = 0;
@@ -50,34 +56,80 @@ public class EventHandler {
         }
         if(canTouchEvent == true){
 
-            // HEALING BY STATUE AT X1 = 13 (COLS), Y1 = 33 (ROWS) AND X2 = 13 (COLS), Y2 = 32 (ROWS)
-            if( hit(0, 13,33,"any") == true ) {
+            // HEALING BY STATUE AT X1 = 13 (COLS), Y1 = 33 (ROWS) AND X2 = 13 (COLS), Y2 = 32 (ROWS) AND X2 = 13 (COLS), Y2 = 31 (ROWS)
+            if( hit(0, 13,33,"any") == true || hit(0, 13,32,"any") == true || hit(0, 13,31,"any") == true   ) {
                 healingGamePanelPool(gamePanel.playState);}
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 31 (COLS), Y = 43 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
+                gamePanel.stopMusic();
+                gamePanel.playMusic(2);
                 teleport(1, 31, 43, gamePanel.dungeon);}
 
         // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
             else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true ) {
+                gamePanel.stopMusic();
+                gamePanel.playMusic(0);
                 teleport(0, 16, 15, gamePanel.outside);}
-            
-            if(hit(0,15,18,"any") == true) {
+
+        // MONSTER CHECK PLACE MAP 0
+            if(hit(0,15,20,"any") == true || hit(0,15,19,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(3);
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 1;
                 }
             }
-            if(hit(0,17,15,"any") == true) {
+
+            if(hit(0,17,15,"any") == true || hit(0,16,15,"any") == true || hit(0,16,14,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(3);
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 2;
                 }
             }
-            if(hit(0,14,16,"any") == true) {
+            if(hit(0,14,17,"any") == true || hit(0,14,16,"any") == true ||  hit(0,14,15,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(3);
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 3;
                 }
+            }
+            //MONSTER CHECKED PLACED MAP 1
+            if((checkHappened[5] == false) && hit(1,36,31,"any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 7;
+                checkHappened[5] = true;
+            }
+            if((checkHappened[4] == false) && hit(1,25,31,"any") == true) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 8;
+                checkHappened[4] = true;
+            }
+            if((checkHappened[0] == false) && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 4;
+                checkHappened[0] = true;
+            }
+            if((checkHappened[1] == false) && (hit(1, 30, 40, "any") == true || hit(1, 31, 40, "any") == true || hit(1, 32, 40, "any") == true)) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 6;
+                checkHappened[1] = true;
+            }
+            if((checkHappened[2] == false) && (hit(1, 41, 36, "any") == true || hit(1, 42, 36, "any") == true || hit(1, 43, 36, "any") == true)) {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 5;
+                checkHappened[2] = true;
+            }
+            if(gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
+                gamePanel.gameState = gamePanel.battleState;
+                gamePanel.ui.indexBattle = 9;
+            }
+            if(gamePanel.bossBattleOn) {
+                gamePanel.gameState = gamePanel.bossBattleState;
+                gamePanel.ui.indexBattle = 10;
             }
         }
     }
@@ -109,11 +161,17 @@ public class EventHandler {
     public void healingGamePanelPool(int gameState){
         if (gamePanel.keyHandler.enterPressed == true){
             gamePanel.gameState = gameState;
-            gamePanel.ui.addMessage("Your life has been recovered!");
+            gamePanel.ui.addMessage("Your life is restored!");
             gamePanel.player.life = gamePanel.player.maxLife;
+            setDyingAttribute();
             gamePanel.aSetter.setMonster();
         }
 
+    }
+    public void setDyingAttribute() {
+        for(int i = 0; i < 3; ++i) {
+            gamePanel.monster[1][i].dying = false;
+        }
     }
     public void teleport(int map, int col, int row, int area) {
             gamePanel.gameState = gamePanel.transitionState;
@@ -125,4 +183,5 @@ public class EventHandler {
             canTouchEvent = false;
             //gamePanel.playSE(13);
     }
+
 }

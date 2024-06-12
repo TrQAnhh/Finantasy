@@ -18,10 +18,11 @@ public class OBJ_Barrels extends Entity {
 
         type = type_barrel;
         name = "Barrels";
-        objectImage1 = setupObjectImages("/Objects/barrel",48,96);
+        objectImage1 = setupObjectImages("Objects/Barrels",48,96);
     }
     @Override
     public void use(Entity entity){
+        gamePanel.playSE(7);
         gamePanel.player.coin++;
         gamePanel.ui.addMessage("Got a coin");
     }

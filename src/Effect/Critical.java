@@ -73,6 +73,6 @@ public class Critical extends Entity{
         if(effectNum == 10) image = image10;
         if(effectNum == 11) image = image11;
         if(effectNum == 12) image = image12;
-        g2.drawImage(image,gp.ui.effectPosX - 24,gp.ui.effectPosY - 5,null);
+        g2.drawImage(image,gp.ui.effectPosX - 20,gp.ui.effectPosY - 5,null);
     }
 }

@@ -15,14 +15,15 @@ public class OBJ_Bomb extends Entity {
         name = "Bomb";
         type = type_consumable_enemy;
         itemsImage = setupItemImages("/Objects/Bomb");
-        description = "[" + name + "]\nDeal " + value + "DMG to your enemy.";
+        description = "[" + name + "]\n- Deal " + value + "DMG to your enemy.";
         price = 30;
         stackable = true;
     }
     // Ability
     public void use(Entity entity){
+        gamePanel.playSE(10);
         entity.life -= value;
-        if(gamePanel.gameState == gamePanel.battleState){
+        if(gamePanel.gameState == gamePanel.battleState || gamePanel.gameState == gamePanel.bossBattleState){
             gamePanel.ui.addMessage(value + " damage!");
         }
         entity.state = entity.burningState;

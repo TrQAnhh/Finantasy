@@ -15,7 +15,7 @@ public class OBJ_GoldenSword extends Entity {
         name = "Touyako";
         itemsImage = setupItemImages("Objects/GoldSword");
         attackValue = 4;
-        description = "[" + name + "]" + " \n- Sakata Gintoki's Bokuto." + " \n- Attack: " + attackValue + "\n- Useless in normal world";
+        description = "[" + name + "]" + " \n- Sakata Gintoki's Bokuto." + " \n- Attack: " + attackValue + "\n- [Ability] Deal 200% Critical Damage to the enemy";
         price = 20;
     }
     @Override

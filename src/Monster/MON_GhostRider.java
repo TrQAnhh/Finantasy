@@ -1,9 +1,11 @@
 package Monster;
 
+import java.awt.Graphics2D;
+
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_GhostRider extends Entity {
+public class MON_GhostRider extends Entity implements MonsterInt<Graphics2D, GamePanel>{
 
     GamePanel gamePanel;
 
@@ -42,9 +44,9 @@ public class MON_GhostRider extends Entity {
         left1 = setupMonsterImages("Monster/HatPumpkinWithHorse/left_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
         right1 = setupMonsterImages("Monster/HatPumpkinWithHorse/right_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
     }   
-    public void setAction(){
-
-    }
+    @Override
+    public void setAction(){}
+    @Override
     public void damage(Entity entity){
 
         if(mana >= maxMana){
@@ -72,7 +74,10 @@ public class MON_GhostRider extends Entity {
                 mana++;
                 entity.life -= damage;
                 gamePanel.ui.addMessage(damage + " damage!");
+                
             }
         }
     }
+    @Override
+    public void draw(Graphics2D t, GamePanel u) {}
 }

@@ -14,20 +14,19 @@ public class Explosion extends Entity{
 
         super(gamePanel);
         this.gamePanel = gamePanel;
-
-        image1 = setup("Effect/Explosion/explosion_1");
-        image2 = setup("Effect/Explosion/explosion_2");
-        image3 = setup("Effect/Explosion/explosion_3");
-        image4 = setup("Effect/Explosion/explosion_4");
-        image5 = setup("Effect/Explosion/explosion_5");
-        image6 = setup("Effect/Explosion/explosion_6");
-        image7 = setup("Effect/Explosion/explosion_7");
-        image8 = setup("Effect/Explosion/explosion_8");
-        image9 = setup("Effect/Explosion/explosion_9");
-        image10 = setup("Effect/Explosion/explosion_10");
-        image11 = setup("Effect/Explosion/explosion_11");
-        image12 = setup("Effect/Explosion/explosion_12");
-        image13 = setup("Effect/Explosion/explosion_13");
+        image1 = setupEffectImages("Effect/Explosion/explosion_1",96,96);
+        image2 = setupEffectImages("Effect/Explosion/explosion_2",96,96);
+        image3 = setupEffectImages("Effect/Explosion/explosion_3",96,96);
+        image4 = setupEffectImages("Effect/Explosion/explosion_4",96,96);
+        image5 = setupEffectImages("Effect/Explosion/explosion_5",96,96);
+        image6 = setupEffectImages("Effect/Explosion/explosion_6",96,96);
+        image7 = setupEffectImages("Effect/Explosion/explosion_7",96,96);
+        image8 = setupEffectImages("Effect/Explosion/explosion_8",96,96);
+        image9 = setupEffectImages("Effect/Explosion/explosion_9",96,96);
+        image10 = setupEffectImages("Effect/Explosion/explosion_10",96,96);
+        image11 = setupEffectImages("Effect/Explosion/explosion_11",96,96);
+        image12 = setupEffectImages("Effect/Explosion/explosion_12",96,96);
+        image13 = setupEffectImages("Effect/Explosion/explosion_13",96,96);
     }
     public void update(){
         effectCounter++;

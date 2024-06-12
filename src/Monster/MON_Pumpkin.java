@@ -1,9 +1,11 @@
 package Monster;
 
+import java.awt.Graphics2D;
+
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_Pumpkin extends Entity {
+public class MON_Pumpkin extends Entity implements MonsterInt<Graphics2D, GamePanel>{
 
     GamePanel gamePanel;
 
@@ -42,10 +44,9 @@ public class MON_Pumpkin extends Entity {
         down1 = setupMonsterImages("Monster/Pumpkin/down_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
         left1 = setupMonsterImages("Monster/Pumpkin/left_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
         right1 = setupMonsterImages("Monster/Pumpkin/right_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
-    }   
-    public void setAction(){
-
     }
+    @Override
+    public void setAction(){}
     public void damage(Entity entity){
 
             entity.state = entity.getDamageState;
@@ -59,4 +60,7 @@ public class MON_Pumpkin extends Entity {
                 gamePanel.ui.addMessage(damage + " damage!");
             }
         }
+    @Override
+    public void draw(Graphics2D t, GamePanel u) {}
+
 }

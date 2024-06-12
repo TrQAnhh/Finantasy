@@ -1,9 +1,11 @@
 package Monster;
 
+import java.awt.Graphics2D;
+
 import Entities.Entity;
 import Main.GamePanel;
 
-public class MON_Reaper extends Entity {
+public class MON_Reaper extends Entity implements MonsterInt<Graphics2D, GamePanel>{
 
     GamePanel gamePanel;
 
@@ -42,9 +44,8 @@ public class MON_Reaper extends Entity {
         left1 = setupMonsterImages("Monster/Reaper/left_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
         right1 = setupMonsterImages("Monster/Reaper/right_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
     }   
-    public void setAction(){
-
-    }
+    @Override
+    public void setAction(){}
     public void damage(Entity entity){
 
         entity.state = entity.getDamageState;
@@ -61,11 +62,13 @@ public class MON_Reaper extends Entity {
             }
             else{
                 mana++;
-                
                 entity.life -= damage;
                 gamePanel.ui.addMessage(damage + " damage!");
             }
         }
             
     }
+    @Override
+    public void draw(Graphics2D t, GamePanel u) {}
+    
 }

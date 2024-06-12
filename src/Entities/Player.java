@@ -76,6 +76,8 @@ public class Player extends Entity{
         }
         public void restoreLife(){
             life = maxLife;
+            state = normalState;
+            preState = state;
         }
         public void setItem(){
             inventory.clear();
@@ -223,14 +225,12 @@ public class Player extends Entity{
             int objIndex = gamePanel.collision.checkObject(this,true);
             pickUpObject(objIndex);
 
-            // check npc collision
-                int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
-                interactNPC(npcIndex);
-            // Check monster collision
-                int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);
+        // check npc collision
+            int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
+            interactNPC(npcIndex);
+        // Check monster collision
+            //int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);  not use
 
-            // Check event
-                gamePanel.eHandler.checkEvent();
 
             gamePanel.keyHandler.enterPressed = false;
 
@@ -331,8 +331,7 @@ public class Player extends Entity{
         gamePanel.ui.addMessage("Defense!");
     }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
-
-        if(preState == stuntState){
+        if(preState == stunState){
             gamePanel.ui.orderTurn++;
             preState = normalState;
         }
@@ -382,8 +381,10 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             attack += 3;
             defense += 2;
 
-            gamePanel.gameState = gamePanel.dialogueState;
-            gamePanel.ui.currentDialogue = "You are level " + level + " now!\n";
+            gamePanel.playSE(8);
+
+            gamePanel.ui.addMessage("You are level " + level + " now!\n");
+
         }
     }
     public void selectItem(){
@@ -519,8 +520,11 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
                 }
                 break;
         }
-        if (image != null ) {
-            g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
+        // change temp screen to drawing
+        if(drawing == true) {
+            if (image != null ) {
+                g2.drawImage( image , screenX , screenY, gamePanel.tileSize + 16 , gamePanel.tileSize + 16, null );
+            }
         }
     }
 }
