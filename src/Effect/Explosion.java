@@ -14,20 +14,6 @@ public class Explosion extends Entity{
 
         super(gamePanel);
         this.gamePanel = gamePanel;
-
-        image1 = setupEffectImages("/Effect/Explosion/explosion_1", gp.tileSize, gp.tileSize);
-        image2 = setupEffectImages("/Effect/Explosion/explosion_2", gp.tileSize, gp.tileSize);
-        image3 = setupEffectImages("/Effect/Explosion/explosion_3", gp.tileSize, gp.tileSize);
-        image4 = setupEffectImages("/Effect/Explosion/explosion_4",gp.tileSize, gp.tileSize);
-        image5 = setupEffectImages("/Effect/Explosion/explosion_5",gp.tileSize, gp.tileSize);
-        image6 = setupEffectImages("/Effect/Explosion/explosion_6",gp.tileSize, gp.tileSize);
-        image7 = setupEffectImages("/Effect/Explosion/explosion_7",gp.tileSize, gp.tileSize);
-        image8 = setupEffectImages("/Effect/Explosion/explosion_8",gp.tileSize, gp.tileSize);
-        image9 = setupEffectImages("/Effect/Explosion/explosion_9",gp.tileSize, gp.tileSize);
-        image10 = setupEffectImages("/Effect/Explosion/explosion_10",gp.tileSize, gp.tileSize);
-        image11 = setupEffectImages("/Effect/Explosion/explosion_11",gp.tileSize, gp.tileSize);
-        image12 = setupEffectImages("/Effect/Explosion/explosion_12",gp.tileSize, gp.tileSize);
-        image13 = setupEffectImages("/Effect/Explosion/explosion_13",gp.tileSize, gp.tileSize);
         image1 = setupEffectImages("Effect/Explosion/explosion_1",96,96);
         image2 = setupEffectImages("Effect/Explosion/explosion_2",96,96);
         image3 = setupEffectImages("Effect/Explosion/explosion_3",96,96);

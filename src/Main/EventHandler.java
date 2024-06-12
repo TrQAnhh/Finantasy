@@ -71,7 +71,8 @@ public class EventHandler {
                 gamePanel.playMusic(0);
                 teleport(0, 16, 15, gamePanel.outside);}
 
-            if(hit(0,15,18,"any") == true || hit(0,15,19,"any") == true) {
+        // MONSTER CHECK PLACE MAP 0
+            if(hit(0,15,20,"any") == true || hit(0,15,19,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
                     gamePanel.stopMusic();
                     gamePanel.playMusic(3);
@@ -80,7 +81,7 @@ public class EventHandler {
                 }
             }
 
-            if(hit(0,17,15,"any") == true || hit(0,17,14,"any") == true) {
+            if(hit(0,17,15,"any") == true || hit(0,16,15,"any") == true || hit(0,16,14,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
                     gamePanel.stopMusic();
                     gamePanel.playMusic(3);
@@ -88,7 +89,7 @@ public class EventHandler {
                     gamePanel.ui.indexBattle = 2;
                 }
             }
-            if(hit(0,14,14,"any") == true || hit(0,14,15,"any") == true ||  hit(0,14,16,"any") == true) {
+            if(hit(0,14,17,"any") == true || hit(0,14,16,"any") == true ||  hit(0,14,15,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
                     gamePanel.stopMusic();
                     gamePanel.playMusic(3);

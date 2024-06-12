@@ -10,7 +10,7 @@ public class OBJ_Key extends Entity{
         super(gamePanel);
         type = type_key;
         name = "Key";
-        itemsImage = setupItemImages("Objects/key");
+        itemsImage = setupItemImages("Objects/Key");
         description = "[" + name + "]" + " \n- A gold key" + " \n- Can only be used to open \n a chest" + "\n- Can only be equipped in Normal World";
         price = 5;
         stackable = true;

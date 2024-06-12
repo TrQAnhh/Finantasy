@@ -331,7 +331,7 @@ public class Player extends Entity{
         gamePanel.ui.addMessage("Defense!");
     }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
-        if(preState == stuntState){
+        if(preState == stunState){
             gamePanel.ui.orderTurn++;
             preState = normalState;
         }

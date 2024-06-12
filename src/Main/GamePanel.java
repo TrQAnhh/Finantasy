@@ -1,5 +1,6 @@
 package Main;
 
+import Data.Progress;
 import Entities.Entity;
 import javax.swing.JPanel;
 import Entities.Entity;
