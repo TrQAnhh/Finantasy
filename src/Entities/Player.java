@@ -63,7 +63,7 @@ public class Player extends Entity{
                 currentItem = new OBJ_Key(gamePanel);
                 currentTool = new OBJ_Axe(gamePanel);
 
-                maxLife = 100;
+                maxLife = 1;
                 attack = strength;
                 defense = dexterity;
                 life = maxLife;
@@ -74,9 +74,13 @@ public class Player extends Entity{
             worldX = gamePanel.tileSize * 15; 
             worldY = gamePanel.tileSize * 18;
             direction = "down";
+
         }
         public void restoreLife(){
             life = maxLife;
+
+            state = normalState;
+            preState = state;
         }
         public void setItem(){
             inventory.clear();

@@ -874,12 +874,21 @@ public class UI {
         // End of the battle
         if(checkBattleEnd() == true){
             orderTurn = 0;
+            resetNum();
             checker = false;
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
             gamePanel.keyHandler.enterPressed = false;
         } 
 }
+    // RESET THE BATTLE COMMAND NUM
+    public void resetNum(){
+        interactType = 0;
+        interactNum = 0;
+        selectAction = 0;
+        choosingEquipAction = 0;
+        choosingEnemyAction = 0;
+    }
     // Count the number of interaction
     public int numberOfInteract(){
         int t = 0;
@@ -931,11 +940,8 @@ public class UI {
     // Monster Turn
     public void monsterTurn(){
         if((orderTurn - 1) >= listofMonster.size()) {
+            resetNum();
             orderTurn = 0;
-            interactType = 0;
-            selectAction = 0;
-            choosingEquipAction = 0;
-            choosingEnemyAction = 0;
         }
         else{
             if(listofMonster.get(orderTurn - 1).preState == listofMonster.get(orderTurn - 1).stunState){
@@ -1005,7 +1011,8 @@ public class UI {
     }
     // Checking if the battle end or not
     public boolean checkBattleEnd(){
-        if(gamePanel.player.dying == true){
+        if(gamePanel.player.life <= 0){
+            gamePanel.gameState = gamePanel.gameOverState;
             return true;
         }
         else{
