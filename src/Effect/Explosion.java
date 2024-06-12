@@ -76,6 +76,6 @@ public class Explosion extends Entity{
         if(effectNum == 11) image = image11;
         if(effectNum == 12) image = image12;
         if(effectNum == 13) image = image13;
-        g2.drawImage(image,gamePanel.ui.effectPosX,gamePanel.ui.effectPosY,null);
+        g2.drawImage(image,gamePanel.ui.effectPosX - 20,gamePanel.ui.effectPosY - 10,null);
     }
 }

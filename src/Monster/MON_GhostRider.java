@@ -1,6 +1,7 @@
 package Monster;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import Entities.Entity;
 import Main.GamePanel;
@@ -39,10 +40,10 @@ public class MON_GhostRider extends Entity implements MonsterInt<Graphics2D, Gam
     }
     public void getImage(){
 
-        up1 = setupMonsterImages("Monster/HatPumpkinWithHorse/up_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
-        down1 = setupMonsterImages("Monster/HatPumpkinWithHorse/down_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
-        left1 = setupMonsterImages("Monster/HatPumpkinWithHorse/left_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
-        right1 = setupMonsterImages("Monster/HatPumpkinWithHorse/right_2",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
+        up1 = setupMonsterImages("Monster/HatPumpkinWithHorse/up_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
+        down1 = setupMonsterImages("Monster/HatPumpkinWithHorse/down_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
+        left1 = setupMonsterImages("Monster/HatPumpkinWithHorse/left_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
+        right1 = setupMonsterImages("Monster/HatPumpkinWithHorse/right_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
     }   
     @Override
     public void setAction(){}
@@ -79,5 +80,12 @@ public class MON_GhostRider extends Entity implements MonsterInt<Graphics2D, Gam
         }
     }
     @Override
-    public void draw(Graphics2D t, GamePanel u) {}
+    public void draw(Graphics2D g2,GamePanel gamePanel){
+        BufferedImage image = up1;
+
+        int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+        int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+
+            g2.drawImage(image, screenX, screenY, null);
+    }
 }

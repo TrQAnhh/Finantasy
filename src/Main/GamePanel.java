@@ -343,7 +343,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void changeArea(){
         if(nextArea != currentArea) {
             stopMusic();
-            playMusic(1);
+            playMusic(2);
             if(nextArea == outside) {
                 stopMusic();
                 playMusic(0);

@@ -17,11 +17,9 @@ public class Sound {
     public Sound(){
         soundURL[0] = getClass().getResource("/Sound/VillageTheme.wav");
         soundURL[1] = getClass().getResource("/Sound/MenuTheme.wav");
-
         soundURL[2] = getClass().getResource("/Sound/CaveTheme.wav");
         soundURL[3] = getClass().getResource("/Sound/BattleOutsideCaveTheme.wav");
-
-//        soundURL[4] = getClass().getResource("/Sound/BeachTheme.wav");
+        soundURL[4] = getClass().getResource("/Sound/BattleInsideCaveTheme.wav");
 //        soundURL[5] = getClass().getResource("/Sound/CaveTheme.wav");
 //        soundURL[6] = getClass().getResource("/Sound/SnowTheme.wav");
 
@@ -30,6 +28,7 @@ public class Sound {
         soundURL[9] = getClass().getResource("/Sound/BleedSE.wav");
         soundURL[10] = getClass().getResource("/Sound/ExplosionSE.wav");
         soundURL[11] = getClass().getResource("/Sound/StunSE.wav");
+        soundURL[12] = getClass().getResource("/Sound/CursorSE.wav");
     }
 
     public void setFile(int i){

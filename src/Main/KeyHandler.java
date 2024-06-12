@@ -69,12 +69,14 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_W)
         {
             gamePanel.ui.commandNum--;
+            gamePanel.playSE(12);
             if(gamePanel.ui.commandNum < 0)
             gamePanel.ui.commandNum = 2;
         }
         if(code == KeyEvent.VK_S)
         {
             gamePanel.ui.commandNum++;
+            gamePanel.playSE(12);
             if(gamePanel.ui.commandNum > 2)
             gamePanel.ui.commandNum = 0;
         }
@@ -169,12 +171,14 @@ public class KeyHandler implements KeyListener {
                 if(code == KeyEvent.VK_W)
                 {
                     gamePanel.ui.pauseCommandNum--;
+                    gamePanel.playSE(12);
                     if(gamePanel.ui.pauseCommandNum < 0)
                         gamePanel.ui.pauseCommandNum = 2;
                 }
                 if(code == KeyEvent.VK_S)
                 {
                     gamePanel.ui.pauseCommandNum++;
+                    gamePanel.playSE(12);
                     if(gamePanel.ui.pauseCommandNum > 2)
                         gamePanel.ui.pauseCommandNum = 0;
                 }
@@ -256,6 +260,7 @@ public class KeyHandler implements KeyListener {
             }
             if(code == KeyEvent.VK_W){
                 gamePanel.ui.settingCommandNum--;
+                gamePanel.playSE(12);
                 if (gamePanel.ui.settingCommandNum < 0 ){
                     gamePanel.ui.settingCommandNum = 4;
                 }
@@ -263,6 +268,7 @@ public class KeyHandler implements KeyListener {
 
             if(code == KeyEvent.VK_S){
                 gamePanel.ui.settingCommandNum++;
+                gamePanel.playSE(12);
                 if ( gamePanel.ui.settingCommandNum > 4 ) {
                     gamePanel.ui.settingCommandNum = 0;
                 }
@@ -283,12 +289,14 @@ public class KeyHandler implements KeyListener {
                         if (gamePanel.ui.settingCommandNum == 0) {
                             if (gamePanel.music.volumeScale > 0) {
                                 gamePanel.music.volumeScale--;
+                                gamePanel.playSE(12);
                                 gamePanel.music.checkVolume();
                             }
                         }
                         if (gamePanel.ui.settingCommandNum == 1) {
                             if (gamePanel.se.volumeScale > 0) {
                                 gamePanel.se.volumeScale--;
+                                gamePanel.playSE(12);
                             }
                         }
                     }
@@ -296,12 +304,14 @@ public class KeyHandler implements KeyListener {
                         if (gamePanel.ui.settingCommandNum == 0) {
                             if (gamePanel.music.volumeScale < 11) {
                                 gamePanel.music.volumeScale++;
+                                gamePanel.playSE(12);
                                 gamePanel.music.checkVolume();
                             }
                         }
                         if (gamePanel.ui.settingCommandNum == 1) {
                             if (gamePanel.se.volumeScale < 11) {
                                 gamePanel.se.volumeScale++;
+                                gamePanel.playSE(12);
                             }
                         }
                     }
@@ -312,6 +322,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.commandNum--;
             if(gamePanel.ui.commandNum < 0){
                 gamePanel.ui.commandNum = 1;
+                gamePanel.playSE(12);
             }
             // gamePanel.playSE(9);
         }
@@ -319,6 +330,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.commandNum++;
             if(gamePanel.ui.commandNum > 1){
                 gamePanel.ui.commandNum = 0;
+                gamePanel.playSE(12);
             }
             // gamePanel.playSE(9);
         }
@@ -372,6 +384,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_W){
             if(gamePanel.ui.playerSlotRow != 0){
                 gamePanel.ui.playerSlotRow--;
+
             }
         }
         if(code == KeyEvent.VK_A){
@@ -393,11 +406,13 @@ public class KeyHandler implements KeyListener {
     public void npcInventory(int code){
         if(code == KeyEvent.VK_A){
             if(gamePanel.ui.npcSlotCol != 0){
+                gamePanel.playSE(12);
                 gamePanel.ui.npcSlotCol--;
             }
         }
         if(code == KeyEvent.VK_D){
             if(gamePanel.ui.npcSlotCol < UI.getBuyingSlotCommandNum() - 1){
+                gamePanel.playSE(12);
                 gamePanel.ui.npcSlotCol++;
             }
         }

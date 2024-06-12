@@ -15,18 +15,18 @@ public class Healing extends Entity{
         super(gp);
         this.gp = gp;
 
-        image1 = setup("/effect/Healing/healing_1");
-        image2 = setup("/effect/Healing/healing_2");
-        image3 = setup("/effect/Healing/healing_3");
-        image4 = setup("/effect/Healing/healing_4");
-        image5 = setup("/effect/Healing/healing_5");
-        image6 = setup("/effect/Healing/healing_6");
-        image7 = setup("/effect/Healing/healing_7");
-        image8 = setup("/effect/Healing/healing_8");
-        image9 = setup("/effect/Healing/healing_9");
-        image10 = setup("/effect/Healing/healing_10");
-        image11 = setup("/effect/Healing/healing_11");
-        image12 = setup("/effect/Healing/healing_12");
+        image1 = setupEffectImages("/effect/Healing/healing_1",64,64);
+        image2 = setupEffectImages("/effect/Healing/healing_2",64,64);
+        image3 = setupEffectImages("/effect/Healing/healing_3",64,64);
+        image4 = setupEffectImages("/effect/Healing/healing_4",64,64);
+        image5 = setupEffectImages("/effect/Healing/healing_5",64,64);
+        image6 = setupEffectImages("/effect/Healing/healing_6",64,64);
+        image7 = setupEffectImages("/effect/Healing/healing_7",64,64);
+        image8 = setupEffectImages("/effect/Healing/healing_8",64,64);
+        image9 = setupEffectImages("/effect/Healing/healing_9",64,64);
+        image10 = setupEffectImages("/effect/Healing/healing_10",64,64);
+        image11 = setupEffectImages("/effect/Healing/healing_11",64,64);
+        image12 = setupEffectImages("/effect/Healing/healing_12",64,64);
     }
     public void update(){
         effectCounter++;

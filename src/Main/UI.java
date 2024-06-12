@@ -665,6 +665,8 @@ public class UI {
                 if(indexBattle == 3){
                     // DRAW FRAME:
                     g2.drawImage(battleFrameScreen,frameX,frameY,null);
+                } else {
+                    g2.drawImage(battleFrameScreen,frameX,frameY,null);
                 }
 
             // SET MONSTER
@@ -683,11 +685,8 @@ public class UI {
                 String textTurn = "";
 
             // DRAW MONSTER NAME & HP
-                frameX = gamePanel.tileSize + 35;
+                frameX = gamePanel.tileSize + 25;
                 frameY = gamePanel.tileSize * 10;
-
-                frameWidth = gamePanel.tileSize*7;
-                frameHeight = gamePanel.tileSize*4;
 
                 nameX = frameX;
                 nameY = frameY;
@@ -699,7 +698,7 @@ public class UI {
                 for(int i=0; i < listofMonster.size(); i++){
                     if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                         g2.drawString(listofMonster.get(i).name, nameX, nameY);
-                        g2.drawString(listofMonster.get(i).life + "/" + listofMonster.get(i).maxLife, nameX+gamePanel.tileSize * 3, nameY);
+                        g2.drawString(listofMonster.get(i).life + "/" + listofMonster.get(i).maxLife, nameX+gamePanel.tileSize * 4 - 7, nameY);
                         nameY += 40;
                     }
                 }
@@ -723,10 +722,38 @@ public class UI {
                 g2.drawString(hp, nameX, nameY);
 
             // DRAW MONSTER
-                int initialPostionX = gamePanel.tileSize * 6 + 30;
+                int initialPostionX = gamePanel.tileSize * 6 + 20;
 
                 int PositionX = initialPostionX;
-                int PositionY = 370 / listofMonster.size() + 20;
+                int PositionY = 0;
+
+                if ( listofMonster.size() == 3 ) {
+                     PositionY = 370 / listofMonster.size() + 40;
+                } else if ( listofMonster.size() == 2 ) {
+                    PositionY = 370 / listofMonster.size() + 20;
+                } else if (listofMonster.size() == 1) {
+                    for ( int i = 0 ; i < listofMonster.size() ; i++ ) {
+                        if (listofMonster.get(i).name.equalsIgnoreCase("Spider")){
+                            PositionX = initialPostionX - 60;
+                            PositionY = gamePanel.tileSize * 4;
+
+                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Deadly Slime")){
+                            PositionX = initialPostionX - 60;
+                            PositionY = gamePanel.tileSize * 4 - 20;
+
+                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Gate Keeper")) {
+                            PositionX = initialPostionX - 60;
+                            PositionY = gamePanel.tileSize * 2;
+                            effectPosX += gamePanel.tileSize * 2;
+                            effectPosY += gamePanel.tileSize * 2;
+                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Robot")) {
+                            PositionX = initialPostionX - 60;
+                            PositionY = gamePanel.tileSize * 4;
+                            effectPosX += gamePanel.tileSize;
+                            effectPosY += gamePanel.tileSize;
+                        }
+                    }
+                }
 
                 for(int i=0; i<listofMonster.size(); i++){
                     if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
@@ -744,11 +771,28 @@ public class UI {
                     }
                     if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                         effectPosX = PositionX;
-                        effectPosY = PositionY + 10;
+                        effectPosY = PositionY;
+                        if (listofMonster.get(i).name.equalsIgnoreCase("Spider")){
+                            effectPosX += gamePanel.tileSize;
+                            effectPosY += gamePanel.tileSize;
+                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Deadly Slime")){
+                            effectPosX += gamePanel.tileSize;
+                            effectPosY += gamePanel.tileSize;
+                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Gate Keeper")) {
+                            effectPosX += gamePanel.tileSize;
+                            effectPosY += gamePanel.tileSize;
+                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Robot")) {
+                            effectPosX += gamePanel.tileSize - 10;
+                            effectPosY += gamePanel.tileSize - 20;
+                        }
                     }
 
                     PositionX = initialPostionX;
-                    PositionY += gamePanel.tileSize + 30;
+                    if ( listofMonster.size() == 3 ) {
+                        PositionY += gamePanel.tileSize + 40;
+                    } else if ( listofMonster.size() == 2 ) {
+                        PositionY += gamePanel.tileSize + 50;
+                    }
 
                     if(PositionY >= 420){
                         initialPostionX -= gamePanel.tileSize*2;
@@ -757,7 +801,7 @@ public class UI {
                 }
 
            // DRAW PLAYER
-                PositionX = gamePanel.tileSize * 12;
+                PositionX = gamePanel.tileSize * 11;
                 PositionY = 240;
                 if(orderTurn == 0){
                     PositionX = gamePanel.tileSize * 10;
@@ -917,10 +961,16 @@ public class UI {
             // END OF THE BATTLE
                 if(checkBattleEnd() == true){
                     gamePanel.stopMusic();
-                    gamePanel.playMusic(0);
+                    if ( gamePanel.currentMap == 0 ) {
+                        gamePanel.playMusic(0);
+                    } else {
+                        gamePanel.playMusic(2);
+                    }
                     gamePanel.keyHandler.enterPressed = false;
+                    resetNum();
                     orderTurn = 0;
                     checker = false;
+                    handlerMonsters();
                     listofMonster.clear();
                     gamePanel.gameState = gamePanel.playState;
                 }
@@ -1289,11 +1339,16 @@ public class UI {
         }
         // END OF THE BATTLE
         if(checkBattleEnd() == true){
-            gamePanel.stopMusic();
-            gamePanel.playMusic(0);
+            if ( gamePanel.currentMap == 0 ) {
+                gamePanel.playMusic(0);
+            } else {
+                gamePanel.playMusic(2);
+            }
             gamePanel.keyHandler.enterPressed = false;
+            resetNum();
             orderTurn = 0;
             checker = false;
+            handlerMonsters();
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
         }
@@ -1306,6 +1361,36 @@ public class UI {
         selectAction = 0;
         choosingEquipAction = 0;
         choosingEnemyAction = 0;
+    }
+    public void handlerMonsters() {
+        Entity mons;
+        for (int i = 0; i < listofMonster.size(); ++i) {
+            mons = listofMonster.get(i);
+            if (mons instanceof MON_GateKeeper) {
+                gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][0].Defeat = true;
+                gamePanel.monster[1][0].dying = true;
+            }
+            if (mons instanceof MON_BloodySlime) {
+                gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][1].Defeat = true;
+                gamePanel.monster[1][1].dying = true;
+            }
+            if (mons instanceof MON_Spider) {
+                gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][2].Defeat = true;
+                gamePanel.monster[1][2].dying = true;
+            }
+            if (mons instanceof MON_GreenDragon) {
+                gamePanel.bossBattleOn = true;
+                listofMonster.get(i).Defeat = true;
+            }
+            if (mons instanceof MON_Boss) {
+                gamePanel.bossBattleOn = false;
+                gamePanel.monster[1][3].Defeat = true;
+                Progress.DragonBossDefeated = true;
+            }
+        }
     }
 
 

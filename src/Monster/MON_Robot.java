@@ -37,10 +37,10 @@ public class MON_Robot extends Entity implements MonsterInt<Graphics2D, GamePane
         getImage();
     }
     public void getImage(){
-        up1 = setup("Monster/Robot/stand");
-        down1 = setup("Monster/Robot/down");
-        left1 = setup("Monster/Robot/attack");
-        right1 = setup("Monster/Robot/right");
+        up1 = setupMonsterImages("Monster/Robot/stand",gamePanel.tileSize + 100, gamePanel.tileSize + 80);
+        down1 = setupMonsterImages("Monster/Robot/down",gamePanel.tileSize + 100, gamePanel.tileSize + 80);
+        left1 = setupMonsterImages("Monster/Robot/attack",gamePanel.tileSize + 100, gamePanel.tileSize + 80);
+        right1 = setupMonsterImages("Monster/Robot/right",gamePanel.tileSize + 100, gamePanel.tileSize + 80);
     }   
     @Override
     public void setAction(){}

@@ -39,10 +39,10 @@ public class MON_GateKeeper extends Entity implements MonsterInt<Graphics2D, Gam
     //change later
     public void getImage(){
 
-        up1 = setup("Monster/GateKeeper/GateKeeper");
-        down1 = setup("Monster/GateKeeper/GateKeeper");
-        left1 = setup("Monster/GateKeeper/GateKeeper");
-        right1 = setup("Monster/GateKeeper/GateKeeper");
+        up1 = setupMonsterImages("Monster/GateKeeper/GateKeeper",gamePanel.tileSize + 100, gamePanel.tileSize + 150);
+        down1 = setupMonsterImages("Monster/GateKeeper/GateKeeper",gamePanel.tileSize + 100, gamePanel.tileSize + 150);
+        left1 = setupMonsterImages("Monster/GateKeeper/GateKeeper",gamePanel.tileSize + 100, gamePanel.tileSize + 150);
+        right1 = setupMonsterImages("Monster/GateKeeper/GateKeeper",gamePanel.tileSize + 100, gamePanel.tileSize + 150);
     }   
     @Override
     public void setAction(){}
@@ -76,7 +76,7 @@ public class MON_GateKeeper extends Entity implements MonsterInt<Graphics2D, Gam
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
         if(Defeat == false) {
-            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
+            g2.drawImage(image, screenX, screenY, null);
         }
     }
 }
