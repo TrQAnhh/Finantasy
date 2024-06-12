@@ -85,6 +85,6 @@ public class Bleed extends Entity{
         if(effectNum == 13) image = image13;
         if(effectNum == 14) image = image14;
         if(effectNum == 15) image = image15;
-        g2.drawImage(image,gp.ui.effectPosX - 24,gp.ui.effectPosY - 5,null);
+        g2.drawImage(image,gp.ui.effectPosX - 20,gp.ui.effectPosY - 5,null);
     }
 }

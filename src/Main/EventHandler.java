@@ -50,31 +50,42 @@ public class EventHandler {
         }
         if(canTouchEvent == true){
 
-            // HEALING BY STATUE AT X1 = 13 (COLS), Y1 = 33 (ROWS) AND X2 = 13 (COLS), Y2 = 32 (ROWS)
-            if( hit(0, 13,33,"any") == true ) {
+            // HEALING BY STATUE AT X1 = 13 (COLS), Y1 = 33 (ROWS) AND X2 = 13 (COLS), Y2 = 32 (ROWS) AND X2 = 13 (COLS), Y2 = 31 (ROWS)
+            if( hit(0, 13,33,"any") == true || hit(0, 13,32,"any") == true || hit(0, 13,31,"any") == true   ) {
                 healingGamePanelPool(gamePanel.playState);}
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 31 (COLS), Y = 43 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
+                gamePanel.stopMusic();
+                gamePanel.playMusic(2);
                 teleport(1, 31, 43, gamePanel.dungeon);}
 
         // TELEPORT FROM DUNGEON BACK TO NORMAL WORLD AT COORDINATE X = 16 (COLS), Y = 15 (ROWS)
             else if( hit(1, 40, 43, "any") == true || hit(1, 41, 43, "any") == true || hit(1, 42, 43, "any") == true ) {
+                gamePanel.stopMusic();
+                gamePanel.playMusic(0);
                 teleport(0, 16, 15, gamePanel.outside);}
             
-            if(hit(0,15,18,"any") == true) {
+            if(hit(0,15,18,"any") == true || hit(0,15,19,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(3);
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 1;
                 }
             }
-            if(hit(0,17,15,"any") == true) {
+
+            if(hit(0,17,15,"any") == true || hit(0,17,14,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(3);
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 2;
                 }
             }
-            if(hit(0,14,16,"any") == true) {
+            if(hit(0,14,14,"any") == true || hit(0,14,15,"any") == true ||  hit(0,14,16,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(3);
                     gamePanel.gameState = gamePanel.battleState;
                     gamePanel.ui.indexBattle = 3;
                 }
@@ -109,7 +120,7 @@ public class EventHandler {
     public void healingGamePanelPool(int gameState){
         if (gamePanel.keyHandler.enterPressed == true){
             gamePanel.gameState = gameState;
-            gamePanel.ui.addMessage("Your life has been recovered!");
+            gamePanel.ui.addMessage("Your life is restored!");
             gamePanel.player.life = gamePanel.player.maxLife;
             gamePanel.aSetter.setMonster();
         }

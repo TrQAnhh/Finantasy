@@ -21,7 +21,7 @@ public class OBJ_DragonSword extends Entity {
     }
     @Override
     public void use(Entity entity){
-        
+        gamePanel.playSE(11);
         Random rand = new Random();
         int i = rand.nextInt(100)+1;
         if(i <= 50){

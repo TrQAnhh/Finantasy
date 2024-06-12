@@ -209,14 +209,16 @@ public class UI {
     }           */
     public void drawMessage(){
         int messageX = gamePanel.tileSize;
-        int messageY = gamePanel.tileSize * 5;
+        int messageY = gamePanel.tileSize * 6;
 
         g2.setFont(alagard);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
 
         if(effectted != null && effectted.state != effectted.normalState && effectted.type == effectted.type_player){
-            messageX = gamePanel.tileSize*14;
+            messageX = gamePanel.tileSize * 14 - 20;
         }
+
+
         for(int i = 0; i < message.size(); i++){
 
             if(message.get(i) != null){
@@ -898,6 +900,8 @@ public class UI {
             }
             // END OF THE BATTLE
                 if(checkBattleEnd() == true){
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(0);
                     gamePanel.keyHandler.enterPressed = false;
                     orderTurn = 0;
                     checker = false;

@@ -280,7 +280,6 @@ public class Player extends Entity{
             if(gamePanel.keyHandler.enterPressed == true){
                 if(inventory.size() < maxInventorySize){
                     if ( currentWeapon instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
-                        gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
@@ -313,6 +312,7 @@ public class Player extends Entity{
     public void damageMonster(int choosingEquipAction, int choosingEnemyAction){
 
         gamePanel.ui.listofMonster.get(choosingEnemyAction).state = gamePanel.ui.listofMonster.get(choosingEnemyAction).getDamageState;
+
         int damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         if(damage < 0){
             damage = 0;
@@ -331,7 +331,6 @@ public class Player extends Entity{
         gamePanel.ui.addMessage("Defense!");
     }
 public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
-
         if(preState == stuntState){
             gamePanel.ui.orderTurn++;
             preState = normalState;
@@ -382,8 +381,10 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             attack += 3;
             defense += 2;
 
-            gamePanel.gameState = gamePanel.dialogueState;
-            gamePanel.ui.currentDialogue = "You are level " + level + " now!\n";
+            gamePanel.playSE(8);
+
+            gamePanel.ui.addMessage("You are level " + level + " now!\n");
+
         }
     }
     public void selectItem(){

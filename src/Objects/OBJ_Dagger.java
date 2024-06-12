@@ -20,6 +20,7 @@ public class OBJ_Dagger extends Entity {
     }
     @Override
     public void use(Entity entity){
+        gamePanel.playSE(9);
         Random rand = new Random();
         int i = rand.nextInt(100)+1;
         if(i <= 30){
