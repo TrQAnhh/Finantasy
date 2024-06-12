@@ -921,6 +921,7 @@ public class UI {
                     gamePanel.keyHandler.enterPressed = false;
                     orderTurn = 0;
                     checker = false;
+                    handlerMonsters();
                     listofMonster.clear();
                     gamePanel.gameState = gamePanel.playState;
                 }
@@ -1294,6 +1295,7 @@ public class UI {
             gamePanel.keyHandler.enterPressed = false;
             orderTurn = 0;
             checker = false;
+            handlerMonsters();
             listofMonster.clear();
             gamePanel.gameState = gamePanel.playState;
         }
@@ -1306,6 +1308,36 @@ public class UI {
         selectAction = 0;
         choosingEquipAction = 0;
         choosingEnemyAction = 0;
+    }
+    public void handlerMonsters() {
+        Entity mons;
+        for (int i = 0; i < listofMonster.size(); ++i) {
+            mons = listofMonster.get(i);
+            if (mons instanceof MON_GateKeeper) {
+                gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][0].Defeat = true;
+                gamePanel.monster[1][0].dying = true;
+            }
+            if (mons instanceof MON_BloodySlime) {
+                gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][1].Defeat = true;
+                gamePanel.monster[1][1].dying = true;
+            }
+            if (mons instanceof MON_Spider) {
+                gamePanel.ui.gateCounterKill ++;
+                gamePanel.monster[1][2].Defeat = true;
+                gamePanel.monster[1][2].dying = true;
+            }
+            if (mons instanceof MON_GreenDragon) {
+                gamePanel.bossBattleOn = true;
+                listofMonster.get(i).Defeat = true;
+            }
+            if (mons instanceof MON_Boss) {
+                gamePanel.bossBattleOn = false;
+                gamePanel.monster[1][3].Defeat = true;
+                Progress.DragonBossDefeated = true;
+            }
+        }
     }
 
 
