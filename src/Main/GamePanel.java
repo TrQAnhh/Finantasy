@@ -3,13 +3,10 @@ package Main;
 import Data.Progress;
 import Entities.Entity;
 import javax.swing.JPanel;
-import Entities.Entity;
 import Entities.Player;
 import Enviroment.EnviromentManager;
 import Map.TileManager;
-import Main.EventHandler;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
