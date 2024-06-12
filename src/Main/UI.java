@@ -665,6 +665,8 @@ public class UI {
                 if(indexBattle == 3){
                     // DRAW FRAME:
                     g2.drawImage(battleFrameScreen,frameX,frameY,null);
+                } else {
+                    g2.drawImage(battleFrameScreen,frameX,frameY,null);
                 }
 
             // SET MONSTER
@@ -917,8 +919,13 @@ public class UI {
             // END OF THE BATTLE
                 if(checkBattleEnd() == true){
                     gamePanel.stopMusic();
-                    gamePanel.playMusic(0);
+                    if ( gamePanel.currentMap == 0 ) {
+                        gamePanel.playMusic(0);
+                    } else {
+                        gamePanel.playMusic(2);
+                    }
                     gamePanel.keyHandler.enterPressed = false;
+                    resetNum();
                     orderTurn = 0;
                     checker = false;
                     handlerMonsters();
@@ -1290,9 +1297,13 @@ public class UI {
         }
         // END OF THE BATTLE
         if(checkBattleEnd() == true){
-            gamePanel.stopMusic();
-            gamePanel.playMusic(0);
+            if ( gamePanel.currentMap == 0 ) {
+                gamePanel.playMusic(0);
+            } else {
+                gamePanel.playMusic(2);
+            }
             gamePanel.keyHandler.enterPressed = false;
+            resetNum();
             orderTurn = 0;
             checker = false;
             handlerMonsters();

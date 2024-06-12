@@ -38,10 +38,10 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
     }
     public void getImage(){
         
-        up1 = setup("Monster/BloodSlime/BloodySlime");
-        down1 = setup("Monster/BloodSlime/BloodySlime");
-        left1 = setup("Monster/BloodSlime/BloodySlime");
-        right1 = setup("Monster/BloodSlime/BloodySlime");
+        up1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
+        down1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
+        left1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
+        right1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
     }   
     @Override
     public void setAction(){}
@@ -78,7 +78,7 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
         if(Defeat == false) {
-            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
+            g2.drawImage(image, screenX, screenY, null);
         }
     }
 }
