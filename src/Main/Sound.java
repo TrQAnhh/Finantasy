@@ -28,6 +28,7 @@ public class Sound {
         soundURL[9] = getClass().getResource("/Sound/BleedSE.wav");
         soundURL[10] = getClass().getResource("/Sound/ExplosionSE.wav");
         soundURL[11] = getClass().getResource("/Sound/StunSE.wav");
+        soundURL[12] = getClass().getResource("/Sound/CursorSE.wav");
     }
 
     public void setFile(int i){

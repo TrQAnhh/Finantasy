@@ -16,7 +16,7 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Bloodiness Slime";
+        name = "Deadly Slime";
         direction = "down";
         maxLife = 4;
         life = maxLife;
@@ -38,10 +38,10 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
     }
     public void getImage(){
         
-        up1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
-        down1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
-        left1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
-        right1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 30,gamePanel.tileSize + 31);
+        up1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
+        down1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
+        left1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
+        right1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
     }   
     @Override
     public void setAction(){}

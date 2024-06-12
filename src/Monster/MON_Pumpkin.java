@@ -40,10 +40,10 @@ public class MON_Pumpkin extends Entity implements MonsterInt<Graphics2D, GamePa
     }
     public void getImage(){
 
-        up1 = setupMonsterImages("Monster/Pumpkin/up_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
-        down1 = setupMonsterImages("Monster/Pumpkin/down_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
-        left1 = setupMonsterImages("Monster/Pumpkin/left_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
-        right1 = setupMonsterImages("Monster/Pumpkin/right_1",gamePanel.tileSize + 12,gamePanel.tileSize + 28);
+        up1 = setupMonsterImages("Monster/Pumpkin/up_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
+        down1 = setupMonsterImages("Monster/Pumpkin/down_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
+        left1 = setupMonsterImages("Monster/Pumpkin/left_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
+        right1 = setupMonsterImages("Monster/Pumpkin/right_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
     }
     @Override
     public void setAction(){}
