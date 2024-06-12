@@ -6,7 +6,7 @@ import Main.GamePanel;
 public class OBJ_Bomb extends Entity {
 
     GamePanel gamePanel;
-    int value = 5;
+    public int value = 5;
 
     public OBJ_Bomb (GamePanel gamePanel){
 
@@ -14,8 +14,8 @@ public class OBJ_Bomb extends Entity {
         this.gamePanel = gamePanel;
         name = "Bomb";
         type = type_consumable_enemy;
-        itemsImage = setup("/Objects/Bomb");
-        description = "[" + name + "]\nDeal " + value + "DMG to your enemy.";
+        itemsImage = setupItemImages("/Objects/Bomb");
+        description = "[" + name + "]\n- Deal " + value + "DMG to your enemy.";
         price = 30;
         stackable = true;
     }

@@ -8,26 +8,26 @@ import Main.GamePanel;
 
 public class Explosion extends Entity{
     
-    GamePanel gamePanel;
+    GamePanel gp;
 
-    public Explosion(GamePanel gamePanel){
+    public Explosion(GamePanel gp){
 
-        super(gamePanel);
-        this.gamePanel = gamePanel;
+        super(gp);
+        this.gp = gp;
 
-        image1 = setup("Effect/Explosion/explosion_1");
-        image2 = setup("Effect/Explosion/explosion_2");
-        image3 = setup("Effect/Explosion/explosion_3");
-        image4 = setup("Effect/Explosion/explosion_4");
-        image5 = setup("Effect/Explosion/explosion_5");
-        image6 = setup("Effect/Explosion/explosion_6");
-        image7 = setup("Effect/Explosion/explosion_7");
-        image8 = setup("Effect/Explosion/explosion_8");
-        image9 = setup("Effect/Explosion/explosion_9");
-        image10 = setup("Effect/Explosion/explosion_10");
-        image11 = setup("Effect/Explosion/explosion_11");
-        image12 = setup("Effect/Explosion/explosion_12");
-        image13 = setup("Effect/Explosion/explosion_13");
+        image1 = setupEffectImages("/Effect/Explosion/explosion_1", gp.tileSize, gp.tileSize);
+        image2 = setupEffectImages("/Effect/Explosion/explosion_2", gp.tileSize, gp.tileSize);
+        image3 = setupEffectImages("/Effect/Explosion/explosion_3", gp.tileSize, gp.tileSize);
+        image4 = setupEffectImages("/Effect/Explosion/explosion_4",gp.tileSize, gp.tileSize);
+        image5 = setupEffectImages("/Effect/Explosion/explosion_5",gp.tileSize, gp.tileSize);
+        image6 = setupEffectImages("/Effect/Explosion/explosion_6",gp.tileSize, gp.tileSize);
+        image7 = setupEffectImages("/Effect/Explosion/explosion_7",gp.tileSize, gp.tileSize);
+        image8 = setupEffectImages("/Effect/Explosion/explosion_8",gp.tileSize, gp.tileSize);
+        image9 = setupEffectImages("/Effect/Explosion/explosion_9",gp.tileSize, gp.tileSize);
+        image10 = setupEffectImages("/Effect/Explosion/explosion_10",gp.tileSize, gp.tileSize);
+        image11 = setupEffectImages("/Effect/Explosion/explosion_11",gp.tileSize, gp.tileSize);
+        image12 = setupEffectImages("/Effect/Explosion/explosion_12",gp.tileSize, gp.tileSize);
+        image13 = setupEffectImages("/Effect/Explosion/explosion_13",gp.tileSize, gp.tileSize);
     }
     public void update(){
         effectCounter++;
@@ -61,8 +61,7 @@ public class Explosion extends Entity{
                     effectCounter = 0;
             }
     }
-    @Override
-    public void draw(Graphics2D g2, GamePanel gamePanel){
+    public void draw(Graphics2D g2){
         BufferedImage image = null;
         if(effectNum == 1) image = image1;
         if(effectNum == 2) image = image2;
@@ -77,6 +76,6 @@ public class Explosion extends Entity{
         if(effectNum == 11) image = image11;
         if(effectNum == 12) image = image12;
         if(effectNum == 13) image = image13;
-        g2.drawImage(image,gamePanel.ui.effectPosX,gamePanel.ui.effectPosY,null);
+        g2.drawImage(image,gp.ui.effectPosX,gp.ui.effectPosY,null);
     }
 }

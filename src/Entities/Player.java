@@ -44,8 +44,6 @@ public class Player extends Entity{
             
         }
         public void setDefaultValues(){
-                worldX = gamePanel.tileSize * 15;
-                worldY = gamePanel.tileSize * 18;
             // PLAYER'S SPEED:
                 speed = 10;
                 direction = "down";
@@ -60,7 +58,7 @@ public class Player extends Entity{
             currentWeapon = new OBJ_Sword(gamePanel);
             currentShield = new OBJ_WoodenShield(gamePanel);
             currentItem = new OBJ_Key(gamePanel);
-            maxLife = 100;
+            maxLife = 1;
             attack = strength;
             defense = dexterity;
             life = maxLife;
@@ -74,9 +72,10 @@ public class Player extends Entity{
         }
         public void restoreLife(){
             life = maxLife;
+            state = normalState;
+            preState = state;
         }
         public void setItem(){
-
             inventory.clear();
             inventory.add(currentWeapon);
             inventory.add(currentShield);
@@ -222,16 +221,12 @@ public class Player extends Entity{
             int objIndex = gamePanel.collision.checkObject(this,true);
             pickUpObject(objIndex);
 
-            // check npc collision
-                int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
-                interactNPC(npcIndex);
-            // Check monster collision
-                //int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);  not use
-
-            // Check event
-                gamePanel.eHandler.checkEvent();
-
-            gamePanel.keyHandler.enterPressed = false;
+        // check npc collision
+            int npcIndex = gamePanel.collision.checkEntity(this, gamePanel.npc);
+            interactNPC(npcIndex);
+        // Check monster collision
+            //int monsterIndex = gamePanel.collision.checkEntity(this, gamePanel.monster);  not use
+            
 
         // IF COLISION IS FALSE, PLAYER CAN MOVE:
             if ( collisionOn == false ) {
@@ -285,7 +280,11 @@ public class Player extends Entity{
                     }
                     else if ( currentItem instanceof OBJ_Key && gamePanel.object[gamePanel.currentMap][i].type == type_chest){
                         gamePanel.object[gamePanel.currentMap][i].use(this);
-                        inventory.remove(currentItem);
+                        if ( currentItem.amount > 1 ) {
+                            currentItem.amount--;
+                        } else {
+                            inventory.remove(currentItem);
+                        }
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
                 }
@@ -327,7 +326,7 @@ public class Player extends Entity{
     }
     public void battleAction(int selectAction, int choosingEquipAction, int choosingEnemyAction){
 
-        if(preState == stuntState){
+        if(preState == stunState){
             gamePanel.ui.orderTurn++;
             preState = normalState;
         }
@@ -398,7 +397,7 @@ public class Player extends Entity{
                 defense = getDefense();
             }
         // EQUIP KEY
-            if (selectedItem.type == type_key ) {
+            if (selectedItem.type == type_key) {
                 currentItem = selectedItem;
             }
         // EQUIP CONSUMABLE

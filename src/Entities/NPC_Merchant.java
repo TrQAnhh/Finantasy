@@ -40,7 +40,7 @@ public class NPC_Merchant extends Entity{
 
     }
     public void setDialogue(){
-        dialogue[0] = "He he, so you found me.\nI have some good stuff.\nDo you want to trade?";
+        dialogue[0] = "So you need me, don't you?\nI have some good stuff.\nDo you want to trade?";
     }
     public void speak(GamePanel gamePanel){
         super.speak(gamePanel);
@@ -52,11 +52,11 @@ public class NPC_Merchant extends Entity{
         inventory.add(new OBJ_HealPot(gamePanel));
         inventory.add(new OBJ_Bomb(gamePanel));
         inventory.add(new OBJ_Key(gamePanel));
-        inventory.add(new OBJ_GoldSword(gamePanel));
+        inventory.add(new OBJ_GoldenSword(gamePanel));
         inventory.add(new OBJ_Dagger(gamePanel));
         inventory.add(new OBJ_DragonSword(gamePanel));
         inventory.add(new OBJ_SilverShield(gamePanel));
-        inventory.add(new OBJ_GoldShield(gamePanel));
+        inventory.add(new OBJ_GoldenShield(gamePanel));
         inventory.add(new OBJ_DragonShield(gamePanel));
     }
 

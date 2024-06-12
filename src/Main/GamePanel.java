@@ -215,6 +215,8 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                     }
                 eManager.update();
+                eHandler.checkEvent();
+                
             }
         }
         public void paintComponent(Graphics graphics){
@@ -346,7 +348,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         currentArea = nextArea;
-        aSetter.setMonster();
+        //aSetter.setMonster();
         aSetter.setNPC();
     }
 }

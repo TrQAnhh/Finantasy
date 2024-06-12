@@ -14,9 +14,9 @@ public class OBJ_DragonSword extends Entity {
         this.gamePanel = gamePanel;
         type = type_sword;
         name = "Excalibur";
-        itemsImage = setup("Objects/DragonSword");
+        itemsImage = setupItemImages("Objects/DragonSword");
         attackValue = 3;
-        description = "[" + name + "]" + " \n- King Arthur's Legendary Sword." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
+        description = "[" + name + "]" + " \n- King Arthur's Legendary Sword." + " \n- Attack: " + attackValue + "\n- [Ability] Gain 50% chance to stun the enemy";
         price = 75;
     }
     @Override
@@ -25,7 +25,7 @@ public class OBJ_DragonSword extends Entity {
         Random rand = new Random();
         int i = rand.nextInt(100)+1;
         if(i <= 50){
-            entity.state = entity.stuntState;
+            entity.state = entity.stunState;
         }
         gamePanel.ui.addMessage("Stunt");
     }

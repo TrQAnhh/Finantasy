@@ -32,7 +32,6 @@ public class EventHandler {
             eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
             eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
-            eventRect[map][col][row].eventDone = false;
             col++;
 
             if(col == gamePanel.maxWorldColumn){
@@ -58,9 +57,8 @@ public class EventHandler {
         if(canTouchEvent == true){
 
             // HEALING BY STATUE AT X1 = 13 (COLS), Y1 = 33 (ROWS) AND X2 = 13 (COLS), Y2 = 32 (ROWS)
-            if( hit(0, 14,33,"any") == true  || hit(0, 14,34,"any") == true ) {
-                healingGamePanelPool(gamePanel.dialogueState);
-            }
+            if( hit(0, 13,33,"any") == true ) {
+                healingGamePanelPool(gamePanel.playState);}
             // TELEPORT FROM NORMAL WORLD TO DUNGEON AT COORDINATE X = 31 (COLS), Y = 43 (ROWS)
             else if( hit(0, 14, 12, "any") == true || hit(0, 14, 13, "any") == true ) {
                 teleport(1, 31, 43, gamePanel.dungeon);
@@ -135,12 +133,12 @@ public class EventHandler {
             eventRect[map][col][row].x = col*gamePanel.tileSize + eventRect[map][col][row].x;
             eventRect[map][col][row].y = row *gamePanel.tileSize + eventRect[map][col][row].y;
 
+            
             if(gamePanel.player.solidArea.intersects(eventRect[map][col][row]) && eventRect[map][col][row].eventDone == false){
                 if(gamePanel.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")){
                     hit = true;
                     previousEventX = gamePanel.player.worldX;
                     previousEventY = gamePanel.player.worldY;
-                    eventRect[map][col][row].eventDone = true;
                 }
             }
 
@@ -152,16 +150,22 @@ public class EventHandler {
         }
         return hit;
     }
-    public void healingGamePanelPool(int gameState){
-        //if (gamePanel.keyHandler.enterPressed == true){
+    public void healingGamePanelPool(int gameState) {
+        if (gamePanel.keyHandler.enterPressed == true){
             gamePanel.gameState = gameState;
-            gamePanel.ui.currentDialogue = "Your life has been recovered!";
+            gamePanel.ui.addMessage("Your life has been recovered!");
             gamePanel.player.life = gamePanel.player.maxLife;
+            setDyingAttribute();
             gamePanel.aSetter.setMonster();
             gamePanel.ui.listofMonster.clear();
-        //}
+        }
 
     }
+    public void setDyingAttribute() {
+        for(int i = 0; i < 3; ++i) {
+            gamePanel.monster[1][i].dying = false;
+        }
+    }   
     public void teleport(int map, int col, int row, int area) {
             gamePanel.gameState = gamePanel.transitionState;
             gamePanel.nextArea = area;

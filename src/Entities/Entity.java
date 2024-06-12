@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Entity {
-    GamePanel gamePanel;
+        GamePanel gamePanel;
     // IMAGES FOR PLAYERS, NPCs, MONSTERS:
     public BufferedImage up1, up2, up3,
         down1, down2, down3,
@@ -31,6 +31,7 @@ public class Entity {
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
+    public boolean Defeat;
     // DIALOGUES
     String dialogue[] = new String[20];
 
@@ -55,14 +56,14 @@ public class Entity {
         int hpBarCounter = 0;
 
     // Item attribute
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 20;
-    public int attackValue;
-    public int defenseValue;
-    public String description = "";
-    public int price;
-    public boolean stackable = false;
-    public int amount = 1;
+        public ArrayList<Entity> inventory = new ArrayList<>();
+        public final int maxInventorySize = 18;
+        public int attackValue;
+        public int defenseValue;
+        public String description = "";
+        public int price;
+        public boolean stackable = false;
+        public int amount = 1;
 
     // Type 
         public int type;
@@ -87,12 +88,10 @@ public class Entity {
     public int preState;
     public final int normalState = 0;
     public final int getDamageState = 1;
-    public final int stuntState = 2;
+    public final int stunState = 2;
     public final int bleedState = 3;
     public final int healingState = 4;
     public final int burningState = 5;
-    // Set up image
-    public boolean Defeat;
     public final int defenseState = 6;
     public final int criticalState = 7;
     // CHARACTER ATTRIBUTES
@@ -111,6 +110,7 @@ public class Entity {
         public Entity currentWeapon;
         public Entity currentShield;
         public Entity currentItem;
+        public Entity currentTool;
         public int mana;
         public int maxMana;
 

@@ -3,19 +3,19 @@ package Objects;
 import Entities.Entity;
 import Main.GamePanel;
 
-public class OBJ_GoldSword extends Entity {
+public class OBJ_GoldenSword extends Entity {
 
     GamePanel gamePanel;
 
-    public OBJ_GoldSword(GamePanel gamePanel) {
+    public OBJ_GoldenSword(GamePanel gamePanel) {
 
         super(gamePanel);
         this.gamePanel = gamePanel;
         type = type_sword;
         name = "Touyako";
-        itemsImage = setup("Objects/GoldSword");
+        itemsImage = setupItemImages("Objects/GoldSword");
         attackValue = 4;
-        description = "[" + name + "]" + " \n- Sakata Gintoki's Bokuto." + " \n- Attack: " + attackValue + "\n- Can only be equipped in Battle World";
+        description = "[" + name + "]" + " \n- Sakata Gintoki's Bokuto." + " \n- Attack: " + attackValue + "\n- [Ability] Deal 200% Critical Damage to the enemy";
         price = 20;
     }
     @Override

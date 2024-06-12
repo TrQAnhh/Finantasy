@@ -63,9 +63,9 @@ public class AssetSetter{
             gamePanel.npc[0][5].worldX = gamePanel.tileSize * 29; // 29 columns * 48
             gamePanel.npc[0][5].worldY = gamePanel.tileSize * 47; // 47 rows * 48
 
-            gamePanel.npc[0][6] = new NPC_Merchant(gamePanel);
-            gamePanel.npc[0][6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
-            gamePanel.npc[0][6].worldY = gamePanel.tileSize * 30; // 30 rows * 48
+//            gamePanel.npc[0][6] = new NPC_Merchant(gamePanel);
+//            gamePanel.npc[0][6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
+//            gamePanel.npc[0][6].worldY = gamePanel.tileSize * 30; // 30 rows * 48
 
             gamePanel.npc[0][7] = new NPC_Soldier(gamePanel);
             gamePanel.npc[0][7].worldX = gamePanel.tileSize * 36; // 36 columns * 48
@@ -81,14 +81,20 @@ public class AssetSetter{
         int mapNum = 1;
         //Monster in the cave condition for boss appear
         gamePanel.monster[mapNum][0] = MonsterFactory.createMonster("Gate Keeper", gamePanel);
-        gamePanel.monster[mapNum][0].worldX = 1425;
-        gamePanel.monster[mapNum][0].worldY = 1700;
+        if(gamePanel.monster[mapNum][0].dying == false) {
+            gamePanel.monster[mapNum][0].worldX = 1425;
+            gamePanel.monster[mapNum][0].worldY = 1700;
+        }
         gamePanel.monster[mapNum][1] = MonsterFactory.createMonster("Bloody Slime", gamePanel);
-        gamePanel.monster[mapNum][1].worldX = 900;
-        gamePanel.monster[mapNum][1].worldY = 1514;
+        if(gamePanel.monster[mapNum][1].dying == false) {
+            gamePanel.monster[mapNum][1].worldX = 900;
+            gamePanel.monster[mapNum][1].worldY = 1514;
+        }
         gamePanel.monster[mapNum][2] = MonsterFactory.createMonster("Spider", gamePanel);
-        gamePanel.monster[mapNum][2].worldX = 2050;
-        gamePanel.monster[mapNum][2].worldY = 1600;
+        if(gamePanel.monster[mapNum][2].dying == false) {
+            gamePanel.monster[mapNum][2].worldX = 2050;
+            gamePanel.monster[mapNum][2].worldY = 1600;
+        }
         if(Progress.DragonBossDefeated == false) {
             gamePanel.monster[mapNum][3] = MonsterFactory.createMonster("Boss", gamePanel);
             gamePanel.monster[mapNum][3].worldX = 1360;
@@ -100,7 +106,7 @@ public class AssetSetter{
         int i=0;
         gamePanel.effect[i] = new Slash(gamePanel);
         i++;
-        gamePanel.effect[i] = new Stunt(gamePanel);
+        gamePanel.effect[i] = new Stun(gamePanel);
         i++;
         gamePanel.effect[i] = new Bleed(gamePanel);
         i++;
