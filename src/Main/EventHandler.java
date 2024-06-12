@@ -113,23 +113,21 @@ public class EventHandler {
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 4;
-                checkHappened[0] = true;
+                
             }
             if((checkHappened[1] == false) && (hit(1, 30, 40, "any") == true || hit(1, 31, 40, "any") == true || hit(1, 32, 40, "any") == true)) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 6;
-                checkHappened[1] = true;
             }
             if((checkHappened[2] == false) && (hit(1, 41, 36, "any") == true || hit(1, 42, 36, "any") == true || hit(1, 43, 36, "any") == true)) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 5;
-                checkHappened[2] = true;
             }
-            if(gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
+            if((checkHappened[3] == false) && gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
