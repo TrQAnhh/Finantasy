@@ -35,11 +35,11 @@ public class MON_RedPheonix extends Entity implements MonsterInt<Graphics2D, Gam
         getImage();
     }
     public void getImage(){
-        
-        up1 = setup("Monster/Pheonix/pheonix");
-        down1 = setup("Monster/Pheonix/pheonix");
-        left1 = setup("Monster/Pheonix/pheonix");
-        right1 = setup("Monster/Pheonix/pheonix");
+
+        up1 = setupMonsterImages("Monster/Pheonix/pheonix",100,100);
+        down1 = setupMonsterImages("Monster/Pheonix/pheonix",100,100);
+        left1 = setupMonsterImages("Monster/Pheonix/pheonix",100,100);
+        right1 = setupMonsterImages("Monster/Pheonix/pheonix",100,100);
     }   
     @Override
     public void setAction(){}
@@ -49,7 +49,6 @@ public class MON_RedPheonix extends Entity implements MonsterInt<Graphics2D, Gam
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
-                gamePanel.ui.orderTurn++;
             }
             else{
                 entity.life -= damage;
