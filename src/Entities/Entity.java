@@ -263,7 +263,9 @@ public class Entity {
     }
 
     public void use(Entity entity){}
-
+    public BufferedImage getAnimationImages(){
+        return null;
+    }
     public void draw(Graphics2D g2,GamePanel gamePanel){
 
         BufferedImage image = null;

@@ -3,13 +3,10 @@ package Main;
 import Data.Progress;
 import Entities.Entity;
 import javax.swing.JPanel;
-import Entities.Entity;
 import Entities.Player;
 import Enviroment.EnviromentManager;
 import Map.TileManager;
-import Main.EventHandler;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -50,7 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
         Sound music = new Sound(); 
         Sound se = new Sound(); 
     // Player CLASS 
-        public Player player = new Player(this,keyHandler); 
+        public Player player = Player.getInstance(this, keyHandler); 
     // TileManager CLASS 
         TileManager tileManager = new TileManager(this); 
     // Collision CLASS 

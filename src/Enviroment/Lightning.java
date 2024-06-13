@@ -25,19 +25,13 @@ public class Lightning {
     final int night = 2;
     final int dawn = 3;
     int dayState = day;
-    int circleSize = 600;
+    int circleSize = 1000;
 
     public Lightning(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         setLightSource();
     }
     public void setLightSource() {
-        if (gamePanel.currentMap == 0) {
-             circleSize = 600;
-        }
-        if (gamePanel.currentMap == 1){
-             circleSize = 900;
-        }
         // Create a buffered image
         darknessFilter = new BufferedImage(gamePanel.screenWidth, gamePanel.screenHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = (Graphics2D)darknessFilter.getGraphics();

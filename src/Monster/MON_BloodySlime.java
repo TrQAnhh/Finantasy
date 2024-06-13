@@ -48,26 +48,15 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
     @Override
     public void damage(Entity entity){
         
-        if(state == stunState){
-            gamePanel.ui.addMessage(name + "Was Stunt");
-        }
-        else{
-            if(state == bleedState){
-                life--;
-            }
+        entity.state = entity.getDamageState;
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
-                gamePanel.ui.orderTurn++;
             }
             else{
-                entity.state = entity.getDamageState;
                 entity.life -= damage;
                 gamePanel.ui.addMessage(damage + " damage!");
             }
-            
-            
-        }
     }
     
     @Override
@@ -78,7 +67,7 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
         if(Defeat == false) {
-            g2.drawImage(image, screenX, screenY, null);
+            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
         }
     }
 }

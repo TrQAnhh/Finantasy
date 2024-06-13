@@ -9,6 +9,13 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Main.Main",
+            "projectName": "Finantasy-2_c123990"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main.Main",
             "projectName": "Finantasy_a68f9aec"
         },
         {

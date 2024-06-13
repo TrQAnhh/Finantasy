@@ -93,43 +93,61 @@ public class EventHandler {
                     gamePanel.ui.indexBattle = 3;
                 }
             }
-            //MONSTER CHECKED PLACED MAP 1
-            if((checkHappened[5] == false) && hit(1,36,31,"any") == true) {
-                gamePanel.stopMusic();
-                gamePanel.playMusic(4);
-                gamePanel.gameState = gamePanel.battleState;
-                gamePanel.ui.indexBattle = 7;
-                checkHappened[5] = true;
+
+    // MONSTER CHECKED PLACED MAP 1:
+        // HIT RIGHT STATUE TO ENTER BATTLE:
+                if( (checkHappened[5] == false) && hit(1,34,29,"any") == true ||
+                    (checkHappened[5] == false) && hit(1,35,29,"any") == true ||
+                    (checkHappened[5] == false) && hit(1,36,29,"any") == true ||
+                    (checkHappened[5] == false) && hit(1,34,30,"any") == true ||
+                    (checkHappened[5] == false) && hit(1,35,30,"any") == true ||
+                    (checkHappened[5] == false) && hit(1,36,30,"any") == true ) {
+                        gamePanel.stopMusic();
+                        gamePanel.playMusic(4);
+                        gamePanel.gameState = gamePanel.battleState;
+                        gamePanel.ui.indexBattle = 7;
+                        checkHappened[5] = true;
             }
-            if((checkHappened[4] == false) && hit(1,25,31,"any") == true) {
-                gamePanel.stopMusic();
-                gamePanel.playMusic(4);
-                gamePanel.gameState = gamePanel.battleState;
-                gamePanel.ui.indexBattle = 8;
-                checkHappened[4] = true;
+        // HIT LEFT COLUMN TO ENTER BATTLE:
+                if( (checkHappened[4] == false) && hit(1,34,29,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,35,29,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,36,29,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,34,30,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,35,30,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,36,30,"any") == true ) {
+                        gamePanel.stopMusic();
+                        gamePanel.playMusic(4);
+                        gamePanel.gameState = gamePanel.battleState;
+                        gamePanel.ui.indexBattle = 8;
+                        checkHappened[4] = true;
             }
-            if((checkHappened[0] == false) && (hit(1, 19, 34, "any") == true || hit(1, 20, 34, "any") == true || hit(1, 21, 34, "any") == true)) {
+        // HIT SLIME TO START SLIME BATTLE:
+            if((checkHappened[0] == false) && (hit(1, 19, 32, "any") == true || hit(1, 20, 32, "any") == true || hit(1, 21, 32, "any") == true ||  hit(1, 22, 32, "any") == true)) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 4;
                 checkHappened[0] = true;
+                
             }
-            if((checkHappened[1] == false) && (hit(1, 30, 40, "any") == true || hit(1, 31, 40, "any") == true || hit(1, 32, 40, "any") == true)) {
+        // HIT GATE KEEPER TO START GATE KEEPER BATTLE:
+            if((checkHappened[1] == false) && (hit(1, 30, 37, "any") == true || hit(1, 31, 37, "any") == true || hit(1, 32, 37, "any") == true ||  hit(1, 33, 37, "any") == true)) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 6;
                 checkHappened[1] = true;
             }
-            if((checkHappened[2] == false) && (hit(1, 41, 36, "any") == true || hit(1, 42, 36, "any") == true || hit(1, 43, 36, "any") == true)) {
+        // HIT SPIDER TO START SPIDER BATTLE
+            if((checkHappened[2] == false) && (hit(1, 41, 34, "any") == true || hit(1, 42, 34, "any") == true || hit(1, 43, 34, "any") == true) || hit(1, 44, 34, "any") == true) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 5;
                 checkHappened[2] = true;
             }
-            if(gamePanel.ui.gateCounterKill == 3 && (hit(1, 33, 23, "any") == true || hit(1, 32, 23, "any") == true || hit(1, 31, 23, "any") == true || hit(1, 30, 23, "any") == true))  {
+        // HIT BOSS TO START BOSS BATTLE
+            if((checkHappened[3] == false) && gamePanel.ui.gateCounterKill == 3 && (hit(1, 31, 18, "any") == true || hit(1, 32, 18, "any") == true || hit(1, 31, 18, "any") == true || hit(1, 30, 18, "any") == true))  {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
