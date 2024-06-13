@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class Player extends Entity{
+    private static Player instancePlayer = null;
     // VARIABLES:
         public final int screenX;
 
@@ -42,6 +43,12 @@ public class Player extends Entity{
             // Set Player inventory
                 setItem();
             
+        }
+        public static Player getInstance(GamePanel gamePanel, KeyHandler keyHandler) {
+            if(instancePlayer == null) {
+                return new Player(gamePanel, keyHandler);
+            }
+            return instancePlayer;
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:

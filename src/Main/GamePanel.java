@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
         Sound music = new Sound(); 
         Sound se = new Sound(); 
     // Player CLASS 
-        public Player player = new Player(this,keyHandler); 
+        public Player player = Player.getInstance(this, keyHandler); 
     // TileManager CLASS 
         TileManager tileManager = new TileManager(this); 
     // Collision CLASS 
