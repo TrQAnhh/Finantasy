@@ -18,11 +18,12 @@ public class MON_Boss extends Entity implements MonsterInt<Graphics2D, GamePanel
         type = type_monster;
         name = "Dragon Lord";
         direction = "down";
-        maxLife = 1;
+        maxLife = 50;
         life = maxLife;
-        attack = 8;
-        defense = 0;
-        exp = 2;
+        attack = 30;
+        defense = 30;
+        exp = 50;
+        coin = 100;
         mana = 0;
         maxMana = 0;
         state = normalState;

@@ -29,7 +29,6 @@ public class credit extends JPanel implements ActionListener {
     Image image;
     public credit(String is, String text) throws IOException{
         frame = new JFrame("END GAME");
-        image = ImageIO.read(new File(is));
         frame.setSize(1300,1300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -63,11 +62,13 @@ public class credit extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
         textY--;
+        gp.stopMusic();
         if(textY < -1150){
             creditTimer.stop();
             frame.dispose();
         }
         repaint();
+        System.exit(0);
         
     }
 }

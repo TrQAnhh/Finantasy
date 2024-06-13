@@ -22,7 +22,7 @@ public class MON_GhostRider extends Entity implements MonsterInt<Graphics2D, Gam
         life = maxLife;
         attack = 3;
         defense = 2;
-        exp = 2;
+        exp = 5;
         coin = 10;
         mana = 0;
         maxMana = 3;
@@ -42,7 +42,7 @@ public class MON_GhostRider extends Entity implements MonsterInt<Graphics2D, Gam
 
         up1 = setupMonsterImages("Monster/HatPumpkinWithHorse/up_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
         down1 = setupMonsterImages("Monster/HatPumpkinWithHorse/down_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
-        left1 = setupMonsterImages("Monster/HatPumpkinWithHorse/left_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
+        left1 = setupMonsterImages("Monster/HatPumpkinWithHorse/right_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
         right1 = setupMonsterImages("Monster/HatPumpkinWithHorse/right_2",gamePanel.tileSize + 50,gamePanel.tileSize + 51);
     }   
     @Override

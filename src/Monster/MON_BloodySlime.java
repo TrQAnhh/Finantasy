@@ -16,13 +16,14 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
         this.gamePanel = gamePanel;
 
         type = type_monster;
-        name = "Deadly Slime";
+        name = "Slime";
         direction = "down";
-        maxLife = 4;
+        maxLife = 20;
         life = maxLife;
-        attack = 2;
-        defense = 5;
-        exp = 2;
+        attack = 10;
+        defense = 7;
+        exp = 10;
+        coin = 20;
         mana = 0;
         maxMana = 2;
         state = normalState;
@@ -38,10 +39,10 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
     }
     public void getImage(){
         
-        up1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
-        down1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
-        left1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
-        right1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
+        up1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 80,gamePanel.tileSize + 80);
+        down1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 80,gamePanel.tileSize + 80);
+        left1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 80,gamePanel.tileSize + 80);
+        right1 = setupMonsterImages("Monster/BloodSlime/BloodySlime",gamePanel.tileSize + 80,gamePanel.tileSize + 80);
     }   
     @Override
     public void setAction(){}
@@ -67,7 +68,7 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
         if(Defeat == false) {
-            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
+            g2.drawImage(image, screenX, screenY,null);
         }
     }
 }

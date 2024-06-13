@@ -16,7 +16,7 @@ public class OBJ_Dagger extends Entity {
         itemsImage = setupItemImages("Objects/Dagger");
         attackValue = 3;
         description = "[" + name + "]" + " \n- A Dagger." + " \n- Attack: " + attackValue + "\n- [Ability] Inflict Bleeding effect to the enemy";
-        price = 40;
+        price = 20;
     }
     @Override
     public void use(Entity entity){

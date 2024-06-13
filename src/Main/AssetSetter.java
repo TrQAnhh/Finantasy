@@ -88,7 +88,7 @@ public class AssetSetter{
         gamePanel.monster[mapNum][1] = MonsterFactory.createMonster("Bloody Slime", gamePanel);
         if(gamePanel.monster[mapNum][1].dying == false) {
             gamePanel.monster[mapNum][1].worldX = 920;
-            gamePanel.monster[mapNum][1].worldY = 1514;
+            gamePanel.monster[mapNum][1].worldY = 1525;
         }
         gamePanel.monster[mapNum][2] = MonsterFactory.createMonster("Spider", gamePanel);
         if(gamePanel.monster[mapNum][2].dying == false) {

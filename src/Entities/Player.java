@@ -52,18 +52,15 @@ public class Player extends Entity{
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
-                speed = 10;
+                speed = 13;
                 direction = "down";
-
-                worldX = 17 * gamePanel.tileSize;
-                worldY = 19 * gamePanel.tileSize;
             // PLAYER STATUS
                 level = 1;
-                strength = 100;
+                strength = 1;
                 dexterity = 1;
                 exp = 0;
                 nextLevelExp = 4;
-                coin = 500;
+                coin = 100;
 
                 currentWeapon = new OBJ_Sword(gamePanel);
                 currentShield = new OBJ_WoodenShield(gamePanel);
@@ -84,6 +81,7 @@ public class Player extends Entity{
         }
         public void restoreLife(){
             life = maxLife;
+            dying = false;
             state = normalState;
             preState = state;
         }
@@ -276,10 +274,11 @@ public class Player extends Entity{
         if(life > maxLife){
             life = maxLife;
         }
-        if(life < 0){
+        if(dying == true){
             gamePanel.gameState = gamePanel.gameOverState;
             // gamePanel.playSE(12);
         }
+
     }
     // INTERACTION WITH OBJECTS METHOD:
     public void pickUpObject(int i){
@@ -383,9 +382,9 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
 
             level++;
             nextLevelExp = nextLevelExp*2;
-            maxLife += 2;
-            strength++;
-            dexterity++;
+            maxLife += maxLife/2;
+            strength *= 3;
+            dexterity *= 3;
             attack += 3;
             defense += 2;
 

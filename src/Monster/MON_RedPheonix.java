@@ -16,11 +16,12 @@ public class MON_RedPheonix extends Entity implements MonsterInt<Graphics2D, Gam
         type = type_monster;
         name = "Flame Pheonix";
         direction = "down";
-        maxLife = 4;
+        maxLife = 30;
         life = maxLife;
-        attack = 7;
-        defense = 5;
-        exp = 2;
+        attack = 20;
+        defense = 15;
+        exp = 20;
+        coin = 20;
         mana = 0;
         maxMana = 2;
         state = normalState;
@@ -35,11 +36,11 @@ public class MON_RedPheonix extends Entity implements MonsterInt<Graphics2D, Gam
         getImage();
     }
     public void getImage(){
-        
-        up1 = setup("Monster/Pheonix/pheonix");
-        down1 = setup("Monster/Pheonix/pheonix");
-        left1 = setup("Monster/Pheonix/pheonix");
-        right1 = setup("Monster/Pheonix/pheonix");
+
+        up1 = setupMonsterImages("Monster/Pheonix/pheonix",100,100);
+        down1 = setupMonsterImages("Monster/Pheonix/pheonix",100,100);
+        left1 = setupMonsterImages("Monster/Pheonix/pheonix",100,100);
+        right1 = setupMonsterImages("Monster/Pheonix/pheonix",100,100);
     }   
     @Override
     public void setAction(){}
