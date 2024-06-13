@@ -192,7 +192,6 @@ public class EventHandler {
             gamePanel.ui.addMessage("Your life is restored!");
             gamePanel.player.life = gamePanel.player.maxLife;
             setDyingAttribute();
-            gamePanel.aSetter.setMonster();
         }
 
     }
