@@ -15,7 +15,7 @@ public class OBJ_DragonSword extends Entity {
         type = type_sword;
         name = "Excalibur";
         itemsImage = setupItemImages("Objects/DragonSword");
-        attackValue = 3;
+        attackValue = 5;
         description = "[" + name + "]" + " \n- King Arthur's Legendary Sword." + " \n- Attack: " + attackValue + "\n- [Ability] Gain 50% chance to stun the enemy";
         price = 75;
     }

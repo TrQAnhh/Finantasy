@@ -109,12 +109,12 @@ public class EventHandler {
                         checkHappened[5] = true;
             }
         // HIT LEFT COLUMN TO ENTER BATTLE:
-                if( (checkHappened[4] == false) && hit(1,34,29,"any") == true ||
-                    (checkHappened[4] == false) && hit(1,35,29,"any") == true ||
-                    (checkHappened[4] == false) && hit(1,36,29,"any") == true ||
-                    (checkHappened[4] == false) && hit(1,34,30,"any") == true ||
-                    (checkHappened[4] == false) && hit(1,35,30,"any") == true ||
-                    (checkHappened[4] == false) && hit(1,36,30,"any") == true ) {
+                if( (checkHappened[4] == false) && hit(1,24,29,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,25,29,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,26,29,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,24,30,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,25,30,"any") == true ||
+                    (checkHappened[4] == false) && hit(1,26,30,"any") == true ) {
                         gamePanel.stopMusic();
                         gamePanel.playMusic(4);
                         gamePanel.gameState = gamePanel.battleState;

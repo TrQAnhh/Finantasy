@@ -18,12 +18,13 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
         type = type_monster;
         name = "Spider";
         direction = "down";
-        maxLife = 4;
+        maxLife = 20;
         life = maxLife;
-        attack = 4;
-        defense = 5;
-        exp = 2;
-        mana = 0;
+        attack = 10;
+        defense = 3;
+        exp = 10;
+        coin = 20;
+        mana = 2;
         maxMana = 2;
         state = normalState;
 

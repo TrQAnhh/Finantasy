@@ -19,10 +19,10 @@ public class MON_Pumpkin extends Entity implements MonsterInt<Graphics2D, GamePa
         direction = "down";
         maxLife = 10;
         life = maxLife;
-        attack = 5;
+        attack = 2;
         defense = 0;
         exp = 2;
-        coin = 10;
+        coin = 5;
         mana = 0;
         maxMana = 3;
         state = normalState;
@@ -42,7 +42,7 @@ public class MON_Pumpkin extends Entity implements MonsterInt<Graphics2D, GamePa
 
         up1 = setupMonsterImages("Monster/Pumpkin/up_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
         down1 = setupMonsterImages("Monster/Pumpkin/down_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
-        left1 = setupMonsterImages("Monster/Pumpkin/left_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
+        left1 = setupMonsterImages("Monster/Pumpkin/right_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
         right1 = setupMonsterImages("Monster/Pumpkin/right_1",gamePanel.tileSize + 18,gamePanel.tileSize + 32);
     }
     @Override

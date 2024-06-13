@@ -17,11 +17,11 @@ public class MON_Reaper extends Entity implements MonsterInt<Graphics2D, GamePan
         type = type_monster;
         name = "Reaper";
         direction = "right";
-        maxLife = 4;
+        maxLife = 15;
         life = maxLife;
         attack = 5;
-        defense = 0;
-        exp = 2;
+        defense = 2;
+        exp = 5;
         coin = 10;
         mana = 0;
         maxMana = 3;
@@ -41,7 +41,7 @@ public class MON_Reaper extends Entity implements MonsterInt<Graphics2D, GamePan
 
         up1 = setupMonsterImages("Monster/Reaper/up_1",gamePanel.tileSize + 24,gamePanel.tileSize + 32);
         down1 = setupMonsterImages("Monster/Reaper/down_1",gamePanel.tileSize + 24,gamePanel.tileSize + 32);
-        left1 = setupMonsterImages("Monster/Reaper/left_1",gamePanel.tileSize + 24,gamePanel.tileSize + 32);
+        left1 = setupMonsterImages("Monster/Reaper/right_1",gamePanel.tileSize + 24,gamePanel.tileSize + 32);
         right1 = setupMonsterImages("Monster/Reaper/right_1",gamePanel.tileSize + 24,gamePanel.tileSize + 32);
     }   
     @Override

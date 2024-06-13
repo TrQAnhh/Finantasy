@@ -16,11 +16,12 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
         type = type_monster;
         name = "Earth Dragon";
         direction = "down";
-        maxLife = 4;
+        maxLife = 30;
         life = maxLife;
-        attack = 5;
-        defense = 5;
-        exp = 2;
+        attack = 15;
+        defense = 20;
+        exp = 20;
+        coin = 20;
         mana = 0;
         maxMana = 2;
         state = normalState;

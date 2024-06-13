@@ -56,21 +56,21 @@ public class Player extends Entity{
                 direction = "down";
 
                 worldX = 17 * gamePanel.tileSize;
-                worldY = 19 * gamePanel.tileSize;
+                worldY = 48 * gamePanel.tileSize;
             // PLAYER STATUS
                 level = 1;
-                strength = 100;
+                strength = 1;
                 dexterity = 1;
                 exp = 0;
                 nextLevelExp = 4;
-                coin = 1;
+                coin = 100;
 
                 currentWeapon = new OBJ_Sword(gamePanel);
                 currentShield = new OBJ_WoodenShield(gamePanel);
                 currentItem = new OBJ_Key(gamePanel);
                 currentTool = new OBJ_Axe(gamePanel);
 
-                maxLife = 1;
+                maxLife = 10;
                 attack = strength;
                 defense = dexterity;
                 life = maxLife;

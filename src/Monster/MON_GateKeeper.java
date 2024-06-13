@@ -18,11 +18,12 @@ public class MON_GateKeeper extends Entity implements MonsterInt<Graphics2D, Gam
         type = type_monster;
         name = "Gate Keeper";
         direction = "down";
-        maxLife = 4;
+        maxLife = 15;
         life = maxLife;
-        attack = 5;
-        defense = 0;
-        exp = 2;
+        attack = 7;
+        defense = 5;
+        exp = 5;
+        coin = 20;
         mana = 0;
         maxMana = 2;
         state = normalState;

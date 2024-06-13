@@ -16,12 +16,12 @@ public class MON_Robot extends Entity implements MonsterInt<Graphics2D, GamePane
         type = type_monster;
         name = "Robot";
         direction = "down";
-        maxLife = 10;
+        maxLife = 30;
         life = maxLife;
-        attack = 8;
-        defense = 0;
-        exp = 2;
-        coin = 10;
+        attack = 5;
+        defense = 8;
+        exp = 10;
+        coin = 20;
         mana = 0;
         maxMana = 3;
         state = normalState;
