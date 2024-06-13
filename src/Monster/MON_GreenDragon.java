@@ -36,10 +36,10 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
     }
     public void getImage(){
         
-        up1 = setup("Monster/BossMonster/Dragon_1");
-        down1 = setup("Monster/BossMonster/Dragon_1");
-        left1 = setup("Monster/BossMonster/Dragon_1");
-        right1 = setup("Monster/BossMonster/Dragon_1");
+        up1 = setupMonsterImages("Monster/BossMonster/Dragon_1",100,100);
+        down1 = setupMonsterImages("Monster/BossMonster/Dragon_1",100,100);
+        left1 = setupMonsterImages("Monster/BossMonster/Dragon_1",100,100);
+        right1 = setupMonsterImages("Monster/BossMonster/Dragon_1",100,100);
     }   
     @Override
     public void setAction(){}
@@ -58,5 +58,7 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
     }
     
     @Override
-    public void draw(Graphics2D g2,GamePanel gamePanel) {}
+    public void draw(Graphics2D g2,GamePanel gamePanel) {
+
+    }
 }

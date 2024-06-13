@@ -737,7 +737,7 @@ public class UI {
                             PositionX = initialPostionX - 60;
                             PositionY = gamePanel.tileSize * 4;
 
-                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Deadly Slime")){
+                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Slime")){
                             PositionX = initialPostionX - 60;
                             PositionY = gamePanel.tileSize * 4 - 20;
 
@@ -1140,10 +1140,10 @@ public class UI {
             g2.drawString(hp, nameX, nameY);
 
         // DRAW MONSTER
-            int initialPostionX = gamePanel.tileSize * 2 + 40;
+            int initialPostionX = gamePanel.tileSize * 2 + 50;
 
             int PositionX = initialPostionX;
-            int PositionY = gamePanel.tileSize * 2;
+            int PositionY = gamePanel.tileSize * 2 - 40;
 
             for(int i=0; i<listofMonster.size(); i++){
                 if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
@@ -1179,7 +1179,7 @@ public class UI {
             PositionX = gamePanel.tileSize * 12;
             PositionY = 240;
             if(orderTurn == 0){
-                PositionX = gamePanel.tileSize * 10;
+                PositionX = gamePanel.tileSize * 10 + 30;
             }
             if(gamePanel.player.state != gamePanel.player.normalState){
                 effectPosX = PositionX + 5;
