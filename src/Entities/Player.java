@@ -70,7 +70,7 @@ public class Player extends Entity{
                 currentItem = new OBJ_Key(gamePanel);
                 currentTool = new OBJ_Axe(gamePanel);
 
-                maxLife = 10;
+                maxLife = 100;
                 attack = strength;
                 defense = dexterity;
                 life = maxLife;
@@ -84,6 +84,7 @@ public class Player extends Entity{
         }
         public void restoreLife(){
             life = maxLife;
+            dying = false;
             state = normalState;
             preState = state;
         }
@@ -276,10 +277,11 @@ public class Player extends Entity{
         if(life > maxLife){
             life = maxLife;
         }
-        if(life < 0){
+        if(dying == true){
             gamePanel.gameState = gamePanel.gameOverState;
             // gamePanel.playSE(12);
         }
+
     }
     // INTERACTION WITH OBJECTS METHOD:
     public void pickUpObject(int i){
@@ -383,9 +385,9 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
 
             level++;
             nextLevelExp = nextLevelExp*2;
-            maxLife += 2;
-            strength++;
-            dexterity++;
+            maxLife += maxLife/2;
+            strength *= 3;
+            dexterity *= 3;
             attack += 3;
             defense += 2;
 
