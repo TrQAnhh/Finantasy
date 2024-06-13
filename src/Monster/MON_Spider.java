@@ -51,7 +51,6 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
-                gamePanel.ui.orderTurn++;
             }
             else{
                 entity.life -= damage;

@@ -52,7 +52,6 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
-                gamePanel.ui.orderTurn++;
             }
             else{
                 entity.life -= damage;

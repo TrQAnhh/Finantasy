@@ -69,7 +69,6 @@ public class MON_GhostRider extends Entity implements MonsterInt<Graphics2D, Gam
             int damage = attack - entity.defense;
             if(damage <= 0){
                 damage = 0;
-                gamePanel.ui.orderTurn++;
             }
             else{
                 mana++;
