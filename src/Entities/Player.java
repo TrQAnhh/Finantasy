@@ -52,11 +52,8 @@ public class Player extends Entity{
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
-                speed = 10;
+                speed = 13;
                 direction = "down";
-
-                worldX = 17 * gamePanel.tileSize;
-                worldY = 48 * gamePanel.tileSize;
             // PLAYER STATUS
                 level = 1;
                 strength = 1;
