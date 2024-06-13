@@ -82,23 +82,23 @@ public class AssetSetter{
         //Monster in the cave condition for boss appear
         gamePanel.monster[mapNum][0] = MonsterFactory.createMonster("Gate Keeper", gamePanel);
         if(gamePanel.monster[mapNum][0].dying == false) {
-            gamePanel.monster[mapNum][0].worldX = 1425;
-            gamePanel.monster[mapNum][0].worldY = 1700;
+            gamePanel.monster[mapNum][0].worldX = 1435;
+            gamePanel.monster[mapNum][0].worldY = 1740;
         }
         gamePanel.monster[mapNum][1] = MonsterFactory.createMonster("Bloody Slime", gamePanel);
         if(gamePanel.monster[mapNum][1].dying == false) {
-            gamePanel.monster[mapNum][1].worldX = 900;
+            gamePanel.monster[mapNum][1].worldX = 920;
             gamePanel.monster[mapNum][1].worldY = 1514;
         }
         gamePanel.monster[mapNum][2] = MonsterFactory.createMonster("Spider", gamePanel);
         if(gamePanel.monster[mapNum][2].dying == false) {
-            gamePanel.monster[mapNum][2].worldX = 2050;
+            gamePanel.monster[mapNum][2].worldX = 2020;
             gamePanel.monster[mapNum][2].worldY = 1600;
         }
         if(Progress.DragonBossDefeated == false) {
             gamePanel.monster[mapNum][3] = MonsterFactory.createMonster("Boss", gamePanel);
-            gamePanel.monster[mapNum][3].worldX = 1360;
-            gamePanel.monster[mapNum][3].worldY = 650;
+            gamePanel.monster[mapNum][3].worldX = 1380;
+            gamePanel.monster[mapNum][3].worldY = 680;
         }
     }
 

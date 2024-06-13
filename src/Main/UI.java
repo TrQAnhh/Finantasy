@@ -1082,134 +1082,125 @@ public class UI {
 
     public void drawBattleBossScreen() {
 
-        //DRAW BACKGROUND
+            //DRAW BACKGROUND
 
-        Image image;
+            Image image;
 
-        int frameX = 0;
-        int frameY = 0;
+            int frameX = 0;
+            int frameY = 0;
 
-            // DRAW FRAME:
-            g2.drawImage(battleFrameScreen,frameX,frameY,null);
+                // DRAW FRAME:
+                g2.drawImage(battleFrameScreen,frameX,frameY,null);
 
-        // SET MONSTER
-        if(checker == false)
-        {
-            listofMonster = new ArrayList<>();
-            addMonster(indexBattle);
-            checker = true;
-        }
-
-        int frameHeight;
-        int frameWidth;
-        int nameX;
-        int nameY;
-
-        String textTurn = "";
-
-        // DRAW MONSTER NAME & HP
-        frameX = gamePanel.tileSize + 35;
-        frameY = gamePanel.tileSize * 10;
-
-        frameWidth = gamePanel.tileSize*7;
-        frameHeight = gamePanel.tileSize*4;
-
-        nameX = frameX;
-        nameY = frameY;
-
-        g2.setFont(alagard);
-        g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(20F));
-
-        for(int i=0; i < listofMonster.size(); i++){
-            if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
-                g2.drawString(listofMonster.get(i).name, nameX, nameY);
-                g2.drawString(listofMonster.get(i).life + "/" + listofMonster.get(i).maxLife, nameX+gamePanel.tileSize * 3, nameY);
-                nameY += 40;
+            // SET MONSTER
+            if(checker == false)
+            {
+                listofMonster = new ArrayList<>();
+                addMonster(indexBattle);
+                checker = true;
             }
-        }
+
+            int nameX;
+            int nameY;
+
+            String textTurn = "";
+
+            // DRAW MONSTER NAME & HP
+            frameX = gamePanel.tileSize + 35;
+            frameY = gamePanel.tileSize * 10;
+
+            nameX = frameX;
+            nameY = frameY;
+
+            g2.setFont(alagard);
+            g2.setColor(Color.WHITE);
+            g2.setFont(g2.getFont().deriveFont(20F));
+
+            for(int i=0; i < listofMonster.size(); i++){
+                if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
+                    g2.drawString(listofMonster.get(i).name, nameX, nameY);
+                    g2.drawString(listofMonster.get(i).life + "/" + listofMonster.get(i).maxLife, nameX+gamePanel.tileSize * 3, nameY);
+                    nameY += 40;
+                }
+            }
 
         // DRAW PLAYER BOARD
-        String hp = "";
+            String hp = "";
 
-        frameX = gamePanel.tileSize * 11;
-        frameY = gamePanel.tileSize * 9;
+            frameX = gamePanel.tileSize * 11;
+            frameY = gamePanel.tileSize * 9;
 
-        frameWidth = gamePanel.tileSize*9;
-        frameHeight = gamePanel.tileSize*4;
+            nameX = frameX + 40;
+            nameY = frameY + 45;
 
-        nameX = frameX + 40;
-        nameY = frameY + 45;
+            hp = String.valueOf(gamePanel.player.life) + "/" + String.valueOf(gamePanel.player.maxLife);
 
-        hp = String.valueOf(gamePanel.player.life) + "/" + String.valueOf(gamePanel.player.maxLife);
-
-        g2.drawString("Player", nameX, nameY);
-        nameX += gamePanel.tileSize * 3;
-        g2.drawString(hp, nameX, nameY);
+            g2.drawString("Player", nameX, nameY);
+            nameX += gamePanel.tileSize * 3;
+            g2.drawString(hp, nameX, nameY);
 
         // DRAW MONSTER
-        int initialPostionX = 30;
+            int initialPostionX = gamePanel.tileSize * 2 + 40;
 
-        int PositionX = initialPostionX;
-        int PositionY = 20;
-        BufferedImage monsImage = listofMonster.get(0).right1;
-        scaleFactor = monsImage.getWidth() * 6;
-        for(int i=0; i<listofMonster.size(); i++){
-            if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
-                if(listofMonster.get(i).life <= 0){
-                    gamePanel.player.exp += listofMonster.get(i).exp;
-                    gamePanel.player.coin += listofMonster.get(i).coin;
-                    listofMonster.get(i).dying = true;
-                }
-                else{
-                    if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stunState){
-                        PositionX += gamePanel.tileSize * 2;
-                        g2.drawImage(listofMonster.get(i).left1, PositionX, PositionY, scaleFactor, scaleFactor,null);
-                    } else {
-                        g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, scaleFactor, scaleFactor, null);
+            int PositionX = initialPostionX;
+            int PositionY = gamePanel.tileSize * 2;
+
+            for(int i=0; i<listofMonster.size(); i++){
+                if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
+                    if(listofMonster.get(i).life <= 0){
+                        gamePanel.player.exp += listofMonster.get(i).exp;
+                        gamePanel.player.coin += listofMonster.get(i).coin;
+                        listofMonster.get(i).dying = true;
+                    }
+                    else{
+                        if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stunState){
+                            PositionX += gamePanel.tileSize * 2;
+                            g2.drawImage(listofMonster.get(i).getAnimationImages(), PositionX, PositionY,null);
+                        } else {
+                            g2.drawImage(listofMonster.get(i).getAnimationImages(), PositionX, PositionY, null);
+                        }
                     }
                 }
-            }
-            if(listofMonster.get(i).state != listofMonster.get(i).normalState){
-                effectPosX = PositionX;
-                effectPosY = PositionY + 10;
-            }
+                if(listofMonster.get(i).state != listofMonster.get(i).normalState){
+                    effectPosX = PositionX;
+                    effectPosY = PositionY + 10;
+                }
 
-            PositionX = initialPostionX;
-            PositionY += gamePanel.tileSize + 30;
+                PositionX = initialPostionX;
+                PositionY += gamePanel.tileSize + 30;
 
-            if(PositionY >= 420){
-                initialPostionX -= gamePanel.tileSize*2;
-                PositionY = 0;
+                if(PositionY >= 420){
+                    initialPostionX -= gamePanel.tileSize*2;
+                    PositionY = 0;
+                }
             }
-        }
 
         // DRAW PLAYER
-        PositionX = gamePanel.tileSize * 12;
-        PositionY = 240;
-        if(orderTurn == 0){
-            PositionX = gamePanel.tileSize * 10;
-        }
-        if(gamePanel.player.state != gamePanel.player.normalState){
-            effectPosX = PositionX + 5;
-            effectPosY = PositionY + 5;
-        }
-        g2.drawImage(gamePanel.player.left1, PositionX, PositionY,null);
+            PositionX = gamePanel.tileSize * 12;
+            PositionY = 240;
+            if(orderTurn == 0){
+                PositionX = gamePanel.tileSize * 10;
+            }
+            if(gamePanel.player.state != gamePanel.player.normalState){
+                effectPosX = PositionX + 5;
+                effectPosY = PositionY + 5;
+            }
+            g2.drawImage(gamePanel.player.left1, PositionX, PositionY,null);
 
         // PRINT WHOSE TURN IS NEXT
-        if(orderTurn == 0){
-            textTurn = "Player's turn";
-        }
-        else{
-            textTurn = "Monster's turn";
-        }
+            if(orderTurn == 0){
+                textTurn = "Player's turn";
+            }
+            else{
+                textTurn = "Monster's turn";
+            }
 
-        checkEffect();
-        if(effect == true){
-            drawEffect();
-        }
-        else{
-            // DRAW PLAYER INTERACT
+            checkEffect();
+            if(effect == true){
+                drawEffect();
+            }
+            else{
+        // DRAW PLAYER INTERACT
             if(orderTurn == 0){
 
                 frameX = gamePanel.tileSize*5;
@@ -1321,42 +1312,42 @@ public class UI {
         }
 
         // DRAW WHOSE TURN
-        if (textTurn.equalsIgnoreCase("Monster's turn")) {
-            frameX = gamePanel.tileSize - 32;
-            frameY = gamePanel.tileSize * 9 - 7;
+            if (textTurn.equalsIgnoreCase("Monster's turn")) {
+                frameX = gamePanel.tileSize - 32;
+                frameY = gamePanel.tileSize * 9 - 7;
 
-            nameX = frameX + 35;
-            nameY = frameY ;
+                nameX = frameX + 35;
+                nameY = frameY ;
 
-            g2.setColor(Color.WHITE);
-            g2.setFont(g2.getFont().deriveFont(20F));
-            g2.drawString(textTurn, nameX, nameY);
-        } else {
-            frameX = frameX + gamePanel.tileSize * 8 + 25;
-            frameY = gamePanel.tileSize * 9 - 7;
-
-            nameX = frameX + 35;
-            nameY = frameY ;
-
-            g2.setColor(Color.WHITE);
-            g2.setFont(g2.getFont().deriveFont(20F));
-            g2.drawString(textTurn, nameX, nameY);
-        }
-        // END OF THE BATTLE
-        if(checkBattleEnd() == true){
-            if ( gamePanel.currentMap == 0 ) {
-                gamePanel.playMusic(0);
+                g2.setColor(Color.WHITE);
+                g2.setFont(g2.getFont().deriveFont(20F));
+                g2.drawString(textTurn, nameX, nameY);
             } else {
-                gamePanel.playMusic(2);
+                frameX = frameX + gamePanel.tileSize * 8 + 25;
+                frameY = gamePanel.tileSize * 9 - 7;
+
+                nameX = frameX + 35;
+                nameY = frameY ;
+
+                g2.setColor(Color.WHITE);
+                g2.setFont(g2.getFont().deriveFont(20F));
+                g2.drawString(textTurn, nameX, nameY);
             }
-            gamePanel.keyHandler.enterPressed = false;
-            resetNum();
-            orderTurn = 0;
-            checker = false;
-            handlerMonsters();
-            listofMonster.clear();
-            gamePanel.gameState = gamePanel.playState;
-        }
+        // END OF THE BATTLE
+            if(checkBattleEnd() == true){
+                if ( gamePanel.currentMap == 0 ) {
+                    gamePanel.playMusic(0);
+                } else {
+                    gamePanel.playMusic(2);
+                }
+                gamePanel.keyHandler.enterPressed = false;
+                resetNum();
+                orderTurn = 0;
+                checker = false;
+                handlerMonsters();
+                listofMonster.clear();
+                gamePanel.gameState = gamePanel.playState;
+            }
 
     }
     // RESET THE BATTLE COMMAND NUM
