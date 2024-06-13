@@ -765,8 +765,10 @@ public class UI {
                         else{
                             if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stunState){
                                 PositionX += gamePanel.tileSize * 2;
+                                g2.drawImage(listofMonster.get(i).left1, PositionX, PositionY, null);
+                            } else {
+                                g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                             }
-                            g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                         }
                     }
                     if(listofMonster.get(i).state != listofMonster.get(i).normalState){
@@ -1146,11 +1148,12 @@ public class UI {
         g2.drawString(hp, nameX, nameY);
 
         // DRAW MONSTER
-        int initialPostionX = gamePanel.tileSize * 6 + 30;
+        int initialPostionX = 30;
 
         int PositionX = initialPostionX;
-        int PositionY = 370 / listofMonster.size() + 20;
-
+        int PositionY = 20;
+        BufferedImage monsImage = listofMonster.get(0).right1;
+        scaleFactor = monsImage.getWidth() * 6;
         for(int i=0; i<listofMonster.size(); i++){
             if(listofMonster.get(i) != null && listofMonster.get(i).dying == false){
                 if(listofMonster.get(i).life <= 0){
@@ -1161,8 +1164,10 @@ public class UI {
                 else{
                     if(i == (orderTurn - 1) && listofMonster.get(i).preState != listofMonster.get(i).stunState){
                         PositionX += gamePanel.tileSize * 2;
+                        g2.drawImage(listofMonster.get(i).left1, PositionX, PositionY, scaleFactor, scaleFactor,null);
+                    } else {
+                        g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, scaleFactor, scaleFactor, null);
                     }
-                    g2.drawImage(listofMonster.get(i).right1, PositionX, PositionY, null);
                 }
             }
             if(listofMonster.get(i).state != listofMonster.get(i).normalState){
@@ -1369,21 +1374,23 @@ public class UI {
             if (mons instanceof MON_GateKeeper) {
                 gamePanel.ui.gateCounterKill ++;
                 gamePanel.monster[1][0].Defeat = true;
-                gamePanel.monster[1][0].dying = true;
+                gamePanel.eHandler.checkHappened[1] = true;
+                
             }
             if (mons instanceof MON_BloodySlime) {
                 gamePanel.ui.gateCounterKill ++;
                 gamePanel.monster[1][1].Defeat = true;
-                gamePanel.monster[1][1].dying = true;
+                gamePanel.eHandler.checkHappened[0] = true;
             }
             if (mons instanceof MON_Spider) {
                 gamePanel.ui.gateCounterKill ++;
                 gamePanel.monster[1][2].Defeat = true;
-                gamePanel.monster[1][2].dying = true;
+                gamePanel.eHandler.checkHappened[5] = true;
             }
             if (mons instanceof MON_GreenDragon) {
                 gamePanel.bossBattleOn = true;
                 listofMonster.get(i).Defeat = true;
+                gamePanel.eHandler.checkHappened[3] = true;
             }
             if (mons instanceof MON_Boss) {
                 gamePanel.bossBattleOn = false;
@@ -2030,6 +2037,14 @@ public class UI {
         }
         public void drawGameOverScreen(){
 
+                BufferedImage image;
+                try {
+                    image = ImageIO.read(new File("C:/Users/Hello/Downloads/Finantasy-1/res/Background/GameOver.png"));
+                    g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow,850,720, null);
+                } catch (IOException e) {
+                    
+                    e.printStackTrace();
+                }
                 g2.setColor(new Color(0,0,0,150));
                 g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 

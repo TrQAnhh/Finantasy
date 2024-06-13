@@ -67,7 +67,7 @@ public class MON_GateKeeper extends Entity implements MonsterInt<Graphics2D, Gam
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
         if(Defeat == false) {
-            g2.drawImage(image, screenX, screenY, null);
+            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
         }
     }
 }

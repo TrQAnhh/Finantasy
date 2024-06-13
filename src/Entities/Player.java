@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class Player extends Entity{
+    private static Player instancePlayer = null;
     // VARIABLES:
         public final int screenX;
 
@@ -43,16 +44,22 @@ public class Player extends Entity{
                 setItem();
             
         }
+        public static Player getInstance(GamePanel gamePanel, KeyHandler keyHandler) {
+            if(instancePlayer == null) {
+                return new Player(gamePanel, keyHandler);
+            }
+            return instancePlayer;
+        }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
-                speed = 13;
+                speed = 10;
                 direction = "down";
 
                 worldX = 17 * gamePanel.tileSize;
                 worldY = 19 * gamePanel.tileSize;
             // PLAYER STATUS
                 level = 1;
-                strength = 1;
+                strength = 100;
                 dexterity = 1;
                 exp = 0;
                 nextLevelExp = 4;
