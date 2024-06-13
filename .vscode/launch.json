@@ -9,11 +9,7 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Main.Main",
-<<<<<<< HEAD
-            "projectName": "Finantasy_334f105b"
-=======
             "projectName": "Finantasy-2_c123990"
->>>>>>> fe1305ced0b19fe0a2ad48692f81bb72e2ffb15a
         },
         {
             "type": "java",
