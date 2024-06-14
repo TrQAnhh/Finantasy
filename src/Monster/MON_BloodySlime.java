@@ -21,7 +21,7 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
         maxLife = 20;
         life = maxLife;
         attack = 10;
-        defense = 7;
+        defense = 5;
         exp = 10;
         coin = 20;
         mana = 0;

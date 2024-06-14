@@ -67,7 +67,7 @@ public class Player extends Entity{
                 currentItem = new OBJ_Key(gamePanel);
                 currentTool = new OBJ_Axe(gamePanel);
 
-                maxLife = 1;
+                maxLife = 10;
                 attack = strength;
                 defense = dexterity;
                 life = maxLife;
@@ -388,7 +388,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             level++;
             nextLevelExp = nextLevelExp*2;
             maxLife += maxLife/2;
-            strength *= 3;
+            strength *= 2;
             dexterity *= 3;
             attack += 3;
             defense += 2;
