@@ -722,9 +722,7 @@ public class UI {
                 g2.drawString(hp, nameX, nameY);
 
             // DRAW MONSTER
-                int initialPostionX;
-                if(indexBattle == 9) {initialPostionX = gamePanel.tileSize * 2 + 40;}
-                else {initialPostionX = gamePanel.tileSize * 2 + 20;}
+                int initialPostionX = gamePanel.tileSize * 2 + 32;
                 
 
                 int PositionX = initialPostionX;
