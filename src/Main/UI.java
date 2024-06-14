@@ -1364,28 +1364,22 @@ public class UI {
             mons = listofMonster.get(i);
             if (mons instanceof MON_GateKeeper) {
                 gamePanel.ui.gateCounterKill ++;
-                gamePanel.monster[1][0].Defeat = true;
                 gamePanel.eHandler.checkHappened[1] = true;
-                
             }
             if (mons instanceof MON_BloodySlime) {
                 gamePanel.ui.gateCounterKill ++;
-                gamePanel.monster[1][1].Defeat = true;
                 gamePanel.eHandler.checkHappened[0] = true;
             }
             if (mons instanceof MON_Spider) {
                 gamePanel.ui.gateCounterKill ++;
-                gamePanel.monster[1][2].Defeat = true;
-                gamePanel.eHandler.checkHappened[5] = true;
+                gamePanel.eHandler.checkHappened[2] = true;
             }
             if (mons instanceof MON_GreenDragon) {
                 gamePanel.bossBattleOn = true;
-                listofMonster.get(i).Defeat = true;
                 gamePanel.eHandler.checkHappened[3] = true;
             }
             if (mons instanceof MON_Boss) {
                 gamePanel.bossBattleOn = false;
-                gamePanel.monster[1][3].Defeat = true;
                 Progress.DragonBossDefeated = true;
             }
         }
