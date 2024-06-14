@@ -760,7 +760,7 @@ public class UI {
                             effectPosX += gamePanel.tileSize * 2;
                             effectPosY += gamePanel.tileSize * 2;
                         } else if (listofMonster.get(i).name.equalsIgnoreCase("Robot")) {
-                            PositionX = initialPostionX - 60;
+                            PositionX = initialPostionX + gamePanel.tileSize * 2 + 30;
                             PositionY = gamePanel.tileSize * 4;
                             effectPosX += gamePanel.tileSize;
                             effectPosY += gamePanel.tileSize;
