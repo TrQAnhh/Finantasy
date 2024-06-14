@@ -67,7 +67,7 @@ public class Player extends Entity{
                 currentItem = new OBJ_Key(gamePanel);
                 currentTool = new OBJ_Axe(gamePanel);
 
-                maxLife = 100;
+                maxLife = 1;
                 attack = strength;
                 defense = dexterity;
                 life = maxLife;
@@ -75,8 +75,14 @@ public class Player extends Entity{
                 preState = state;
         }
         public void setDefaultPosition(){
-            worldX = gamePanel.tileSize * 15; 
-            worldY = gamePanel.tileSize * 18;
+            if(gamePanel.currentMap == 0){
+                worldX = gamePanel.tileSize * 17; 
+                worldY = gamePanel.tileSize * 18;
+            }
+            else if(gamePanel.currentMap == 1){
+                worldX = gamePanel.tileSize * 31; 
+                worldY = gamePanel.tileSize * 43;
+            }
             direction = "down";
         }
         public void restoreLife(){
@@ -323,7 +329,6 @@ public class Player extends Entity{
         int damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         if(damage < 0){
             damage = 0;
-            gamePanel.ui.orderTurn++;
         }
         else{
             inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
