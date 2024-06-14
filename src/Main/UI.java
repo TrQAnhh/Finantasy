@@ -722,10 +722,13 @@ public class UI {
                 g2.drawString(hp, nameX, nameY);
 
             // DRAW MONSTER
-                int initialPostionX = gamePanel.tileSize * 6 + 20;
+                int initialPostionX;
+                if(indexBattle == 9) {initialPostionX = gamePanel.tileSize * 2 + 40;}
+                else {initialPostionX = gamePanel.tileSize * 2 + 20;}
+                
 
                 int PositionX = initialPostionX;
-                int PositionY = 0;
+                int PositionY = gamePanel.tileSize * 2 - 40;
 
                 if ( listofMonster.size() == 3 ) {
                      PositionY = 370 / listofMonster.size() + 40;
@@ -1039,7 +1042,6 @@ public class UI {
             listofMonster.add(MonsterFactory.createMonster("Boss", gamePanel));
         }
         if(index == 9) {
-            listofMonster.add(MonsterFactory.createMonster("Red Pheonix", gamePanel));
             listofMonster.add(MonsterFactory.createMonster("Green Dragon", gamePanel));
         }
         if(index == 7) {

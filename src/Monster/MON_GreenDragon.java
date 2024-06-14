@@ -32,15 +32,14 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        Defeat = false;
         getImage();
     }
     public void getImage(){
         
-        up1 = setupMonsterImages("Monster/BossMonster/Dragon_1",100,100);
-        down1 = setupMonsterImages("Monster/BossMonster/Dragon_1",100,100);
-        left1 = setupMonsterImages("Monster/BossMonster/Dragon_1",100,100);
-        right1 = setupMonsterImages("Monster/BossMonster/Dragon_1",100,100);
+        up1 = setupMonsterImages("Monster/BossMonster/Dragon_1",gamePanel.tileSize * 6, gamePanel.tileSize * 6);
+        down1 = setupMonsterImages("Monster/BossMonster/Dragon_1",gamePanel.tileSize * 6, gamePanel.tileSize * 6);
+        left1 = setupMonsterImages("Monster/BossMonster/Dragon_1",gamePanel.tileSize * 6, gamePanel.tileSize * 6);
+        right1 = setupMonsterImages("Monster/BossMonster/Dragon_1",gamePanel.tileSize * 6, gamePanel.tileSize * 6);
     }   
     @Override
     public void setAction(){}

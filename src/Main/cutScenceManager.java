@@ -35,7 +35,7 @@ public class cutScenceManager{
     public void scenceEnding() {
         try {   
             text = "FINAL FANTASY COOKED BY\n"+ "MASTER CHEF QUOC ANH\n" + "MASTER CHEF THANH HUY\n" + "MASTER CHEF KHANH NGAN\n" ;
-            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_1.png";
+            String s = "C:/Users/Hello/Downloads/Finantasy-1/res/Background/BattleBackground_1.png";
             new credit(s, text);
         } catch (IOException e) {
             e.printStackTrace();

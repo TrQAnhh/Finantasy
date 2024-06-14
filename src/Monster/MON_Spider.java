@@ -34,15 +34,14 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        Defeat = false;
         getImage();
     }
     public void getImage(){
         
-        up1 = setupMonsterImages("Monster/SPider/Spider",gamePanel.tileSize + 100,gamePanel.tileSize + 86);
-        down1 = setupMonsterImages("Monster/SPider/Spider",gamePanel.tileSize + 100,gamePanel.tileSize + 86);
-        left1 = setupMonsterImages("Monster/SPider/Spider",gamePanel.tileSize + 100,gamePanel.tileSize + 86);
-        right1 = setupMonsterImages("Monster/SPider/Spider",gamePanel.tileSize + 100,gamePanel.tileSize + 86);
+        up1 = setupMonsterImages("Monster/SPider/Spider",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
+        down1 = setupMonsterImages("Monster/SPider/Spider",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
+        left1 = setupMonsterImages("Monster/SPider/Spider",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
+        right1 = setupMonsterImages("Monster/SPider/Spider",gamePanel.tileSize + 100,gamePanel.tileSize + 100);
     }   
     @Override
     public void setAction(){}
@@ -66,8 +65,8 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
-        if(Defeat == false) {
-            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
+        if(dying == false) {
+            g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 130, gamePanel.tileSize + 100, null);
         }
     }
     

@@ -34,7 +34,6 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        Defeat = false;
         getImage();
     }
     public void getImage(){
@@ -67,7 +66,7 @@ public class MON_BloodySlime extends Entity implements MonsterInt<Graphics2D, Ga
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
-        if(Defeat == false) {
+        if(dying == false) {
             g2.drawImage(image, screenX, screenY,null);
         }
     }
