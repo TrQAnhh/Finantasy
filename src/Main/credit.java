@@ -61,7 +61,6 @@ public class credit extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
         textY--;
-        gp.stopMusic();
         if(textY < -1150){
             creditTimer.stop();
             frame.dispose();

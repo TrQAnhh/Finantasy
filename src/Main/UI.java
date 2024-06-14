@@ -751,7 +751,7 @@ public class UI {
                             PositionY = gamePanel.tileSize * 4;
 
                         } else if (listofMonster.get(i).name.equalsIgnoreCase("Slime")){
-                            PositionX = initialPostionX - 60;
+                            PositionX = initialPostionX + gamePanel.tileSize * 2 + 30;
                             PositionY = gamePanel.tileSize * 4 - 20;
 
                         } else if (listofMonster.get(i).name.equalsIgnoreCase("Gate Keeper")) {

@@ -290,10 +290,11 @@ public class GamePanel extends JPanel implements Runnable{
                     // UI
                         ui.draw(graphics2D);
                     // DRAW CUTSCREEN ENDING
-                    if()
+                        if(Progress.DragonBossDefeated == true) {
                             csManager.scenceNum = csManager.ending;
                             csManager.draw(graphics2D);
                             Progress.DragonBossDefeated = false;
+                        }
             }
 
             // Debug
