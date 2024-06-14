@@ -60,7 +60,7 @@ public class Player extends Entity{
                 dexterity = 1;
                 exp = 0;
                 nextLevelExp = 4;
-                coin = 200;
+                coin = 1000;
 
                 currentWeapon = new OBJ_Sword(gamePanel);
                 currentShield = new OBJ_WoodenShield(gamePanel);

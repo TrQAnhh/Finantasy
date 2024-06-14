@@ -802,8 +802,8 @@ public class UI {
                             effectPosX += gamePanel.tileSize - 10;
                             effectPosY += gamePanel.tileSize - 20;
                         }else if (listofMonster.get(i).name.equalsIgnoreCase("Ghost Rider")) {
-                            effectPosX += gamePanel.tileSize - 10;
-                            effectPosY += gamePanel.tileSize - 20;
+                            effectPosX += gamePanel.tileSize - 20;
+                            effectPosY += gamePanel.tileSize - 30;
                         }else if (indexBattle == 9) {
                             effectPosX = PositionX * 2;
                             effectPosY = PositionY * 3;
