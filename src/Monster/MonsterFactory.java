@@ -22,8 +22,6 @@ public class MonsterFactory{
                 return new MON_Robot(gamePanel);
             case "Green Dragon":
                 return new MON_GreenDragon(gamePanel);
-            case "Red Pheonix":
-                return new MON_RedPheonix(gamePanel);
             case "Boss":
                 return new MON_Boss(gamePanel);
             default:
