@@ -77,7 +77,7 @@ public class EventHandler {
                 }
             }
 
-            if(hit(0,17,15,"any") == true || hit(0,16,15,"any") == true || hit(0,16,14,"any") == true) {
+            if(hit(0,18,15,"any") == true || hit(0,16,15,"any") == true || hit(0,16,14,"any") == true) {
                 if(gamePanel.keyHandler.enterPressed == true){
                     gamePanel.stopMusic();
                     gamePanel.playMusic(3);

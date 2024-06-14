@@ -1363,15 +1363,15 @@ public class UI {
         for (int i = 0; i < listofMonster.size(); ++i) {
             mons = listofMonster.get(i);
             if (mons instanceof MON_GateKeeper) {
-                gamePanel.ui.gateCounterKill ++;
+                gamePanel.ui.gateCounterKill++;
                 gamePanel.eHandler.checkHappened[1] = true;
             }
             if (mons instanceof MON_BloodySlime) {
-                gamePanel.ui.gateCounterKill ++;
+                gamePanel.ui.gateCounterKill++;
                 gamePanel.eHandler.checkHappened[0] = true;
             }
             if (mons instanceof MON_Spider) {
-                gamePanel.ui.gateCounterKill ++;
+                gamePanel.ui.gateCounterKill++;
                 gamePanel.eHandler.checkHappened[2] = true;
             }
             if (mons instanceof MON_GreenDragon) {
