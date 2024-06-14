@@ -32,6 +32,7 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        defeat = false;
         getImage();
     }
     public void getImage(){

@@ -44,6 +44,7 @@ public class Entity {
         int dialogueIndex = 0;
         public boolean alive = true;
         public boolean dying = false;
+        public boolean defeat = false;
         boolean hpBarOn = false;
         public boolean drawing = true;
 

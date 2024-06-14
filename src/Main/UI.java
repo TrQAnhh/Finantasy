@@ -1164,8 +1164,8 @@ public class UI {
                     }
                 }
                 if(listofMonster.get(i).state != listofMonster.get(i).normalState){
-                    effectPosX = PositionX;
-                    effectPosY = PositionY + 10;
+                    effectPosX = PositionX * 2;
+                    effectPosY = PositionY * 3;
                 }
 
                 PositionX = initialPostionX;
@@ -1366,22 +1366,27 @@ public class UI {
             mons = listofMonster.get(i);
             if (mons instanceof MON_GateKeeper) {
                 gamePanel.ui.gateCounterKill++;
+                gamePanel.monster[1][0].defeat = true;
                 gamePanel.eHandler.checkHappened[1] = true;
             }
             if (mons instanceof MON_BloodySlime) {
                 gamePanel.ui.gateCounterKill++;
+                gamePanel.monster[1][1].defeat = true;
                 gamePanel.eHandler.checkHappened[0] = true;
             }
             if (mons instanceof MON_Spider) {
                 gamePanel.ui.gateCounterKill++;
+                gamePanel.monster[1][2].defeat = true;
                 gamePanel.eHandler.checkHappened[2] = true;
             }
             if (mons instanceof MON_GreenDragon) {
                 gamePanel.bossBattleOn = true;
+                mons.defeat = true;
                 gamePanel.eHandler.checkHappened[3] = true;
             }
             if (mons instanceof MON_Boss) {
                 gamePanel.bossBattleOn = false;
+                gamePanel.monster[1][3].defeat = true;
                 Progress.DragonBossDefeated = true;
             }
         }

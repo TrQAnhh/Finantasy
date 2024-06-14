@@ -21,7 +21,7 @@ public class MON_Boss extends Entity implements MonsterInt<Graphics2D, GamePanel
         maxLife = 100;
         life = maxLife;
         attack = 30;
-        defense = 30;
+        defense = 20;
         exp = 50;
         coin = 100;
         mana = 0;
@@ -35,6 +35,7 @@ public class MON_Boss extends Entity implements MonsterInt<Graphics2D, GamePanel
         solidArea.height = size - 48;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        defeat = false;
         getImage();
     }
     //change later 
@@ -67,7 +68,7 @@ public class MON_Boss extends Entity implements MonsterInt<Graphics2D, GamePanel
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
 
-        if(dying == false) {
+        if(defeat == false) {
             g2.drawImage(getAnimationImages(), screenX, screenY, null);
         }
     }
