@@ -161,6 +161,7 @@ public class EventHandler {
             }
         }
     }
+    // CHECK EVENT POSITION
     public boolean hit(int map, int col, int row, String reqDirection){
 
         boolean hit = false;
