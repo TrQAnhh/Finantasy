@@ -16,7 +16,7 @@ public class MON_RedPheonix extends Entity implements MonsterInt<Graphics2D, Gam
         type = type_monster;
         name = "Flame Pheonix";
         direction = "down";
-        maxLife = 30;
+        maxLife = 50;
         life = maxLife;
         attack = 20;
         defense = 15;
