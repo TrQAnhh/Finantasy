@@ -56,11 +56,11 @@ public class Player extends Entity{
                 direction = "down";
             // PLAYER STATUS
                 level = 1;
-                strength = 100;
+                strength = 1;
                 dexterity = 1;
                 exp = 0;
                 nextLevelExp = 4;
-                coin = 100;
+                coin = 10000;
 
                 currentWeapon = new OBJ_Sword(gamePanel);
                 currentShield = new OBJ_WoodenShield(gamePanel);
