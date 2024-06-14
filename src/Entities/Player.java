@@ -75,8 +75,14 @@ public class Player extends Entity{
                 preState = state;
         }
         public void setDefaultPosition(){
-            worldX = gamePanel.tileSize * 15; 
-            worldY = gamePanel.tileSize * 18;
+            if(gamePanel.currentMap == 0){
+                worldX = gamePanel.tileSize * 17; 
+                worldY = gamePanel.tileSize * 18;
+            }
+            else if(gamePanel.currentMap == 1){
+                worldX = gamePanel.tileSize * 31; 
+                worldY = gamePanel.tileSize * 43;
+            }
             direction = "down";
         }
         public void restoreLife(){
@@ -322,7 +328,6 @@ public class Player extends Entity{
         int damage = attack - gamePanel.ui.listofMonster.get(choosingEnemyAction).defense;
         if(damage < 0){
             damage = 0;
-            gamePanel.ui.orderTurn++;
         }
         else{
             inventory.get(choosingEquipAction).use(gamePanel.ui.listofMonster.get(choosingEnemyAction));
@@ -382,7 +387,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             level++;
             nextLevelExp = nextLevelExp*2;
             maxLife += maxLife/2;
-            strength *= 3;
+            strength *= 2;
             dexterity *= 3;
             attack += 3;
             defense += 2;

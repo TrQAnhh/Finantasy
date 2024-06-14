@@ -59,13 +59,13 @@ public class AssetSetter{
             gamePanel.npc[0][4].worldX = gamePanel.tileSize * 38; // 38 columns * 48
             gamePanel.npc[0][4].worldY = gamePanel.tileSize * 50; // 50 rows * 48
 
-            gamePanel.npc[0][5] = new NPC_Merchant(gamePanel);
-            gamePanel.npc[0][5].worldX = gamePanel.tileSize * 29; // 29 columns * 48
-            gamePanel.npc[0][5].worldY = gamePanel.tileSize * 47; // 47 rows * 48
+//            gamePanel.npc[0][5] = new NPC_Merchant(gamePanel);
+//            gamePanel.npc[0][5].worldX = gamePanel.tileSize * 29; // 29 columns * 48
+//            gamePanel.npc[0][5].worldY = gamePanel.tileSize * 47; // 47 rows * 48
 
-//            gamePanel.npc[0][6] = new NPC_Merchant(gamePanel);
-//            gamePanel.npc[0][6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
-//            gamePanel.npc[0][6].worldY = gamePanel.tileSize * 30; // 30 rows * 48
+            gamePanel.npc[0][6] = new NPC_Merchant(gamePanel);
+            gamePanel.npc[0][6].worldX = gamePanel.tileSize * 48; // 48 columns * 48
+            gamePanel.npc[0][6].worldY = gamePanel.tileSize * 30; // 30 rows * 48
 
             gamePanel.npc[0][7] = new NPC_Soldier(gamePanel);
             gamePanel.npc[0][7].worldX = gamePanel.tileSize * 36; // 36 columns * 48
@@ -84,24 +84,27 @@ public class AssetSetter{
         if(gamePanel.monster[mapNum][0].dying == false) {
             gamePanel.monster[mapNum][0].worldX = 1435;
             gamePanel.monster[mapNum][0].worldY = 1740;
+            gamePanel.eHandler.checkHappened[1] = false;
         }
         gamePanel.monster[mapNum][1] = MonsterFactory.createMonster("Bloody Slime", gamePanel);
         if(gamePanel.monster[mapNum][1].dying == false) {
             gamePanel.monster[mapNum][1].worldX = 920;
-            gamePanel.monster[mapNum][1].worldY = 1525;
+            gamePanel.monster[mapNum][1].worldY = 1525;         
+            gamePanel.eHandler.checkHappened[0] = false;
         }
         gamePanel.monster[mapNum][2] = MonsterFactory.createMonster("Spider", gamePanel);
         if(gamePanel.monster[mapNum][2].dying == false) {
             gamePanel.monster[mapNum][2].worldX = 2020;
             gamePanel.monster[mapNum][2].worldY = 1600;
+            gamePanel.eHandler.checkHappened[2] = false;
         }
         if(Progress.DragonBossDefeated == false) {
             gamePanel.monster[mapNum][3] = MonsterFactory.createMonster("Boss", gamePanel);
             gamePanel.monster[mapNum][3].worldX = 1380;
             gamePanel.monster[mapNum][3].worldY = 680;
+            gamePanel.eHandler.checkHappened[3] = false;
         }
     }
-
     public void setEffect(){
         int i=0;
         gamePanel.effect[i] = new Slash(gamePanel);
