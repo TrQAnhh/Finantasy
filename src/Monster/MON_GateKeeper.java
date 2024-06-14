@@ -34,7 +34,6 @@ public class MON_GateKeeper extends Entity implements MonsterInt<Graphics2D, Gam
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        Defeat = false;
         getImage();
     }
     //change later
@@ -66,7 +65,7 @@ public class MON_GateKeeper extends Entity implements MonsterInt<Graphics2D, Gam
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
-        if(Defeat == false) {
+        if(dying == false) {
             g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 100, gamePanel.tileSize + 100, null);
         }
     }

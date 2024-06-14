@@ -32,7 +32,6 @@ public class MON_RedPheonix extends Entity implements MonsterInt<Graphics2D, Gam
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        Defeat = false;
         getImage();
     }
     public void getImage(){
