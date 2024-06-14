@@ -1163,7 +1163,7 @@ public class UI {
                 }
                 if(listofMonster.get(i).state != listofMonster.get(i).normalState){
                     effectPosX = PositionX;
-                    effectPosY = PositionY + 10;
+                    effectPosY = PositionY * 3;
                 }
 
                 PositionX = initialPostionX;

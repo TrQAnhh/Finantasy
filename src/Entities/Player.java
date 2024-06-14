@@ -67,7 +67,7 @@ public class Player extends Entity{
                 currentItem = new OBJ_Key(gamePanel);
                 currentTool = new OBJ_Axe(gamePanel);
 
-                maxLife = 100;
+                maxLife = 10;
                 attack = strength;
                 defense = dexterity;
                 life = maxLife;
@@ -287,7 +287,6 @@ public class Player extends Entity{
             if(gamePanel.keyHandler.enterPressed == true){
                 if(inventory.size() < maxInventorySize){
                     if (currentTool instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
-                        gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
