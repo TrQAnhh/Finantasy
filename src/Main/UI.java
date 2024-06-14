@@ -732,10 +732,7 @@ public class UI {
                 g2.drawString(hp, nameX, nameY);
 
             // DRAW MONSTER
-                int initialPostionX;
-                if(indexBattle == 9) {initialPostionX = gamePanel.tileSize * 2 + 40;}
-                else {initialPostionX = gamePanel.tileSize * 2 + 20;}
-                
+                int initialPostionX = gamePanel.tileSize * 7 - 20;
 
                 int PositionX = initialPostionX;
                 int PositionY = gamePanel.tileSize * 2 - 40;
@@ -744,14 +741,18 @@ public class UI {
                      PositionY = 370 / listofMonster.size() + 40;
                 } else if ( listofMonster.size() == 2 ) {
                     PositionY = 370 / listofMonster.size() + 20;
+                } else if (indexBattle == 9) {
+                    PositionX = gamePanel.tileSize * 2 + 40;
+                    effectPosX = PositionX * 4;
+                    effectPosY = PositionY * 6;
                 } else if (listofMonster.size() == 1) {
-                    for ( int i = 0 ; i < listofMonster.size() ; i++ ) {
-                        if (listofMonster.get(i).name.equalsIgnoreCase("Spider")){
+                    for (int i = 0; i < listofMonster.size(); i++) {
+                        if (listofMonster.get(i).name.equalsIgnoreCase("Spider")) {
                             PositionX = initialPostionX - 60;
                             PositionY = gamePanel.tileSize * 4;
 
-                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Slime")){
-                            PositionX = initialPostionX + gamePanel.tileSize * 2 + 30;
+                        } else if (listofMonster.get(i).name.equalsIgnoreCase("Slime")) {
+                            PositionX = initialPostionX - 60;
                             PositionY = gamePanel.tileSize * 4 - 20;
 
                         } else if (listofMonster.get(i).name.equalsIgnoreCase("Gate Keeper")) {
@@ -760,7 +761,7 @@ public class UI {
                             effectPosX += gamePanel.tileSize * 2;
                             effectPosY += gamePanel.tileSize * 2;
                         } else if (listofMonster.get(i).name.equalsIgnoreCase("Robot")) {
-                            PositionX = initialPostionX + gamePanel.tileSize * 2 + 30;
+                            PositionX = initialPostionX - 60;
                             PositionY = gamePanel.tileSize * 4;
                             effectPosX += gamePanel.tileSize;
                             effectPosY += gamePanel.tileSize;
@@ -799,6 +800,12 @@ public class UI {
                         } else if (listofMonster.get(i).name.equalsIgnoreCase("Robot")) {
                             effectPosX += gamePanel.tileSize - 10;
                             effectPosY += gamePanel.tileSize - 20;
+                        }else if (listofMonster.get(i).name.equalsIgnoreCase("Ghost Rider")) {
+                            effectPosX += gamePanel.tileSize - 10;
+                            effectPosY += gamePanel.tileSize - 20;
+                        }else if (indexBattle == 9) {
+                            effectPosX = PositionX * 2;
+                            effectPosY = PositionY * 3;
                         }
                     }
 
