@@ -96,6 +96,7 @@ public class EventHandler {
 
     // MONSTER CHECKED PLACED MAP 1:
         // HIT RIGHT STATUE TO ENTER BATTLE:
+            //STATUS MONSTER
                 if( (checkHappened[5] == false) && (hit(1,34,29,"any") == true ||
                     hit(1,35,29,"any") == true ||
                     hit(1,36,29,"any") == true ||
@@ -109,6 +110,7 @@ public class EventHandler {
                         checkHappened[5] = true;
             }
         // HIT LEFT COLUMN TO ENTER BATTLE:
+            //STATUS MONSTER
                 if( (checkHappened[4] == false) && (hit(1,24,29,"any") == true ||
                     hit(1,25,29,"any") == true ||
                     hit(1,26,29,"any") == true ||
@@ -122,7 +124,8 @@ public class EventHandler {
                         checkHappened[4] = true;
             }
         // HIT SLIME TO START SLIME BATTLE:
-            if((checkHappened[0] == false) && (hit(1, 19, 32, "any") == true || hit(1, 20, 32, "any") == true || hit(1, 21, 32, "any") == true ||  hit(1, 22, 32, "any") == true)) {
+            //SLIME MONSTER
+            if((checkHappened[0] == false) && (hit(1, 19, 35, "any") == true || hit(1, 20, 35, "any") == true || hit(1,21, 35, "any") == true)) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
@@ -131,7 +134,8 @@ public class EventHandler {
                 
             }
         // HIT GATE KEEPER TO START GATE KEEPER BATTLE:
-            if((checkHappened[1] == false) && (hit(1, 30, 37, "any") == true || hit(1, 31, 37, "any") == true || hit(1, 32, 37, "any") == true ||  hit(1, 33, 37, "any") == true)) {
+            //GATE KEEPER MONSTER
+            if((checkHappened[1] == false) && (hit(1, 30, 39, "any") == true || hit(1, 31, 39, "any") == true || hit(1, 32, 39, "any") == true)) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
@@ -139,7 +143,8 @@ public class EventHandler {
                 checkHappened[1] = true;
             }
         // HIT SPIDER TO START SPIDER BATTLE
-            if((checkHappened[2] == false) && (hit(1, 41, 34, "any") == true || hit(1, 42, 34, "any") == true || hit(1, 43, 34, "any") == true) || hit(1, 44, 34, "any") == true) {
+            //SPIDER MONSTER
+            if((checkHappened[2] == false) && (hit(1, 42, 37, "any") == true || hit(1, 43, 37, "any") == true || hit(1, 44, 37, "any") == true)) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
@@ -147,12 +152,14 @@ public class EventHandler {
                 checkHappened[2] = true;
             }
         // HIT BOSS TO START BOSS BATTLE
-            if((checkHappened[3] == false) && gamePanel.ui.gateCounterKill == 3 && (hit(1, 31, 18, "any") == true || hit(1, 32, 18, "any") == true || hit(1, 31, 18, "any") == true || hit(1, 30, 18, "any") == true))  {
+            //SUB BOSS
+            if((checkHappened[3] == false) && gamePanel.ui.gateCounterKill == 3 && (hit(1, 31, 24, "any") == true || hit(1, 32, 24, "any") == true || hit(1, 31, 24, "any") == true || hit(1, 30, 24, "any") == true))  {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
                 gamePanel.ui.indexBattle = 9;
             }
+            // BOSS
             if(gamePanel.bossBattleOn) {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
