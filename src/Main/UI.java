@@ -48,12 +48,12 @@ public class UI {
     Font alagard, romulus;
 
     // TITLE SCREEN IMAGES:
-        public BufferedImage titleScreen,
+        BufferedImage titleScreen,
                     playButton1, playButton2,
                     settingButton1, settingButton2,
                     exitButton1, exitButton2, dialouge;
     // PAUSE SCREEN IMAGES:
-        public BufferedImage pauseScreen,
+        BufferedImage pauseScreen,
                       resumeButton1, resumeButton2,
                       musicButton1, musicButton2,
                       sfxButton1, sfxButton2,
@@ -87,6 +87,7 @@ public class UI {
                 public String currentDialogue = " ";
             // TRADE BUTTONS
                 public int tradeCommandNum = 0;
+
 
     public ArrayList<Entity> listofMonster = new ArrayList<>();
     public boolean effect = false;
@@ -1356,10 +1357,8 @@ public class UI {
             if(checkBattleEnd() == true){
                 if ( gamePanel.currentMap == 0 ) {
                     gamePanel.playMusic(0);
-                } else if ( gamePanel.currentMap == 1) {
-                    gamePanel.playMusic(2);
                 } else {
-                    gamePanel.stopMusic();
+                    gamePanel.playMusic(2);
                 }
                 gamePanel.keyHandler.enterPressed = false;
                 resetNum();
@@ -1384,23 +1383,28 @@ public class UI {
         for (int i = 0; i < listofMonster.size(); ++i) {
             mons = listofMonster.get(i);
             if (mons instanceof MON_GateKeeper) {
-                gamePanel.ui.gateCounterKill ++;
+                gamePanel.ui.gateCounterKill++;
+                gamePanel.monster[1][0].defeat = true;
                 gamePanel.eHandler.checkHappened[1] = true;
             }
             if (mons instanceof MON_BloodySlime) {
-                gamePanel.ui.gateCounterKill ++;
+                gamePanel.ui.gateCounterKill++;
+                gamePanel.monster[1][1].defeat = true;
                 gamePanel.eHandler.checkHappened[0] = true;
             }
             if (mons instanceof MON_Spider) {
-                gamePanel.ui.gateCounterKill ++;
+                gamePanel.ui.gateCounterKill++;
+                gamePanel.monster[1][2].defeat = true;
                 gamePanel.eHandler.checkHappened[2] = true;
             }
             if (mons instanceof MON_GreenDragon) {
                 gamePanel.bossBattleOn = true;
+                mons.defeat = true;
                 gamePanel.eHandler.checkHappened[3] = true;
             }
             if (mons instanceof MON_Boss) {
                 gamePanel.bossBattleOn = false;
+                gamePanel.monster[1][3].defeat = true;
                 Progress.DragonBossDefeated = true;
             }
         }

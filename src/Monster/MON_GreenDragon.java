@@ -16,7 +16,7 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
         type = type_monster;
         name = "Earth Dragon";
         direction = "down";
-        maxLife = 30;
+        maxLife = 50;
         life = maxLife;
         attack = 15;
         defense = 20;
@@ -32,6 +32,7 @@ public class MON_GreenDragon extends Entity implements MonsterInt<Graphics2D, Ga
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        defeat = false;
         getImage();
     }
     public void getImage(){

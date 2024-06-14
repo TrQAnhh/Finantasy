@@ -56,11 +56,11 @@ public class Player extends Entity{
                 direction = "down";
             // PLAYER STATUS
                 level = 1;
-                strength = 100;
+                strength = 1;
                 dexterity = 1;
                 exp = 0;
                 nextLevelExp = 4;
-                coin = 1000;
+                coin = 200;
 
                 currentWeapon = new OBJ_Sword(gamePanel);
                 currentShield = new OBJ_WoodenShield(gamePanel);
@@ -293,6 +293,7 @@ public class Player extends Entity{
             if(gamePanel.keyHandler.enterPressed == true){
                 if(inventory.size() < maxInventorySize){
                     if (currentTool instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
+                        gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }
