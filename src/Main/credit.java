@@ -17,7 +17,7 @@ import javax.swing.Timer;
 
 public class credit extends JPanel implements ActionListener {
 
-    Timer creditTimer = new Timer(3, this);
+    Timer creditTimer = new Timer(10, this);  // Increased delay for slower scrolling
     String text;
     int textY = 610;
     JFrame frame;
@@ -65,7 +65,7 @@ public class credit extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         textY--;
-        if (textY < -1150) {
+        if (textY < -1000) {
             creditTimer.stop();
             frame.dispose();
         }
