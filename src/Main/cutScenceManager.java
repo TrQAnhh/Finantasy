@@ -29,14 +29,14 @@ public class cutScenceManager{
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
+        drawBlackBackGround(alpha);
         scenceEnding();
     }
 
     public void scenceEnding() {
         try {   
             text = "FINAL FANTASY COOKED BY\n"+ "MASTER CHEF QUOC ANH\n" + "MASTER CHEF THANH HUY\n" + "MASTER CHEF KHANH NGAN\n" ;
-            String s = "C:/Users/hoang/Downloads/Finantasy-1/res/Background/BattleBackground_1.png";
-            new credit(s, text);
+            new credit(text);
         } catch (IOException e) {
             e.printStackTrace();
         }

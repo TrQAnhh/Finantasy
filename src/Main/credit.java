@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.awt.Font;
+import java.awt.FontFormatException;
 
-import javax.swing.Timer;
+import javax.swing.*;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class credit extends JPanel implements ActionListener {
 
@@ -25,29 +25,39 @@ public class credit extends JPanel implements ActionListener {
     String text;
     int textY = 610;
     JFrame frame;
-    JLabel label;
     Image image;
-    public credit(String is, String text) throws IOException{
-        frame = new JFrame("END GAME");
-        frame.setSize(1300,1300);
+
+    Font alagard, romulus;
+
+    public credit(String text) throws IOException{
+
+        gp = new GamePanel();
+        gp.stopMusic();
+
+        frame = new JFrame("Finantasy - CREDIT");
+        frame.setSize(864,672);
+
+        ImageIcon imageIcon = new ImageIcon("res/Logo/logo.png");
+        frame.setIconImage(imageIcon.getImage());
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.add(this);
+
         this.text = text;
         creditTimer.start();
 
     }
 
     public void paintComponent(Graphics g){
+
         super.paintComponent(g);
-        
+
         g.drawImage(image,0,0,this);
 
         Graphics2D g2d = (Graphics2D)g;
 
-        g2d.setFont(new Font("Times New Roman", Font.ITALIC, 30));
-        g2d.setColor(Color.WHITE);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         int y = textY;
@@ -60,9 +70,7 @@ public class credit extends JPanel implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        
         textY--;
-        gp.stopMusic();
         if(textY < -1150){
             creditTimer.stop();
             frame.dispose();

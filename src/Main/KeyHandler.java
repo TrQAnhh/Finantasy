@@ -322,23 +322,26 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.commandNum--;
             if(gamePanel.ui.commandNum < 0){
                 gamePanel.ui.commandNum = 1;
-                gamePanel.playSE(12);
             }
+            gamePanel.playSE(12);
             // gamePanel.playSE(9);
         }
         if(code == KeyEvent.VK_S){
             gamePanel.ui.commandNum++;
             if(gamePanel.ui.commandNum > 1){
                 gamePanel.ui.commandNum = 0;
-                gamePanel.playSE(12);
             }
-            // gamePanel.playSE(9);
+            gamePanel.playSE(12);
         }
         if(code == KeyEvent.VK_ENTER){
             if(gamePanel.ui.commandNum == 0){
                 gamePanel.gameState = gamePanel.playState;
                 gamePanel.retry();
-                System.out.println(gamePanel.gameState);
+                if (gamePanel.currentMap == 0) {
+                    gamePanel.playMusic(0);
+                } else if (gamePanel.currentMap == 1) {
+                    gamePanel.playMusic(2);
+                }
             }
             else if(gamePanel.ui.commandNum == 1){
                 gamePanel.gameState = gamePanel.titleState;

@@ -48,12 +48,12 @@ public class UI {
     Font alagard, romulus;
 
     // TITLE SCREEN IMAGES:
-        BufferedImage titleScreen,
+        public BufferedImage titleScreen,
                     playButton1, playButton2,
                     settingButton1, settingButton2,
                     exitButton1, exitButton2, dialouge;
     // PAUSE SCREEN IMAGES:
-        BufferedImage pauseScreen,
+        public BufferedImage pauseScreen,
                       resumeButton1, resumeButton2,
                       musicButton1, musicButton2,
                       sfxButton1, sfxButton2,
@@ -74,6 +74,8 @@ public class UI {
     // BATTLE SCREEN
         BufferedImage battleFrameScreen;
 
+    // GAME OVER SCREEN
+        BufferedImage gameOverScreen, retryButton1, retryButton2, quitButton1, quitButton2;
     // ANIMATION FOR BUTTON:
             // TITLE SCREEN BUTTONS:
             public int commandNum = 0;
@@ -85,7 +87,6 @@ public class UI {
                 public String currentDialogue = " ";
             // TRADE BUTTONS
                 public int tradeCommandNum = 0;
-
 
     public ArrayList<Entity> listofMonster = new ArrayList<>();
     public boolean effect = false;
@@ -346,6 +347,15 @@ public class UI {
             dialouge = setup("dialogue_1",gamePanel.screenWidth - (gamePanel.tileSize * 2),gamePanel.tileSize * 7);
         // BATTLE SCREEN:
             battleFrameScreen = setup("BattleScreenFrame", gamePanel.screenWidth, gamePanel.screenHeight);
+        // GAME OVER SCREEN:
+            gameOverScreen = setup("GameOverScreen", gamePanel.screenWidth, gamePanel.screenHeight);
+            retryButton1 = setup("RetryButton_1",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+            retryButton2 = setup("RetryButton_2",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+            quitButton1 = setup("QuitButton_1",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+            quitButton2 = setup("QuitButton_2",(gamePanel.tileSize * 3) + 7,gamePanel.tileSize + 10);
+
+
+
     }
     public void drawPauseScreen(){
         int x = 0;
@@ -963,9 +973,9 @@ public class UI {
             // END OF THE BATTLE
                 if(checkBattleEnd() == true){
                     gamePanel.stopMusic();
-                    if ( gamePanel.currentMap == 0 ) {
+                    if ( gamePanel.currentMap == 0 && gamePanel.gameState == gamePanel.playState ) {
                         gamePanel.playMusic(0);
-                    } else {
+                    } else if ( gamePanel.currentMap == 1 && gamePanel.gameState == gamePanel.playState ){
                         gamePanel.playMusic(2);
                     }
                     gamePanel.keyHandler.enterPressed = false;
@@ -1162,7 +1172,7 @@ public class UI {
                     }
                 }
                 if(listofMonster.get(i).state != listofMonster.get(i).normalState){
-                    effectPosX = PositionX;
+                    effectPosX = PositionX * 2;
                     effectPosY = PositionY * 3;
                 }
 
@@ -1337,8 +1347,10 @@ public class UI {
             if(checkBattleEnd() == true){
                 if ( gamePanel.currentMap == 0 ) {
                     gamePanel.playMusic(0);
-                } else {
+                } else if ( gamePanel.currentMap == 1) {
                     gamePanel.playMusic(2);
+                } else {
+                    gamePanel.stopMusic();
                 }
                 gamePanel.keyHandler.enterPressed = false;
                 resetNum();
@@ -2022,48 +2034,26 @@ public class UI {
         }
         public void drawGameOverScreen(){
 
-                BufferedImage image;
-                try {
-                    image = ImageIO.read(new File("C:/Users/Hello/Downloads/Finantasy-1/res/Background/GameOver.png"));
-                    g2.drawImage(image, gamePanel.maxScreenColumn, gamePanel.maxScreenRow,850,720, null);
-                } catch (IOException e) {
-                    
-                    e.printStackTrace();
+            int x = 0;
+            int y = 0;
+            // DRAW MENU TITLE SCREEN:
+                g2.drawImage( gameOverScreen , x , y , null );
+            // DRAW BUTTON:
+                x += gamePanel.tileSize * 10;
+                y += gamePanel.tileSize * 6;
+            // RETRY BUTTON:
+                if ( commandNum == 0 ) {
+                    g2.drawImage( retryButton1 , x , y , null );
+                } else {
+                    g2.drawImage( retryButton2 , x , y , null );
                 }
-                g2.setColor(new Color(0,0,0,150));
-                g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 
-                int x;
-                int y;
-                String text;
-                g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
-
-                text = "Game Over";
-            // Shadow
-                g2.setColor(Color.BLACK);
-                x = getXforCenteredText(text);
-                y = gamePanel.tileSize*4;
-                g2.drawString(text, x, y);
-            // Main
-                g2.setColor(Color.WHITE);
-                g2.drawString(text, x-4, y-4);
-
-            // Retry
-                g2.setFont(g2.getFont().deriveFont(50F));
-                text = "Retry";
-                x = getXforCenteredText(text);
-                y += gamePanel.tileSize*4;
-                g2.drawString(text, x, y);
-                if(commandNum == 0){
-                    g2.drawString(">", x-40, y);
-                }
-                // Back to the Title Screen
-                text = "Quit";
-                x = getXforCenteredText(text);
-                y += 55;
-                g2.drawString(text, x, y);
-                if(commandNum == 1){
-                    g2.drawString(">", x-40, y);
+            // QUIT BUTTON:
+                y += 82;
+                if ( commandNum == 1 ) {
+                    g2.drawImage( quitButton1 , x , y , null );
+                } else {
+                    g2.drawImage( quitButton2 , x , y , null );
                 }
         }
         public void drawSubWindow(int x, int y, int width, int height) {
