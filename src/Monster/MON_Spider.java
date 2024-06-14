@@ -18,7 +18,7 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
         type = type_monster;
         name = "Spider";
         direction = "down";
-        maxLife = 20;
+        maxLife = 40;
         life = maxLife;
         attack = 10;
         defense = 3;
@@ -34,6 +34,7 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        defeat = false;
         getImage();
     }
     public void getImage(){
@@ -65,7 +66,7 @@ public class MON_Spider extends Entity implements MonsterInt<Graphics2D, GamePan
         int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
         int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     
-        if(dying == false) {
+        if(defeat == false) {
             g2.drawImage(image, screenX, screenY, gamePanel.tileSize + 130, gamePanel.tileSize + 100, null);
         }
     }
