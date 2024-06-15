@@ -17,7 +17,7 @@ import javax.swing.Timer;
 
 public class credit extends JPanel implements ActionListener {
 
-    Timer creditTimer = new Timer(3, this);
+    Timer creditTimer = new Timer(15, this);  // Increased delay for slower scrolling
     String text;
     int textY = 610;
     JFrame frame;
@@ -25,7 +25,7 @@ public class credit extends JPanel implements ActionListener {
 
     public credit(String imagePath, String text) throws IOException {
         frame = new JFrame("END GAME");
-        frame.setSize(1300, 1300);
+        frame.setSize(1200, 1200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -49,7 +49,7 @@ public class credit extends JPanel implements ActionListener {
         }
 
         // Set the font and color for the text
-        g2d.setFont(new Font("Times New Roman", Font.ITALIC, 30));
+        g2d.setFont(new Font("alagard", Font.ITALIC, 30));
         g2d.setColor(Color.WHITE);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
@@ -65,7 +65,7 @@ public class credit extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         textY--;
-        if (textY < -1150) {
+        if (textY < -1000) {
             creditTimer.stop();
             frame.dispose();
         }

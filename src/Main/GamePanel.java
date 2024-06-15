@@ -133,6 +133,7 @@ public class GamePanel extends JPanel implements Runnable{
             player.restoreLife();
             aSetter.setNPC();
             aSetter.setMonster();
+            ui.gateCounterKill = 0;
         }
         public void restart(){
             player.setDefaultValues();
@@ -143,6 +144,7 @@ public class GamePanel extends JPanel implements Runnable{
             aSetter.setMonster();
             aSetter.setEffect();
             // aSetter.setInteractiveTile();            Wtf is this???
+            ui.gateCounterKill = 0;
         }
         public void setFullScreen() {
 
@@ -292,6 +294,7 @@ public class GamePanel extends JPanel implements Runnable{
                     // DRAW CUTSCREEN ENDING
                         if(Progress.DragonBossDefeated == true) {
                             csManager.scenceNum = csManager.ending;
+                            gameState = pauseState;
                             csManager.draw(graphics2D);
                             Progress.DragonBossDefeated = false;
                         }
