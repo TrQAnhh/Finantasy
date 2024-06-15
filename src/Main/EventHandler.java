@@ -153,7 +153,7 @@ public class EventHandler {
             }
         // HIT BOSS TO START BOSS BATTLE
             //SUB BOSS
-            if((checkHappened[3] == false) && gamePanel.ui.gateCounterKill == 3 && (hit(1, 31, 24, "any") == true || hit(1, 32, 24, "any") == true || hit(1, 31, 24, "any") == true || hit(1, 30, 24, "any") == true))  {
+            if((checkHappened[3] == false) && gamePanel.ui.gateCounterKill >= 3 && (hit(1, 31, 24, "any") == true || hit(1, 32, 24, "any") == true || hit(1, 31, 24, "any") == true || hit(1, 30, 24, "any") == true))  {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(4);
                 gamePanel.gameState = gamePanel.battleState;
@@ -206,6 +206,7 @@ public class EventHandler {
         for(int i = 0; i < 3; ++i) {
             gamePanel.monster[1][i].dying = false;
         }
+
     }
     public void teleport(int map, int col, int row, int area) {
             gamePanel.gameState = gamePanel.transitionState;

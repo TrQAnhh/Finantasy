@@ -388,8 +388,8 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             level++;
             nextLevelExp = nextLevelExp*2;
             maxLife += maxLife/2;
-            strength *= 2;
-            dexterity *= 2;
+            strength *= 3;
+            dexterity *= 3;
             attack += 3;
             defense += 2;
 
