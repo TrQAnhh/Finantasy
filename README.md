@@ -6,6 +6,9 @@ In the game, players take on the role of heroes equipped with unique abilities a
 The gameplay of our turn-based game requires strategic thinking and situational awareness. Players must make decisions based on the current state of the game, including resource management and tactical maneuvers. The game features various levels, each with unique challenges and objectives that players must complete to progress. Inspired by the renowned Final Fantasy I by Square Enix (1987), our game aims to provide a modern twist on classic turn-based gameplay.
 
 Overall, our Finantasy Game is an engaging and challenging strategy game that showcases the skills and creativity of the developers at International University - VNU HCMC. With its strategic gameplay and impressive graphics, the game promises to provide hours of entertainment and a rewarding experience for players.
+
+- The paper report: https://docs.google.com/document/d/1Md7TSEWabYVCLSejcX8v6NX5JoMcXZY6lDU75fyBegk/edit?usp=sharing
+
 # About our team
 [@TrQAnhh](https://github.com/TrQAnhh), ID ITITIU22006, specializes in graphics design, sound setting, UI design, bug fixing, and the creation of maps, trade shops, weapons, and other inventory items.
 
