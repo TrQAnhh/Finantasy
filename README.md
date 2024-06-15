@@ -9,6 +9,6 @@ Overall, our Finantasy Game is an engaging and challenging strategy game that sh
 # About our team
 [@TrQAnhh](https://github.com/TrQAnhh), ID ITITIU22006, specializes in graphics design, sound setting, UI design, bug fixing, and the creation of maps, trade shops, weapons, and other inventory items. His diverse skills ensure that our game not only looks appealing but also functions smoothly, providing players with an immersive experience.
 
-[@FanchonSora](https://github.com/FanchonSora), ID  ITCISIU22236, focuses on designing intricate monster patterns in cave maps, orchestrating boss monster events, and refining UI elements. His contributions are crucial in crafting challenging gameplay and delivering a captivating narrative through compelling game mechanics.
+[@FanchonSora](https://github.com/FanchonSora), ID  ITCISIU22236, focuses on designing intricate monster patterns in cave maps, orchestrating boss monster events, and refining UI elements. Her contributions are crucial in crafting challenging gameplay and delivering a captivating narrative through compelling game mechanics.
 
 [@Alexspector123](https://github.com/Alexspector123), ID ITCISIU22056, leads the design of our battle system, UI elements, inventory mechanics, and special effects. His expertise ensures that combat in our game is dynamic and engaging, enhancing the overall gaming experience for our players.
