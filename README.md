@@ -12,3 +12,4 @@ Overall, our Finantasy Game is an engaging and challenging strategy game that sh
 [@FanchonSora](https://github.com/FanchonSora), ID  ITCISIU22236, focuses on designing intricate monster patterns in cave maps, orchestrating boss monster events, and refining UI elements. 
 
 [@Alexspector123](https://github.com/Alexspector123), ID ITCISIU22056, leads the design of our battle system, UI elements, inventory mechanics, and special effects. 
+# About our final production
