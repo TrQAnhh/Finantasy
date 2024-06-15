@@ -98,6 +98,10 @@ public class AssetSetter{
             gamePanel.monster[mapNum][2].worldY = 1600;
             gamePanel.eHandler.checkHappened[2] = false;
         }
+        gamePanel.monster[mapNum][4] = MonsterFactory.createMonster("Green Dragon", gamePanel);
+        if(gamePanel.monster[mapNum][4].dying == false) {
+            gamePanel.eHandler.checkHappened[3] = false;
+        }
         if(Progress.DragonBossDefeated == false) {
             gamePanel.monster[mapNum][3] = MonsterFactory.createMonster("Boss", gamePanel);
             gamePanel.monster[mapNum][3].worldX = 1380;

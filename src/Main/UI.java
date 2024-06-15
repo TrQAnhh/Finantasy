@@ -1398,14 +1398,18 @@ public class UI {
                 gamePanel.eHandler.checkHappened[2] = true;
             }
             if (mons instanceof MON_GreenDragon) {
-                gamePanel.bossBattleOn = true;
-                mons.defeat = true;
-                gamePanel.eHandler.checkHappened[3] = true;
+                if(mons.dying == true) {
+                    gamePanel.bossBattleOn = true;
+                    gamePanel.monster[1][4].defeat = true;
+                    gamePanel.eHandler.checkHappened[3] = true;
+                }
             }
             if (mons instanceof MON_Boss) {
-                gamePanel.bossBattleOn = false;
-                gamePanel.monster[1][3].defeat = true;
-                Progress.DragonBossDefeated = true;
+                if(mons.dying == true) {
+                    gamePanel.bossBattleOn = false;
+                    gamePanel.monster[1][3].defeat = true;
+                    Progress.DragonBossDefeated = true;
+                }
             }
         }
     }

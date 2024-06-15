@@ -52,7 +52,7 @@ public class Player extends Entity{
         }
         public void setDefaultValues(){
             // PLAYER'S SPEED:
-                speed = 13;
+                speed = 7;
                 direction = "down";
             // PLAYER STATUS
                 level = 1;
@@ -389,7 +389,7 @@ public void battleAction(int selectAction, int choosingEquipAction, int choosing
             nextLevelExp = nextLevelExp*2;
             maxLife += maxLife/2;
             strength *= 2;
-            dexterity *= 2;
+            dexterity *= 3;
             attack += 3;
             defense += 2;
 

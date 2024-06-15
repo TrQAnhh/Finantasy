@@ -33,6 +33,9 @@ public class credit extends JPanel implements ActionListener {
         this.text = text;
         creditTimer.start();
 
+        // Load the image
+        image = ImageIO.read(new File(imagePath));
+
     }
 
     @Override
@@ -44,7 +47,6 @@ public class credit extends JPanel implements ActionListener {
         if (image != null) {
             g2d.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
         }
-
         // Set the font and color for the text
         g2d.setFont(new Font("alagard", Font.ITALIC, 30));
         g2d.setColor(Color.WHITE);
