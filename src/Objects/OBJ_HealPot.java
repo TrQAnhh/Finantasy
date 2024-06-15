@@ -28,9 +28,7 @@ public class OBJ_HealPot extends Entity {
             gamePanel.ui.addMessage("Healing");
         }
         else{
-            gamePanel.gameState = gamePanel.dialogueState;
-            gamePanel.ui.currentDialogue = "You drink the "+name+"!\nYour life has been recovered by "+value+".";
-            // gamePanel.playSE(2)
+            gamePanel.ui.addMessage("Your life is restored by "+value+".");
         }
         entity.state = entity.healingState;
     }

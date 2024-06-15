@@ -21,6 +21,7 @@ public class cutScenceManager {
     String endCredit;
     String text;
 
+
     public cutScenceManager(GamePanel gp) {
         this.gp = gp;
     }
@@ -55,4 +56,5 @@ public class cutScenceManager {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
+    
 }

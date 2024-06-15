@@ -30,12 +30,9 @@ public class credit extends JPanel implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.add(this);
-        
-        // Load the image
-        image = ImageIO.read(new File(imagePath));
-
         this.text = text;
         creditTimer.start();
+
     }
 
     @Override
@@ -64,11 +61,13 @@ public class credit extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         textY--;
         if (textY < -1000) {
             creditTimer.stop();
             frame.dispose();
         }
         repaint();
+        
     }
 }

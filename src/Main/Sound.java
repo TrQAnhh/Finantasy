@@ -20,7 +20,7 @@ public class Sound {
         soundURL[2] = getClass().getResource("/Sound/CaveTheme.wav");
         soundURL[3] = getClass().getResource("/Sound/BattleOutsideCaveTheme.wav");
         soundURL[4] = getClass().getResource("/Sound/BattleInsideCaveTheme.wav");
-//        soundURL[5] = getClass().getResource("/Sound/CaveTheme.wav");
+        soundURL[5] = getClass().getResource("/Sound/EndingTheme.wav");
 //        soundURL[6] = getClass().getResource("/Sound/SnowTheme.wav");
 
         soundURL[7] = getClass().getResource("/Sound/BarrelsBreakSE.wav");
