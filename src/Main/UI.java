@@ -984,11 +984,6 @@ public class UI {
             // END OF THE BATTLE
                 if(checkBattleEnd() == true){
                     gamePanel.stopMusic();
-                    if ( gamePanel.currentMap == 0 && gamePanel.gameState == gamePanel.playState ) {
-                        gamePanel.playMusic(0);
-                    } else if ( gamePanel.currentMap == 1 && gamePanel.gameState == gamePanel.playState ){
-                        gamePanel.playMusic(2);
-                    }
                     gamePanel.keyHandler.enterPressed = false;
                     resetNum();
                     orderTurn = 0;
@@ -996,6 +991,13 @@ public class UI {
                     handlerMonsters();
                     listofMonster.clear();
                     gamePanel.gameState = gamePanel.playState;
+                    if ( gamePanel.currentMap == 0 && gamePanel.gameState == gamePanel.playState) {
+                        gamePanel.playMusic(0);
+                    } else if ( gamePanel.currentMap == 1 && gamePanel.gameState == gamePanel.playState){
+                        gamePanel.playMusic(2);
+                    } else {
+                        gamePanel.stopMusic();
+                    }
                 }
     }
     // Count the number of interaction
@@ -1355,11 +1357,7 @@ public class UI {
             }
         // END OF THE BATTLE
             if(checkBattleEnd() == true){
-                if ( gamePanel.currentMap == 0 ) {
-                    gamePanel.playMusic(0);
-                } else {
-                    gamePanel.playMusic(2);
-                }
+                gamePanel.stopMusic();
                 gamePanel.keyHandler.enterPressed = false;
                 resetNum();
                 orderTurn = 0;

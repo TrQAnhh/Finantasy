@@ -107,60 +107,6 @@ public class Player extends Entity{
     // METHODS:
         // GET PLAYER IMAGES:
             public void getBasePlayerImage(){
-        //        try (
-        //                InputStream moving_down01 = new FileInputStream(new File("res/Entities/Player_warrior/down_1.png"));
-        //                InputStream moving_down02 = new FileInputStream(new File("res/Entities/Player_warrior/down_2.png"));
-        //                InputStream moving_down03 = new FileInputStream(new File("res/Entities/Player_warrior/down_3.png"));
-        //
-        //                InputStream moving_left01 = new FileInputStream(new File("res/Entities/Player_warrior/left_1.png"));
-        //                InputStream moving_left02 = new FileInputStream(new File("res/Entities/Player_warrior/left_2.png"));
-        //                InputStream moving_left03 = new FileInputStream(new File("res/Entities/Player_warrior/left_3.png"));
-        //
-        //                InputStream moving_right01 = new FileInputStream(new File("res/Entities/Player_warrior/right_1.png"));
-        //                InputStream moving_right02 = new FileInputStream(new File("res/Entities/Player_warrior/right_2.png"));
-        //                InputStream moving_right03 = new FileInputStream(new File("res/Entities/Player_warrior/right_3.png"));
-        //
-        //                InputStream moving_up01 = new FileInputStream(new File("res/Entities/Player_warrior/up_1.png"));
-        //                InputStream moving_up02 = new FileInputStream(new File("res/Entities/Player_warrior/up_2.png"));
-        //                InputStream moving_up03 = new FileInputStream(new File("res/Entities/Player_warrior/up_3.png"));
-        //            ) {
-        //
-        //            down1 = ImageIO.read(moving_down01);
-        //            down2 = ImageIO.read(moving_down02);
-        //            down3 = ImageIO.read(moving_down03);
-        //
-        //            left1 = ImageIO.read(moving_left01);
-        //            left2 = ImageIO.read(moving_left02);
-        //            left3 = ImageIO.read(moving_left03);
-        //
-        //            right1 = ImageIO.read(moving_right01);
-        //            right2 = ImageIO.read(moving_right02);
-        //            right3 = ImageIO.read(moving_right03);
-        //
-        //            up1 = ImageIO.read(moving_up01);
-        //            up2 = ImageIO.read(moving_up02);
-        //            up3 = ImageIO.read(moving_up03);
-        //
-        //        }catch (IOException e){
-        //            e.printStackTrace();
-        //        }
-
-                // PLAYER DEFAULT IMAGES:
-        //            down1 = setupPlayerDefault("down_1");
-        //            down2 = setupPlayerDefault("down_2");
-        //            down3 = setupPlayerDefault("down_3");
-        //
-        //            left1 = setupPlayerDefault("left_1");
-        //            left2 = setupPlayerDefault("left_2");
-        //            left3 = setupPlayerDefault("left_3");
-        //
-        //            right1 = setupPlayerDefault("right_1");
-        //            right2 = setupPlayerDefault("right_2");
-        //            right3 = setupPlayerDefault("right_3");
-        //
-        //            up1 = setupPlayerDefault("up_1");
-        //            up2 = setupPlayerDefault("up_2");
-        //            up3 = setupPlayerDefault("up_3");
                 // PLAYER WARRIOR IMAGES:
                     down1 = setupPlayerWarrior("down_1");
                     down2 = setupPlayerWarrior("down_2");
@@ -179,23 +125,6 @@ public class Player extends Entity{
                     up3 = setupPlayerWarrior("up_3");
 
             }
-
-    public BufferedImage setupPlayerDefault(String imagePath) {
-
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-
-        String filePath = "res/Entities/Player_Default/" + imagePath + ".png";
-        File imageFile = new File(filePath);
-
-        try (FileInputStream readImage = new FileInputStream(imageFile)) {
-            image = ImageIO.read(readImage);
-            image = uTool.scaleImage(image,gamePanel.tileSize + 16, gamePanel.tileSize + 16);
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
 
     public BufferedImage setupPlayerWarrior(String imagePath) {
 
@@ -293,7 +222,6 @@ public class Player extends Entity{
             if(gamePanel.keyHandler.enterPressed == true){
                 if(inventory.size() < maxInventorySize){
                     if (currentTool instanceof OBJ_Axe && gamePanel.object[gamePanel.currentMap][i].type == type_barrel){
-                        gamePanel.playSE(2);
                         gamePanel.object[gamePanel.currentMap][i].use(this);
                         gamePanel.object[gamePanel.currentMap][i] = null;
                     }

@@ -47,21 +47,26 @@ public class cutScenceManager {
                     "GRAPHIC DESIGNER: TRAN QUOC ANH\n"+
                     " \n"+
                     "GAME PROGRAMMER: TRAN QUOC ANH\n"+
-                    "                        PHAN TRAN THANH HUY\n"+
-                    "                         NGUYEN DINH KHANH NGAN\n"+
+                    "GAME PROGRAMMER: PHAN TRAN THANH HUY\n"+
+                    "GAME PROGRAMMER: NGUYEN DINH KHANH NGAN\n"+
                     " \n"+
-                    "CONDUCTING REPORT: TRAN QUOC ANH\n"+
-                    "                           PHAN TRAN THANH HUY\n"+
-                    "                            NGUYEN DINH KHANH NGAN\n"+
+                    "REPORT PREPARATION: TRAN QUOC ANH\n"+
+                    "REPORT PREPARATION: PHAN TRAN THANH HUY\n"+
+                    "REPORT PREPARATION: NGUYEN DINH KHANH NGAN\n"+
                     " \n"+
                     " \n"+
                     " \n"+
                     "CONTACT: tranqanh2810@gmail.com\n"+
-                    "            alexspector8766@gmail.com\n"+
-                    "            khanhngan1491@gmail.com\n";
-
-                    String s = "D:/Workspace/Finantasy/res/Background/BattleBackground_1.png";
+                    "CONTACT: alexspector8766@gmail.com\n"+
+                    "CONTACT: khanhngan1491@gmail.com\n"+
+                    " \n"+
+                    " \n"+
+                    " \n"+
+                    "Thank you for participating in the game conducted by our team!\n"+
+                    " @TrQAnhh" + " @AlexSpector" + " @FanchonSora";
+                    String s = "res/Background/BattleBackground_1.png";
             new credit(s, text);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

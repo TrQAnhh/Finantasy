@@ -9,7 +9,9 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +19,7 @@ import javax.swing.Timer;
 
 public class credit extends JPanel implements ActionListener {
 
-    Timer creditTimer = new Timer(15, this);  // Increased delay for slower scrolling
+    Timer creditTimer = new Timer(35, this);  // Increased delay for slower scrolling
     String text;
     int textY = 610;
     JFrame frame;
@@ -33,8 +35,14 @@ public class credit extends JPanel implements ActionListener {
         this.text = text;
         creditTimer.start();
 
-        // Load the image
-        image = ImageIO.read(new File(imagePath));
+        // LOAD THE IMAGE
+            try (
+                    InputStream moving_down01 = new FileInputStream(new File(imagePath));
+            ) {
+                image = ImageIO.read(moving_down01);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
 
     }
 
@@ -44,21 +52,22 @@ public class credit extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D) g;
 
         // Draw the image
-        if (image != null) {
-            g2d.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
-        }
+            if (image != null) {
+                g2d.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
+            }
         // Set the font and color for the text
-        g2d.setFont(new Font("alagard", Font.ITALIC, 30));
-        g2d.setColor(Color.WHITE);
-        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            g2d.setFont(new Font("romulus", Font.BOLD, 30));
+            g2d.setColor(Color.WHITE);
+            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         // Draw the text
-        int y = textY;
-        for (String line : text.split("\n")) {
-            int stringLength = (int) g2d.getFontMetrics().getStringBounds(line, g2d).getWidth();
-            int x = getWidth() / 2 - stringLength / 2;
-            g2d.drawString(line, x, y += 30);
-        }
+            int y = textY;
+            for (String line : text.split("\n")) {
+                int stringLength = (int) g2d.getFontMetrics().getStringBounds(line, g2d).getWidth();
+                int x = getWidth() / 2 - stringLength / 2;
+                g2d.drawString(line, x, y);
+                y += 30;
+            }
     }
 
     @Override
