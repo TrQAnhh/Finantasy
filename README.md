@@ -11,4 +11,4 @@ Overall, our Finantasy Game is an engaging and challenging strategy game that sh
 
 @FanchonSora, a student with ID  ITCISIU22236, focuses on designing intricate monster patterns in cave maps, orchestrating boss monster events, and refining UI elements. His contributions are crucial in crafting challenging gameplay and delivering a captivating narrative through compelling game mechanics.
 
-@Alexspector123, a student with ID ITCISIU22056, leads the design of our battle system, UI elements, inventory mechanics, and special effects. His expertise ensures that combat in our game is dynamic and engaging, enhancing the overall gaming experience for our players.
+[@Alexspector123](https://github.com/Alexspector123), a student with ID ITCISIU22056, leads the design of our battle system, UI elements, inventory mechanics, and special effects. His expertise ensures that combat in our game is dynamic and engaging, enhancing the overall gaming experience for our players.
