@@ -1,5 +1,5 @@
 # 🏰 Finantasy 🏹
-Finantasy Game is a strategy game developed by us as a project for the Object-Oriented Programming course at International University - VNU HCMC. Set in a fantastical world inspired by classic games, our game challenges players to use their decision-making skills to navigate through a series of battles and quests.
+🎮 Finantasy Game is a strategy game developed by us as a project for the Object-Oriented Programming course at International University - VNU HCMC. Set in a fantastical world inspired by classic games, our game challenges players to use their decision-making skills to navigate through a series of battles and quests.
 ## 🗡️ General
 In the game, players take on the role of heroes equipped with unique abilities and attributes, embarking on a journey to defeat formidable monsters and enemies. The game incorporates a turn-based system where each player has a designated period to perform actions such as attacking, defending, or using special items. After a player’s turn is completed, the monsters take their turn, and this cycle continues until the game's objective is met or the game concludes according to its rules.
 
