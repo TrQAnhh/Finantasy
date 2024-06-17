@@ -7,7 +7,7 @@ The gameplay of our turn-based game requires strategic thinking and situational 
 
 Overall, our Finantasy Game is an engaging and challenging strategy game that showcases the skills and creativity of the developers at International University - VNU HCMC. With its strategic gameplay and impressive graphics, the game promises to provide hours of entertainment and a rewarding experience for players.
 
-### FINAL REPORT: [REPORT](https://drive.google.com/file/d/1A1tXpafPBYaFUqYscw_XWeIBNJy1_sRt/view?usp=sharing)
+### FINAL REPORT: [REPORT](https://drive.google.com/file/d/17t1StQqDesR0X00bxsoAf3agX4RuDzBw/view?usp=sharing)
 
 ### PRESENTATION SLIDE: [SLIDE](https://docs.google.com/presentation/d/15dtwuxX2EELQuNiI4CU7atfMWvcWSuyh/edit?usp=sharing&ouid=103789895802870681381&rtpof=true&sd=true)
 
