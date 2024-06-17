@@ -1364,7 +1364,7 @@ public class UI {
                 checker = false;
                 handlerMonsters();
                 listofMonster.clear();
-                gamePanel.gameState = gamePanel.playState;
+                gamePanel.gameState = gamePanel.cutScenceState;
             }
 
     }
